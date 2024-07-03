@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
 
-      <body className={inter.className, "bg-bg_color"}>
+      <body className={inter.className,"bg-bg_color"}>
         <div className="header flex" id="header">
           <Image
             src="/odd.png"
