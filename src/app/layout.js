@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +12,29 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+    
+        <div className=" h-30 fixed bottom-0 left-0 flex w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+          <div className="flex-auto w-30 border-4 border-bg_color">fdsfdfadsf</div>
+          <div className="flex-auto w-40 border-4 border-bg_color content-between justify-items-center">
+            <div className="">
+              <Image
+                src="/vercel.svg"
+                alt="Vercel Logo"
+                className="-mt-9 bg-slate-700 mx-auto p-4"
+                width={200}
+                height={309}
+                priority
+              />
+            </div>
+            <h3>Logo Part</h3>
+          </div>
+          <div className="flex-auto w-30">
+            <h3>custom part</h3>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
