@@ -29,10 +29,10 @@ const MaintenancePage = () => {
         />
       </div>
         <h1 className="text-5xl font-bold bg-clip-text bg-gradient-to-r animate-pulse from-white">
-        WE ARE UNDER CONSTRUCTION</h1>
+        WE&apos;re UNDER CONSTRUCTION</h1>
      
       <p className={styles.description}>
-        Our website is currently under maintenance. We'll be back soon!
+      Our website is currently under maintenance. We&apos;ll be back soon!
       </p>
       <div className={styles.Imaged}>
         <div className={styles.loadingCircle} />
