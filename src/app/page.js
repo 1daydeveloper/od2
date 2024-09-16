@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import anime from "animejs/lib/anime.min.js";
 import styles from "../styles/Home.module.css";
+import Link from 'next/link';
 
 const MaintenancePage = () => {
   React.useEffect(() => {
@@ -29,11 +30,14 @@ const MaintenancePage = () => {
         />
       </div>
         <h1 className="text-5xl font-bold bg-clip-text bg-gradient-to-r animate-pulse from-white">
-        We're UNDER CONSTRUCTION</h1>
+        We&aposre UNDER CONSTRUCTION</h1>
      
       <p className={styles.description}>
-        Our website is currently under maintenance. We'll be back soon!
+        Our website is currently under maintenance. We&aposll be back soon!
       </p>
+      <Link href="/about">
+              About Us
+            </Link>
       <div className={styles.Imaged}>
         <div className={styles.loadingCircle} />
       </div>
