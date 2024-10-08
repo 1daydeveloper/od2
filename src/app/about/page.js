@@ -9,16 +9,7 @@ export default function About() {
   return (
     <div class=" mx-auto m-10 bg-clip-padding rounded-xl shadow-md overflow-hidden ">
       <div class="md:flex ">
-        <div class="md:flex-shrink-0 align-baseline">
-          <Image
-            src="/odd.png"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-            className="animate-image"
-          />{" "}
-        </div>
+        
         <div class="p-8">
           <h2 class="uppercase tracking-wide text-5xl text-yellow-300 font-semibold">
             One Day Developers(OD2)
