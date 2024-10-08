@@ -14,14 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="min-h-screen bg-gradient-to-r from-black via-yellow-800 to-black bg-[length:200%_200%] animate-gradient flex items-center justify-center">
-          {/* <Header></Header> */}
+      <body className={inter.className + "h-full w-full bg-black"}>
+        <Header></Header>
 
-          {children}
+        {children}
 
-          {/* <Footer></Footer> */}
-        </div>
+        <Footer></Footer>
       </body>
     </html>
   );
