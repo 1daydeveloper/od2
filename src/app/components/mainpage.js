@@ -63,7 +63,7 @@ const Mainpage = () => {
     <div className="card-body">
         <div className="flex flex-col items-center p-4 font-mono text-black">
             <div className={`transition-opacity duration-500 ${fade ? "opacity-100" : "opacity-0"}`}>
-                <h5 className="text-xl font-bold">"{currentQuote.quote}"</h5>
+                <h5 className="text-xl font-bold">&ldquo;{currentQuote.quote}&ldquo;</h5>
                 <p className="text-lg" style={{ textAlign: "right" }}>
                     - {currentQuote.author} -
                 </p>
