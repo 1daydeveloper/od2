@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import Footer from "./components/footer";
 import Header from "./components/header";
+import Head from 'next/head';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,6 +16,31 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+          <Head>
+        <title>OD2 - One Day Developers</title>
+
+        {/* Open Graph Meta tags for social media sharing */}
+        <meta property="og:title" content="OD2 - One Day Developers" />
+        <meta property="og:description" content="We specialize in completing projects within 24 hours. Contact us for desktop, Android, and integration services." />
+        <meta property="og:url" content="https://www.od2.com" />
+        <meta property="og:type" content="website" />
+      </Head>
+
+      {/* Google Analytics using next/script */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-1CC0XPGF77"
+        strategy="afterInteractive"
+      />
+
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-1CC0XPGF77');
+        `}
+      </Script>
       <body className={inter.className + "h-full w-full bg-black"}>
         <Header></Header>
 
