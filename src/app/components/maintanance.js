@@ -1,12 +1,22 @@
 "use client";
 import React from 'react';
-import Image from "next/image";
 import Link from 'next/link';
-import { useState } from 'react';
 import styles from "../../styles/maintanance.module.css";
+import anime from "animejs/lib/anime.min.js";
+
 
 const MaintenancePage = () => {
-  
+  React.useEffect(() => {
+    anime({
+      targets: ".loading-circle",
+      scale: [
+        { value: 1.1, easing: "easeOutSine", duration: 500 },
+        { value: 1, easing: "easeInOutQuad", duration: 500 },
+      ],
+      rotate: "1turn",
+      loop: true,
+    });
+  }, []);
   return (
     <div className={styles.maintenancePage}>
     <h1 className="text-5xl font-bold bg-clip-text bg-gradient-to-r animate-pulse from-white">

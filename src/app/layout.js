@@ -5,6 +5,7 @@ import Footer from "./components/footer";
 import Header from "./components/header";
 import Head from 'next/head';
 import Script from 'next/script';
+import  "bootstrap/dist/css/bootstrap.min.css"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,7 +42,7 @@ export default function RootLayout({ children }) {
           gtag('config', 'G-1CC0XPGF77');
         `}
       </Script>
-      <body className={inter.className + "h-full w-full bg-black"}>
+      <body className={inter.className + "flex-col bg-black"}>
         <Header></Header>
 
         {children}
