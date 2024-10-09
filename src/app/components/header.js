@@ -66,8 +66,8 @@ const Header = () => {
 
             {/* Mobile Menu */}
             {isOpen && (
-              <div className="md:hidden">
-                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 font-bold">
+              <div className="md:hidden absolute bg-slate-300" >
+                <div className=" px-2 pt-2 pb-3 space-y-1 sm:px-3 font-bold grid">
                   <Link href="/" className="hover:text-black ">
                     Home
                   </Link>

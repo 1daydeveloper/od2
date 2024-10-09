@@ -1,10 +1,30 @@
 "use client";
-import React from 'react';
+import { useEffect, useState ,React} from 'react';
 import Image from "next/image";
 
 const Footer = () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+      const handleScroll = () => {
+          // Hide the div when scrolling down
+          if (window.scrollY > 0) {
+              setIsVisible(false);
+          } else {
+              setIsVisible(true);
+          }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      // Cleanup the event listener on component unmount
+      return () => {
+          window.removeEventListener('scroll', handleScroll);
+      };
+  }, []);
   return (
-    <footer>
+  
+    <footer className={`${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
    <div className=" h-20 fixed bottom-0 left-0 flex w-full items-end justify-center bg-orange-400">
           <div className="flex-auto w-30 ">
           </div>

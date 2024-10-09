@@ -25,3 +25,21 @@ body {
     text-wrap: balance;
   }
 }
+
+
+/* styles/globals.css or styles/WaveEffect.module.css */
+@keyframes wave {
+  0% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
+
+.animate-wave {
+  animation: wave 2s infinite linear;
+}
