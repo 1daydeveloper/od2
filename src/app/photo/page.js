@@ -5,7 +5,6 @@ import React, { useState, useRef } from "react";
 import Image from "next/image";
 import "../../styles/photo.css";
 import html2canvas from "html2canvas";
-import { toast } from "react-toastify";
 export default function Photo() {
   const [imageSrc, setImageSrc] = useState(null);
   const photoRef = useRef(null);
