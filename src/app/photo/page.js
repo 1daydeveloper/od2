@@ -5,7 +5,6 @@ import React, { useState, useRef } from "react";
 import Image from "next/image";
 import "../../styles/photo.css";
 import html2canvas from "html2canvas";
-
 export default function Photo() {
   const [imageSrc, setImageSrc] = useState(null);
   const photoRef = useRef(null);
@@ -81,8 +80,8 @@ export default function Photo() {
                     display: "grid",
                     gridTemplateColumns: "repeat(2, 1fr)",
                     gridTemplateRows: "repeat(4, 1fr)",
-                    gap: "20px",
-                    padding: "20px",
+                    gap: "1px",
+                    padding: "1px",
                     "justify-items": "center",
                   }}
                 >
@@ -101,6 +100,7 @@ export default function Photo() {
                             width: "315px", // 3.5 cm = 315px
                             height: "405px", // 4.5 cm = 405px
                             objectFit: "cover",
+                            transform: "rotate(270deg)",
                             border: "1px solid black",
                           }}
                         />
