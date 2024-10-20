@@ -6,9 +6,24 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-   
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+    },
+    fontFamily: {
+      sans: ['Graphik', 'sans-serif'],
+      serif: ['Merriweather', 'serif'],
+    },
+
     extend: {
-      colors: {
+      spacing: {
+        '128': '32rem',
+        '144': '36rem',
+      },      
+        colors: {
+        headfoot_color:"#d39f63",
         heading_color:"#f7ebdc",
         text_color:"#e8c396",
         bg_color:"black",

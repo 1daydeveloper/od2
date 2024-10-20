@@ -1,18 +1,29 @@
 "use client";
-import React from "react";
+import  {React, useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [colorbg, setcolorbg] = useState("black");
+  const items = ['white', 'green', 'yellow', 'blue'];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setcolorbg(items);
+    }, 2000); // 2000 milliseconds = 2 seconds
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [items.length]);
+
+
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
   return (
     <header>
-      <div className="header flex" id="header">
+      <div className="header flex " id="header">
         <Image
           src="/odd.png"
           alt="Next.js Logo"
@@ -20,7 +31,13 @@ const Header = () => {
           height={37}
           priority
         />
-        <div className="m-8 ml-0 w-60 h-37 flex-auto text-black border-10 bg-orange-400 rounded  content-center text-center ">
+        <div
+          className="m-8 ml-0 w-60 h-37 flex-auto text-black border-10 rounded-2xl bg-headfoot_color rounded  content-center text-center "
+          style={{
+            "box-shadow": "0px 0px 20px 2px "+colorbg,
+            transition: "box-shadow 4s ease-out",
+          }}
+        >
           {" "}
           <nav className="shadow-md">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,7 +83,7 @@ const Header = () => {
 
             {/* Mobile Menu */}
             {isOpen && (
-              <div className="md:hidden absolute bg-slate-300" >
+              <div className="md:hidden absolute bg-slate-300">
                 <div className=" px-2 pt-2 pb-3 space-y-1 sm:px-3 font-bold grid">
                   <Link href="/" className="hover:text-black ">
                     Home
