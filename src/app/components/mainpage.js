@@ -75,7 +75,7 @@ const Mainpage = () => {
                 New
               </span>{" "}
               <span class="text-sm font-medium">
-                New Billing System Has been Launched See what's new
+                New Billing System Has been Launched See what&#39s new
               </span>
               <svg
                 class="w-2.5 h-2.5 ms-2 rtl:rotate-180"
