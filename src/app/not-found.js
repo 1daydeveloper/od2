@@ -8,7 +8,6 @@ export default function NotFound() {
 
   useEffect(() => {
     // Log the 404 error or perform other side effects if needed
-    console.log('Page not found');
   }, []);
 
   return (

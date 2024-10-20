@@ -11,16 +11,16 @@ export default function About() {
       <div class="md:flex ">
         
         <div class="p-8">
-          <h2 class="uppercase tracking-wide text-5xl text-yellow-300 font-semibold">
+          <h2 class="uppercase tracking-wide text-5xl text-yellow-500 font-serif">
             One Day Developers(OD2)
           </h2>
           <a
             href="#"
-            class="block mt-1 text-lg leading-tight font-medium text-yellow hover:underline"
+            class="block mt-1 text-lg leading-tight font-medium text-amber-500 hover:underline"
           >
             A Company with the Uniqe target to make the Projects in 24Hrs
           </a>
-          <p class="mt-2 text-yellow-500">
+          <p class="mt-2 text-white">
             At One Day Developers (OD2), we are a dynamic team of experts
             dedicated to delivering top-notch software solutions, desktop
             applications, Android apps, and seamless integration services. With
