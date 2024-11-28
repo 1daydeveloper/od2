@@ -56,7 +56,10 @@ export default function GetEmailByID() {
     txt.innerHTML = html;
     return txt.value;
   };
-
+ function handleInputChange(e) {
+  const inputText = e.target.value.toLowerCase(); // To small caps
+  setId(inputText)
+ }
 
  function timeAgo(isoDate) {
     const currentTime = new Date(); // Local system time
@@ -92,15 +95,18 @@ export default function GetEmailByID() {
   
   
   return (
-    <div className="p-6 min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">Get Email by ID</h1>
+    <div className="flex-col min-h-screen">
+      <h1 className="text-2xl font-bold mb-4">Temp Email What ever you need!<span class="m-3 inline-block px-2 py-1 text-xl font-semibold text-white bg-yellow-500 rounded-full">
+  Beta
+</span></h1>
       <form onSubmit={handleSubmit} className="mb-6">
-        <div className="flex items-center space-x-2">
+        <div className="md:flex-col  items-center space-x-2">
           <input
             type="text"
             value={id}
-            onChange={(e) => setId(e.target.value)}
+            onChange={handleInputChange}
             placeholder="Enter ID (e.g., jk)"
+            autocomplete="off"
             required
             disabled={!enablesubmitbtn}
             className="px-4 py-2 text-black border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -108,16 +114,11 @@ export default function GetEmailByID() {
           <button
             type="submit"
             disabled={!enablesubmitbtn}
-            className={`${enablesubmitbtn?"bg-yellow-600":"bg-gray-300"}  text-black px-4 py-2 rounded-md hover:bg-white transition`}
+            className={`${enablesubmitbtn?"bg-yellow-600":"bg-gray-300"}  text-black md:p-3 px-4 m-3 py-2 rounded-md hover:bg-white transition`}
           >
             Get Temp Mail
           </button>
-          <button
-            className="bg-yellow-600 text-black px-4 py-2 rounded-md hover:bg-white transition"
-            onClick={() => alert("ho")}
-          >
-            Refresh
-          </button>
+        
         </div>
       </form>
 
@@ -157,7 +158,7 @@ export default function GetEmailByID() {
                     </svg>
                   </div>
                   <div className="text-start">
-                    <h6 className="font-bold">
+                    <h6 className="font-bold md:text-sm">
                       {email.from.value[0].address || "Untitled Email"}
                     </h6>
                     <h7 className="">
@@ -223,6 +224,9 @@ export default function GetEmailByID() {
           Entera subscript of email to Tailor your Temp email {id}@tm.od2.in
         </p>
       )}
+
+
+
     </div>
   );
 }
