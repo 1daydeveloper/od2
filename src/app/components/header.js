@@ -36,8 +36,8 @@ const Header = () => {
         <div
           className="m-8 ml-0 w-60 h-37 flex-auto text-black border-10 rounded-2xl bg-headfoot_color  content-center text-center "
           style={{
-            "box-shadow": "0px 0px 20px 2px "+colorbg,
-            transition: "box-shadow 4s ease-out",
+            "boxShadow": "0px 0px 20px 2px "+colorbg,
+            transition: "boxShadow 4s ease-out",
           }}
         >
           {" "}
@@ -93,9 +93,7 @@ const Header = () => {
                   <Link href="/" className="hover:text-black ">
                     Home
                   </Link>
-                  <Link href="/photo" className="hover:text-black">
-                    Photo
-                  </Link>
+                  <Link href="/tmail" className=" hover:text-black">Temp Mail</Link>
                   <Link href="/about" className=" hover:text-black">
                     About
                   </Link>
