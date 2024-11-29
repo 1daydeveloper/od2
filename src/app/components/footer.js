@@ -16,9 +16,9 @@ const Footer = () => {
             height={100}
             priority
             style={{
-              "box-shadow":
+              "boxShadow":
                 "0px 0px 20px 2px rgb(251 146 60 / var(--tw-bg-opacity))",
-              transition: "box-shadow 4s ease-out",
+              transition: "boxShadow 4s ease-out",
             }}
           />
           <h3 className="text-center font-bold font-serif  text-black pt-3">

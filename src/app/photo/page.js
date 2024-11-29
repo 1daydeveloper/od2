@@ -36,13 +36,13 @@ export default function Photo() {
   };
 
   return (
-    <div class="flex-col w-full">
+    <div className="flex-col w-full">
       <div
-        class="flex-none   bg-white border-gray-100 rounded-md	"
+        className="flex-none   bg-white border-gray-100 rounded-md	"
         style={{ padding: "20px", padding: "10px", margin: "10px" }}
       >
         <input
-          class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-black focus:outline-none dark:bg-orange-400 dark:border-gray-600 dark:placeholder-gray-400"
+          className="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-black focus:outline-none dark:bg-orange-400 dark:border-gray-600 dark:placeholder-gray-400"
           type="file"
           accept="image/*"
           onChange={handleImageUpload}
@@ -60,7 +60,7 @@ export default function Photo() {
         )}
         {" No image uploaded"}
       </div>
-      <div class="flex-initial">
+      <div className="flex-initial">
         {imageSrc && (
           <div style={{ "text-align": "center" }}>
            

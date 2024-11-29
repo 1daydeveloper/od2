@@ -7,20 +7,20 @@ import '../../styles/about.css';
 
 export default function About() {
   return (
-    <div class=" mx-auto m-10 bg-clip-padding rounded-xl shadow-md overflow-hidden ">
-      <div class="md:flex ">
+    <div className=" mx-auto m-10 bg-clip-padding rounded-xl shadow-md overflow-hidden ">
+      <div className="md:flex ">
         
-        <div class="p-8">
-          <h2 class="uppercase tracking-wide text-5xl text-yellow-500 font-serif">
+        <div className="p-8">
+          <h2 className="uppercase tracking-wide text-5xl text-yellow-500 font-serif">
             One Day Developers(OD2)
           </h2>
           <a
             href="#"
-            class="block mt-1 text-lg leading-tight font-medium text-amber-500 hover:underline"
+            className="block mt-1 text-lg leading-tight font-medium text-amber-500 hover:underline"
           >
             A Company with the Uniqe target to make the Projects in 24Hrs
           </a>
-          <p class="mt-2 text-white">
+          <p className="mt-2 text-white">
             At One Day Developers (OD2), we are a dynamic team of experts
             dedicated to delivering top-notch software solutions, desktop
             applications, Android apps, and seamless integration services. With

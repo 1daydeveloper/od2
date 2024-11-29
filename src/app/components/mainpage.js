@@ -65,20 +65,20 @@ const Mainpage = () => {
     <div className={"grid gap-3"}>
       {" "}
       <div className={"flex-row"}>
-        <section class="bg-white dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
-          <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
+        <section className="bg-white dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
+          <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
             <a
               href="#"
-              class="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800"
+              className="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800"
             >
-              <span class="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 me-3">
+              <span className="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 me-3">
                 New
               </span>{" "}
-              <span class="text-sm font-medium">
+              <span className="text-sm font-medium">
                 New Billing System Has been Launched See what&#39s new
               </span>
               <svg
-                class="w-2.5 h-2.5 ms-2 rtl:rotate-180"
+                className="w-2.5 h-2.5 ms-2 rtl:rotate-180"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -93,17 +93,17 @@ const Mainpage = () => {
                 />
               </svg>
             </a>
-            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
               We invest in the Time
             </h1>
-            <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">
+            <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">
               We invest time to deliver value, ensuring lasting impact and
               growth with every effort we make.
             </p>
             <div className={"inline-flex"}>
               <a href="https://www.instagram.com/onedaydevelopers/">
                 <svg
-                  class="w-[40px] h-[40px] text-gray-800 dark:text-white"
+                  className="w-[40px] h-[40px] text-gray-800 dark:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -121,7 +121,7 @@ const Mainpage = () => {
               </a>
               <a href="https://www.youtube.com/channel/UCtgc_t09aTJUxYTu4CAaBAA">
                 <svg
-                  class="w-[40px] h-[40px] text-gray-800 dark:text-white"
+                  className="w-[40px] h-[40px] text-gray-800 dark:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -141,9 +141,9 @@ const Mainpage = () => {
         </section>
       </div>
       <div className={"flex justify-between"}>
-        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
-            class="w-[40px] h-[40px] text-gray-800 dark:text-white"
+            className="w-[40px] h-[40px] text-gray-800 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -160,21 +160,21 @@ const Mainpage = () => {
           </svg>
 
           <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               We Advertise
             </h5>
           </a>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             Boost your brand with targeted advertising solutions designed to
             engage, attract, and grow your business.
           </p>
           <a
             href="#"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Get Popular!
             <svg
-              class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+              className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -191,9 +191,9 @@ const Mainpage = () => {
           </a>
         </div>
 
-        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
-            class="w-[40px] h-[40px] text-gray-800 dark:text-white"
+            className="w-[40px] h-[40px] text-gray-800 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -211,21 +211,21 @@ const Mainpage = () => {
           </svg>
 
           <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               We Develop
             </h5>
           </a>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             We develop innovative solutions to transform ideas into reality,
             delivering excellence for every project we undertake.
           </p>
           <a
             href="#"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Let Us Start!
             <svg
-              class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+              className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -242,9 +242,9 @@ const Mainpage = () => {
           </a>
         </div>
 
-        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
-            class="w-[40px] h-[40px] text-gray-800 dark:text-white"
+            className="w-[40px] h-[40px] text-gray-800 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -260,21 +260,21 @@ const Mainpage = () => {
           </svg>
 
           <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               Our Products
             </h5>
           </a>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             Our products combine quality, innovation, and reliability to meet
             the needs of modern businesses and consumers.
           </p>
           <a
             href="#"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Check Out!
             <svg
-              class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+              className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

@@ -59,6 +59,11 @@ export default function GetEmailByID() {
  function handleInputChange(e) {
   const inputText = e.target.value.toLowerCase(); // To small caps
   setId(inputText)
+  gtag('event', 'button_click', {
+    'event_category': 'engagement',
+    'event_label': 'Temp_Mail_Click',
+    'value': inputText
+  });
  }
 
  function timeAgo(isoDate) {
@@ -96,7 +101,7 @@ export default function GetEmailByID() {
   
   return (
     <div className="flex-col min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">Temp Email What ever you need!<span class="m-3 inline-block px-2 py-1 text-xl font-semibold text-white bg-yellow-500 rounded-full">
+      <h1 className="text-2xl font-bold mb-4">Temp Email What ever you need!<span className="m-3 inline-block px-2 py-1 text-xl font-semibold text-white bg-yellow-500 rounded-full">
   Beta
 </span></h1>
       <form onSubmit={handleSubmit} className="mb-6">
@@ -106,7 +111,7 @@ export default function GetEmailByID() {
             value={id}
             onChange={handleInputChange}
             placeholder="Enter ID (e.g., jk)"
-            autocomplete="off"
+            autoComplete="off"
             required
             disabled={!enablesubmitbtn}
             className="px-4 py-2 text-black border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
