@@ -83,7 +83,6 @@ export default function GetEmailByID() {
   }
   const copyToClipboard = () => {
     navigator.clipboard.writeText(id+"@tm.od2.in");
-    alert('Email copied to clipboard!');
   };
   function timeAgo(isoDate) {
     const currentTime = new Date(); // Local system time
@@ -115,7 +114,7 @@ export default function GetEmailByID() {
   return (
     <div className="flex flex-col gap-4 min-h-screen ">
       <h1 className="text-2xl font-bold mb-4">
-      Enter your email prefix (we will add '@tm.od2.in' for you)
+      Enter your email prefix (we will add @tm.od2.in for you)
         <span className="m-3 inline-block px-2 py-1 text-xl font-semibold text-white bg-yellow-500 rounded-full">
           Beta
         </span>
@@ -129,7 +128,7 @@ export default function GetEmailByID() {
             autoComplete="off"
             required
             class="w-full bg-transparent h-10 placeholder:text-slate-400 text-white text-sm border border-slate-200 rounded-md pr-6 pl-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-            placeholder="Enter your email prefix/Username (we will add '@tm.od2.in' for you)"
+            placeholder="Enter your email prefix/Username (we will add @tm.od2.in for you)"
           />
 
           <svg
@@ -278,7 +277,7 @@ export default function GetEmailByID() {
                 </div>
 
                 <div className="font-bold text-xl mt-4">
-                Enter your email prefix (we will add '@tm.od2.in' for you)                </div>
+                Enter your email prefix (we will add @tm.od2.in for you)                </div>
               </div>
             )}
           </div>
