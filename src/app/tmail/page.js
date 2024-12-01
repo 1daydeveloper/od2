@@ -23,6 +23,7 @@ export default function GetEmailByID() {
     e.preventDefault();
     setEmails([]);
     stopRetry();
+    setEmailContent({})
 
     const retryFetch = () => {
       setIsRefreshing(true);
