@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
       </Script>
       <body className={inter.className + "flex-col bg-white dark:bg-slate-800"}>
         <Header></Header>
-        <div className="p-10">{children}</div>
+        <div className="p-5">{children}</div>
         <Footer></Footer>
       </body>
     </html>
