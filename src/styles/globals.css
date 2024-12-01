@@ -43,3 +43,25 @@ body {
 .animate-wave {
   animation: wave 2s infinite linear;
 }
+
+
+@layer utilities {
+  .truncate-lines {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limits to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds the ellipsis (…) */
+  }
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
