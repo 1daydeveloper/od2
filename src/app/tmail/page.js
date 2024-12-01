@@ -41,7 +41,6 @@ export default function GetEmailByID() {
               setEmails(data);
               setIsRefreshing(false);
 
-              setActiveTab(data[0]?._id || null); // Set the first email as the active tab
             }
           })
           .catch((err) => {
@@ -183,7 +182,7 @@ export default function GetEmailByID() {
             </svg>
           </div>
 
-          <div class="overflow-y-auto max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
+          <div class="flex flex-col overflow-y-auto gap-2 w-100 max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
             {emails && emails.length !== 0 ? (
               emails
                 .slice()
@@ -191,11 +190,11 @@ export default function GetEmailByID() {
                 .map((email) => (
                   <button
                     key={email._id}
-                    className={`px-1 py-1 rounded-md shadow  ${
+                    className={`px-1 py-1 rounded-md shadow-md border-2 border-gray-100 ${
                       activeTab === email._id
                         ? "bg-blue-500 text-white"
                         : "bg-gray-200 hover:bg-gray-300 text-gray-800"
-                    }`}
+                    } 	`}
                     onClick={() => getemailcontentdata(email._id)} // Update the active tab
                   >
                     <div className="flex flex-row gap-3">
