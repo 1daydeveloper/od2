@@ -520,7 +520,7 @@ export default function GetEmailByID() {
                     <li>Ampersand (&)</li>
                     <li>Equals sign (=)</li>
                     <li>Underscore (_)</li>
-                    <li>Apostrophe (')</li>
+                    <li>Apostrophe (&apos;)</li>
                     <li>Dash (-)</li>
                     <li>Plus sign (+)</li>
                     <li>Comma (,)</li>
