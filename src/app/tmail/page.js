@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import TrendingWords from "@/app/components/trending";
 export default function GetEmailByID() {
   const [id, setId] = useState("");
   const [emails, setEmails] = useState([]);
@@ -16,14 +17,14 @@ export default function GetEmailByID() {
       SetIntervalId(null); // Reset timeout ID
     }
     setIsLoading(false); // Stop loading immediately
-    setIsRefreshing(false); 
+    setIsRefreshing(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setEmails([]);
     stopRetry();
-    setEmailContent({})
+    setEmailContent({});
 
     const retryFetch = () => {
       setIsRefreshing(true);
@@ -41,7 +42,6 @@ export default function GetEmailByID() {
               setIsLoading(false); // Set loading to false when fetch is done
               setEmails(data);
               setIsRefreshing(false);
-
             }
           })
           .catch((err) => {
@@ -63,14 +63,45 @@ export default function GetEmailByID() {
 
   function getemailcontentdata(emailid) {
     setActiveTab(emailid);
-    console.log(emailid);
-    console.log(emails.find((email) => email._id === emailid));
+
     setEmailContent(emails.find((email) => email._id === emailid));
   }
   const decodeHtml = (html) => {
+    // Decode HTML content
     const txt = document.createElement("textarea");
+    let attachments = emailcontent.attachments;
     txt.innerHTML = html;
-    return txt.value;
+    const decodedContent = txt.value;
+
+    // If attachments are not present or empty, return decoded content
+    if (!attachments || attachments.length === 0) {
+      return decodedContent;
+    }
+
+    // Create a mapping of CID to data URL or filename
+    const cidMap = attachments.reduce((map, attachment) => {
+      if (attachment.cid) {
+        const base64Content = Buffer.from(attachment.content.data).toString(
+          "base64"
+        );
+        const dataUrl = `data:${attachment.contentType};base64,${base64Content}`;
+        map[attachment.cid] = dataUrl;
+      }
+      return map;
+    }, {});
+
+    // Replace <img> tags with updated src
+    const updatedContent = decodedContent.replace(
+      /<img\s+[^>]*src=["']cid:([^"']+)["'][^>]*>/g,
+      (match, cid) => {
+        const replacementSrc = cidMap[cid];
+        return replacementSrc
+          ? match.replace(`cid:${cid}`, replacementSrc)
+          : match;
+      }
+    );
+
+    return updatedContent;
   };
   function handleInputChange(e) {
     const inputText = e.target.value.toLowerCase(); // To small caps
@@ -81,8 +112,13 @@ export default function GetEmailByID() {
       value: inputText,
     });
   }
+
+  function addKeyToInput(data) {
+    setId("inputText");
+    setId(data);
+  }
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(id+"@tm.od2.in");
+    navigator.clipboard.writeText(id + "@tm.od2.in");
   };
   function timeAgo(isoDate) {
     const currentTime = new Date(); // Local system time
@@ -114,20 +150,21 @@ export default function GetEmailByID() {
   return (
     <div className="flex flex-col gap-4 min-h-screen ">
       <h1 className="text-2xl font-bold mb-4">
-      Enter your email prefix (we will add @tm.od2.in for you)
+        Enter your email prefix (we will add @tm.od2.in for you)
         <span className="m-3 inline-block px-2 py-1 text-xl font-semibold text-white bg-yellow-500 rounded-full">
           Beta
         </span>
       </h1>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <div className="md:flex-col relative min-w-20 items-center space-x-2">
           <input
             type="text"
+            id="username"
             value={id}
             onChange={handleInputChange}
             autoComplete="off"
             required
-            class="w-full bg-transparent h-10 placeholder:text-slate-400 text-white text-sm border border-slate-200 rounded-md pr-6 pl-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            className="w-full bg-transparent h-10 placeholder:text-slate-400 text-white text-sm border border-slate-200 rounded-md pr-6 pl-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
             placeholder="Enter your email prefix/Username (we will add @tm.od2.in for you)"
           />
 
@@ -147,24 +184,35 @@ export default function GetEmailByID() {
           >
             Check Inbox
           </button>
-
-         
         </div>
       </form>
-      <div className=" p-3 rounded-md flex items-center justify-between"><p>
-      Email:<span className="text-yellow-400"> {id}@tm.od2.in</span></p>
-          <button
-            onClick={copyToClipboard}
-            className="bg-blue-500 text-white px-3 py-1 rounded-md"
+      <div className="p-3 rounded-md flex gap-2 items-center ">
+        <p>
+          Email:<span className="text-yellow-400"> {id}@tm.od2.in</span>
+        </p>
+        <button
+          onClick={copyToClipboard}
+          className="bg-blue-500 flex gap-1 text-white px-3 py-1 rounded-md"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 20"
+            fill="currentColor"
+            className="size-4"
           >
-            Copy
-          </button>
-        </div>
+            <path d="M7.5 3.375c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 0 1 3.75 3.75v1.875C13.5 8.161 14.34 9 15.375 9h1.875A3.75 3.75 0 0 1 21 12.75v3.375C21 17.16 20.16 18 19.125 18h-9.75A1.875 1.875 0 0 1 7.5 16.125V3.375Z" />
+            <path d="M15 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 17.25 7.5h-1.875A.375.375 0 0 1 15 7.125V5.25ZM4.875 6H6v10.125A3.375 3.375 0 0 0 9.375 19.5H16.5v1.125c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625V7.875C3 6.839 3.84 6 4.875 6Z" />
+          </svg>
+          Copy
+        </button>
+      </div>
+      <TrendingWords addKeyToInput={addKeyToInput} />
+
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      <div class="flex flex-col lg:flex-row gap-2 text-black">
-        <div class="flex flex-col space-y-2 lg:w-1/3 w-full bg-gray-200 p-4 rounded-md">
-          <div class="relative items-center flex justify-center text-white rounded-md bg-slate-800">
-            <h3 class="text-2xl">Inbox</h3>
+      <div className="flex flex-col lg:flex-row gap-2 text-black">
+        <div className="flex flex-col space-y-2 lg:w-1/3 w-full bg-gray-200 p-4 rounded-md">
+          <div className="relative items-center flex justify-center text-white rounded-md bg-slate-800">
+            <h3 className="text-2xl">Inbox</h3>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -183,7 +231,7 @@ export default function GetEmailByID() {
             </svg>
           </div>
 
-          <div class="flex flex-col overflow-y-auto gap-2 w-100 max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
+          <div className="flex flex-col overflow-y-auto gap-2 w-100 max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
             {emails && emails.length !== 0 ? (
               emails
                 .slice()
@@ -234,20 +282,22 @@ export default function GetEmailByID() {
             ) : isLoading ? (
               <div className="flex flex-col items-center p-3">
                 <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-11"
-              style={{
-                animation: isRefreshing ? "spin 1s linear infinite" : "none", // Spin when refreshing
-              }}
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z"
-                clipRule="evenodd"
-              />
-            </svg>
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="size-11"
+                  style={{
+                    animation: isRefreshing
+                      ? "spin 1s linear infinite"
+                      : "none", // Spin when refreshing
+                  }}
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
                 <div>
                   <p className="text-dark text-center">
                     Waiting for the First Mail to Touch our Inbox
@@ -277,17 +327,18 @@ export default function GetEmailByID() {
                 </div>
 
                 <div className="font-bold text-xl mt-4">
-                Enter your email prefix (we will add @tm.od2.in for you)                </div>
+                  Enter your email prefix (we will add @tm.od2.in for you){" "}
+                </div>
               </div>
             )}
           </div>
         </div>
 
-        <div class="flex-grow lg:w-2/3 w-full space-y-4 text-black bg-gray-100 p-4 rounded-md">
-          <div class=" items-center flex justify-center text-white rounded-md bg-slate-800">
-            <h3 class="text-2xl">Email Content</h3>
+        <div className="flex-grow lg:w-2/3 w-full space-y-4 text-black bg-gray-100 p-4 rounded-md">
+          <div className=" items-center flex justify-center text-white rounded-md bg-slate-800">
+            <h3 className="text-2xl">Email Content</h3>
           </div>{" "}
-          <div class="overflow-y-auto max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
+          <div className="overflow-y-auto max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
             {Object.keys(emailcontent).length !== 0 ? (
               <div>
                 <div className="rounded p-1 mb-4 overflow-hidden bg-slate-200 shadow-xl">
@@ -349,105 +400,92 @@ export default function GetEmailByID() {
           </div>
         </div>
       </div>
-      {/* {isLoading ? (
-        // Loading Spinner
-          <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-solid rounded-full animate-spin mb-4"></div>
-          <div>
-            <p className="text-dark">Waiting for the First eMail</p>
-          </div>
-          <div>
-            <button
-              type="submit"
-              onClick={stopRetry}
-              hidden={enablesubmitbtn}
-              className={`bg-yellow-600 text-black md:p-3 px-4 m-3 py-2 rounded-md hover:bg-white transition`}
+   <div>
+   <section className="py-10 bg-slate-400">
+  <div className="container mx-auto px-4 lg:px-8">
+    <h1 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-6">
+      Temporary Email Made Simple with OD2
+    </h1>
+    <p className="text-lg text-gray-900 text-center mb-8">
+      Generate disposable emails on-the-go! Secure, fast, and perfect for
+      protecting your privacy or testing software.
+    </p>
+    <div className="grid gap-8 lg:grid-cols-2">
+      <div>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Why Choose OD2 Temporary Mail?
+        </h2>
+        <ul className="list-disc pl-5 space-y-2 text-gray-900">
+          <li>
+            <strong>No Signup Required:</strong> Create emails effortlessly by
+            using <code>&lt;yourusername&gt;@tm.od2.in</code>. No registrations,
+            no hassle.
+          </li>
+          <li>
+            <strong>Instant Inbox Access:</strong> Simply visit  <a
+              href="https://od2.in/tmail"
+              className="text-blue-600 hover:underline"
+              target="_blank"
+              rel="noopener"
             >
-              Cancel
-            </button>
-          </div>
-          </div>
-      ) : emails && emails.length > 0 ? (
-            {emails.map((email) => (
-              <button
-                key={email._id}
-                className={`px-1 py-1 rounded-md shadow  ${
-                  activeTab === email._id
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 hover:bg-gray-300 text-gray-800"
-                }`}
-                onClick={() => getemailcontentdata(email._id)} // Update the active tab
-              >
-                <div className="flex flex-row">
-                  <div className="w-10">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="40"
-                      height="40"
-                      fill="currentColor"
-                    >
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 6.25L4.97 6H19.03L12 10.25zM4 18h16V8l-8 5L4 8v10z" />
-                    </svg>
-                  </div>
-                  <div className="text-start">
-                    <h6 className="font-bold md:text-sm">
-                      {email.from.value[0].address || "Untitled Email"}
-                    </h6>
-                    <h7 className="">
-                      {timeAgo(email.date) || "Untitled Email"}
-                    </h7>
-                  </div>
-                </div>
+               OD2 Temporary Mail Inbox 
+            </a>
+            , enter your username, and view your emails on any device.
+          </li>
+          <li>
+            <strong>Email Auto-Deletion:</strong> All emails are automatically
+            deleted every <strong>12 hours</strong>, ensuring your inbox stays
+            clean and private.
+          </li>
+          <li>
+            <strong>Privacy First:</strong> Protect your primary email from spam
+            and promotional clutter while staying productive.
+          </li>
+        </ul>
+      </div>
 
-                <div className="flex flex-row">
-                  <div className="w-10"> </div>
-                  <div className="inline-flex text-start">
-                    {email.subject || "Untitled Email"}
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-      ) : (
-        <p className="text-yellow-500">
-          Entera subscript of email to Tailor your Temp email {id}@tm.od2.in
-        </p>
-      )}
+      <div>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Perfect For:
+        </h2>
+        <ul className="list-disc pl-5 space-y-2 text-gray-900">
+          <li>
+            <strong>Quick Account Creation:</strong> Sign up for services
+            without exposing your personal email.
+          </li>
+          <li>
+            <strong>Software Testing:</strong> Developers and QA professionals
+            can generate unlimited temporary emails for seamless testing.
+          </li>
+          <li>
+            <strong>Secure Transactions:</strong> Keep your sensitive
+            transactions private with disposable emails.
+          </li>
+        </ul>
+      </div>
+    </div>
 
-      {Object.keys(emailcontent).length !== 0 ? (
-        <div>
-          <div className="rounded p-1 mb-4 overflow-hidden bg-slate-200 shadow-xl">
-            <div className="px-2 py-4">
-              <div className="font-bold text-xl">{emailcontent.subject}</div>
-            </div>
-            <div>
-              <span className="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-gray-400 mr-2 mb-2">
-                <p>
-                  <strong>From:</strong> {emailcontent.from.value[0].address}
-                </p>
-              </span>
-              <span className="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-gray-400 mr-2 mb-2">
-                <p>
-                  <strong>Recived Date:</strong>{" "}
-                  {convertToLocalTime(emailcontent.date) || "Untitled Email"}
-                </p>
-              </span>
-            </div>
-          </div>
-          <p>
-            <strong>Content:</strong>
-          </p>
-          <div>
-            <div
-              className="rounded p-1 mb-4 overflow-hidden bg-slate-200 shadow-xl"
-              dangerouslySetInnerHTML={{
-                __html: decodeHtml(emailcontent.html),
-              }}
-            />
-          </div>
-        </div>
-      ) : (
-        <p>No EMAIL FOUND</p>
-      )} */}
+  
+
+    <div className="mt-16 text-center">
+      <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
+        Ready to Simplify Your Email Experience?
+      </h3>
+      <p className="text-lg text-gray-900 mb-6">
+        Start using OD2 Temporary Mail today and enjoy fast, secure, and
+        disposable email solutions at your fingertips.
+      </p>
+      <a
+        href="https://od2.in/tmail"
+        className="inline-block px-6 py-3 text-lg font-medium text-white bg-yellow-600 rounded-lg hover:bg-blue-700 focus:ring focus:ring-blue-300"
+      >
+        Access Your Temporary Inbox
+      </a>
+    </div>
+  </div>
+</section>
+
+   </div>
     </div>
   );
 }

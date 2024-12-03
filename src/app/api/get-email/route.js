@@ -1,5 +1,5 @@
 import connectToDatabase from '../../../../lib/mongodb'; // Update the path to your database helper
-import Email from '../../../../models/Email'; // Update the path to your Email model
+import {Email} from '@models/Email'; // Update the path to your Email model
 
 export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
