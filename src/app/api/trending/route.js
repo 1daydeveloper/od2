@@ -18,9 +18,10 @@ export async function GET(req) {
 
     // Remove duplicates, filter small words (optional), and limit to top 10
     const uniqueTrendingWords = [...new Set(trendingWords)]
-    .map(word => word.replace(/[^a-zA-Z0-9]/g, '')) // Remove non-alphanumeric characters
-    .filter(word => word.length > 2) // Filter out short words
-    .slice(0, 6); // Take only the top 10 words
+  .map(word => word.toLowerCase().replace(/[^a-zA-Z0-9]/g, '')) // Convert to lowercase and remove non-alphanumeric characters
+  .filter(word => word.length > 2) // Filter out short words
+  .slice(0, 6); // Take only the top 6 words
+
   
     // Return the response with both the hardcoded data and the trending words
     return new Response(

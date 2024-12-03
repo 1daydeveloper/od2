@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import TrendingWords from "@/app/components/trending";
+import { toast } from "react-toastify";
 export default function GetEmailByID() {
   const [id, setId] = useState("");
   const [emails, setEmails] = useState([]);
@@ -10,6 +11,7 @@ export default function GetEmailByID() {
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [intervalId, SetIntervalId] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
 
   const stopRetry = () => {
     if (intervalId) {
@@ -103,9 +105,27 @@ export default function GetEmailByID() {
 
     return updatedContent;
   };
+
+  function isValidUsername(username) {
+    const usernameRegex = /^[a-z0-9]+(?:\.[a-z0-9]+)*$/;
+    return usernameRegex.test(username);
+  }
   function handleInputChange(e) {
+    setError(""); // Reset the error message
     const inputText = e.target.value.toLowerCase(); // To small caps
     setId(inputText);
+    if (inputText == "") {
+      setIsSubmitEnabled(false);
+      return;
+    } else if (!isValidUsername(inputText)) {
+      setError(
+        "Invalid username. Please follow the <a href='#userNameRules' class='text-blue-500 hover:underline inline-block'>Scroll to Username Rules</a>."
+      );
+      setIsSubmitEnabled(false);
+      return;
+    }
+    setIsSubmitEnabled(true);
+
     gtag("event", "button_click", {
       event_category: "engagement",
       event_label: "Temp_Mail_Click",
@@ -118,7 +138,12 @@ export default function GetEmailByID() {
     setId(data);
   }
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(id + "@tm.od2.in");
+    if (!navigator.clipboard) {
+      toast.error("Clipboard not supported on this browser");
+    } else {
+      navigator.clipboard.writeText(id + "@tm.od2.in");
+      toast.success("Email Copied!");
+    }
   };
   function timeAgo(isoDate) {
     const currentTime = new Date(); // Local system time
@@ -179,20 +204,30 @@ export default function GetEmailByID() {
           </svg>
 
           <button
-            className={`absolute right-1 top-1 rounded justify-center items-center bg-yellow-600  py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow  focus:shadow-none hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none`}
+            className={`absolute right-1 top-1 rounded justify-center items-center bg-yellow-600   py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow  focus:shadow-none hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:shadow-none`}
             type="submit"
           >
             Check Inbox
           </button>
         </div>
       </form>
+      {error && (
+        <div className="text-red-500 ">
+          <span dangerouslySetInnerHTML={{ __html: error }} />
+        </div>
+      )}
       <div className="p-3 rounded-md flex gap-2 items-center ">
         <p>
           Email:<span className="text-yellow-400"> {id}@tm.od2.in</span>
         </p>
         <button
           onClick={copyToClipboard}
-          className="bg-blue-500 flex gap-1 text-white px-3 py-1 rounded-md"
+          disabled={!isSubmitEnabled}
+          className={`bg-blue-500 flex gap-1 text-white px-3 py-1 rounded-md ${
+            isSubmitEnabled
+              ? ""
+              : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +243,6 @@ export default function GetEmailByID() {
       </div>
       <TrendingWords addKeyToInput={addKeyToInput} />
 
-      {error && <p className="text-red-500 mb-4">{error}</p>}
       <div className="flex flex-col lg:flex-row gap-2 text-black">
         <div className="flex flex-col space-y-2 lg:w-1/3 w-full bg-gray-200 p-4 rounded-md">
           <div className="relative items-center flex justify-center text-white rounded-md bg-slate-800">
@@ -400,92 +434,125 @@ export default function GetEmailByID() {
           </div>
         </div>
       </div>
-   <div>
-   <section className="py-10 bg-slate-400">
-  <div className="container mx-auto px-4 lg:px-8">
-    <h1 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-6">
-      Temporary Email Made Simple with OD2
-    </h1>
-    <p className="text-lg text-gray-900 text-center mb-8">
-      Generate disposable emails on-the-go! Secure, fast, and perfect for
-      protecting your privacy or testing software.
-    </p>
-    <div className="grid gap-8 lg:grid-cols-2">
       <div>
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-          Why Choose OD2 Temporary Mail?
-        </h2>
-        <ul className="list-disc pl-5 space-y-2 text-gray-900">
-          <li>
-            <strong>No Signup Required:</strong> Create emails effortlessly by
-            using <code>&lt;yourusername&gt;@tm.od2.in</code>. No registrations,
-            no hassle.
-          </li>
-          <li>
-            <strong>Instant Inbox Access:</strong> Simply visit  <a
-              href="https://od2.in/tmail"
-              className="text-blue-600 hover:underline"
-              target="_blank"
-              rel="noopener"
+        <section className="py-10 bg-slate-400">
+          <div className="container mx-auto px-4 lg:px-8">
+            <h1 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-6">
+              Temporary Email Made Simple with OD2
+            </h1>
+            <p className="text-lg text-gray-900 text-center mb-8">
+              Generate disposable emails on-the-go! Secure, fast, and perfect
+              for protecting your privacy or testing software.
+            </p>
+            <div className="grid gap-8 lg:grid-cols-2">
+              <div>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                  Why Choose OD2 Temporary Mail?
+                </h2>
+                <ul className="list-disc pl-5 space-y-2 text-gray-900">
+                  <li>
+                    <strong>No Signup Required:</strong> Create emails
+                    effortlessly by using{" "}
+                    <code>&lt;yourusername&gt;@tm.od2.in</code>. No
+                    registrations, no hassle.
+                  </li>
+                  <li>
+                    <strong>Instant Inbox Access:</strong> Simply visit{" "}
+                    <a
+                      href="https://od2.in/tmail"
+                      className="text-blue-600 hover:underline"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      OD2 Temporary Mail Inbox
+                    </a>
+                    , enter your username, and view your emails on any device.
+                  </li>
+                  <li>
+                    <strong>Email Auto-Deletion:</strong> All emails are
+                    automatically deleted every <strong>12 hours</strong>,
+                    ensuring your inbox stays clean and private.
+                  </li>
+                  <li>
+                    <strong>Privacy First:</strong> Protect your primary email
+                    from spam and promotional clutter while staying productive.
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                  Perfect For:
+                </h2>
+                <ul className="list-disc pl-5 space-y-2 text-gray-900">
+                  <li>
+                    <strong>Quick Account Creation:</strong> Sign up for
+                    services without exposing your personal email.
+                  </li>
+                  <li>
+                    <strong>Software Testing:</strong> Developers and QA
+                    professionals can generate unlimited temporary emails for
+                    seamless testing.
+                  </li>
+                  <li>
+                    <strong>Secure Transactions:</strong> Keep your sensitive
+                    transactions private with disposable emails.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div
+              id="userNameRules"
+              className="w-full p-4 mt-16 sm:p-6 md:p-8 bg-white rounded-lg border border-gray-200 shadow-md"
             >
-               OD2 Temporary Mail Inbox 
-            </a>
-            , enter your username, and view your emails on any device.
-          </li>
-          <li>
-            <strong>Email Auto-Deletion:</strong> All emails are automatically
-            deleted every <strong>12 hours</strong>, ensuring your inbox stays
-            clean and private.
-          </li>
-          <li>
-            <strong>Privacy First:</strong> Protect your primary email from spam
-            and promotional clutter while staying productive.
-          </li>
-        </ul>
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 text-center sm:text-left">
+                Username Rules
+              </h1>
+              <ul className="list-disc pl-5 space-y-2 text-gray-700">
+                <li>
+                  Usernames can contain <strong>letters (a-z)</strong>,{" "}
+                  <strong>numbers (0-9)</strong>, and{" "}
+                  <strong>periods (.)</strong>.
+                </li>
+                <li>
+                  Usernames cannot contain:
+                  <ul className="list-disc pl-5 mt-1">
+                    <li>Ampersand (&)</li>
+                    <li>Equals sign (=)</li>
+                    <li>Underscore (_)</li>
+                    <li>Apostrophe (&apos;)</li>
+                    <li>Dash (-)</li>
+                    <li>Plus sign (+)</li>
+                    <li>Comma (,)</li>
+                    <li>Brackets (&lt;, &gt;)</li>
+                    <li>More than one period (.) in a row</li>
+                  </ul>
+                </li>
+                <li>Usernames cannot begin or end with periods (.).</li>
+                <li>
+                  Other than the rules above, periods (.) do not affect mail
+                  addresses.
+                </li>
+              </ul>
+            </div>
+            <div className="mt-16 text-center">
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
+                Ready to Simplify Your Email Experience?
+              </h3>
+              <p className="text-lg text-gray-900 mb-6">
+                Start using OD2 Temporary Mail today and enjoy fast, secure, and
+                disposable email solutions at your fingertips.
+              </p>
+              <a
+                href="https://od2.in/tmail"
+                className="inline-block px-6 py-3 text-lg font-medium text-white bg-yellow-600 rounded-lg hover:bg-blue-700 focus:ring focus:ring-blue-300"
+              >
+                Access Your Temporary Inbox
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
-
-      <div>
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-          Perfect For:
-        </h2>
-        <ul className="list-disc pl-5 space-y-2 text-gray-900">
-          <li>
-            <strong>Quick Account Creation:</strong> Sign up for services
-            without exposing your personal email.
-          </li>
-          <li>
-            <strong>Software Testing:</strong> Developers and QA professionals
-            can generate unlimited temporary emails for seamless testing.
-          </li>
-          <li>
-            <strong>Secure Transactions:</strong> Keep your sensitive
-            transactions private with disposable emails.
-          </li>
-        </ul>
-      </div>
-    </div>
-
-  
-
-    <div className="mt-16 text-center">
-      <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
-        Ready to Simplify Your Email Experience?
-      </h3>
-      <p className="text-lg text-gray-900 mb-6">
-        Start using OD2 Temporary Mail today and enjoy fast, secure, and
-        disposable email solutions at your fingertips.
-      </p>
-      <a
-        href="https://od2.in/tmail"
-        className="inline-block px-6 py-3 text-lg font-medium text-white bg-yellow-600 rounded-lg hover:bg-blue-700 focus:ring focus:ring-blue-300"
-      >
-        Access Your Temporary Inbox
-      </a>
-    </div>
-  </div>
-</section>
-
-   </div>
     </div>
   );
 }
