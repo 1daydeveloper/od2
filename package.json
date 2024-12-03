@@ -11,6 +11,7 @@
   "dependencies": {
     "animejs": "^3.2.2",
     "date-fns": "^4.1.0",
+    "google-trends-api": "^4.9.2",
     "html2canvas": "^1.4.1",
     "imap": "^0.8.19",
     "jspdf": "^2.5.2",

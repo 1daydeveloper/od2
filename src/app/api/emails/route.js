@@ -1,11 +1,9 @@
 // pages/api/emails.js
-import dbConnect from '../../../../lib/mongodb';
-import Email from '../../../../models/Email';
+import {Email} from '../../../../models/Email';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
-      await dbConnect();
 
       const emails = await Email.find().sort({ date: -1 }); // Sort emails by date in descending order
       res.status(200).json(emails);
