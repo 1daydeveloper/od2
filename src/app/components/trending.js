@@ -33,7 +33,7 @@ const TrendingWords = ({ addKeyToInput }) => {
             {trendingWords["commonwords"] && trendingWords["commonwords"].map((word, index) => (
               <span
                 key={index}
-                className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 cursor-pointer rounded dark:bg-blue-900 dark:text-blue-300"
+                className="bg-white text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 cursor-pointer rounded dark:bg-blue-900 dark:text-white"
                 onClick={() => addKeyToInput(word)} // Pass word directly
               >
                 {word}
@@ -46,7 +46,7 @@ const TrendingWords = ({ addKeyToInput }) => {
             {trendingWords["trendingWords"] && trendingWords["trendingWords"].map((word, index) => (
               <span
                 key={index}
-                className="bg-pink-100 text-pink-800 text-sm font-medium me-2 px-2.5 py-0.5 cursor-pointer rounded dark:bg-pink-900 dark:text-pink-300"
+                className="bg-white text-pink-800 text-sm font-medium me-2 px-2.5 py-0.5 cursor-pointer rounded dark:bg-pink-900 dark:text-white"
                 onClick={() => addKeyToInput(word)} // Pass word directly
               >
                 {word}

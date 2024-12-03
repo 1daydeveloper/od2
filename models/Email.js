@@ -77,9 +77,8 @@ const emailHistorySchema = new mongoose.Schema({
 });
 
 // Middleware to handle history updates on email save
-emailSchema.pre('save', async function (doc) {
-  console.log('Pre-save middleware triggered', doc);
-  const { to, from, subject, text } = doc;
+emailSchema.pre('save', async function (next) {
+  const { to, from, subject, text } = this;
 
   // Ensure "from" field contains at least one address
   if (!from?.value?.[0]?.address) {
@@ -115,6 +114,7 @@ emailSchema.pre('save', async function (doc) {
   } catch (error) {
     console.error('Error updating email history:', error);
   }
+  next(); // Ensure the save continues after the middleware
 });
 
 // Ensure the models are only created once
