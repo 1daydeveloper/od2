@@ -119,7 +119,7 @@ export default function GetEmailByID() {
       return;
     } else if (!isValidUsername(inputText)) {
       setError(
-        "Invalid username. Please follow the <a href='#userNameRules' class='text-blue-500 hover:underline inline-block'>Scroll to Username Rules</a>."
+        "Invalid username. Please follow the <a href='#userNameRules' className='text-blue-500 hover:underline inline-block'>Scroll to Username Rules</a>."
       );
       setIsSubmitEnabled(false);
       return;
@@ -434,22 +434,22 @@ export default function GetEmailByID() {
           </div>
         </div>
       </div>
-      <div>
-        <section className="py-10 bg-slate-400">
-          <div className="container mx-auto px-4 lg:px-8">
-            <h1 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-6">
-              Temporary Email Made Simple with OD2
+      <div className=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <section className="text-white">
+          <div className="container mx-auto px-4 lg:px-8 mb-2">
+            <h1 className="text-3xl md:text-5xl font-bold text-centermb-6">
+              Temporary Email(temp Mail) Made Simple with OD2
             </h1>
-            <p className="text-lg text-gray-900 text-center mb-8">
+            <p className="text-lg text-center mb-8">
               Generate disposable emails on-the-go! Secure, fast, and perfect
               for protecting your privacy or testing software.
             </p>
             <div className="grid gap-8 lg:grid-cols-2">
-              <div>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+              <div className="mb-3">
+                <h2 className="text-2xl font-semibold mb-4">
                   Why Choose OD2 Temporary Mail?
                 </h2>
-                <ul className="list-disc pl-5 space-y-2 text-gray-900">
+                <ul className="list-disc pl-5 space-y-2 ">
                   <li>
                     <strong>No Signup Required:</strong> Create emails
                     effortlessly by using{" "}
@@ -481,10 +481,8 @@ export default function GetEmailByID() {
               </div>
 
               <div>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                  Perfect For:
-                </h2>
-                <ul className="list-disc pl-5 space-y-2 text-gray-900">
+                <h2 className="text-2xl font-semibold  mb-4">Perfect For:</h2>
+                <ul className="list-disc pl-5 space-y-2">
                   <li>
                     <strong>Quick Account Creation:</strong> Sign up for
                     services without exposing your personal email.
@@ -501,14 +499,11 @@ export default function GetEmailByID() {
                 </ul>
               </div>
             </div>
-            <div
-              id="userNameRules"
-              className="w-full p-4 mt-16 sm:p-6 md:p-8 bg-white rounded-lg border border-gray-200 shadow-md"
-            >
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 text-center sm:text-left">
+            <div id="userNameRules" className="mb-3">
+              <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
                 Username Rules
               </h1>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700">
+              <ul className="list-disc pl-5 space-y-2 ">
                 <li>
                   Usernames can contain <strong>letters (a-z)</strong>,{" "}
                   <strong>numbers (0-9)</strong>, and{" "}
@@ -535,17 +530,120 @@ export default function GetEmailByID() {
                 </li>
               </ul>
             </div>
-            <div className="mt-16 text-center">
-              <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
+            <div>
+              <section className="shadow-lg rounded-lg ">
+                <h2 className="text-2xl font-bold ">
+                  Why Choose Temporary Mail?
+                </h2>
+                <p className="mt-4">
+                  Temporary mail, also known as disposable mail or temp mail,
+                  helps you:
+                </p>
+                <ul className="list-disc list-inside mt-4 space-y-2">
+                  <li>Protect your primary email address from spam.</li>
+                  <li>
+                    Register for websites or services without revealing personal
+                    information.
+                  </li>
+                </ul>
+              </section>
+
+              <section className="bg-black  shadow-lg rounded-lg p-6 mt-8">
+                <h2 className="text-2xl font-bold">Try It Now</h2>
+                <p className="mt-4">
+                  Stop sharing your primary email address! Try our temporary
+                  mail service today and enjoy a hassle-free, spam-free email
+                  experience.
+                </p>
+                <a
+                  href="#"
+                  className="mt-4 inline-block bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700"
+                >
+                  Generate Temp Mail Now
+                </a>
+              </section> 
+
+              <section className="shadow-lg rounded-lg p-6 mt-8">
+                <h2 className="text-2xl font-bold">
+                  Features of Our Temp Mail Service
+                </h2>
+                <ul className="list-disc list-inside mt-4 space-y-2">
+                  <li>
+                    <strong>Instant Email Creation:</strong> Get a disposable
+                    email address within seconds.
+                  </li>
+                  <li>
+                    <strong>Spam-Free Experience:</strong> Keep your inbox clean
+                    and secure.
+                  </li>
+                  <li>
+                    <strong>Privacy-Focused:</strong> No personal information
+                    required.
+                  </li>
+                  <li>
+                    <strong>Fast & Responsive Design:</strong> Built with
+                    Tailwind CSS for a sleek experience.
+                  </li>
+                </ul>
+              </section>
+
+              <section className=" shadow-lg rounded-lg p-6 mt-8">
+                <h2 className="text-2xl font-bold ">
+                  How It Works
+                </h2>
+                <ol className="list-decimal list-inside mt-4 space-y-2">
+                  <li>Visit our website.</li>
+                  <li>Instantly generate a disposable email address.</li>
+                  <li>
+                    Copy and use your email for registrations or verifications.
+                  </li>
+                  <li>
+                    Receive emails in real-time and delete them when done.
+                  </li>
+                </ol>
+              </section>
+
+            
+
+              <section className="shadow-lg rounded-lg p-6 mt-8">
+                <h2 className="text-2xl font-bold">
+                  FAQs About Temporary Mail
+                </h2>
+                <div className="mt-4 space-y-4">
+                  <div>
+                    <h3 className="font-bold">What is temp mail?</h3>
+                    <p>
+                      Temp mail is a disposable email service that provides a
+                      quick, temporary inbox to protect your privacy.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-bold">Is it free?</h3>
+                    <p>Yes, our temp mail service is 100% free to use.</p>
+                  </div>
+                  <div>
+                    <h3 className="font-bold">
+                      Can I use it for long-term needs?
+                    </h3>
+                    <p>
+                      No, temp mail is designed for short-term use, ensuring
+                      maximum security and privacy.
+                    </p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div className="shadow-lg bg-black rounded-lg p-6 mt-8 text-white text-center">
+              <h3 className="text-xl md:text-2xl font-semibold 800 mb-4">
                 Ready to Simplify Your Email Experience?
               </h3>
-              <p className="text-lg text-gray-900 mb-6">
+              <p className="text-lg mb-6">
                 Start using OD2 Temporary Mail today and enjoy fast, secure, and
                 disposable email solutions at your fingertips.
               </p>
               <a
-                href="https://od2.in/tmail"
-                className="inline-block px-6 py-3 text-lg font-medium text-white bg-yellow-600 rounded-lg hover:bg-blue-700 focus:ring focus:ring-blue-300"
+                href="#"
+                className="inline-block px-6 py-3 text-lg font-medium text-white bg-yellow-600 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-blue-300"
               >
                 Access Your Temporary Inbox
               </a>
