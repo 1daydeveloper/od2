@@ -21,24 +21,27 @@ export default function RootLayout({ children }) {
     <html lang="en">
       {/* Google Analytics using next/script */}
       <head>
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-1CC0XPGF77"
-        strategy="afterInteractive"
-      />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-1CC0XPGF77"
+          strategy="afterInteractive"
+        />
 
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'G-1CC0XPGF77');
         `}
-      </Script>
+        </Script>
 
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1135784086315457"
-     crossorigin="anonymous"></script>
-</head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1135784086315457"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body className={inter.className + "flex-col bg-white dark:bg-slate-800"}>
         <Header></Header>
         <div className="p-5">{children}</div>
