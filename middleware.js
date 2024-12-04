@@ -1,15 +1,15 @@
-import { NextResponse } from 'next/server';
-
-export function middleware(req) {
-  const url = req.nextUrl.clone();
-  const host = req.headers.get('host'); // Gets the incoming hostname
-
-  // Check if the request comes from the 'temp.' subdomain
-  if (host && host.startsWith('temp.')) {
-    url.pathname = '/tmail'; // Rewrite to /tmail page
-    return NextResponse.rewrite(url);
+import { NextResponse } from 'next/server'
+ 
+export function middleware(request) {
+  if (request.nextUrl.pathname.startsWith('/about')) {
+    return NextResponse.rewrite(new URL('/about-2', request.url))
   }
+ 
+  if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    return NextResponse.rewrite(new URL('/dashboard/user', request.url))
+  }
+}
 
-  // Allow other requests to proceed as normal
-  return NextResponse.next();
+export const config = {
+  matcher: '/about/:path*',
 }
