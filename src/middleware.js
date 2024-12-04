@@ -10,8 +10,8 @@ export function middleware(request) {
 
   // Check if the request is for the "tem" subdomain
   if (hostname !== mainDomain && subdomain === 'temp') {
-    // Rewrite to a specific page (e.g., "/tem-page")
-    url.pathname = '/tmail'; // Change to your desired path
+    // Keep assets and layouts intact while serving the page
+    url.pathname = `/tmail${url.pathname}`;
     return NextResponse.rewrite(url);
   }
 
