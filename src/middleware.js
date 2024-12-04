@@ -1,6 +1,6 @@
-// import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-// export function middleware(request) {
+export function middleware(request) {
 //   const hostname = request.headers.get('host'); // e.g., 'tem.od2.in'
 //   const url = request.nextUrl;
 
@@ -15,6 +15,6 @@
 //     return NextResponse.rewrite(url);
 //   }
 
-//   // Allow other requests to proceed
-//   return NextResponse.next();
-// }
+  // Allow other requests to proceed
+  return NextResponse.next();
+}
