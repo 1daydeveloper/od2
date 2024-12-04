@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, React } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -9,6 +10,8 @@ const Footer = () => {
         <div className="flex flex-row flex-wrap">
           <div className="flex gap-2 justify-center ">
             <div className="flex items-center w-full gap-4">
+            <Link href="/">
+
               <Image
                 src="/odd.png"
                 alt="OD2 Logo"
@@ -16,7 +19,7 @@ const Footer = () => {
                 width={100}
                 height={100}
                 priority
-              />{" "}
+              /></Link>{" "}
               <div className="text-3xl font-bold uppercase">
                 One Day Developers
               </div>
