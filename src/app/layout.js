@@ -20,6 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* Google Analytics using next/script */}
+      <head>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-1CC0XPGF77"
         strategy="afterInteractive"
@@ -34,6 +35,10 @@ export default function RootLayout({ children }) {
           gtag('config', 'G-1CC0XPGF77');
         `}
       </Script>
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1135784086315457"
+     crossorigin="anonymous"></script>
+</head>
       <body className={inter.className + "flex-col bg-white dark:bg-slate-800"}>
         <Header></Header>
         <div className="p-5">{children}</div>
