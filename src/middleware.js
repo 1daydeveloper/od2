@@ -9,7 +9,3 @@ export function middleware(request) {
     return NextResponse.rewrite(new URL('/dashboard/user', request.url))
   }
 }
-
-export const config = {
-  matcher: '/about/:path*',
-}
