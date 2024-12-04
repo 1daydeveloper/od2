@@ -62,11 +62,11 @@ const Mainpage = () => {
   );
 
   return (
-    <div className={"grid gap-3"}>
+    <div className={"grid gap-3 "}>
       {" "}
-      <div className={"flex-row"}>
+      <div className={"flex flex-row "}>
         <section className="bg-white dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
-          <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
+          <div className="py-8 px-4 text-center lg:py-16 z-10 ">
             <a
               href="/tmail"
               className="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800"
@@ -140,8 +140,8 @@ const Mainpage = () => {
           </div>
         </section>
       </div>
-      <div className={"flex justify-between"}>
-        <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className={"flex flex-col gap-3 justify-between"}>
+        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
             className="w-[40px] h-[40px] text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -191,7 +191,7 @@ const Mainpage = () => {
           </a>
         </div>
 
-        <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
             className="w-[40px] h-[40px] text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -242,7 +242,7 @@ const Mainpage = () => {
           </a>
         </div>
 
-        <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
             className="w-[40px] h-[40px] text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -293,24 +293,24 @@ const Mainpage = () => {
         <div></div>
       </div>
       <div>
-        <div className="flex flex-col items-center  p-4">
-          <h1 className="text-3xl font-bold mb-6 bg-gray-950 p-3 rounded-3xl">Who We Are!</h1>
-          <div className="w-full max-w">
+        <div className="flex flex-col p-4">
+          <h1 className="text-3xl font-bold mb-6 bg-gray-950 p-3 rounded-lg">Who We Are!</h1>
+          <div className="">
             {collapseData.map((item, index) => (
               <div
                 key={index}
-                className="w-full border rounded-lg shadow-sm my-2"
+                className="border rounded-lg shadow-sm my-2"
               >
                 <button
                   onClick={() => toggleCollapse(index)}
-                  className="flex justify-between items-center w-full p-4 hover:border-headfoot_color focus:outline-none"
+                  className="flex justify-between items-center w-full p-4 hover:border-headfoot_color rounded-lg focus:outline-none"
                 >
                   <span className="text-lg font-medium">{item.title}</span>
                   {openCollapseIndex === index ? <UpArrow /> : <DownArrow />}
                 </button>
 
                 {openCollapseIndex === index && (
-                  <div className="p-4 bg-white border-t">
+                  <div className="p-4 bg-white rounded-b-lg ">
                     <p className="text-gray-700">{item.content}</p>
                   </div>
                 )}
