@@ -175,8 +175,8 @@ export default function GetEmailByID() {
   return (
     <div className="flex flex-col gap-4 min-h-screen ">
       <h1 className="text-2xl font-bold mb-4">
-        Enter your email prefix (we will add @tm.od2.in for you)
-        <span className="m-3 inline-block px-2 py-1 text-xl font-semibold text-white bg-yellow-500 rounded-full">
+        Temp Mail
+        <span className="m-3 inline-block px-2 py-1 text-xl font-semibold text-black bg-yellow-500 rounded-full">
           Beta
         </span>
       </h1>
@@ -437,9 +437,9 @@ export default function GetEmailByID() {
       <div className=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <section className="text-white">
           <div className="container mx-auto px-4 lg:px-8 mb-2">
-            <h1 className="text-3xl md:text-5xl font-bold text-centermb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-centermb-6">
               Temporary Email(temp Mail) Made Simple with OD2
-            </h1>
+            </h2>
             <p className="text-lg text-center mb-8">
               Generate disposable emails on-the-go! Secure, fast, and perfect
               for protecting your privacy or testing software.

@@ -293,7 +293,7 @@ const Mainpage = () => {
         <div></div>
       </div>
       <div>
-        <div className="flex flex-col items-center min-h-screen p-4">
+        <div className="flex flex-col items-center  p-4">
           <h1 className="text-3xl font-bold mb-6 bg-gray-950 p-3 rounded-3xl">Who We Are!</h1>
           <div className="w-full max-w">
             {collapseData.map((item, index) => (

@@ -35,7 +35,7 @@ const Header = () => {
                 priority
               />
               <span className="ml-2 text-xl font-bold text-white">
-                Temp Mail
+                OD2
               </span>
             </div>
 
