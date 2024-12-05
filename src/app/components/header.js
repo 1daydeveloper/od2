@@ -10,12 +10,10 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
-
-
   const navLinks = [
     { id: "", label: "Home" },
     { id: "tmail", label: "Temp Mail" },
-
+    { id: "photo", label: "photo Maker" },
     { id: "about", label: "About" },
   ];
 
@@ -26,19 +24,17 @@ const Header = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
-            <Link href="/">
-
-              <Image
-                src="/odd.png"
-                alt="Next.js Logo"
-                width={50}
-                height={50}
-                className="h-30 w-30rounded-full"
-                priority
-              /></Link>
-              <span className="ml-2 text-xl font-bold text-white">
-                OD2
-              </span>
+              <Link href="/">
+                <Image
+                  src="/odd.png"
+                  alt="Next.js Logo"
+                  width={50}
+                  height={50}
+                  className="h-30 w-30rounded-full"
+                  priority
+                />
+              </Link>
+              <span className="ml-2 text-xl font-bold text-white">OD2</span>
             </div>
 
             <div className="hidden md:flex space-x-8">
@@ -95,15 +91,15 @@ const Header = () => {
             <div className="md:hidden mt-4">
               <div className="flex flex-col space-y-4">
                 {navLinks.map((link) => (
-                 <Link
-                 key={link.id}
-                 href={`/${link.id}`}
-                 onClick={(e) => handleClick(e, link.id)}
-                 className="text-gray-300 hover:text-white transition-colors duration-300 ease-in-out"
-                 aria-label={`Navigate to ${link.label} section`}
-               >
-                 {link.label}
-               </Link>
+                  <Link
+                    key={link.id}
+                    href={`/${link.id}`}
+                    onClick={(e) => handleClick(e, link.id)}
+                    className="text-gray-300 hover:text-white transition-colors duration-300 ease-in-out"
+                    aria-label={`Navigate to ${link.label} section`}
+                  >
+                    {link.label}
+                  </Link>
                 ))}
               </div>
             </div>
