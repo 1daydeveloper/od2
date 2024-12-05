@@ -13,7 +13,7 @@ const Header = () => {
   const navLinks = [
     { id: "", label: "Home" },
     { id: "tmail", label: "Temp Mail" },
-    { id: "photo", label: "photo Maker" },
+    { id: "photo", label: "Photo Maker" },
     { id: "about", label: "About" },
   ];
 
