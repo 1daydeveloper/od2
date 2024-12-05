@@ -3,7 +3,7 @@ export default function sitemap() {
       {
         url: 'https://od2.in',
         lastModified: new Date(),
-        changeFrequency: 'yearly',
+        changeFrequency: 'weekly',
         priority: 1,
       },
       {
@@ -11,6 +11,12 @@ export default function sitemap() {
         lastModified: new Date(),
         changeFrequency: 'weekly',
         priority: 0.2,
+      },
+      {
+        url: 'https://od2.in/photo',
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.4,
       },
       {
         url: 'https://od2.in/about',
