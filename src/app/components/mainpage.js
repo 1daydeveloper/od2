@@ -65,7 +65,7 @@ const Mainpage = () => {
     <div className={"grid gap-3 "}>
       {" "}
       <div className={"flex flex-row "}>
-        <section className="bg-white dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
+        <section className="bg-white dark:bg-gray-900 w-full">
           <div className="py-8 px-4 text-center lg:py-16 z-10 ">
             <a
               href="/tmail"

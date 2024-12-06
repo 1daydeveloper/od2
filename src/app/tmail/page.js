@@ -119,7 +119,7 @@ export default function GetEmailByID() {
       return;
     } else if (!isValidUsername(inputText)) {
       setError(
-        "Invalid username. Please follow the <a href='#userNameRules' className='text-blue-500 hover:underline inline-block'>Scroll to Username Rules</a>."
+        "Invalid username. Please follow the <a href='#userNameRules' class='text-blue-500 hover:underline inline-block'>Scroll to Username Rules</a>."
       );
       setIsSubmitEnabled(false);
       return;
@@ -441,7 +441,7 @@ export default function GetEmailByID() {
               Temporary Email(temp Mail) Made Simple with OD2
             </h2>
             <p className="text-lg text-center mb-8">
-              Generate disposable emails on-the-go! Secure, fast, and perfect
+              Generate <a className="text-blue-700" href="https://en.wikipedia.org/wiki/Disposable_email_address">disposable emails</a> on-the-go! Secure, fast, and perfect
               for protecting your privacy or testing software.
             </p>
             <div className="grid gap-8 lg:grid-cols-2">
