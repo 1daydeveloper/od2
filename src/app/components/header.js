@@ -16,6 +16,8 @@ const Header = () => {
     { id: "", label: "Home" },
     { id: "tmail", label: "Temp Mail" },
     { id: "photo", label: "Photo Maker" },
+    { id: "products", label: "Products" },
+    { id: "products/od2bs", label: "Billing System" },
     { id: "about", label: "About" },
   ];
   const currentTitle = navLinks.find(
