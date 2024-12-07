@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -16,6 +18,9 @@ const Header = () => {
     { id: "photo", label: "Photo Maker" },
     { id: "about", label: "About" },
   ];
+  const currentTitle = navLinks.find(
+    (link) => link.id === pathname.slice(1)
+  ) || { label: "One Day Developers" };
 
   return (
     //  className="fixed w-full top-0 z-50"
@@ -34,7 +39,9 @@ const Header = () => {
                   priority
                 />
               </Link>
-              <span className="ml-2 text-xl font-bold text-white">OD2</span>
+              <h1 className="ml-2 text-xl font-bold text-white">
+                OD2 - {currentTitle.label}
+              </h1>
             </div>
 
             <div className="hidden md:flex space-x-8">

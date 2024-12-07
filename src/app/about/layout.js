@@ -1,9 +1,9 @@
 export const metadata = {
     title: "About Us",
-    description: "Learn more about our team and mission.",
+    description: "Learn about One Day Developers (OD2), a team of experts delivering top-notch software solutions, Android apps, and desktop applications with a unique mission to complete projects in just 24 hours.",
     openGraph: {
       title: "About Us | OD2",
-      description: "Learn more about our team and mission.",
+      description: "Learn about One Day Developers (OD2), a team of experts delivering top-notch software solutions, Android apps, and desktop applications with a unique mission to complete projects in just 24 hours.",
     },
   };
   

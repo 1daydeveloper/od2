@@ -19,8 +19,8 @@ const MaintenancePage = () => {
   }, []);
   return (
     <div className={styles.maintenancePage}>
-    <h1 className="text-5xl font-bold bg-clip-text bg-gradient-to-r animate-pulse from-white">
-    WE&apos;re UNDER CONSTRUCTION</h1>
+    <h2 className="text-5xl font-bold bg-clip-text bg-gradient-to-r animate-pulse from-white">
+    WE&apos;re UNDER CONSTRUCTION</h2>
  
   <p className={styles.description}>
   Our website is currently under maintenance. We&apos;ll be back soon!

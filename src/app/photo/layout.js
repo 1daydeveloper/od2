@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Passport Size Printable",
-    description: "This Tool is used to print the passport size photo in 6*4 photo paper",
+    description: "Get your passport-size photo perfectly resized and ready for print on 6x4 or 4x6 paper. Quick, easy, and high-quality images for all your official document needs.",
     openGraph: {
       title: "Passporr Size Printable",
-      description: "This Tool is used to print the passport size photo in 6*4 photo paper",
+      description: "Get your passport-size photo perfectly resized and ready for print on 6x4 or 4x6 paper. Quick, easy, and high-quality images for all your official document needs.",
     },
   };
   

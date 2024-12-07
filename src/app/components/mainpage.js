@@ -93,9 +93,9 @@ const Mainpage = () => {
                 />
               </svg>
             </a>
-            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            <h2 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
               We invest in the Time
-            </h1>
+            </h2>
             <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">
               We invest time to deliver value, ensuring lasting impact and
               growth with every effort we make.
@@ -160,9 +160,9 @@ const Mainpage = () => {
           </svg>
 
           <a href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               We Advertise
-            </h5>
+            </h2>
           </a>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             Boost your brand with targeted advertising solutions designed to
@@ -211,9 +211,9 @@ const Mainpage = () => {
           </svg>
 
           <a href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               We Develop
-            </h5>
+            </h2>
           </a>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             We develop innovative solutions to transform ideas into reality,
@@ -260,9 +260,9 @@ const Mainpage = () => {
           </svg>
 
           <a href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               Our Products
-            </h5>
+            </h2>
           </a>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             Our products combine quality, innovation, and reliability to meet
@@ -294,7 +294,7 @@ const Mainpage = () => {
       </div>
       <div>
         <div className="flex flex-col p-4">
-          <h1 className="text-3xl font-bold mb-6 bg-gray-950 p-3 rounded-lg">Who We Are!</h1>
+          <h3 className="text-3xl font-bold mb-6 bg-gray-950 p-3 rounded-lg">Who We Are!</h3>
           <div className="">
             {collapseData.map((item, index) => (
               <div
