@@ -1,7 +1,7 @@
 "use client";
 import styles from "../../styles/mainpage.module.css";
 import { useEffect, useState, React } from "react";
-
+import Link from "next/link";
 const Mainpage = () => {
   const [openCollapseIndex, setOpenCollapseIndex] = useState(null); // Track which collapse is open
 
@@ -18,8 +18,7 @@ const Mainpage = () => {
     },
     {
       title: "Contact Us",
-      content:
-        "Reach us on  call us at +91 7010178914.",
+      content: "Reach us on  call us at +91 7010178914.",
     },
   ];
 
@@ -65,9 +64,9 @@ const Mainpage = () => {
     <div className={"grid gap-3 "}>
       {" "}
       <div className={"flex flex-row "}>
-        <section className="bg-white dark:bg-gray-900 w-full">
+        <section className="bg-gray-700 dark:bg-gray-900 w-full">
           <div className="py-8 px-4 text-center lg:py-16 z-10 ">
-            <a
+            <Link
               href="/tmail"
               className="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800"
             >
@@ -92,16 +91,16 @@ const Mainpage = () => {
                   d="m1 9 4-4-4-4"
                 />
               </svg>
-            </a>
+            </Link>
             <h2 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
               We invest in the Time
             </h2>
-            <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">
+            <p className="mb-8 text-lg font-normal text-gray-400 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">
               We invest time to deliver value, ensuring lasting impact and
               growth with every effort we make.
             </p>
             <div className={"inline-flex"}>
-              <a href="https://www.instagram.com/onedaydevelopers/">
+              <Link href="https://www.instagram.com/onedaydevelopers/">
                 <svg
                   className="w-[40px] h-[40px] text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -118,8 +117,8 @@ const Mainpage = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-              </a>
-              <a href="https://www.youtube.com/channel/UCtgc_t09aTJUxYTu4CAaBAA">
+              </Link>
+              <Link href="https://www.youtube.com/channel/UCtgc_t09aTJUxYTu4CAaBAA">
                 <svg
                   className="w-[40px] h-[40px] text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -135,13 +134,13 @@ const Mainpage = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </section>
       </div>
-      <div className={"flex flex-col gap-3 justify-between"}>
-        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className={"flex flex-col w-full gap-2 md:flex-row"}>
+        <div className="flex flex-col gap-2 p-6 bg-gray-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
             className="w-[40px] h-[40px] text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -159,18 +158,18 @@ const Mainpage = () => {
             />
           </svg>
 
-          <a href="#">
+          <Link href="#advertising">
             <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               We Advertise
             </h2>
-          </a>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          </Link>
+          <p className="mb-3 font-normal text-gray-400 dark:text-gray-400">
             Boost your brand with targeted advertising solutions designed to
             engage, attract, and grow your business.
           </p>
-          <a
-            href="#"
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          <Link
+            href="#advertising"
+            className="inline-flex w-1/2 items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Get Popular!
             <svg
@@ -188,10 +187,10 @@ const Mainpage = () => {
                 d="M1 5h12m0 0L9 1m4 4L9 9"
               />
             </svg>
-          </a>
+          </Link>
         </div>
 
-        <div className=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex flex-col gap-2 p-6 bg-gray-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
             className="w-[40px] h-[40px] text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -210,18 +209,18 @@ const Mainpage = () => {
             />
           </svg>
 
-          <a href="#">
+          <Link href="#development">
             <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               We Develop
             </h2>
-          </a>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          </Link>
+          <p className="mb-3 font-normal text-gray-400 dark:text-gray-400">
             We develop innovative solutions to transform ideas into reality,
             delivering excellence for every project we undertake.
           </p>
-          <a
-            href="#"
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          <Link
+            href="#development"
+            className="inline-flex w-1/2 items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Let Us Start!
             <svg
@@ -239,10 +238,10 @@ const Mainpage = () => {
                 d="M1 5h12m0 0L9 1m4 4L9 9"
               />
             </svg>
-          </a>
+          </Link>
         </div>
 
-        <div className=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className=" flex flex-col gap-2 p-6 bg-gray-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
             className="w-[40px] h-[40px] text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -259,18 +258,18 @@ const Mainpage = () => {
             />
           </svg>
 
-          <a href="#">
-            <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <Link href="/products">
+            <h2 className="mb-2 text-2xl   font-bold tracking-tight text-gray-900 dark:text-white">
               Our Products
             </h2>
-          </a>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          </Link>
+          <p className="mb-3 font-normal text-gray-400 dark:text-gray-400">
             Our products combine quality, innovation, and reliability to meet
             the needs of modern businesses and consumers.
           </p>
-          <a
-            href="#"
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          <Link
+            href="/products"
+            className="inline-flex items-center px-3 w-1/2 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Check Out!
             <svg
@@ -288,19 +287,404 @@ const Mainpage = () => {
                 d="M1 5h12m0 0L9 1m4 4L9 9"
               />
             </svg>
-          </a>
+          </Link>
         </div>
         <div></div>
       </div>
+      <section id="advertising" className="py-16 bg-gray-900">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* SEO-Friendly Title and Meta Description */}
+    <div className="text-center mb-12">
+      <h2 className="text-3xl font-bold text-white">We Advertise</h2>
+      <p className="mt-4 text-lg text-gray-400">
+        Boost your brand with targeted advertising solutions designed to engage, attract, and grow your business. Leverage our advanced advertising strategies to maximize your ROI.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      {/* Advanced Strategy */}
+      <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div className="text-blue-600 text-4xl mb-4" aria-label="Strategy Icon">
+          <svg
+            className="w-12 h-12"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke="currentColor"
+            strokeWidth="2"
+            role="img"
+            aria-hidden="false"
+            focusable="false"
+          >
+            <path d="M12 2L2 12l10 10 10-10-10-10z" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-semibold text-gray-400 mb-3">Advanced Strategy</h3>
+        <p className="text-gray-400 text-center">
+          We leverage data-driven strategies to ensure your ads reach the right audience at the right time, maximizing your return on investment. Explore more on <a href="https://learn.g2.com/advanced-marketing-strategies" target="_blank" className="text-blue-600 hover:underline">advanced advertising strategies</a>.
+        </p>
+      </div>
+
+      {/* Targeted Advertising */}
+      <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div className="text-blue-600 text-4xl mb-4" aria-label="Targeting Icon">
+          <svg
+            className="w-12 h-12"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke="currentColor"
+            strokeWidth="2"
+            role="img"
+            aria-hidden="false"
+            focusable="false"
+          >
+            <path d="M3 12l2-2m0 0l4 4 4-4 4 4 4-4m0 0l2 2m-4-4l2-2" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-semibold text-gray-400 mb-3">Targeted Advertising</h3>
+        <p className="text-gray-400 text-center">
+          Our advanced targeting tools ensure that your message reaches the perfect audience, improving engagement and driving conversions. Learn more about <a href="https://www.facebook.com/business/ads/ad-targeting" target="_blank" className="text-blue-600 hover:underline">targeted advertising tools</a>.
+        </p>
+      </div>
+
+      {/* Comprehensive Analytics */}
+      <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div className="text-blue-600 text-4xl mb-4" aria-label="Analytics Icon">
+          <svg
+            className="w-12 h-12"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke="currentColor"
+            strokeWidth="2"
+            role="img"
+            aria-hidden="false"
+            focusable="false"
+          >
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zM12 17c-2.78 0-5-2.22-5-5s2.22-5 5-5 5 2.22 5 5-2.22 5-5 5z" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-semibold text-gray-400 mb-3">Comprehensive Analytics</h3>
+        <p className="text-gray-400 text-center">
+          Track and optimize your campaigns with our comprehensive analytics, allowing you to refine your strategy and boost performance over time. Check out <a href="https://ads.google.com/home/tools/google-analytics/" target="_blank" className="text-blue-600 hover:underline">Google Analytics</a> for more on campaign performance tracking.
+        </p>
+      </div>
+    </div>
+
+    {/* Call-to-Action */}
+    <div className="mt-12 text-center">
+      <p className="text-lg text-gray-600 mb-4">
+        Ready to take your advertising to the next level? Let’s create campaigns that drive real results.
+      </p>
+      <a
+        href="#contact"
+        className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
+        aria-label="Get Started Button"
+      >
+        Get Started
+      </a>
+    </div>
+  </div>
+</section>
+
+      <section id="development" className="py-16 p-6 bg-gray-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold ">We Develop</h2>
+            <p className="mt-4 text-lg text-gray-400">
+              We develop innovative solutions to transform ideas into reality,
+              delivering excellence for every project we undertake. Our
+              expertise spans a variety of technologies to ensure we meet your
+              unique business needs.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {/* Web Development */}
+            <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="text-blue-600 text-4xl mb-4">
+                <svg
+                  className="w-12 h-12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-400 mb-3">
+                Web Development
+              </h3>
+              <p className="text-gray-400 text-center">
+                We build dynamic, high-performance websites and web applications
+                with modern frameworks like{" "}
+                <a
+                  href="https://nextjs.org/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  Next.js
+                </a>{" "}
+                and{" "}
+                <a
+                  href="https://reactjs.org/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  React
+                </a>{" "}
+                to bring your ideas to life.
+              </p>
+            </div>
+
+            {/* Mobile Development */}
+            <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="text-blue-600 text-4xl mb-4">
+                <svg
+                  className="w-12 h-12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M12 2L2 12l10 10 10-10-10-10z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-400 mb-3">
+                Mobile Development
+              </h3>
+              <p className="text-gray-400 text-center">
+                Our mobile development services create seamless, user-friendly
+                apps for both iOS and Android, using cutting-edge technologies
+                like{" "}
+                <a
+                  href="https://reactnative.dev/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  React Native
+                </a>{" "}
+                and{" "}
+                <a
+                  href="https://flutter.dev/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  Flutter
+                </a>
+                .
+              </p>
+            </div>
+
+            {/* Custom Software Development */}
+            <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="text-blue-600 text-4xl mb-4">
+                <svg
+                  className="w-12 h-12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M12 4.5v15m7.5-7.5H4.5" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-400 mb-3">
+                Custom Software Development
+              </h3>
+              <p className="text-gray-400 text-center">
+                We develop custom software solutions tailored to your business
+                needs, using technologies like{" "}
+                <a
+                  href="https://nodejs.org/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  Node.js
+                </a>
+                ,{" "}
+                <a
+                  href="https://www.python.org/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  Python
+                </a>
+                , and{" "}
+                <a
+                  href="https://www.java.com/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  Java
+                </a>{" "}
+                to build scalable, secure applications.
+              </p>
+            </div>
+
+            {/* Cloud Solutions */}
+            <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="text-blue-600 text-4xl mb-4">
+                <svg
+                  className="w-12 h-12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M6 3H3v18h3V3zm12 18h3V3h-3v18z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-400 mb-3">
+                Cloud Solutions
+              </h3>
+              <p className="text-gray-400 text-center">
+                We implement scalable cloud solutions with platforms like{" "}
+                <a
+                  href="https://aws.amazon.com/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  AWS
+                </a>
+                ,{" "}
+                <a
+                  href="https://azure.microsoft.com/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  Azure
+                </a>
+                , and{" "}
+                <a
+                  href="https://cloud.google.com/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  Google Cloud
+                </a>{" "}
+                to ensure high availability, security, and performance for your
+                applications.
+              </p>
+            </div>
+
+            {/* E-Commerce Solutions */}
+            <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="text-blue-600 text-4xl mb-4">
+                <svg
+                  className="w-12 h-12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M2 12l2-2m0 0l4 4 4-4 4 4 4-4m0 0l2 2m-4-4l2-2" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-400 mb-3">
+                E-Commerce Solutions
+              </h3>
+              <p className="text-gray-400 text-center">
+                We create powerful, user-friendly e-commerce platforms using
+                solutions like{" "}
+                <a
+                  href="https://www.shopify.com/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  Shopify
+                </a>
+                ,{" "}
+                <a
+                  href="https://magento.com/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  Magento
+                </a>
+                , and{" "}
+                <a
+                  href="https://woocommerce.com/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  WooCommerce
+                </a>{" "}
+                to help you sell more and scale faster.
+              </p>
+            </div>
+
+            {/* AI & Machine Learning */}
+            <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="text-blue-600 text-4xl mb-4">
+                <svg
+                  className="w-12 h-12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M12 3v18M3 12h18" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-400 mb-3">
+                AI & Machine Learning
+              </h3>
+              <p className="text-gray-400 text-center">
+                Our AI & ML solutions empower your business with data-driven
+                insights, predictive models, and intelligent automation using
+                technologies like{" "}
+                <a
+                  href="https://www.tensorflow.org/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  TensorFlow
+                </a>{" "}
+                and{" "}
+                <a
+                  href="https://pytorch.org/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  PyTorch
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+
+          {/* <div className="mt-12 text-center">
+            <p className="text-lg text-gray-600 mb-4">
+              Let us transform your ideas into reality with innovative,
+              cutting-edge solutions. Contact us today and start your
+              development journey!
+            </p>
+            <a
+              href="#contact"
+              className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
+            >
+              Get Started
+            </a>
+          </div> */}
+        </div>
+      </section>
       <div>
         <div className="flex flex-col p-4">
-          <h3 className="text-3xl font-bold mb-6 bg-gray-950 p-3 rounded-lg">Who We Are!</h3>
+          <h3 className="text-3xl font-bold mb-6 bg-gray-950 p-3 rounded-lg">
+            Who We Are!
+          </h3>
           <div className="">
             {collapseData.map((item, index) => (
-              <div
-                key={index}
-                className="border rounded-lg shadow-sm my-2"
-              >
+              <div key={index} className="border rounded-lg shadow-sm my-2">
                 <button
                   onClick={() => toggleCollapse(index)}
                   className="flex justify-between items-center w-full p-4 hover:border-headfoot_color rounded-lg focus:outline-none"
@@ -310,8 +694,8 @@ const Mainpage = () => {
                 </button>
 
                 {openCollapseIndex === index && (
-                  <div className="p-4 bg-white rounded-b-lg ">
-                    <p className="text-gray-700">{item.content}</p>
+                  <div className="p-4 bg-gray-700 rounded-b-lg ">
+                    <p className="text-gray-400">{item.content}</p>
                   </div>
                 )}
               </div>
