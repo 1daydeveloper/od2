@@ -120,9 +120,9 @@ export default function Photo() {
 
   return (
     <>
-      <h1 className="font-extrabold text-2xl">
+      <h2 className="font-extrabold text-2xl">
         Passport Size Printable Photo Maker(6*4)
-      </h1>
+      </h2>
 
       <div className="flex flex-row flex-wrap mt-5 gap-4">
         <div className="flex flex-col gap-4 p-4 items-center w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 lg:w-1/3">
@@ -135,7 +135,7 @@ export default function Photo() {
             >
               <path d="M11.47 1.72a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1-1.06 1.06l-1.72-1.72V7.5h-1.5V4.06L9.53 5.78a.75.75 0 0 1-1.06-1.06l3-3ZM11.25 7.5V15a.75.75 0 0 0 1.5 0V7.5h3.75a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h3.75Z" />
             </svg>
-            <h3 className="text-xl">Upload Photo Below</h3>
+            <h2 className="text-xl">Upload Photo Below</h2>
           </div>
           <div className="flex items-center justify-center w-full">
             <label
@@ -321,9 +321,9 @@ export default function Photo() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200">
+              <h4 className="text-lg font-bold text-gray-800 dark:text-gray-200">
                 No Preview Available
-              </h2>
+              </h4>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 To view a preview, please follow these steps:
               </p>
@@ -409,9 +409,9 @@ export default function Photo() {
               </div>
             </div>
             <div className="mb-3">
-              <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
+              <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
                 Features of Our Passport Photo Tool
-              </h1>
+              </h2>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
                   <strong>Precision:</strong> Perfect alignment and size for

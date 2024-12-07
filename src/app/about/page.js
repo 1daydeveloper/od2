@@ -10,9 +10,9 @@ export default function About() {
     <section className="bg-gray-100 py-12 px-6 lg:px-20 rounded-lg">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-gray-800">
+        <h2 className="text-4xl font-bold text-gray-800">
           About <span className="text-yellow-500">One Day Developers (OD2)</span>
-        </h1>
+        </h2>
         <p className="mt-4 text-l font-bold text-gray-600">
           A Company with the Unique Target to Complete Projects in 24 Hours
         </p>
@@ -41,10 +41,10 @@ export default function About() {
             adaptability ensures that businesses of all sizes can achieve their goals with
             cutting-edge technology customized to their requirements.
           </p>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            At OD2, our promise is to transform your ideas into reality faster than ever before.
-            Let us help you achieve your dreams with unmatched precision and expertise.
-          </p>
+          <h5 className="text-gray-700 text-lg leading-relaxed">
+            At OD2, our h5romise is to transform your ideas into reality faster than ever before.
+            Let us help you achieve your dreams with unmatched precision and expertish5.
+          </h5>
         </div>
       </div>
     </div>

@@ -174,12 +174,12 @@ export default function GetEmailByID() {
 
   return (
     <div className="flex flex-col gap-4 min-h-screen ">
-      <h1 className="text-2xl font-bold mb-4">
+      <h2 className="text-2xl font-bold mb-4">
         Temp Mail
         <span className="m-3 inline-block px-2 py-1 text-xl font-semibold text-black bg-yellow-500 rounded-full">
           Beta
         </span>
-      </h1>
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="md:flex-col relative min-w-20 items-center space-x-2">
           <input
@@ -293,9 +293,9 @@ export default function GetEmailByID() {
                         </svg>
                       </div>
                       <div className="text-start">
-                        <h6 className="font-bold md:text-sm">
+                        <p className="font-bold md:text-sm">
                           {email.from.value[0].address || "Untitled Email"}
-                        </h6>
+                        </p>
                       </div>
                     </div>
 
@@ -500,9 +500,9 @@ export default function GetEmailByID() {
               </div>
             </div>
             <div id="userNameRules" className="mb-3">
-              <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
+              <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
                 Username Rules
-              </h1>
+              </h2>
               <ul className="list-disc pl-5 space-y-2 ">
                 <li>
                   Usernames can contain <strong>letters (a-z)</strong>,{" "}
