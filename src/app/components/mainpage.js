@@ -7,16 +7,19 @@ const Mainpage = () => {
 
   const collapseData = [
     {
+      id: "whatweoffer",
       title: "What We Offer?",
       content:
         "We provide innovative software solutions tailored to your business needs.",
     },
     {
+      id: "ourmission",
       title: "Our Mission",
       content:
         "Our mission is to deliver high-quality products with maximum customer satisfaction on time with effective retention.",
     },
     {
+      id: "contactus",
       title: "Contact Us",
       content: "Reach us on  call us at +91 7010178914.",
     },
@@ -378,7 +381,7 @@ const Mainpage = () => {
         Ready to take your advertising to the next level? Let’s create campaigns that drive real results.
       </p>
       <a
-        href="#contact"
+        href="#contactus"
         className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
         aria-label="Get Started Button"
       >
@@ -662,19 +665,19 @@ const Mainpage = () => {
             </div>
           </div>
 
-          {/* <div className="mt-12 text-center">
+          <div className="mt-12 text-center">
             <p className="text-lg text-gray-600 mb-4">
               Let us transform your ideas into reality with innovative,
               cutting-edge solutions. Contact us today and start your
               development journey!
             </p>
             <a
-              href="#contact"
+              href="#contactus"
               className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
             >
               Get Started
             </a>
-          </div> */}
+          </div>
         </div>
       </section>
       <div>
@@ -684,7 +687,7 @@ const Mainpage = () => {
           </h3>
           <div className="">
             {collapseData.map((item, index) => (
-              <div key={index} className="border rounded-lg shadow-sm my-2">
+              <div id={item.id} key={index} className="border rounded-lg shadow-sm my-2">
                 <button
                   onClick={() => toggleCollapse(index)}
                   className="flex justify-between items-center w-full p-4 hover:border-headfoot_color rounded-lg focus:outline-none"
