@@ -1,5 +1,4 @@
 "use client";
-import styles from "../../styles/mainpage.module.css";
 import { useEffect, useState, React } from "react";
 import Link from "next/link";
 const Mainpage = () => {
@@ -295,103 +294,153 @@ const Mainpage = () => {
         <div></div>
       </div>
       <section id="advertising" className="py-16 bg-gray-900">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    {/* SEO-Friendly Title and Meta Description */}
-    <div className="text-center mb-12">
-      <h2 className="text-3xl font-bold text-white">We Advertise</h2>
-      <p className="mt-4 text-lg text-gray-400">
-        Boost your brand with targeted advertising solutions designed to engage, attract, and grow your business. Leverage our advanced advertising strategies to maximize your ROI.
-      </p>
-    </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* SEO-Friendly Title and Meta Description */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white">We Advertise</h2>
+            <p className="mt-4 text-lg text-gray-400">
+              Boost your brand with targeted advertising solutions designed to
+              engage, attract, and grow your business. Leverage our advanced
+              advertising strategies to maximize your ROI.
+            </p>
+          </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-      {/* Advanced Strategy */}
-      <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-        <div className="text-blue-600 text-4xl mb-4" aria-label="Strategy Icon">
-          <svg
-            className="w-12 h-12"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            stroke="currentColor"
-            strokeWidth="2"
-            role="img"
-            aria-hidden="false"
-            focusable="false"
-          >
-            <path d="M12 2L2 12l10 10 10-10-10-10z" />
-          </svg>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {/* Advanced Strategy */}
+            <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div
+                className="text-blue-600 text-4xl mb-4"
+                aria-label="Strategy Icon"
+              >
+                <svg
+                  className="w-12 h-12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  role="img"
+                  aria-hidden="false"
+                  focusable="false"
+                >
+                  <path d="M12 2L2 12l10 10 10-10-10-10z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-400 mb-3">
+                Advanced Strategy
+              </h3>
+              <p className="text-gray-400 text-center">
+                We leverage data-driven strategies to ensure your ads reach the
+                right audience at the right time, maximizing your return on
+                investment. Explore more on{" "}
+                <a
+                  href="https://learn.g2.com/advanced-marketing-strategies"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  advanced advertising strategies
+                </a>
+                .
+              </p>
+            </div>
+
+            {/* Targeted Advertising */}
+            <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div
+                className="text-blue-600 text-4xl mb-4"
+                aria-label="Targeting Icon"
+              >
+                <svg
+                  className="w-12 h-12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  role="img"
+                  aria-hidden="false"
+                  focusable="false"
+                >
+                  <path d="M3 12l2-2m0 0l4 4 4-4 4 4 4-4m0 0l2 2m-4-4l2-2" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-400 mb-3">
+                Targeted Advertising
+              </h3>
+              <p className="text-gray-400 text-center">
+                Our advanced targeting tools ensure that your message reaches
+                the perfect audience, improving engagement and driving
+                conversions. Learn more about{" "}
+                <a
+                  href="https://www.facebook.com/business/ads/ad-targeting"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  targeted advertising tools
+                </a>
+                .
+              </p>
+            </div>
+
+            {/* Comprehensive Analytics */}
+            <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div
+                className="text-blue-600 text-4xl mb-4"
+                aria-label="Analytics Icon"
+              >
+                <svg
+                  className="w-12 h-12"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  role="img"
+                  aria-hidden="false"
+                  focusable="false"
+                >
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zM12 17c-2.78 0-5-2.22-5-5s2.22-5 5-5 5 2.22 5 5-2.22 5-5 5z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-400 mb-3">
+                Comprehensive Analytics
+              </h3>
+              <p className="text-gray-400 text-center">
+                Track and optimize your campaigns with our comprehensive
+                analytics, allowing you to refine your strategy and boost
+                performance over time. Check out{" "}
+                <a
+                  href="https://ads.google.com/home/tools/google-analytics/"
+                  target="_blank"
+                  className="text-blue-600 hover:underline"
+                >
+                  Google Analytics
+                </a>{" "}
+                for more on campaign performance tracking.
+              </p>
+            </div>
+          </div>
+
+          {/* Call-to-Action */}
+          <div className="mt-12 text-center">
+            <p className="text-lg text-gray-600 mb-4">
+              Ready to take your advertising to the next level? Let’s create
+              campaigns that drive real results.
+            </p>
+            <a
+              href="#contactus"
+              className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
+              aria-label="Get Started Button"
+            >
+              Get Started
+            </a>
+          </div>
         </div>
-        <h3 className="text-xl font-semibold text-gray-400 mb-3">Advanced Strategy</h3>
-        <p className="text-gray-400 text-center">
-          We leverage data-driven strategies to ensure your ads reach the right audience at the right time, maximizing your return on investment. Explore more on <a href="https://learn.g2.com/advanced-marketing-strategies" target="_blank" className="text-blue-600 hover:underline">advanced advertising strategies</a>.
-        </p>
-      </div>
-
-      {/* Targeted Advertising */}
-      <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-        <div className="text-blue-600 text-4xl mb-4" aria-label="Targeting Icon">
-          <svg
-            className="w-12 h-12"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            stroke="currentColor"
-            strokeWidth="2"
-            role="img"
-            aria-hidden="false"
-            focusable="false"
-          >
-            <path d="M3 12l2-2m0 0l4 4 4-4 4 4 4-4m0 0l2 2m-4-4l2-2" />
-          </svg>
-        </div>
-        <h3 className="text-xl font-semibold text-gray-400 mb-3">Targeted Advertising</h3>
-        <p className="text-gray-400 text-center">
-          Our advanced targeting tools ensure that your message reaches the perfect audience, improving engagement and driving conversions. Learn more about <a href="https://www.facebook.com/business/ads/ad-targeting" target="_blank" className="text-blue-600 hover:underline">targeted advertising tools</a>.
-        </p>
-      </div>
-
-      {/* Comprehensive Analytics */}
-      <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-        <div className="text-blue-600 text-4xl mb-4" aria-label="Analytics Icon">
-          <svg
-            className="w-12 h-12"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            stroke="currentColor"
-            strokeWidth="2"
-            role="img"
-            aria-hidden="false"
-            focusable="false"
-          >
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zM12 17c-2.78 0-5-2.22-5-5s2.22-5 5-5 5 2.22 5 5-2.22 5-5 5z" />
-          </svg>
-        </div>
-        <h3 className="text-xl font-semibold text-gray-400 mb-3">Comprehensive Analytics</h3>
-        <p className="text-gray-400 text-center">
-          Track and optimize your campaigns with our comprehensive analytics, allowing you to refine your strategy and boost performance over time. Check out <a href="https://ads.google.com/home/tools/google-analytics/" target="_blank" className="text-blue-600 hover:underline">Google Analytics</a> for more on campaign performance tracking.
-        </p>
-      </div>
-    </div>
-
-    {/* Call-to-Action */}
-    <div className="mt-12 text-center">
-      <p className="text-lg text-gray-600 mb-4">
-        Ready to take your advertising to the next level? Let’s create campaigns that drive real results.
-      </p>
-      <a
-        href="#contactus"
-        className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
-        aria-label="Get Started Button"
+      </section>
+      <section
+        id="development"
+        className="py-16 p-6 bg-gray-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
       >
-        Get Started
-      </a>
-    </div>
-  </div>
-</section>
-
-      <section id="development" className="py-16 p-6 bg-gray-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold ">We Develop</h2>
@@ -687,7 +736,11 @@ const Mainpage = () => {
           </h3>
           <div className="">
             {collapseData.map((item, index) => (
-              <div id={item.id} key={index} className="border rounded-lg shadow-sm my-2">
+              <div
+                id={item.id}
+                key={index}
+                className="border rounded-lg shadow-sm my-2"
+              >
                 <button
                   onClick={() => toggleCollapse(index)}
                   className="flex justify-between items-center w-full p-4 hover:border-headfoot_color rounded-lg focus:outline-none"

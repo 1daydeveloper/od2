@@ -1,12 +1,9 @@
 "use client";
 import React from "react";
-import Mainpage from "./components/mainpage";
+import Mainpage from "@/app/components/mainpage";
 
 const Home = () => {
-  return (
-  <Mainpage/>
-  );
+  return <Mainpage />;
 };
-
 
 export default Home;
