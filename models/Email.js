@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 
 const emailSchema = new mongoose.Schema({
   attachments: [mongoose.Schema.Types.Mixed],  // store attachments if needed
-  headers: String,
   headerLines: [
     {
       key: String,
