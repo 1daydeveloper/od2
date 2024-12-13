@@ -83,10 +83,7 @@ export default function GetEmailByID() {
     // Create a mapping of CID to data URL or filename
     const cidMap = attachments.reduce((map, attachment) => {
       if (attachment.cid) {
-        const base64Content = Buffer.from(attachment.content.data).toString(
-          "base64"
-        );
-        const dataUrl = `data:${attachment.contentType};base64,${base64Content}`;
+        const dataUrl = `data:${attachment.contentType};base64,${attachment.content}`;
         map[attachment.cid] = dataUrl;
       }
       return map;
@@ -441,8 +438,15 @@ export default function GetEmailByID() {
               Temporary Email(temp Mail) Made Simple with OD2
             </h2>
             <p className="text-lg text-center mb-8">
-              Generate <a className="text-blue-700" href="https://en.wikipedia.org/wiki/Disposable_email_address">disposable emails</a> on-the-go! Secure, fast, and perfect
-              for protecting your privacy or testing software.
+              Generate{" "}
+              <a
+                className="text-blue-700"
+                href="https://en.wikipedia.org/wiki/Disposable_email_address"
+              >
+                disposable emails
+              </a>{" "}
+              on-the-go! Secure, fast, and perfect for protecting your privacy
+              or testing software.
             </p>
             <div className="grid gap-8 lg:grid-cols-2">
               <div className="mb-3">
@@ -561,7 +565,7 @@ export default function GetEmailByID() {
                 >
                   Generate Temp Mail Now
                 </a>
-              </section> 
+              </section>
 
               <section className="shadow-lg rounded-lg p-6 mt-8">
                 <h2 className="text-2xl font-bold">
@@ -588,9 +592,7 @@ export default function GetEmailByID() {
               </section>
 
               <section className=" shadow-lg rounded-lg p-6 mt-8">
-                <h2 className="text-2xl font-bold ">
-                  How It Works
-                </h2>
+                <h2 className="text-2xl font-bold ">How It Works</h2>
                 <ol className="list-decimal list-inside mt-4 space-y-2">
                   <li>Visit our website.</li>
                   <li>Instantly generate a disposable email address.</li>
@@ -602,8 +604,6 @@ export default function GetEmailByID() {
                   </li>
                 </ol>
               </section>
-
-            
 
               <section className="shadow-lg rounded-lg p-6 mt-8">
                 <h2 className="text-2xl font-bold">
