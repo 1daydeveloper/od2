@@ -1,5 +1,6 @@
 import connectToDatabase from '../../../../lib/mongodb'; // Ensure this helper is correct
-import {Email} from '../../../../models/Email';
+import { Email } from '../../../../models/Email';
+const { simpleParser } = require('mailparser');
 
 // Named export for the POST method
 export const POST = async (req) => {
@@ -8,23 +9,28 @@ export const POST = async (req) => {
   }
 
   try {
-    // Log request body for debugging
     const emailData = await req.json();
 
-    // Connect to the database
+    if (!emailData?.raw) {
+      return new Response(JSON.stringify({ message: 'Invalid email data.' }), { status: 400 });
+    }
+
+    const options = {
+      skipImageLinks: false, // Ensures embedded images are parsed correctly
+    };
+
+    const parsedEmail = await simpleParser(emailData.raw, options);
     await connectToDatabase();
 
-    // Create a new email document and save it to the database
     const newEmail = new Email({
-      ...emailData,
+      ...parsedEmail,
     });
 
-    // Log the email object being saved
-
     await newEmail.save();
+
     return new Response(JSON.stringify({ message: 'Email saved successfully' }), { status: 200 });
   } catch (error) {
-    console.error('Error saving email:', error);
-    return new Response(JSON.stringify({ message: 'Error saving email to database' }), { status: 500 });
+    console.error('Error processing email:', error);
+    return new Response(JSON.stringify({ message: 'Error saving email to database', error: error.message }), { status: 500 });
   }
 };

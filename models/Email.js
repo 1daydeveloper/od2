@@ -3,12 +3,6 @@ import mongoose from 'mongoose';
 
 const emailSchema = new mongoose.Schema({
   attachments: [mongoose.Schema.Types.Mixed],  // store attachments if needed
-  headerLines: [
-    {
-      key: String,
-      line: String,
-    },
-  ],
   html: String,
   text: String,
   textAsHtml: String,
@@ -35,31 +29,6 @@ const emailSchema = new mongoose.Schema({
     text: String,
   },
   messageId: String,
-  raw: String,
-  dkim: {
-    headerFrom: [String],
-    envelopeFrom: String,
-    results: [
-      {
-        status: {
-          result: String,
-          comment: String,
-        },
-        info: String,
-      },
-    ],
-  },
-  spf: {
-    domain: String,
-    clientIp: String,
-    helo: String,
-    envelopeFrom: String,
-    rr: String,
-    status: {
-      result: String,
-      comment: String,
-    },
-  },
 });
 
 
