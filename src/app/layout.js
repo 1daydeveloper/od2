@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
-import Footer from "./components/footer";
-import Header from "./components/header";
+import Footer from "@/app/components/footer";
+import Header from "@/app/components/header";
 import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,9 +42,9 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body className={inter.className + "flex-col bg-white dark:bg-slate-800"}>
-        <Header></Header>
-        <div className="p-5">{children}</div>
+      <body className={inter.className + " bg-white dark:bg-slate-800"}>
+        <Header/>
+        <div className="p-5 md:mx-40">{children}</div>
         <ToastContainer
           position="bottom-right"
           autoClose={5000}
@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
           pauseOnHover
           theme="dark"
         />
-        <Footer></Footer>
+        <Footer/>
       </body>
     </html>
   );
