@@ -40,7 +40,7 @@ export default function Photo() {
     setImage(uploadedImage);
     setImageName(uploadedImage.name); // Set the file nam\
   };
-  
+
   const handleDragOver = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -53,6 +53,11 @@ export default function Photo() {
       processImage(e.target.result);
     };
     reader.readAsDataURL(image);
+    gtag("event", "button_click", {
+      event_category: "engagement",
+      event_label: "Generate_Passport_photo",
+      value: 1,
+    });
   };
 
   const handlePhotoSettingsChange = (DPI) => {
@@ -73,6 +78,11 @@ export default function Photo() {
         photoPadding: 5,
       });
     }
+    gtag("event", "button_click", {
+      event_category: "engagement",
+      event_label: "Passport_photo_Quality_"+DPI,
+      value: 1,
+    });
   };
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
 
