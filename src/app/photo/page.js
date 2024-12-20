@@ -3,15 +3,30 @@ import { useState } from "react";
 
 export default function Photo() {
   const [image, setImage] = useState(null);
+  const [imageName, setImageName] = useState(""); // State to store file name
   const [uploadError, setUploadError] = useState(null);
   const [canvasd, setCanvasd] = useState(null);
   const [photoSettings, setPhotoSettings] = useState({
-    DPI: 96, // Default DPI
-    photoWidth: 140, // Default width
-    photoHeight: 170, // Default height
-    margin: 4, // Default margin
-    photoPadding: 5, // Default padding
+    DPI: 300,
+    photoWidth: 420,
+    photoHeight: 510,
+    margin: 10,
+    photoPadding: 15,
   });
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const droppedImage = event.dataTransfer.files[0];
+    if (droppedImage.size > 1024 * 1024 * 5) {
+      setUploadError("Image size exceeds 5MB");
+      return;
+    }
+    setUploadError(null);
+    setImage(droppedImage);
+    setImageName(droppedImage.name); // Set the file name
+  };
 
   const handleImageChange = (e) => {
     const uploadedImage = e.target.files[0];
@@ -23,6 +38,12 @@ export default function Photo() {
     }
     setUploadError(null);
     setImage(uploadedImage);
+    setImageName(uploadedImage.name); // Set the file nam\
+  };
+  
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
   };
 
   const GeneratePrintableImage = () => {
@@ -53,7 +74,7 @@ export default function Photo() {
       });
     }
   };
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
 
   const processImage = (imageDataURL) => {
     // Increased DPI for better resolution
@@ -126,7 +147,7 @@ export default function Photo() {
 
       <div className="flex flex-row flex-wrap mt-5 gap-4">
         <div className="flex flex-col gap-4 p-4 items-center w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 lg:w-1/3">
-          <div className="items-center flex justify-center gap-2 text-slate-800 font-extrabold rounded-md p-4 bg-white w-full text-center">
+          {/* <div className="items-center flex justify-center gap-2  font-extrabold rounded-md p-4  w-full text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -136,45 +157,74 @@ export default function Photo() {
               <path d="M11.47 1.72a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1-1.06 1.06l-1.72-1.72V7.5h-1.5V4.06L9.53 5.78a.75.75 0 0 1-1.06-1.06l3-3ZM11.25 7.5V15a.75.75 0 0 0 1.5 0V7.5h3.75a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h3.75Z" />
             </svg>
             <h2 className="text-xl">Upload Photo Below</h2>
-          </div>
-          <div className="flex items-center justify-center w-full">
-            <label
-              htmlFor="dropzone-file"
-              className="flex flex-col w-full items-center justify-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 text-center"
-            >
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <svg
-                  className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 16"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                  />
-                </svg>
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span className="font-semibold">Click to upload</span> or drag
-                  and drop
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  SVG, PNG, JPG or GIF (MAX. 800x400px)
-                </p>
-              </div>
-            </label>
-          </div>
+          </div> */}
+              <div
+      className="flex items-center justify-center w-full"
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+    >
+      <label
+        htmlFor="dropzone-file"
+        className="flex flex-col w-full items-center justify-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 text-center"
+      >
+        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+          <svg
+            className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 16"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+            />
+          </svg>
+          <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+            <span className="font-semibold">Click to upload</span> or drag and drop
+          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            JPG or PNG (MAX. 5MB)
+          </p>
+        </div>
+      
+      </label>
+      </div>
           <input
             id="dropzone-file"
             onChange={handleImageChange}
             accept="image/*"
             type="file"
-            className="w-full "
+            className="w-full hidden"
           />
+           {image &&imageName ? (
+
+<div className="flex flex-col sm:flex-row items-center mt-4">
+  {/* Photo Preview */}
+  {/* <div className="flex-shrink-0">
+    <p className="text-sm text-gray-500">Preview:</p>
+    <img
+      src={URL.createObjectURL(image)}
+      alt="Uploaded Preview"
+      className="mt-2 rounded border"
+      style={{
+        width: photoSettings.photoWidth,
+        height: photoSettings.photoHeight,
+      }}
+    />
+  </div> */}
+
+  {/* File Name */}
+  <div className="mb-4 text-center text-green-600">
+    <p className="text-sm ">Uploaded File: <span className="text-white">{imageName}</span></p>
+  </div>
+</div>
+
+      ):(<h3 className="text-red-500 mb-4 text-center">
+      No Passport Size Image Uploded      </h3>)}
           {uploadError && (
             <div className="text-red-500 mb-4 text-center">{uploadError}</div>
           )}
@@ -183,7 +233,9 @@ export default function Photo() {
               <div className="flex flex-row gap-3 w-full ">
                 <button
                   onClick={() => handlePhotoSettingsChange(96)}
-                  className={ ` justify-center flex gap-1 text-black font-extrabold p-3 w-full ${photoSettings.DPI==300?`bg-yellow-600`:`bg-green-600`} rounded-md `}
+                  className={` justify-center flex gap-1 text-black font-extrabold p-3 w-full ${
+                    photoSettings.DPI == 300 ? `bg-yellow-600` : `bg-green-600`
+                  } rounded-md `}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -202,7 +254,9 @@ export default function Photo() {
                 </button>
                 <button
                   onClick={() => handlePhotoSettingsChange(300)}
-                  className={ ` justify-center flex gap-1 text-black font-extrabold p-3 w-full ${photoSettings.DPI==300?`bg-green-600`:`bg-yellow-600 `} rounded-md `}
+                  className={` justify-center flex gap-1 text-black font-extrabold p-3 w-full ${
+                    photoSettings.DPI == 300 ? `bg-green-600` : `bg-yellow-600 `
+                  } rounded-md `}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -341,69 +395,64 @@ export default function Photo() {
         </div>
       </div>
       <div className="p-6 mt-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        {" "}
         <section className="text-white">
-          {" "}
           <div className="container mx-auto px-4 lg:px-8 mb-2">
-            {" "}
             <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-              {" "}
-              Create Printable Passport Photos Instantly with OD2{" "}
-            </h2>{" "}
+              Create Printable Passport Photos Instantly with OD2
+            </h2>
             <p className="text-lg text-center mb-8">
-              {" "}
-              Upload a passport-sized photo and receive a printable PNG file
-              with 8 perfectly aligned photos ready for 6x4-inch paper printing
-              — delivered in seconds!{" "}
-            </p>{" "}
+              Upload a passport-sized photo and receive a high-quality,
+              printable PNG file with 8 perfectly aligned photos ready for
+              6x4-inch photo paper printing — fast and easy!
+            </p>
             <div className="grid gap-8 lg:grid-cols-2">
-              {" "}
               <div className="mb-3">
-                {" "}
                 <h2 className="text-2xl font-semibold mb-4">
-                  {" "}
-                  Why Choose OD2 Passport Photo Generator?{" "}
-                </h2>{" "}
+                  Why Choose OD2 Passport Photo Generator?
+                </h2>
                 <ul className="list-disc pl-5 space-y-2">
-                  {" "}
                   <li>
-                    {" "}
                     <strong>Instant Photo Processing:</strong> Generate a
-                    high-quality printable PNG with 8 passport-sized photos in
-                    just seconds.{" "}
-                  </li>{" "}
+                    high-resolution PNG file with 8 passport-sized photos in
+                    seconds.
+                  </li>
                   <li>
-                    {" "}
                     <strong>Perfect Dimensions:</strong> Optimized for 6x4-inch
-                    paper, ensuring professional-quality results.{" "}
-                  </li>{" "}
+                    photo paper, ensuring professional-quality results.
+                  </li>
                   <li>
-                    {" "}
-                    <strong>Hassle-Free Experience:</strong> No complicated
-                    tools or editing skills required. Upload, process, and
-                    print.{" "}
-                  </li>{" "}
+                    <strong>Hassle-Free Experience:</strong> No technical skills
+                    required. Upload, crop, and print with ease.
+                  </li>
                   <li>
-                    {" "}
-                    <strong>Affordable & Accessible:</strong> Save time and
-                    money by avoiding costly photo studios.{" "}
-                  </li>{" "}
-                </ul>{" "}
+                    <strong>Affordable & Accessible:</strong> Save money by
+                    avoiding costly photo studios.
+                  </li>
+                  <li>
+                    <strong>Meets Global Standards:</strong> Our tool complies
+                    with official size requirements for passport and ID photos
+                    worldwide.
+                  </li>
+                </ul>
               </div>
               <div>
                 <h2 className="text-2xl font-semibold mb-4">Ideal For:</h2>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>
-                    <strong>Visa and Passport Applications:</strong> Get
+                    <strong>Visa and Passport Applications:</strong> Generate
                     perfectly aligned photos that meet official requirements.
                   </li>
                   <li>
-                    <strong>School or Job Submissions:</strong> Easily generate
-                    and print passport photos for any formal submission.
+                    <strong>School or Job Submissions:</strong> Easily create
+                    and print passport photos for any formal use.
                   </li>
                   <li>
                     <strong>Frequent Travelers:</strong> Quickly create passport
                     photos without visiting a studio.
+                  </li>
+                  <li>
+                    <strong>Digital Use:</strong> Use the generated PNG for
+                    online applications or digital IDs.
                   </li>
                 </ul>
               </div>
@@ -423,7 +472,11 @@ export default function Photo() {
                 </li>
                 <li>
                   <strong>Ease of Use:</strong> A clean, user-friendly interface
-                  for all users.
+                  designed for everyone.
+                </li>
+                <li>
+                  <strong>Multiple Formats:</strong> Supports global photo size
+                  standards like 2x2 inches and 35x45 mm.
                 </li>
               </ul>
             </div>
@@ -448,8 +501,23 @@ export default function Photo() {
                   <li>Upload your passport-size photo.</li>
                   <li>Review the layout for a 6x4-inch printable PNG.</li>
                   <li>Download your file instantly.</li>
-                  <li>Print your file on a 6x4-inch paper, ready to use.</li>
+                  <li>
+                    Print your file on a 6x4-inch photo paper, ready to use.
+                  </li>
                 </ol>
+              </section>
+
+              <section className="shadow-lg rounded-lg p-6 mt-8">
+                <h2 className="text-2xl font-bold">
+                  Why Printable 6x4 Photo Paper?
+                </h2>
+                <p>
+                  The 6x4 photo paper layout is perfect for maximizing
+                  efficiency and saving costs. Each sheet can accommodate
+                  multiple passport-size photos, making it ideal for personal,
+                  family, or professional needs. Print your photos at home or a
+                  local shop, and cut them effortlessly to the required size.
+                </p>
               </section>
 
               <section className="shadow-lg rounded-lg p-6 mt-8">
@@ -460,8 +528,9 @@ export default function Photo() {
                   <div>
                     <h3 className="font-bold">What is the output format?</h3>
                     <p>
-                      You will receive a PNG file containing 8 passport-sized
-                      photos perfectly aligned for 6x4-inch printing.
+                      You will receive a high-quality PNG file containing 8
+                      passport-sized photos perfectly aligned for 6x4-inch
+                      printing.
                     </p>
                   </div>
                   <div>
@@ -474,7 +543,16 @@ export default function Photo() {
                   </div>
                   <div>
                     <h3 className="font-bold">Is this tool free to use?</h3>
-                    <p>Yes, our tool is free to use.</p>
+                    <p>Yes, our tool is completely free to use.</p>
+                  </div>
+                  <div>
+                    <h3 className="font-bold">
+                      Can I use the PNG for online applications?
+                    </h3>
+                    <p>
+                      Yes, the generated PNG file is suitable for both printing
+                      and digital use.
+                    </p>
                   </div>
                 </div>
               </section>
@@ -496,7 +574,7 @@ export default function Photo() {
               </div>
             </div>
           </div>
-        </section>{" "}
+        </section>
       </div>
     </>
   );
