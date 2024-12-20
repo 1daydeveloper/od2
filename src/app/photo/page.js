@@ -6,11 +6,11 @@ export default function Photo() {
   const [uploadError, setUploadError] = useState(null);
   const [canvasd, setCanvasd] = useState(null);
   const [photoSettings, setPhotoSettings] = useState({
-    DPI: 96, // Default DPI
-    photoWidth: 140, // Default width
-    photoHeight: 170, // Default height
-    margin: 4, // Default margin
-    photoPadding: 5, // Default padding
+    DPI: 300,
+    photoWidth: 420,
+    photoHeight: 510,
+    margin: 10,
+    photoPadding: 15,
   });
 
   const handleImageChange = (e) => {
@@ -53,7 +53,7 @@ export default function Photo() {
       });
     }
   };
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
 
   const processImage = (imageDataURL) => {
     // Increased DPI for better resolution
@@ -183,7 +183,9 @@ export default function Photo() {
               <div className="flex flex-row gap-3 w-full ">
                 <button
                   onClick={() => handlePhotoSettingsChange(96)}
-                  className={ ` justify-center flex gap-1 text-black font-extrabold p-3 w-full ${photoSettings.DPI==300?`bg-yellow-600`:`bg-green-600`} rounded-md `}
+                  className={` justify-center flex gap-1 text-black font-extrabold p-3 w-full ${
+                    photoSettings.DPI == 300 ? `bg-yellow-600` : `bg-green-600`
+                  } rounded-md `}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -202,7 +204,9 @@ export default function Photo() {
                 </button>
                 <button
                   onClick={() => handlePhotoSettingsChange(300)}
-                  className={ ` justify-center flex gap-1 text-black font-extrabold p-3 w-full ${photoSettings.DPI==300?`bg-green-600`:`bg-yellow-600 `} rounded-md `}
+                  className={` justify-center flex gap-1 text-black font-extrabold p-3 w-full ${
+                    photoSettings.DPI == 300 ? `bg-green-600` : `bg-yellow-600 `
+                  } rounded-md `}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -341,163 +345,158 @@ export default function Photo() {
         </div>
       </div>
       <div className="p-6 mt-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        {" "}
-        <section className="text-white">
-          {" "}
-          <div className="container mx-auto px-4 lg:px-8 mb-2">
-            {" "}
-            <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-              {" "}
-              Create Printable Passport Photos Instantly with OD2{" "}
-            </h2>{" "}
-            <p className="text-lg text-center mb-8">
-              {" "}
-              Upload a passport-sized photo and receive a printable PNG file
-              with 8 perfectly aligned photos ready for 6x4-inch paper printing
-              — delivered in seconds!{" "}
-            </p>{" "}
-            <div className="grid gap-8 lg:grid-cols-2">
-              {" "}
-              <div className="mb-3">
-                {" "}
-                <h2 className="text-2xl font-semibold mb-4">
-                  {" "}
-                  Why Choose OD2 Passport Photo Generator?{" "}
-                </h2>{" "}
-                <ul className="list-disc pl-5 space-y-2">
-                  {" "}
-                  <li>
-                    {" "}
-                    <strong>Instant Photo Processing:</strong> Generate a
-                    high-quality printable PNG with 8 passport-sized photos in
-                    just seconds.{" "}
-                  </li>{" "}
-                  <li>
-                    {" "}
-                    <strong>Perfect Dimensions:</strong> Optimized for 6x4-inch
-                    paper, ensuring professional-quality results.{" "}
-                  </li>{" "}
-                  <li>
-                    {" "}
-                    <strong>Hassle-Free Experience:</strong> No complicated
-                    tools or editing skills required. Upload, process, and
-                    print.{" "}
-                  </li>{" "}
-                  <li>
-                    {" "}
-                    <strong>Affordable & Accessible:</strong> Save time and
-                    money by avoiding costly photo studios.{" "}
-                  </li>{" "}
-                </ul>{" "}
-              </div>
-              <div>
-                <h2 className="text-2xl font-semibold mb-4">Ideal For:</h2>
-                <ul className="list-disc pl-5 space-y-2">
-                  <li>
-                    <strong>Visa and Passport Applications:</strong> Get
-                    perfectly aligned photos that meet official requirements.
-                  </li>
-                  <li>
-                    <strong>School or Job Submissions:</strong> Easily generate
-                    and print passport photos for any formal submission.
-                  </li>
-                  <li>
-                    <strong>Frequent Travelers:</strong> Quickly create passport
-                    photos without visiting a studio.
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="mb-3">
-              <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
-                Features of Our Passport Photo Tool
-              </h2>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>
-                  <strong>Precision:</strong> Perfect alignment and size for
-                  every photo.
-                </li>
-                <li>
-                  <strong>Downloadable PNG:</strong> Receive a single file ready
-                  for printing.
-                </li>
-                <li>
-                  <strong>Ease of Use:</strong> A clean, user-friendly interface
-                  for all users.
-                </li>
-              </ul>
+  <section className="text-white">
+    <div className="container mx-auto px-4 lg:px-8 mb-2">
+      <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
+        Create Printable Passport Photos Instantly with OD2
+      </h2>
+      <p className="text-lg text-center mb-8">
+        Upload a passport-sized photo and receive a high-quality, printable PNG file
+        with 8 perfectly aligned photos ready for 6x4-inch photo paper printing — fast and easy!
+      </p>
+      <div className="grid gap-8 lg:grid-cols-2">
+        <div className="mb-3">
+          <h2 className="text-2xl font-semibold mb-4">
+            Why Choose OD2 Passport Photo Generator?
+          </h2>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Instant Photo Processing:</strong> Generate a
+              high-resolution PNG file with 8 passport-sized photos in seconds.
+            </li>
+            <li>
+              <strong>Perfect Dimensions:</strong> Optimized for 6x4-inch
+              photo paper, ensuring professional-quality results.
+            </li>
+            <li>
+              <strong>Hassle-Free Experience:</strong> No technical skills required. Upload, crop, and print with ease.
+            </li>
+            <li>
+              <strong>Affordable & Accessible:</strong> Save money by avoiding costly photo studios.
+            </li>
+            <li>
+              <strong>Meets Global Standards:</strong> Our tool complies with official size requirements for
+              passport and ID photos worldwide.
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Ideal For:</h2>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Visa and Passport Applications:</strong> Generate perfectly aligned photos that meet official requirements.
+            </li>
+            <li>
+              <strong>School or Job Submissions:</strong> Easily create and print passport photos for any formal use.
+            </li>
+            <li>
+              <strong>Frequent Travelers:</strong> Quickly create passport photos without visiting a studio.
+            </li>
+            <li>
+              <strong>Digital Use:</strong> Use the generated PNG for online applications or digital IDs.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="mb-3">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
+          Features of Our Passport Photo Tool
+        </h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>
+            <strong>Precision:</strong> Perfect alignment and size for every photo.
+          </li>
+          <li>
+            <strong>Downloadable PNG:</strong> Receive a single file ready for printing.
+          </li>
+          <li>
+            <strong>Ease of Use:</strong> A clean, user-friendly interface designed for everyone.
+          </li>
+          <li>
+            <strong>Multiple Formats:</strong> Supports global photo size standards like 2x2 inches and 35x45 mm.
+          </li>
+        </ul>
+      </div>
+      <div>
+        <section className="bg-black shadow-lg rounded-lg p-6 mt-8">
+          <h2 className="text-2xl font-bold">Try It Now</h2>
+          <p className="mt-4">
+            Save time and effort! Use our passport photo generator today for a quick, professional, and hassle-free solution.
+          </p>
+          <a
+            href="#"
+            className="mt-4 inline-block bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700"
+          >
+            Generate Printable Passport Photos
+          </a>
+        </section>
+
+        <section className="shadow-lg rounded-lg p-6 mt-8">
+          <h2 className="text-2xl font-bold">How It Works</h2>
+          <ol className="list-decimal list-inside mt-4 space-y-2">
+            <li>Upload your passport-size photo.</li>
+            <li>Review the layout for a 6x4-inch printable PNG.</li>
+            <li>Download your file instantly.</li>
+            <li>Print your file on a 6x4-inch photo paper, ready to use.</li>
+          </ol>
+        </section>
+
+        <section className="shadow-lg rounded-lg p-6 mt-8">
+          <h2 className="text-2xl font-bold">Why Printable 6x4 Photo Paper?</h2>
+          <p>
+            The 6x4 photo paper layout is perfect for maximizing efficiency and saving costs. Each sheet can accommodate
+            multiple passport-size photos, making it ideal for personal, family, or professional needs. Print your photos at
+            home or a local shop, and cut them effortlessly to the required size.
+          </p>
+        </section>
+
+        <section className="shadow-lg rounded-lg p-6 mt-8">
+          <h2 className="text-2xl font-bold">FAQs About Our Passport Photo Tool</h2>
+          <div className="mt-4 space-y-4">
+            <div>
+              <h3 className="font-bold">What is the output format?</h3>
+              <p>
+                You will receive a high-quality PNG file containing 8 passport-sized photos perfectly aligned for 6x4-inch printing.
+              </p>
             </div>
             <div>
-              <section className="bg-black shadow-lg rounded-lg p-6 mt-8">
-                <h2 className="text-2xl font-bold">Try It Now</h2>
-                <p className="mt-4">
-                  Save time and effort! Use our passport photo generator today
-                  for a quick, professional, and hassle-free solution.
-                </p>
-                <a
-                  href="#"
-                  className="mt-4 inline-block bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700"
-                >
-                  Generate Printable Passport Photos
-                </a>
-              </section>
-
-              <section className="shadow-lg rounded-lg p-6 mt-8">
-                <h2 className="text-2xl font-bold">How It Works</h2>
-                <ol className="list-decimal list-inside mt-4 space-y-2">
-                  <li>Upload your passport-size photo.</li>
-                  <li>Review the layout for a 6x4-inch printable PNG.</li>
-                  <li>Download your file instantly.</li>
-                  <li>Print your file on a 6x4-inch paper, ready to use.</li>
-                </ol>
-              </section>
-
-              <section className="shadow-lg rounded-lg p-6 mt-8">
-                <h2 className="text-2xl font-bold">
-                  FAQs About Our Passport Photo Tool
-                </h2>
-                <div className="mt-4 space-y-4">
-                  <div>
-                    <h3 className="font-bold">What is the output format?</h3>
-                    <p>
-                      You will receive a PNG file containing 8 passport-sized
-                      photos perfectly aligned for 6x4-inch printing.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold">
-                      How quickly can I generate the file?
-                    </h3>
-                    <p>
-                      The process takes just seconds after uploading your photo.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Is this tool free to use?</h3>
-                    <p>Yes, our tool is free to use.</p>
-                  </div>
-                </div>
-              </section>
-
-              <div className="shadow-lg bg-black rounded-lg p-6 mt-8 text-white text-center">
-                <h3 className="text-xl md:text-2xl font-semibold mb-4">
-                  Ready to Simplify Your Passport Photo Needs?
-                </h3>
-                <p className="text-lg mb-6">
-                  Start using OD2 Passport Photo Generator today for a fast and
-                  professional solution at your fingertips.
-                </p>
-                <a
-                  href="#"
-                  className="inline-block px-6 py-3 text-lg font-medium text-white bg-yellow-600 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-blue-300"
-                >
-                  Generate Your Printable Photos Now
-                </a>
-              </div>
+              <h3 className="font-bold">How quickly can I generate the file?</h3>
+              <p>
+                The process takes just seconds after uploading your photo.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold">Is this tool free to use?</h3>
+              <p>Yes, our tool is completely free to use.</p>
+            </div>
+            <div>
+              <h3 className="font-bold">Can I use the PNG for online applications?</h3>
+              <p>
+                Yes, the generated PNG file is suitable for both printing and digital use.
+              </p>
             </div>
           </div>
-        </section>{" "}
+        </section>
+
+        <div className="shadow-lg bg-black rounded-lg p-6 mt-8 text-white text-center">
+          <h3 className="text-xl md:text-2xl font-semibold mb-4">
+            Ready to Simplify Your Passport Photo Needs?
+          </h3>
+          <p className="text-lg mb-6">
+            Start using OD2 Passport Photo Generator today for a fast and professional solution at your fingertips.
+          </p>
+          <a
+            href="#"
+            className="inline-block px-6 py-3 text-lg font-medium text-white bg-yellow-600 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-blue-300"
+          >
+            Generate Your Printable Photos Now
+          </a>
+        </div>
       </div>
+    </div>
+  </section>
+</div>
+
     </>
   );
 }
