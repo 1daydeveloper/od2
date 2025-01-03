@@ -147,6 +147,7 @@ export default function GetEmailByID() {
   function addKeyToInput(data) {
     setId("inputText");
     setId(data);
+    setIsSubmitEnabled(true);
   }
   const copyToClipboard = () => {
     if (!navigator.clipboard) {
