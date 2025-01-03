@@ -108,27 +108,41 @@ export default function GetEmailByID() {
     return usernameRegex.test(username);
   }
   function handleInputChange(e) {
+    const inputText = e.target.value.toLowerCase(); // Convert to lowercase
     setError(""); // Reset the error message
-    const inputText = e.target.value.toLowerCase(); // To small caps
-    setId(inputText);
-    if (inputText == "") {
-      setIsSubmitEnabled(false);
+  
+    let filteredText = inputText;
+    if (inputText.includes("@")) {
+      filteredText = inputText.split("@")[0]; // Remove everything after '@'
+    }
+  
+    // Update the state with the filtered text
+    setId(filteredText);
+  
+    // Check for an empty string
+    if (filteredText === "") {
+      setIsSubmitEnabled(false); // Disable submit button
       return;
-    } else if (!isValidUsername(inputText)) {
+    }
+  
+    // Validate the username
+    if (!isValidUsername(filteredText)) {
       setError(
         "Invalid username. Please follow the <a href='#userNameRules' class='text-blue-500 hover:underline inline-block'>Scroll to Username Rules</a>."
       );
       setIsSubmitEnabled(false);
       return;
     }
+  
+    // Enable submit button and log event
     setIsSubmitEnabled(true);
-
     gtag("event", "button_click", {
       event_category: "engagement",
       event_label: "Temp_Mail_Click",
-      value: inputText,
+      value: filteredText,
     });
   }
+  
 
   function addKeyToInput(data) {
     setId("inputText");
@@ -201,8 +215,14 @@ export default function GetEmailByID() {
           </svg>
 
           <button
-            className={`absolute right-1 top-1 rounded justify-center items-center bg-yellow-600   py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow  focus:shadow-none hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:shadow-none`}
+            className={`absolute right-1 top-1 rounded justify-center items-center bg-yellow-600   py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow  focus:shadow-none hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:shadow-none${
+              isSubmitEnabled
+                ? ""
+                : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            }`}
+            disabled={!isSubmitEnabled}
             type="submit"
+            
           >
             Check Inbox
           </button>
@@ -534,7 +554,7 @@ export default function GetEmailByID() {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className="flex flex-col gap-3">
               <section className="shadow-lg rounded-lg ">
                 <h2 className="text-2xl font-bold ">
                   Why Choose Temporary Mail?
@@ -552,20 +572,18 @@ export default function GetEmailByID() {
                 </ul>
               </section>
 
-              <section className="bg-black  shadow-lg rounded-lg p-6 mt-8">
-                <h2 className="text-2xl font-bold">Try It Now</h2>
-                <p className="mt-4">
-                  Stop sharing your primary email address! Try our temporary
-                  mail service today and enjoy a hassle-free, spam-free email
-                  experience.
-                </p>
-                <a
-                  href="#"
-                  className="mt-4 inline-block bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700"
-                >
-                  Generate Temp Mail Now
-                </a>
-              </section>
+              <section className="bg-blue-600 text-white text-center py-12">
+          <h2 className="text-3xl font-bold">Try It Now</h2>
+          <p className="mt-4 text-lg">
+            Ready to protect your inbox and maintain your privacy?
+          </p>
+          <a
+            href="#"
+            className="inline-block mt-6 px-8 py-3 bg-white text-blue-600 font-semibold rounded-md shadow hover:bg-gray-100"
+          >
+            Get Started for Free
+          </a>
+        </section>
 
               <section className="shadow-lg rounded-lg p-6 mt-8">
                 <h2 className="text-2xl font-bold">
@@ -605,7 +623,7 @@ export default function GetEmailByID() {
                 </ol>
               </section>
 
-              <section className="shadow-lg rounded-lg p-6 mt-8">
+              <section className="border shadow-lg rounded-lg p-6 mt-8">
                 <h2 className="text-2xl font-bold">
                   FAQs About Temporary Mail
                 </h2>
@@ -632,6 +650,80 @@ export default function GetEmailByID() {
                   </div>
                 </div>
               </section>
+              <section className="border shadow-xl rounded-xl text-white text-center py-12">
+          <h1 className="text-4xl font-bold">Temporary Email Service</h1>
+          <p className="mt-4 text-lg">
+            Fast, Secure, and Hassle-Free Disposable Email for Everyone
+          </p>
+        </section>
+
+        {/* History and Features Section */}
+        <section className="max-w-6xl mx-auto py-12 px-4">
+          <h2 className="text-3xl font-semibold ">
+            The Evolution of Temporary Mail
+          </h2>
+          <p className="mt-4 text-gray-200 leading-7">
+            Temporary email services have evolved as a practical solution to
+            combat email overload, privacy concerns, and online security risks.
+            <a
+              href="https://en.wikipedia.org/wiki/Email_privacy"
+              className="text-blue-600 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn more about email privacy.
+            </a>
+          </p>
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="p-6 bg-white shadow-md rounded-md">
+              <h3 className="text-xl font-semibold text-blue-600">
+                Secure Online Signups
+              </h3>
+              <p className="mt-2 text-gray-600">
+                Use temporary mail for registrations on websites, forums, or
+                social media platforms without sharing your permanent email.
+              </p>
+            </div>
+            <div className="p-6 bg-white shadow-md rounded-md">
+              <h3 className="text-xl font-semibold text-blue-600">
+                Prevent Spam
+              </h3>
+              <p className="mt-2 text-gray-600">
+                Avoid promotional emails and unsolicited offers in your primary
+                inbox.
+                <a
+                  href="https://support.google.com/mail/answer/8126226"
+                  className="text-blue-600 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn how to manage spam.
+                </a>
+              </p>
+            </div>
+            <div className="p-6 bg-white shadow-md rounded-md">
+              <h3 className="text-xl font-semibold text-blue-600">
+                Testing and Development
+              </h3>
+              <p className="mt-2 text-gray-600">
+                Ideal for developers and QA testers to test email workflows
+                without cluttering real accounts.
+              </p>
+            </div>
+            <div className="p-6 bg-white shadow-md rounded-md">
+              <h3 className="text-xl font-semibold text-blue-600">
+                Enhanced Privacy
+              </h3>
+              <p className="mt-2 text-gray-600">
+                Safeguard your identity while participating in online surveys,
+                polls, or giveaways.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Call-to-Action Section */}
+       
             </div>
             <div className="shadow-lg bg-black rounded-lg p-6 mt-8 text-white text-center">
               <h3 className="text-xl md:text-2xl font-semibold 800 mb-4">
