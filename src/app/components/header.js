@@ -19,6 +19,7 @@ const Header = () => {
     { id: "products", label: "Products" },
     { id: "products/od2bs", label: "Billing System" },
     { id: "about", label: "About" },
+    { id: "blog", label: "Blog" },
   ];
   const currentTitle = navLinks.find(
     (link) => link.id === pathname.slice(1)

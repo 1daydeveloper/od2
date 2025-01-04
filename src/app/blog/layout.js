@@ -1,0 +1,35 @@
+export default function BlogLayout({ children, frontMatter, content }) {
+  return (
+    <>
+      {" "}
+      <div className="p-5">{children}</div>
+    </>
+  );
+}
+export const metadata = {
+  title: "OD2 Blog - Technical Tutorials and Insights",
+  description:
+    "Welcome to OD2 Blog, your go-to resource for technical tutorials, quick solutions, and expert insights on software development, desktop applications, Android development, and more.",
+  openGraph: {
+    title: "OD2 Blog - Technical Tutorials and Insights",
+    description:
+      "Discover in-depth tutorials, guides, and project solutions from OD2 Blog. Specializing in software development and delivering quality content for developers.",
+    url: "https://od2.in/blog",
+    images: [
+      {
+        url: "https://od2.in/odd.png",
+        width: 1200,
+        height: 630,
+        alt: "OD2 Blog Banner - Technical Tutorials and Insights",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OD2 Blog - Your Technical Resource Hub",
+    description:
+      "Get the latest tutorials, quick solutions, and expert advice on software development from OD2 Blog.",
+    images: ["https://od2.in/odd.png"],
+  },
+};
