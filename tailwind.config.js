@@ -24,36 +24,30 @@ module.exports = {
             // Paragraph styling
             p: {
               color: "#E5E7EB", // Light gray text for paragraphs
-              backgroundColor: "#1F2937", // Dark background for paragraphs
               lineHeight: "1.75", // Improved line height for readability
               marginBottom: "1rem", // Space between paragraphs
             },
-
             // Heading 1 styling
             h1: {
               color: "#F3F4F6", // Light color for h1 heading
-              backgroundColor: "#1F2937", // Dark background for h1
               fontWeight: "bold", // Bold heading text
               fontSize: "2.25rem", // Adjusted font size for h1
               marginBottom: "0.5rem", // Spacing below the heading
             },
             h2: {
               color: "#F3F4F6", // Light color for h1 heading
-              backgroundColor: "#1F2937", // Dark background for h1
               fontWeight: "bold", // Bold heading text
               fontSize: "2.25rem", // Adjusted font size for h1
               marginBottom: "0.5rem", // Spacing below the heading
             },
             h3: {
               color: "#F3F4F6", // Light color for h1 heading
-              backgroundColor: "#1F2937", // Dark background for h1
               fontWeight: "bold", // Bold heading text
               fontSize: "2.25rem", // Adjusted font size for h1
               marginBottom: "0.5rem", // Spacing below the heading
             },
             h4: {
               color: "#F3F4F6", // Light color for h1 heading
-              backgroundColor: "#1F2937", // Dark background for h1
               fontWeight: "bold", // Bold heading text
               fontSize: "2.25rem", // Adjusted font size for h1
               marginBottom: "0.5rem", // Spacing below the heading
@@ -85,9 +79,15 @@ module.exports = {
 
             // Code styling
             code: {
-              backgroundColor: "#2D3748", // Dark background for code
+              backgroundColor: "#464646", // Dark background for code
               color: "#E5E7EB", // Light color for code text
               padding: "0.2em 0.4em", // Padding inside code blocks
+              borderRadius: "0.25rem", // Rounded corners for code blocks
+            },
+            pre: {
+              backgroundColor: "#000000", // Dark background for code
+              color: "#E5E7EB", // Light color for code text
+              padding: "0.8em", // Padding inside code blocks
               borderRadius: "0.25rem", // Rounded corners for code blocks
             },
 
