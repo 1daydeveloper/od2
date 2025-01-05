@@ -1,4 +1,20 @@
+import { getSortedPostsData } from '@main/lib/posts';
+
 export default function sitemap() {
+  const blogPosts =  getSortedPostsData();
+  const links = [];
+
+  // Adding blog posts dynamically to the sitemap
+  blogPosts.forEach(post => {
+    links.push({
+      url: `https://od2.in/blog/${post.id}`,
+      priority: 0.8,
+      changeFrequency: "weekly",
+      lastModified: new Date(post.date),
+    });
+  });
+
+  // Return static URLs and include dynamic links
   return [
     {
       url: "https://od2.in",
@@ -40,34 +56,11 @@ export default function sitemap() {
     {
       url: "https://od2.in/blog",
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 0.8,
     },
-    // Specific Blog Post Pages
-    {
-      url: "https://od2.in/blog/add-metadata-dynamic-nextjs",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: "https://od2.in/blog/od2-blog-submission-guidelines",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: "https://od2.in/blog/odd-first-blog",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: "https://od2.in/blog/understanding-cross-origin-resource-sharing-cors-web-security",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+    // Include the dynamic links for blog posts
+    ...links, // Spread the dynamically added blog posts here
     // Static Assets
     {
       url: "https://od2.in/apple-icon.png",
