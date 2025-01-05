@@ -15,7 +15,7 @@ export default function BlogLayout({ children, frontMatter, content }) {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="/blog/odd-first-blog"
+              href="/blog/od2-blog-submission-guidelines"
               className="px-6 py-2 text-lg font-medium text-indigo-600 bg-white rounded-md shadow-md hover:bg-indigo-100 transition-all"
             >
               View Guidelines
