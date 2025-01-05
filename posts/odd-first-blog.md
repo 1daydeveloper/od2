@@ -1,10 +1,12 @@
 ---
 title: "OD-2 First Blog"
-date: "2025-1-1"
+date: "2025-01-01"
 author: "Pradeep Kumar O"
-catagory: "General"
+category: "General"
 description: "OD-2 First Blog to be published on the official website of the community and contributors"
-keywords: "OD-2,First,Blog,Mail,Tempmail"
+keywords: "OD-2,First,Blog,Mail,Tempmail,Passport Size"
+urlpath: "odd-first-blog" 
+
 ---
 
 # Welcome to One Day Developers (OD2)
