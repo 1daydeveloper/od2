@@ -42,9 +42,9 @@ const Header = () => {
                   priority
                 />
               </Link>
-              <h1 className="ml-2 text-xl font-bold text-white">
+              <h2 className="ml-2 text-xl font-bold text-white">
                 OD2 - {currentTitle.label}
-              </h1>
+              </h2>
             </div>
 
             <div className="hidden md:flex space-x-8">

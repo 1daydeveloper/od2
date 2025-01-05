@@ -6,7 +6,7 @@ export default function Products() {
     <div className="bg-gradient-to-b ">
       <div className="text-center mb-10 p-6 bg-gray-700 border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-700">
         <h1 className="text-4xl font-bold text-center bg-gray-700 mb-6">
-          OD2 Products Showcase
+          OD2 Products
         </h1>
         <p className="text-center text-grey-400 mb-3 text-lg">
           Discover our innovative and user-friendly products, each designed to

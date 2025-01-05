@@ -19,10 +19,10 @@ export default async function BlogPage() {
   return (
     <>
       <div className="p-6">
-        <h1 className="text-4xl font-bold mb-4">My Blog</h1>
+        <h1 className="text-4xl font-bold mb-4">OD2 Latest Blogs</h1>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {allPostsData.map(
-            ({ id, title, date, author, keywords, catagory, description }) => (
+            ({ id, title, date, author, keywords, category, description }) => (
               <div key={id} className="border rounded-lg p-4 hover:scale-105">
                 <Link href={`/blog/${id}`} className="text-2xl ">
                   <h4 className="text-3xl mb-2"> {title}</h4>
@@ -34,7 +34,7 @@ export default async function BlogPage() {
                       {author}
                     </div>
                     <div className="text-lg  rounded-full  px-3 bg-orange-500 ">
-                      C: {catagory}
+                      C: {category}
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2">
