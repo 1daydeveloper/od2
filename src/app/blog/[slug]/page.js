@@ -27,6 +27,9 @@ const PostPage = ({ frontMatter, content }) => {
           <div className="text-lg mb-4 rounded-full  px-3 bg-orange-500 w-fit">
             {frontMatter.author}
           </div>
+          <div>
+            <h1>{frontMatter.title}</h1>
+          </div>
         </div>
         <div
           className="post-content"
