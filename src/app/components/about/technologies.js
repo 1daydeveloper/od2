@@ -497,7 +497,7 @@ const Technologies = () => {
                         href={framework.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-blue-600"
+                        className="hover:"
                       >
                         {framework.name}
                       </a>

@@ -94,7 +94,7 @@ const Mainpage = () => {
                 />
               </svg>
             </Link>
-            <h2 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            <h2 className="mb-4 text-4xl font-extrabold tracking-tight leading-none  md:text-5xl lg:text-6xl dark:text-white">
               We invest in the Time
             </h2>
             <p className="mb-8 text-lg font-normal text-gray-400 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">
@@ -102,7 +102,7 @@ const Mainpage = () => {
               growth with every effort we make.
             </p>
             <div className={"inline-flex"}>
-              <Link href="https://www.instagram.com/onedaydevelopers/">
+              <Link href="https://www.instagram.com/onedaydevelopers/" aria-label="Share on Instagram">
                 <svg
                   className="w-[40px] h-[40px] text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -120,7 +120,8 @@ const Mainpage = () => {
                   />
                 </svg>
               </Link>
-              <Link href="https://www.youtube.com/channel/UCtgc_t09aTJUxYTu4CAaBAA">
+              <Link href="https://www.youtube.com/channel/UCtgc_t09aTJUxYTu4CAaBAA"                 aria-label="Share on Youtube"
+              >
                 <svg
                   className="w-[40px] h-[40px] text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -161,7 +162,7 @@ const Mainpage = () => {
           </svg>
 
           <Link href="#advertising">
-            <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mb-2 text-2xl font-bold tracking-tight  dark:text-white">
               We Advertise
             </h2>
           </Link>
@@ -212,7 +213,7 @@ const Mainpage = () => {
           </svg>
 
           <Link href="#development">
-            <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mb-2 text-2xl font-bold tracking-tight  dark:text-white">
               We Develop
             </h2>
           </Link>
@@ -261,7 +262,7 @@ const Mainpage = () => {
           </svg>
 
           <Link href="/products">
-            <h2 className="mb-2 text-2xl   font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mb-2 text-2xl   font-bold tracking-tight  dark:text-white">
               Our Products
             </h2>
           </Link>
@@ -308,22 +309,14 @@ const Mainpage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {/* Advanced Strategy */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div
-                className="text-blue-600 text-4xl mb-4"
-                aria-label="Strategy Icon"
-              >
+              <div className=" text-4xl mb-4">
                 <svg
-                  className="w-12 h-12"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  role="img"
-                  aria-hidden="false"
-                  focusable="false"
+                  className="size-12"
                 >
-                  <path d="M12 2L2 12l10 10 10-10-10-10z" />
+                  <path d="M6 12a.75.75 0 0 1-.75-.75v-7.5a.75.75 0 1 1 1.5 0v7.5A.75.75 0 0 1 6 12ZM18 12a.75.75 0 0 1-.75-.75v-7.5a.75.75 0 0 1 1.5 0v7.5A.75.75 0 0 1 18 12ZM6.75 20.25v-1.5a.75.75 0 0 0-1.5 0v1.5a.75.75 0 0 0 1.5 0ZM18.75 18.75v1.5a.75.75 0 0 1-1.5 0v-1.5a.75.75 0 0 1 1.5 0ZM12.75 5.25v-1.5a.75.75 0 0 0-1.5 0v1.5a.75.75 0 0 0 1.5 0ZM12 21a.75.75 0 0 1-.75-.75v-7.5a.75.75 0 0 1 1.5 0v7.5A.75.75 0 0 1 12 21ZM3.75 15a2.25 2.25 0 1 0 4.5 0 2.25 2.25 0 0 0-4.5 0ZM12 11.25a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5ZM15.75 15a2.25 2.25 0 1 0 4.5 0 2.25 2.25 0 0 0-4.5 0Z" />
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-400 mb-3">
@@ -336,7 +329,7 @@ const Mainpage = () => {
                 <a
                   href="https://learn.g2.com/advanced-marketing-strategies"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   advanced advertising strategies
                 </a>
@@ -346,22 +339,18 @@ const Mainpage = () => {
 
             {/* Targeted Advertising */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div
-                className="text-blue-600 text-4xl mb-4"
-                aria-label="Targeting Icon"
-              >
+              <div className=" text-4xl mb-4">
                 <svg
-                  className="w-12 h-12"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  role="img"
-                  aria-hidden="false"
-                  focusable="false"
+                  className="size-12"
                 >
-                  <path d="M3 12l2-2m0 0l4 4 4-4 4 4 4-4m0 0l2 2m-4-4l2-2" />
+                  <path
+                    fillRule="evenodd"
+                    d="M12 1.5a.75.75 0 0 1 .75.75V4.5a.75.75 0 0 1-1.5 0V2.25A.75.75 0 0 1 12 1.5ZM5.636 4.136a.75.75 0 0 1 1.06 0l1.592 1.591a.75.75 0 0 1-1.061 1.06l-1.591-1.59a.75.75 0 0 1 0-1.061Zm12.728 0a.75.75 0 0 1 0 1.06l-1.591 1.592a.75.75 0 0 1-1.06-1.061l1.59-1.591a.75.75 0 0 1 1.061 0Zm-6.816 4.496a.75.75 0 0 1 .82.311l5.228 7.917a.75.75 0 0 1-.777 1.148l-2.097-.43 1.045 3.9a.75.75 0 0 1-1.45.388l-1.044-3.899-1.601 1.42a.75.75 0 0 1-1.247-.606l.569-9.47a.75.75 0 0 1 .554-.68ZM3 10.5a.75.75 0 0 1 .75-.75H6a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 10.5Zm14.25 0a.75.75 0 0 1 .75-.75h2.25a.75.75 0 0 1 0 1.5H18a.75.75 0 0 1-.75-.75Zm-8.962 3.712a.75.75 0 0 1 0 1.061l-1.591 1.591a.75.75 0 1 1-1.061-1.06l1.591-1.592a.75.75 0 0 1 1.06 0Z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-400 mb-3">
@@ -374,7 +363,7 @@ const Mainpage = () => {
                 <a
                   href="https://www.facebook.com/business/ads/ad-targeting"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   targeted advertising tools
                 </a>
@@ -384,22 +373,23 @@ const Mainpage = () => {
 
             {/* Comprehensive Analytics */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div
-                className="text-blue-600 text-4xl mb-4"
-                aria-label="Analytics Icon"
-              >
+              <div className="text-4xl mb-4">
                 <svg
-                  className="w-12 h-12"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  role="img"
-                  aria-hidden="false"
-                  focusable="false"
+                  className="size-12"
                 >
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zM12 17c-2.78 0-5-2.22-5-5s2.22-5 5-5 5 2.22 5 5-2.22 5-5 5z" />
+                  <path
+                    fillRule="evenodd"
+                    d="M2.25 13.5a8.25 8.25 0 0 1 8.25-8.25.75.75 0 0 1 .75.75v6.75H18a.75.75 0 0 1 .75.75 8.25 8.25 0 0 1-16.5 0Z"
+                    clipRule="evenodd"
+                  />
+                  <path
+                    fillRule="evenodd"
+                    d="M12.75 3a.75.75 0 0 1 .75-.75 8.25 8.25 0 0 1 8.25 8.25.75.75 0 0 1-.75.75h-7.5a.75.75 0 0 1-.75-.75V3Z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-400 mb-3">
@@ -412,7 +402,7 @@ const Mainpage = () => {
                 <a
                   href="https://ads.google.com/home/tools/google-analytics/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   Google Analytics
                 </a>{" "}
@@ -455,7 +445,7 @@ const Mainpage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {/* Web Development */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-blue-600 text-4xl mb-4">
+              <div className=" text-4xl mb-4">
                 <svg
                   className="w-12 h-12"
                   xmlns="http://www.w3.org/2000/svg"
@@ -476,7 +466,7 @@ const Mainpage = () => {
                 <a
                   href="https://nextjs.org/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   Next.js
                 </a>{" "}
@@ -484,7 +474,7 @@ const Mainpage = () => {
                 <a
                   href="https://reactjs.org/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   React
                 </a>{" "}
@@ -494,7 +484,7 @@ const Mainpage = () => {
 
             {/* Mobile Development */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-blue-600 text-4xl mb-4">
+              <div className=" text-4xl mb-4">
                 <svg
                   className="w-12 h-12"
                   xmlns="http://www.w3.org/2000/svg"
@@ -516,7 +506,7 @@ const Mainpage = () => {
                 <a
                   href="https://reactnative.dev/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   React Native
                 </a>{" "}
@@ -524,7 +514,7 @@ const Mainpage = () => {
                 <a
                   href="https://flutter.dev/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   Flutter
                 </a>
@@ -534,7 +524,7 @@ const Mainpage = () => {
 
             {/* Custom Software Development */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-blue-600 text-4xl mb-4">
+              <div className=" text-4xl mb-4">
                 <svg
                   className="w-12 h-12"
                   xmlns="http://www.w3.org/2000/svg"
@@ -555,7 +545,7 @@ const Mainpage = () => {
                 <a
                   href="https://nodejs.org/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   Node.js
                 </a>
@@ -563,7 +553,7 @@ const Mainpage = () => {
                 <a
                   href="https://www.python.org/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   Python
                 </a>
@@ -571,7 +561,7 @@ const Mainpage = () => {
                 <a
                   href="https://www.java.com/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   Java
                 </a>{" "}
@@ -581,7 +571,7 @@ const Mainpage = () => {
 
             {/* Cloud Solutions */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-blue-600 text-4xl mb-4">
+              <div className=" text-4xl mb-4">
                 <svg
                   className="w-12 h-12"
                   xmlns="http://www.w3.org/2000/svg"
@@ -601,7 +591,7 @@ const Mainpage = () => {
                 <a
                   href="https://aws.amazon.com/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   AWS
                 </a>
@@ -609,7 +599,7 @@ const Mainpage = () => {
                 <a
                   href="https://azure.microsoft.com/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   Azure
                 </a>
@@ -617,7 +607,7 @@ const Mainpage = () => {
                 <a
                   href="https://cloud.google.com/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   Google Cloud
                 </a>{" "}
@@ -628,7 +618,7 @@ const Mainpage = () => {
 
             {/* E-Commerce Solutions */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-blue-600 text-4xl mb-4">
+              <div className=" text-4xl mb-4">
                 <svg
                   className="w-12 h-12"
                   xmlns="http://www.w3.org/2000/svg"
@@ -649,7 +639,7 @@ const Mainpage = () => {
                 <a
                   href="https://www.shopify.com/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   Shopify
                 </a>
@@ -657,7 +647,7 @@ const Mainpage = () => {
                 <a
                   href="https://magento.com/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   Magento
                 </a>
@@ -665,7 +655,7 @@ const Mainpage = () => {
                 <a
                   href="https://woocommerce.com/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   WooCommerce
                 </a>{" "}
@@ -675,7 +665,7 @@ const Mainpage = () => {
 
             {/* AI & Machine Learning */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-blue-600 text-4xl mb-4">
+              <div className=" text-4xl mb-4">
                 <svg
                   className="w-12 h-12"
                   xmlns="http://www.w3.org/2000/svg"
@@ -697,7 +687,7 @@ const Mainpage = () => {
                 <a
                   href="https://www.tensorflow.org/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   TensorFlow
                 </a>{" "}
@@ -705,7 +695,7 @@ const Mainpage = () => {
                 <a
                   href="https://pytorch.org/"
                   target="_blank"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                 >
                   PyTorch
                 </a>

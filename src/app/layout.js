@@ -1,4 +1,3 @@
-import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import Footer from "@/app/components/footer";
 import Header from "@/app/components/header";
@@ -6,7 +5,6 @@ import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: {
@@ -52,7 +50,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body className={inter.className + " bg-white dark:bg-slate-800"}>
+      <body className={" bg-white dark:bg-slate-800"}>
         <Header />
         <div className="p-5 lg:mx-40">{children}</div>
         <ToastContainer
