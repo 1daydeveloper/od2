@@ -4,7 +4,7 @@ import Header from "@/app/components/header";
 import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Clarity from "@microsoft/clarity";
 
 export const metadata = {
   title: {
@@ -15,6 +15,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const projectId = "ppl59vo27j";
+
+  Clarity.init(projectId);
   return (
     <html lang="en">
       {/* Google Analytics using next/script */}
@@ -43,6 +46,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-K3JKX9NM');`,
           }}
         ></Script>
+        <Script
+          id="clarity-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "ppl59vo27j");
+          `,
+          }}
+        />
 
         <script
           async
