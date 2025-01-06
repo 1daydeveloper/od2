@@ -8,7 +8,6 @@ keywords: "OD2, blog guidelines, technical writing, blog submission, content sub
 urlpath: "od2-blog-submission-guidelines"
 ---
 
-# OD2 One Day Developers Blog: Submission Guidelines
 
 Welcome to OD2’s official blog platform. We are thrilled to have you contribute your insights, tutorials, and experiences with our community. To ensure that all submissions meet our standards and serve our audience, please adhere to the following rules and guidelines:
 

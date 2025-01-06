@@ -1,5 +1,5 @@
 ---
-title: "OD-2 First Blog"
+title: "Welcome to One Day Developers (OD2)"
 date: "2025-01-01"
 author: "Pradeep Kumar O"
 category: "General"
@@ -8,8 +8,6 @@ keywords: "OD-2,First,Blog,Mail,Tempmail,Passport Size"
 urlpath: "odd-first-blog" 
 
 ---
-
-# Welcome to One Day Developers (OD2)
 
 **Your Partner in Fast-Paced, High-Quality Development**
 
