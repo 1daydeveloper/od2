@@ -485,7 +485,7 @@ export default function GetEmailByID() {
                     <strong>Instant Inbox Access:</strong> Simply visit{" "}
                     <a
                       href="https://od2.in/tmail"
-                      className="text-blue-600 hover:underline"
+                      className=" hover:underline"
                       target="_blank"
                       rel="noopener"
                     >
@@ -580,7 +580,7 @@ export default function GetEmailByID() {
           </p>
           <a
             href="#"
-            className="inline-block mt-6 px-8 py-3 bg-white text-blue-600 font-semibold rounded-md shadow hover:bg-gray-100"
+            className="inline-block mt-6 px-8 py-3 bg-white  font-semibold rounded-md shadow hover:bg-gray-100"
           >
             Get Started for Free
           </a>
@@ -668,7 +668,7 @@ export default function GetEmailByID() {
             combat email overload, privacy concerns, and online security risks.
             <a
               href="https://en.wikipedia.org/wiki/Email_privacy"
-              className="text-blue-600 hover:underline"
+              className=" hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -677,7 +677,7 @@ export default function GetEmailByID() {
           </p>
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="p-6 bg-white shadow-md rounded-md">
-              <h3 className="text-xl font-semibold text-blue-600">
+              <h3 className="text-xl font-semibold ">
                 Secure Online Signups
               </h3>
               <p className="mt-2 text-gray-600">
@@ -686,7 +686,7 @@ export default function GetEmailByID() {
               </p>
             </div>
             <div className="p-6 bg-white shadow-md rounded-md">
-              <h3 className="text-xl font-semibold text-blue-600">
+              <h3 className="text-xl font-semibold ">
                 Prevent Spam
               </h3>
               <p className="mt-2 text-gray-600">
@@ -694,7 +694,7 @@ export default function GetEmailByID() {
                 inbox.
                 <a
                   href="https://support.google.com/mail/answer/8126226"
-                  className="text-blue-600 hover:underline"
+                  className=" hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -703,7 +703,7 @@ export default function GetEmailByID() {
               </p>
             </div>
             <div className="p-6 bg-white shadow-md rounded-md">
-              <h3 className="text-xl font-semibold text-blue-600">
+              <h3 className="text-xl font-semibold ">
                 Testing and Development
               </h3>
               <p className="mt-2 text-gray-600">
@@ -712,7 +712,7 @@ export default function GetEmailByID() {
               </p>
             </div>
             <div className="p-6 bg-white shadow-md rounded-md">
-              <h3 className="text-xl font-semibold text-blue-600">
+              <h3 className="text-xl font-semibold ">
                 Enhanced Privacy
               </h3>
               <p className="mt-2 text-gray-600">
