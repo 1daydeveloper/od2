@@ -2,7 +2,7 @@ export default function BlogLayout({ children, frontMatter, content }) {
   return (
     <>
       {" "}
-      <div className="p-5">{children}</div>
+      <div className="p-3">{children}</div>
       <div className="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-8 my-8 rounded-lg shadow-lg">
         <div className="max-w-screen-lg mx-auto text-center text-white">
           <h2 className="text-3xl font-semibold mb-4">
