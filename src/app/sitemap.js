@@ -23,27 +23,33 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
-      url: "https://od2.in/tmail",
+      url: "https://od2.in/temp-mail",
       lastModified: new Date(),
-      changeFrequency: "daily",
+      changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: "https://od2.in/photo",
       lastModified: new Date(),
-      changeFrequency: "daily",
+      changeFrequency: "weekly",
+      priority: 1.0,
+    },
+    {
+      url: "https://od2.in/itbc",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: "https://od2.in/products",
       lastModified: new Date(),
-      changeFrequency: "daily",
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: "https://od2.in/products/od2bs",
       lastModified: new Date(),
-      changeFrequency: "daily",
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     {

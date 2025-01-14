@@ -18,6 +18,14 @@ pnpm dev
 bun dev
 ```
 
+## To notify a Bing use this URL
+
+```bash
+curl -X POST http://localhost:3000/api/notifyBing \
+  -H "Content-Type: application/json" \
+  -d '{"urls": ["https://od2.in/vlc-ai-powered-subtitles"]}'
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
