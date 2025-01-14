@@ -151,9 +151,9 @@ export default function Photo() {
 
   return (
     <>
-      <h2 className="font-extrabold text-2xl">
+      <h1 className="font-extrabold text-2xl">
         Passport Size Printable Photo Maker(6*4)
-      </h2>
+      </h1>
 
       <div className="flex flex-row flex-wrap mt-5 gap-4">
         <div className="flex flex-col gap-4 p-4 items-center w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 lg:w-1/3">
