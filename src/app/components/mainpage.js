@@ -94,9 +94,9 @@ const Mainpage = () => {
                 />
               </svg>
             </Link>
-            <h2 className="mb-4 text-4xl font-extrabold tracking-tight leading-none  md:text-5xl lg:text-6xl text-yellow-500 border p-6">
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none  md:text-5xl lg:text-6xl text-yellow-500 border p-6">
             One Day Developers(OD2)
-            </h2>
+            </h1>
             <h2 className="mb-4 text-4xl font-extrabold tracking-tight leading-none  md:text-5xl lg:text-6xl dark:text-white">
               We invest in the Time
             </h2>
