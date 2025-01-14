@@ -67,7 +67,7 @@ Generate disposable emails effortlessly. Protect your privacy while signing up f
 - **No signup required**
 - **Auto-deletion in 12 hours**
 - **Instant inbox access**
-  [Learn More](/tmail)
+  [Learn More](/temp-mail)
 
 ---
 

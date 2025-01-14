@@ -28,7 +28,7 @@ export default function Products() {
               <li>• Instant inbox access</li>
             </ul>
             <Link
-              href="/tmail"
+              href="/temp-mail"
               className="inline-block bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition-colors"
             >
               Learn More

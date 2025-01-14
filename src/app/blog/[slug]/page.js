@@ -20,15 +20,17 @@ const PostPage = ({ frontMatter, content }) => {
   return (
     <>
       <article className="prose xl:prose-xl md:prose-lg lg:prose-sm max-w-full  !w-full">
-        <div className="flex gap-3 flex-wrap">
-          <div className="text-lg mb-4 rounded-full  px-3 bg-white w-fit">
-            {frontMatter.date}
-          </div>
-          <div className="text-lg mb-4 rounded-full  px-3 bg-orange-500 w-fit">
-            {frontMatter.author}
-          </div>
-          <div>
+        <div className="flex flex-col gap-3 flex-wrap">
+          <div className="flex flex-wrap">
             <h1>{frontMatter.title}</h1>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <div className="text-lg mb-4 rounded-full  px-3 bg-white w-fit">
+              {frontMatter.date}
+            </div>
+            <div className="text-lg mb-4 rounded-full  px-3 bg-orange-500 w-fit">
+              {frontMatter.author}
+            </div>
           </div>
         </div>
         <div

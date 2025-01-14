@@ -11,7 +11,7 @@ export function middleware(request) {
 //   // Check if the request is for the "tem" subdomain
 //   if (hostname !== mainDomain && subdomain === 'temp') {
 //     // Keep assets and layouts intact while serving the page
-//     url.pathname = `/tmail${url.pathname}`;
+//     url.pathname = `/temp-mail${url.pathname}`;
 //     return NextResponse.rewrite(url);
 //   }
 

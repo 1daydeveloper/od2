@@ -69,7 +69,7 @@ const Mainpage = () => {
         <section className="bg-gray-700 dark:bg-gray-900 w-full">
           <div className="py-8 px-4 text-center lg:py-16 z-10 ">
             <Link
-              href="/tmail"
+              href="/temp-mail"
               className="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800"
             >
               <span className="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 me-3">
