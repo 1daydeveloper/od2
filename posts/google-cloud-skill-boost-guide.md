@@ -1,7 +1,7 @@
 ---
 title: "A Comprehensive Guide to Google Cloud Skill Boost"
 date: "2025-01-14"
-author: "Harish Kumar R"
+author: "Harish R"
 category: "Cloud Computing"
 description: "Learn the step-by-step process of mastering Google Cloud technologies with Google Cloud Skill Boost."
 keywords: "Google Cloud, Skill Boost, Cloud Computing, Hands-On Labs, Cloud Architect, Data Engineer, Machine Learning, Cloud Certifications, Google Cloud Training, Google Cloud Labs, Google Cloud Quests, Cloud Skills, Google Cloud Free Credits, Cloud Learning, Google Cloud Badges, Career in Cloud Computing, Cloud Training, Cloud Skill Development, Google Certifications, Cloud Platform Skills"

@@ -1,7 +1,7 @@
 ---
 title: "VLC to Roll Out AI-Powered Subtitles "
 date: "2025-01-13"
-author: "Harish Kumar R"
+author: "Harish R"
 category: "Technology"
 description: "Explore how VLC Media Player is revolutionizing user experience with its upcoming AI-powered subtitle generation feature."
 keywords: "VLC Media Player, AI Subtitles, Video Playback, AI in Media, VLC AI Update, Real-Time Subtitles, Video Accessibility, Machine Learning Subtitles, AI Tools for Media, Automatic Subtitles, Media Player Features, AI-Powered Video, VLC Updates, Artificial Intelligence in Media, Accessibility Features, Video Technology, Open Source Media, AI-Driven Features, Tech Innovation, VLC Enhancements"
