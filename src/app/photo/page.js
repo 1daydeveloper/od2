@@ -80,7 +80,7 @@ export default function Photo() {
     }
     gtag("event", "button_click", {
       event_category: "engagement",
-      event_label: "Passport_photo_Quality_"+DPI,
+      event_label: "Passport_photo_Quality_" + DPI,
       value: 1,
     });
   };
@@ -155,8 +155,8 @@ export default function Photo() {
         Passport Size Printable Photo Maker(6*4)
       </h1>
 
-      <div className="flex flex-row flex-wrap mt-5 gap-4">
-        <div className="flex flex-col gap-4 p-4 items-center w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 lg:w-1/3">
+      <div className="maincard flex flex-row flex-wrap mt-5 gap-4">
+        <div className="card flex flex-col gap-4 p-4 items-center w-full   rounded-lg shadow  lg:w-1/3">
           {/* <div className="items-center flex justify-center gap-2  font-extrabold rounded-md p-4  w-full text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -168,41 +168,41 @@ export default function Photo() {
             </svg>
             <h2 className="text-xl">Upload Photo Below</h2>
           </div> */}
-              <div
-      className="flex items-center justify-center w-full"
-      onDrop={handleDrop}
-      onDragOver={handleDragOver}
-    >
-      <label
-        htmlFor="dropzone-file"
-        className="flex flex-col w-full items-center justify-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 text-center"
-      >
-        <div className="flex flex-col items-center justify-center pt-5 pb-6">
-          <svg
-            className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 16"
+          <div
+            className="flex items-center justify-center w-full"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
           >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-            />
-          </svg>
-          <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-            <span className="font-semibold">Click to upload</span> or drag and drop
-          </p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            JPG or PNG (MAX. 5MB)
-          </p>
-        </div>
-      
-      </label>
-      </div>
+            <label
+              htmlFor="dropzone-file"
+              className="flex flex-col w-full items-center justify-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 text-center"
+            >
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg
+                  className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 16"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                  />
+                </svg>
+                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                  <span className="font-semibold">Click to upload</span> or drag
+                  and drop
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  JPG or PNG (MAX. 5MB)
+                </p>
+              </div>
+            </label>
+          </div>
           <input
             id="dropzone-file"
             onChange={handleImageChange}
@@ -210,11 +210,10 @@ export default function Photo() {
             type="file"
             className="w-full hidden"
           />
-           {image &&imageName ? (
-
-<div className="flex flex-col sm:flex-row items-center mt-4">
-  {/* Photo Preview */}
-  {/* <div className="flex-shrink-0">
+          {image && imageName ? (
+            <div className="flex flex-col sm:flex-row items-center mt-4">
+              {/* Photo Preview */}
+              {/* <div className="flex-shrink-0">
     <p className="text-sm text-gray-500">Preview:</p>
     <img
       src={URL.createObjectURL(image)}
@@ -227,14 +226,18 @@ export default function Photo() {
     />
   </div> */}
 
-  {/* File Name */}
-  <div className="mb-4 text-center text-green-600">
-    <p className="text-sm ">Uploaded File: <span className="text-white">{imageName}</span></p>
-  </div>
-</div>
-
-      ):(<h3 className="text-red-500 mb-4 text-center">
-      No Passport Size Image Uploded      </h3>)}
+              {/* File Name */}
+              <div className="mb-4 text-center text-green-600">
+                <p className="text-sm ">
+                  Uploaded File: <span className="text-white">{imageName}</span>
+                </p>
+              </div>
+            </div>
+          ) : (
+            <h3 className="text-red-500 mb-4 text-center">
+              No Passport Size Image Uploded{" "}
+            </h3>
+          )}
           {uploadError && (
             <div className="text-red-500 mb-4 text-center">{uploadError}</div>
           )}
@@ -325,8 +328,8 @@ export default function Photo() {
           )}
         </div>
 
-        <div className="flex flex-col w-full gap-4 lg:w-7/12 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <div className="items-center flex justify-center gap-2 text-slate-800 font-extrabold rounded-md p-4 bg-white w-full">
+        <div className="card flex flex-col w-full gap-4 lg:w-7/12 rounded-lg shadow  ">
+          <div className="card items-center flex justify-center gap-2  font-extrabold rounded-md p-4  w-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -352,7 +355,7 @@ export default function Photo() {
               />
               <button
                 onClick={downloadCanvasAsPNG}
-                className="bg-blue-500 hover:bg-blue-700 justify-center flex gap-1 text-black font-extrabold p-3 rounded-md"
+                className="  justify-center flex gap-1 font-extrabold p-3 rounded-md"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -370,9 +373,9 @@ export default function Photo() {
               </button>
             </>
           ) : (
-            <div className="flex flex-col items-center justify-center gap-4 p-6 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow">
+            <div className="card flex flex-col items-center justify-center gap-4 p-6 rounded-lg shadow">
               <svg
-                className="w-12 h-12 text-gray-500 dark:text-gray-400"
+                className="w-12 h-12"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -385,13 +388,11 @@ export default function Photo() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <h4 className="text-lg font-bold text-gray-800 dark:text-gray-200">
-                No Preview Available
-              </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <h4 className="text-lg font-bold ">No Preview Available</h4>
+              <p className="text-sm">
                 To view a preview, please follow these steps:
               </p>
-              <ul className="text-sm text-gray-600 dark:text-gray-400 list-disc list-inside">
+              <ul className="text-sm list-disc list-inside">
                 <li>Upload the Photo in Upload Area.</li>
                 <li>Choose an image file (JPG or PNG).</li>
                 <li>Make sure the file size is within 5MB.</li>
@@ -404,8 +405,8 @@ export default function Photo() {
           )}
         </div>
       </div>
-      <div className="p-6 mt-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <section className="text-white">
+      <div className="maincard p-6 mt-4 bg-white rounded-lg shadow ">
+        <section>
           <div className="container mx-auto px-4 lg:px-8 mb-2">
             <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
               Create Printable Passport Photos Instantly with OD2
@@ -491,7 +492,7 @@ export default function Photo() {
               </ul>
             </div>
             <div>
-              <section className="bg-black shadow-lg rounded-lg p-6 mt-8">
+              <div className="card shadow-lg rounded-lg p-6 mt-8">
                 <h2 className="text-2xl font-bold">Try It Now</h2>
                 <p className="mt-4">
                   Save time and effort! Use our passport photo generator today
@@ -503,9 +504,9 @@ export default function Photo() {
                 >
                   Generate Printable Passport Photos
                 </a>
-              </section>
+              </div>
 
-              <section className="shadow-lg rounded-lg p-6 mt-8">
+              <div className="card p-6 mt-8">
                 <h2 className="text-2xl font-bold">How It Works</h2>
                 <ol className="list-decimal list-inside mt-4 space-y-2">
                   <li>Upload your passport-size photo.</li>
@@ -515,9 +516,9 @@ export default function Photo() {
                     Print your file on a 6x4-inch photo paper, ready to use.
                   </li>
                 </ol>
-              </section>
+              </div>
 
-              <section className="shadow-lg rounded-lg p-6 mt-8">
+              <div className="card p-6 mt-8">
                 <h2 className="text-2xl font-bold">
                   Why Printable 6x4 Photo Paper?
                 </h2>
@@ -528,9 +529,9 @@ export default function Photo() {
                   family, or professional needs. Print your photos at home or a
                   local shop, and cut them effortlessly to the required size.
                 </p>
-              </section>
+              </div>
 
-              <section className="shadow-lg rounded-lg p-6 mt-8">
+              <div className="card p-6 mt-8">
                 <h2 className="text-2xl font-bold">
                   FAQs About Our Passport Photo Tool
                 </h2>
@@ -565,9 +566,9 @@ export default function Photo() {
                     </p>
                   </div>
                 </div>
-              </section>
+              </div>
 
-              <div className="shadow-lg bg-black rounded-lg p-6 mt-8 text-white text-center">
+              <div className="card p-6 mt-8 text-center">
                 <h3 className="text-xl md:text-2xl font-semibold mb-4">
                   Ready to Simplify Your Passport Photo Needs?
                 </h3>
@@ -577,7 +578,7 @@ export default function Photo() {
                 </p>
                 <a
                   href="#"
-                  className="inline-block px-6 py-3 text-lg font-medium text-white bg-yellow-600 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-blue-300"
+                  className="abtn inline-block px-6 py-3 text-lg font-medium ounded-lg"
                 >
                   Generate Your Printable Photos Now
                 </a>

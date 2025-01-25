@@ -11,7 +11,8 @@ export const metadata = {
     template: "%s | One Day Developers",
     default: "One Day Developers - Rapid Project Delivery",
   },
-  description: "One Day Developers (OD2) specializes in delivering high-quality software, desktop applications, Android development, and integration services within just 24 hours*. Your trusted partner for rapid development and innovation.",
+  description:
+    "One Day Developers (OD2) specializes in delivering high-quality software, desktop applications, Android development, and integration services within just 24 hours*. Your trusted partner for rapid development and innovation.",
   keywords: [
     "One Day Developers",
     "OD2",
@@ -54,7 +55,7 @@ export default function RootLayout({ children }) {
 
   Clarity.init(projectId);
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       {/* Google Analytics using next/script */}
       <head>
         <Script
@@ -101,9 +102,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body className={" bg-white dark:bg-slate-800"}>
+      <body className={"bg-background text-text"}>
         <Header />
-        <div className="p-5 lg:mx-40">{children}</div>
+        <div className="p-2 py-6 lg:mx-40">{children}</div>
         <ToastContainer
           position="bottom-right"
           autoClose={5000}

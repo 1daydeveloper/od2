@@ -9,7 +9,7 @@ const PostPage = ({ frontMatter, content }) => {
       // Check if the word starts with "#" and turn it into a link
       if (word) {
         return (
-          <div key={index} className="text-lg  rounded-full  px-3 bg-white ">
+          <div key={index} className="text-lg  rounded-full  px-3 ">
             {word}
           </div>
         );
@@ -19,16 +19,16 @@ const PostPage = ({ frontMatter, content }) => {
   };
   return (
     <>
-      <article className="prose xl:prose-xl md:prose-lg lg:prose-sm max-w-full  !w-full">
-        <div className="flex flex-col gap-3 flex-wrap">
+      <article className="prose lg:prose-xl max-w-full mx-auto lg:text-lg  !w-full ">
+        <div className="flex flex-col gap-3 flex-wrap ">
           <div className="flex flex-wrap">
             <h1>{frontMatter.title}</h1>
           </div>
           <div className="flex flex-wrap gap-3">
-            <div className="text-lg mb-4 rounded-full  px-3 bg-white w-fit">
+            <div className="text-lg mb-4 rounded-full  px-3 bg-yellow-500 text-black w-fit">
               {frontMatter.date}
             </div>
-            <div className="text-lg mb-4 rounded-full  px-3 bg-orange-500 w-fit">
+            <div className="text-lg mb-4 rounded-full  px-3 bg-purple-500 text-black w-fit">
               {frontMatter.author}
             </div>
           </div>
@@ -40,9 +40,9 @@ const PostPage = ({ frontMatter, content }) => {
           }}
         />
       </article>
-      <div className="flex flex-wrap gap-3 bg-black p-5 rounded-3xl">
+      <div className=" card flex flex-wrap gap-3 p-5 rounded-3xl">
         <h3 className="text-2xl font-bold">Keywords</h3>
-        <div className="flex flex-wrap  mb-2 text-black gap-2">
+        <div className="flex flex-wrap  mb-2  gap-2">
           {convertToHashTags(frontMatter.keywords)}
         </div>
       </div>

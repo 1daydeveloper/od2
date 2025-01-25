@@ -2,6 +2,175 @@
 @tailwind components;
 @tailwind utilities;
 
+
+:root {
+  /* Button Styles */
+  --color-button-bg: #ffae00;
+  --color-button-text: #ffffff;
+  --color-button-hover: #000000;
+  --color-button-hover-bg: #fffa88;
+
+  /* Prose Styles */
+  --color-paragraph: #432405;
+  --color-heading: #432405;
+  --color-strong: #734610;
+  --color-list-item: #432405;
+  --color-blockquote-border: #fffa88;
+  --color-blockquote-text: #432405;
+  --color-blockquote-bg: #fffec2;
+  --color-code-bg: #fefde8;
+  --color-code-text: #432405;
+  --color-pre-bg: #fffec2;
+  --color-pre-text: #432405;
+  --color-html-text: #432405;
+  --color-html-bg: #fefde8;
+
+  /* General Colors */
+  --color-primary: #fee020;
+  --color-secondary: #eec404;
+  --color-background: #fefde8;
+  --color-text: #432405;
+  --color-text-secondary: #734610;
+  --color-border: #fffa88;
+  --color-error: #DC2626;
+  --color-success: #16A34A;
+  --color-warning: #D97706;
+  --color-info: #2563EB;
+  --color-link: #1D4ED8;
+  --color-link-hover: #1E40AF;
+  --color-shadow: rgba(0, 0, 0, 0.05);
+  --color-overlay: rgba(255, 255, 255, 0.8);
+  --color-card-background: #fffec2;
+  --color-card-text: #432405;
+  --color-card-border: #fffa88;
+  --color-main-card-background: #fffec2;
+  --color-main-card-border: #fffa88;
+  --color-main-card-text: #432405;
+  --color-header-bg: #ffea00;
+  --color-header-text: #432405;
+  --color-footer-bg: #fffec2;
+  --color-footer-text: #432405;
+}
+
+.dark {
+  /* Button Styles */
+  --color-button-bg: #000000;
+  --color-button-text: #ffffff;
+  --color-button-hover-bg: #cacaca;
+  --color-button-hover: #000000;
+
+  /* Prose Styles */
+  --color-paragraph: #d1d1d1;
+  --color-heading: #d1d1d1;
+  --color-strong: #888888;
+  --color-list-item: #d1d1d1;
+  --color-blockquote-border: #5d5d5d;
+  --color-blockquote-text: #d1d1d1;
+  --color-blockquote-bg: #454545;
+  --color-code-bg: #3d3d3d;
+  --color-code-text: #d1d1d1;
+  --color-pre-bg: #454545;
+  --color-pre-text: #d1d1d1;
+  --color-html-text: #d1d1d1;
+  --color-html-bg: #3d3d3d;
+
+  /* General Colors */
+  --color-primary: #4f4f4f;
+  --color-secondary: #eab308;
+  --color-background: #3d3d3d;
+  --color-text: #d1d1d1;
+  --color-text-secondary: #888888;
+  --color-border: #5d5d5d;
+  --color-error: #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+  --color-link: #3b82f6;
+  --color-link-hover: #2563eb;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-card-background: #666666;
+  --color-card-text: #d1d1d1;
+  --color-card-border: #ffffff;
+  --color-main-card-background: #454545;
+  --color-main-card-border: #5d5d5d;
+  --color-main-card-text: #d1d1d1;
+  --color-header-bg: #454545;
+  --color-header-text: #d1d1d1;
+  --color-footer-bg: #3d3d3d;
+  --color-footer-text: #0e63c4;
+}
+
+
+h1 {
+  @apply text-5xl font-bold;
+  color: var(--color-text);
+}
+
+h2 {
+  @apply text-4xl font-bold;
+}
+
+h3 {
+  @apply text-3xl font-bold;
+}
+
+h4 {
+  @apply text-2xl font-bold;
+}
+
+h5 {
+  @apply text-xl font-bold;
+}
+
+p {
+  @apply mt-1;
+
+}
+
+image {
+  @apply rounded-lg shadow-md w-full
+}
+
+
+
+
+.abtn, button {
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
+  @apply px-8 py-3 font-semibold rounded-lg;
+}
+
+.abtn:hover,
+button:hover {
+  background-color: var(--color-button-hover-bg);
+  color: var(--color-button-hover);
+  @apply scale-95
+}
+
+
+
+.card {
+  background-color: var(--color-card-background);
+  border-color: var(--color-card-border);
+  color: var(--color-card-text);
+  @apply rounded-xl shadow-lg p-6;
+}
+
+
+.maincard {
+  background-color: var(--color-main-card-background);
+  border: 1px solid var(--color-main-card-border);
+  color: var(--color-main-card-text);
+  @apply rounded-xl shadow-lg p-6;
+
+}
+
+.gradient_card {
+  background-image: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+
+
 /* styles/globals.css */
 html {
   scroll-behavior: smooth;
@@ -35,13 +204,15 @@ body {
 /* styles/globals.css or styles/WaveEffect.module.css */
 @keyframes wave {
   0% {
-      transform: translateY(0);
+    transform: translateY(0);
   }
+
   50% {
-      transform: translateY(-10px);
+    transform: translateY(-10px);
   }
+
   100% {
-      transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
@@ -53,10 +224,12 @@ body {
 @layer utilities {
   .truncate-lines {
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Limits to 2 lines */
+    -webkit-line-clamp: 2;
+    /* Limits to 2 lines */
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis; /* Adds the ellipsis (…) */
+    text-overflow: ellipsis;
+    /* Adds the ellipsis (…) */
   }
 }
 
@@ -65,6 +238,7 @@ body {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -75,6 +249,6 @@ h1 {
   @apply text-4xl sm:text-3xl md:text-5xl lg:text-6xl font-bold;
 }
 
-a{
+a {
   @apply text-yellow-500
 }
