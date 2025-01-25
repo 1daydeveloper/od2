@@ -61,12 +61,11 @@ export default function BlogLayout({ children, frontMatter, content }) {
           </div>
         </div>
       </div>
-      <section>
-        <div className="mt-4 border-4 border-white shadow-xl shadow-yellow-600/100 mx-5 p-4 md:p-10 flex flex-col items-center justify-center text-center">
-          <p className="text-white text-xl md:text-2xl font-bold border-b-4 border-b-black">
+      <section className="maincard mt-2">
+        <div className="card mt-4 border-4 border-white shadow-xl shadow-yellow-600/100 p-4 md:p-10 flex flex-col items-center justify-center text-center">
+          <p className="text-xl md:text-2xl font-bold border-b-4 border-b-black">
             Stay in Touch With Us
           </p>
-
           <ul className="flex flex-row items-center justify-center text-center mt-5">
             <li className="mx-2">
               <a
@@ -75,7 +74,7 @@ export default function BlogLayout({ children, frontMatter, content }) {
                 aria-label="Share on Youtube"
               >
                 <svg
-                  className="w-12 h-12 hover:text-red-600 text-gray-800 dark:text-white"
+                  className="w-12 h-12"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -99,7 +98,7 @@ export default function BlogLayout({ children, frontMatter, content }) {
                 aria-label="Share on Instagram"
               >
                 <svg
-                  className="w-12 h-12 hover:text-pink-600 text-gray-800 dark:text-white"
+                  className="w-12 h-12"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

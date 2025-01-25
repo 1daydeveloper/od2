@@ -6,60 +6,60 @@ export default function BillingSystem() {
   return (
     <div>
       <main className="container mx-auto">
-        <section className="text-center mb-10 p-6 bg-gray-700 border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-700">
-          <h2 className="text-4xl font-bold ">Welcome to OD2 Billing System</h2>
-          <p className="text-lg mt-4 text-gray-400">
+        <section className="card text-center mb-10 p-6 rounded-lg shadow">
+          <h1 className=" font-bold ">Welcome to OD2 Billing System</h1>
+          <p className="text-lg mt-4">
             An advanced, flexible, and secure billing solution for businesses of
             all sizes. Built with web technologies and Bootstrap CSS for optimal
             performance.
           </p>
         </section>
 
-        <section id="features" className="mb-10">
+        <section id="features" className="maincard mb-10">
           <h3 className="text-3xl font-bold text-center  mb-6">Key Features</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-700 shadow-md rounded-lg p-6 text-center">
+            <div className="card shadow-md rounded-lg p-6 text-center">
               <h4 className="text-xl font-semibold ">Multi-Platform Support</h4>
-              <p className="mt-4 text-gray-400">
+              <p className="mt-4 ">
                 Access and manage your billing system on multiple platforms,
                 whether locally or through the internet.
               </p>
             </div>
-            <div className="bg-gray-700 shadow-md rounded-lg p-6 text-center">
+            <div className="card shadow-md rounded-lg p-6 text-center">
               <h4 className="text-xl font-semibold ">Customizable Workflows</h4>
-              <p className="mt-4 text-gray-400">
+              <p className="mt-4 ">
                 Easily customize your billing processes with flexible workflows
                 to meet your specific needs.
               </p>
             </div>
-            <div className="bg-gray-700 shadow-md rounded-lg p-6 text-center">
+            <div className="card shadow-md rounded-lg p-6 text-center">
               <h4 className="text-xl font-semibold ">
                 Advanced Database Management
               </h4>
-              <p className="mt-4 text-gray-400">
+              <p className="mt-4 ">
                 Leverage powerful database mechanisms and advanced querying
                 capabilities to manage large datasets efficiently.
               </p>
             </div>
-            <div className="bg-gray-700 shadow-md rounded-lg p-6 text-center">
+            <div className="card shadow-md rounded-lg p-6 text-center">
               <h4 className="text-xl font-semibold ">
                 Security & Authentication
               </h4>
-              <p className="mt-4 text-gray-400">
+              <p className="mt-4 ">
                 Secure your billing data with authentication-based access,
                 ensuring only authorized users can make changes.
               </p>
             </div>
-            <div className="bg-gray-700 shadow-md rounded-lg p-6 text-center">
+            <div className="card shadow-md rounded-lg p-6 text-center">
               <h4 className="text-xl font-semibold ">Multi-Lingual Support</h4>
-              <p className="mt-4 text-gray-400">
+              <p className="mt-4 ">
                 Our system supports multiple languages, making it easier to
                 serve clients worldwide.
               </p>
             </div>
-            <div className="bg-gray-700 shadow-md rounded-lg p-6 text-center">
+            <div className="card shadow-md rounded-lg p-6 text-center">
               <h4 className="text-xl font-semibold ">5-Year Premium Policy</h4>
-              <p className="mt-4 text-gray-400">
+              <p className="mt-4 ">
                 Benefit from a premium 5-year policy with no yearly renewals.
                 Get continuous updates and support.
               </p>
@@ -67,11 +67,11 @@ export default function BillingSystem() {
           </div>
         </section>
 
-        <section id="why-choose" className="bg-gray-700  py-12 mb-10">
+        <section id="why-choose" className="card py-12 mb-10">
           <h3 className="text-3xl font-bold text-center  mb-6">
             Why Choose OD2 Billing System?
           </h3>
-          <ul className="space-y-4 text-lg text-gray-400  max-w-4xl m-5">
+          <ul className="space-y-4 text-lg   max-w-4xl m-5">
             <li class="flex items-center  space-x-3 rtl:space-x-reverse">
               <svg
                 class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0"
@@ -149,7 +149,7 @@ export default function BillingSystem() {
             </li>
           </ul>
         </section>
-        <section id="tools-technologies" class="py-12">
+        <section id="tools-technologies" class="maincard py-12">
           <h3 class="text-3xl font-bold text-center  mb-6">
             Explore More Tools & Technologies
           </h3>
@@ -158,7 +158,7 @@ export default function BillingSystem() {
             <a
               href="https://nextjs.org/"
               target="_blank"
-              class="inline-flex items-center justify-between p-5 text-base font-medium text-gray-400 rounded-lg bg-gray-50 hover:text-gray-900 hover:bg-gry-900 dark:text-gray-400 dark:bg-gray-700 dark:hover:bg-gray-700 dark:hover:text-white"
+              class="card inline-flex items-center justify-between p-5 text-base font-medium  rounded-lg "
             >
               <div class="flex items-center ">
                 <svg
@@ -197,7 +197,7 @@ export default function BillingSystem() {
             <a
               href="https://tailwindcss.com/"
               target="_blank"
-              class="inline-flex items-center justify-between p-5 text-base font-medium text-gray-500 rounded-lg bg-gray-50 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-700 dark:hover:bg-gray-700 dark:hover:text-white"
+              class="card inline-flex items-center justify-between p-5 text-base font-medium "
             >
               <div class="flex items-center">
                 <svg
@@ -236,7 +236,7 @@ export default function BillingSystem() {
             <a
               href="https://auth0.com/"
               target="_blank"
-              class="inline-flex items-center justify-between p-5 text-base font-medium text-gray-500 rounded-lg bg-gray-50 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-700 dark:hover:bg-gray-700 dark:hover:text-white"
+              class="card inline-flex items-center justify-between p-5 text-base font-medium "
             >
               <div class="flex items-center">
                 <svg
@@ -275,7 +275,7 @@ export default function BillingSystem() {
             <a
               href="https://www.mongodb.com/"
               target="_blank"
-              class="inline-flex items-center justify-between p-5 text-base font-medium text-gray-500 rounded-lg bg-gray-50 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-700 dark:hover:bg-gray-700 dark:hover:text-white"
+              class="card inline-flex items-center justify-between p-5 text-base font-medium "
             >
               <div class="flex items-center">
                 <svg
@@ -319,7 +319,7 @@ export default function BillingSystem() {
             <a
               href="https://vercel.com/"
               target="_blank"
-              class="inline-flex items-center justify-between p-5 text-base font-medium text-gray-500 rounded-lg bg-gray-50 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-700 dark:hover:bg-gray-700 dark:hover:text-white"
+              class="card inline-flex items-center justify-between p-5 text-base font-medium "
             >
               <div class="flex items-center">
                 <svg

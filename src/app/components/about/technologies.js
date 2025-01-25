@@ -470,29 +470,27 @@ const technologies = [
 
 const Technologies = () => {
   return (
-    <div className="min-h-screen bg-gray-50 rounded-xl  border border-gray-200 shadow dark:bg-gray-900 dark:border-gray-700">
-      <div className="container mx-auto px-6">
-        <h1 className="text-4xl font-bold text-center  mb-8 dark:text-gray-400 p-5">
+    <div className="min-h-screen border border-card_border rounded-lg ">
+      <div className="px-3">
+        <h2 className="text-center  py-5">
           Technologies We Are Experienced In
-        </h1>
+        </h2>
         {technologies.map((section) => (
-          <div key={section.category} className="mb-12">
-            <h2 className="text-2xl text-gray-400 font-semibold  mb-6">
-              {section.category}
-            </h2>
+          <div key={section.category} className="maincard mb-12">
+            <h3 className="mb-6">{section.category}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {section.frameworks.map((framework) => (
                 <div
                   key={framework.name}
                   id={"techa-" + framework.name}
-                  className=" p-6 bg-gray-600 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                  className=" p-6 bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <div className=" flex items-center mb-4 bg-white rounded-lg p-3">
+                  <div className=" flex items-center mb-4 bg-slate-700 rounded-lg p-3">
                     {framework.icon &&
                       React.cloneElement(framework.icon, {
-                        className: "w-6 h-6 text-gray-800 dark:text-green-500",
+                        className: "w-6 h-6 ",
                       })}
-                    <h3 className="text-lg font-bold ml-4 text-gray-800">
+                    <h3 className="text-lg font-bold ml-4">
                       <a
                         href={framework.link}
                         target="_blank"
@@ -503,13 +501,13 @@ const Technologies = () => {
                       </a>
                     </h3>
                   </div>
-                  <p className="text-gray-400 text-sm mb-2">
+                  <p className="mb-2">
                     <strong>Use:</strong> {framework.description}
                   </p>
-                  <p className="text-gray-400 text-sm mb-2">
+                  <p className="mb-2">
                     <strong>Language:</strong> {framework.language}
                   </p>
-                  <p className="text-gray-400 text-sm">
+                  <p>
                     <strong>OS:</strong> {framework.os}
                   </p>
                 </div>

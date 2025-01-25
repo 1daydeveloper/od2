@@ -23,12 +23,6 @@ export const metadata = {
     locale: "en_US",
     site_name: "Image to Blob Converter",
   },
-  additionalMeta: [
-    { name: "viewport", content: "width=device-width, initial-scale=1.0" },
-    { name: "theme-color", content: "#ffffff" },
-    { name: "msapplication-TileColor", content: "#ffffff" },
-    { name: "msapplication-config", content: "/browserconfig.xml" },
-  ],
   structuredData: {
     "@context": "https://schema.org",
     "@type": "WebPage",

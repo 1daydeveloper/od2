@@ -27,37 +27,37 @@ export default async function BlogPage() {
             <Link
               href={`/blog/${id}`}
               key={id}
-              className="border rounded-lg p-4 hover:scale-105 transition-transform duration-200 bg-gray-900"
+              className="card border rounded-lg p-4 hover:scale-105 transition-transform duration-200"
             >
               <div className="flex justify-between">
                 <div>
                   {" "}
-                  <h2 className="text-2xl font-extrabold text-white sm:text-3xl mb-2">
+                  <h2 className="text-2xl font-extrabold sm:text-3xl mb-2">
                     {title}
                   </h2>
                 </div>
                 <div> </div>
               </div>
 
-              <div className="flex flex-wrap mb-3 text-black font-bold gap-2">
-                <div className="text-lg  rounded-md px-3 bg-orange-500">
+              <div className="flex flex-wrap mb-3 font-bold gap-2">
+                <div className="text-lg bg-yellow-500 text-black  rounded-md px-3">
                   <span className="font-extrabold">Publish Date:</span>
                   {date}
                 </div>
-                <div className="text-lg rounded-md px-3 bg-white">
+                <div className="text-lg rounded-md px-3 bg-purple-600 text-black">
                   <span className="font-extrabold">Author:</span> {author}
                 </div>
-                <div className="text-lg rounded-md px-3 bg-orange-500">
+                <div className="text-lg rounded-md px-3 bg-white text-black">
                   <span className="font-extrabold">Catagory:</span> {category}
                 </div>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 ">
                 <p className="text-base line-clamp-3">{description}</p>
                 {/* <div className="flex flex-wrap mb-2 text-black gap-2 line-clamp-2">
                     {convertToHashTags(keywords)}
                   </div> */}
               </div>
-              <button className="flex mt-2  text font-extrabold w-fit text-black  bg-white p-2 rounded-xl self-center">
+              <button className="btn flex mt-2  text font-extrabold w-fit p-2 rounded-xl self-center">
                 {" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

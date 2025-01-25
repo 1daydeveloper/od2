@@ -18,89 +18,103 @@ module.exports = {
     },
 
     extend: {
+      colors: {
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
+        warning: "var(--color-warning)",
+        error: "var(--color-error)",
+        success: "var(--color-success)",
+        info: "var(--color-info)",
+        background: "var(--color-background)",
+        text: "var(--color-text)",
+        "text-secondary": "var(--color-text-secondary)",
+        card: "var(--color-card-background)",
+        card_border: "var(--color-border)",
+        heading_color: "var(--color-heading)",
+        text_color: "var(--color-text)",
+        bg_color: "var(--color-bg)",
+        hover_colorL: "var(--color-hover)",
+        card_bg_color: "var(--color-card-bg)",
+        btn_color: "var(--color-btn)",
+        btn_hover_color: "var(--color-btn-hover)",
+        black: "var(--color-black)",
+        btn_text_color: "var(--color-btn-text)",
+        header_bg: "var(--color-header-bg)",
+        header_text: "var(--color-header-text)",
+        footer_bg: "var(--color-footer-bg)",
+        footer_text: "var(--color-footer-text)",
+      },
       typography: {
         DEFAULT: {
           css: {
-            // Paragraph styling
             p: {
-              color: "#E5E7EB", // Light gray text for paragraphs
-              lineHeight: "1.75", // Improved line height for readability
-              marginBottom: "1rem", // Space between paragraphs
+              color: "var(--color-paragraph)",
+              lineHeight: "1.75",
+              marginBottom: "1rem",
             },
-            // Heading 1 styling
             h1: {
-              color: "#F3F4F6", // Light color for h1 heading
-              fontWeight: "bold", // Bold heading text
-              fontSize: "2.25rem", // Adjusted font size for h1
-              marginBottom: "0.5rem", // Spacing below the heading
+              color: "var(--color-heading)",
+              fontWeight: "bold",
+              fontSize: "2.25rem",
+              marginBottom: "0.5rem",
             },
             h2: {
-              color: "#F3F4F6", // Light color for h1 heading
-              fontWeight: "bold", // Bold heading text
-              fontSize: "2.25rem", // Adjusted font size for h1
-              marginBottom: "0.5rem", // Spacing below the heading
+              color: "var(--color-heading)",
+              fontWeight: "bold",
+              fontSize: "2.25rem",
+              marginBottom: "0.5rem",
             },
             h3: {
-              color: "#F3F4F6", // Light color for h1 heading
-              fontWeight: "bold", // Bold heading text
-              fontSize: "2.25rem", // Adjusted font size for h1
-              marginBottom: "0.5rem", // Spacing below the heading
+              color: "var(--color-heading)",
+              fontWeight: "bold",
+              fontSize: "2.25rem",
+              marginBottom: "0.5rem",
             },
             h4: {
-              color: "#F3F4F6", // Light color for h1 heading
-              fontWeight: "bold", // Bold heading text
-              fontSize: "2.25rem", // Adjusted font size for h1
-              marginBottom: "0.5rem", // Spacing below the heading
+              color: "var(--color-heading)",
+              fontWeight: "bold",
+              fontSize: "2.25rem",
+              marginBottom: "0.5rem",
             },
             strong: {
-              color: "#d99b51", // Light color for h1 heading
+              color: "var(--color-strong)",
             },
             li: {
-              color: "#E5E7EB", // Light gray text for paragraphs
+              color: "var(--color-list-item)",
             },
-
-            // Link styling
             a: {
-              color: "#93C7FF", // Light blue for links
-              textDecoration: "none", // Remove underlines from links
+              color: "var(--color-link)",
+              textDecoration: "none",
               "&:hover": {
-                color: "#7FB6F7", // Darker blue on hover
+                color: "var(--color-link-hover)",
               },
             },
-
-            // Blockquote styling
             blockquote: {
-              borderLeftColor: "#4F46E5", // Light purple border for blockquotes
-              color: "#D1D5DB", // Light gray text for blockquotes
-              backgroundColor: "#2D3748", // Dark background for blockquote
-              padding: "1rem", // Padding inside blockquotes
-              margin: "1rem 0", // Margin for spacing around blockquotes
+              borderLeftColor: "var(--color-blockquote-border)",
+              color: "var(--color-blockquote-text)",
+              backgroundColor: "var(--color-blockquote-bg)",
+              padding: "1rem",
+              margin: "1rem 0",
             },
-
-            // Code styling
             code: {
-              backgroundColor: "#464646", // Dark background for code
-              color: "#E5E7EB", // Light color for code text
-              padding: "0.2em 0.4em", // Padding inside code blocks
-              borderRadius: "0.25rem", // Rounded corners for code blocks
+              backgroundColor: "var(--color-code-bg)",
+              color: "var(--color-code-text)",
+              padding: "0.2em 0.4em",
+              borderRadius: "0.25rem",
             },
             pre: {
-              backgroundColor: "#000000", // Dark background for code
-              color: "#E5E7EB", // Light color for code text
-              padding: "0.8em", // Padding inside code blocks
-              borderRadius: "0.25rem", // Rounded corners for code blocks
+              backgroundColor: "var(--color-pre-bg)",
+              color: "var(--color-pre-text)",
+              padding: "0.8em",
+              borderRadius: "0.25rem",
             },
-
-            // General text for all elements
             html: {
-              color: "#E5E7EB", // Light gray text color for all content
-              backgroundColor: "#1F2937", // Dark background for the entire page
+              color: "var(--color-html-text)",
+              backgroundColor: "var(--color-html-bg)",
             },
-
-            // General font styling (applied to all elements)
             "*": {
-              fontFamily: '"Roboto", sans-serif', // Consistent font across the site
-              boxSizing: "border-box", // Box-sizing for consistent sizing
+              fontFamily: '"Roboto", sans-serif',
+              boxSizing: "border-box",
             },
           },
         },
@@ -110,30 +124,7 @@ module.exports = {
         128: "32rem",
         144: "36rem",
       },
-      colors: {
-        lightTheme: {
-          bg: "#ffffff",
-          text: "#000000",
-          card_bg: "#f7fafc",
-          btn_bg: "#d99b51",
-          btn_hover_bg: "#e8c396",
-          btn_text: "#694317",
-        },
-        darkTheme: {
-          bg: "#1a202c",
-          text: "#f7fafc",
-        },
-        headfoot_color: "#d39f63",
-        heading_color: "#f7ebdc",
-        text_color: "#e8c396",
-        bg_color: "black",
-        hover_colorL: "#ae7026",
-        card_bg_color: "#694317",
-        btn_color: "#d99b51",
-        btn_hover_color: "#e8c396",
-        black: "#000000",
-        btn_text_color: "#694317",
-      },
+
       animation: {
         gradient: "gradient 10s cubic-bezier(0.4, 0, 0.2, 1) infinite",
       },
