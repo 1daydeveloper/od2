@@ -14,7 +14,7 @@ export const GET = async (req) => {
     await connectToDatabase();
 
     // Find the email document that matches the ID (you may need to adjust based on your schema)
-    const emails = await Email.find({ 'to.value.address': `${id}@tm.od2.in` });
+    const emails = await Email.find({ 'to.value.address': `${id}@tm.www.od2.in` });
     if (!emails) {
       return new Response(
         JSON.stringify({ message: `No email found for the ID: ${id}` }),

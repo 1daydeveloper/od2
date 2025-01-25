@@ -13,12 +13,12 @@ export const metadata = {
   ],
   author: "One Day Developers Team",
   robots: "index, follow",
-  canonical: "https://od2.in/itbc",
+  canonical: "https://www.od2.in/itbc",
   openGraph: {
     title: "Image to Blob Converter",
     description:
       "Easily convert your images to blob format for web development and other use cases. Upload, preview, and download blobs quickly with this user-friendly tool.",
-    url: "https://od2.in/itbc",
+    url: "https://www.od2.in/itbc",
     type: "website",
     locale: "en_US",
     site_name: "Image to Blob Converter",
@@ -35,7 +35,7 @@ export const metadata = {
     name: "Image to Blob Converter",
     description:
       "Easily convert your images to blob format for web development and other use cases. Upload, preview, and download blobs quickly with this user-friendly tool.",
-    url: "https://od2.in/itbc",
+    url: "https://www.od2.in/itbc",
   },
 };
 

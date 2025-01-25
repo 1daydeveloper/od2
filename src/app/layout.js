@@ -27,11 +27,11 @@ export const metadata = {
     title: "One Day Developers - Complete Your Project in 24 Hours",
     description:
       "Need high-quality software, apps, or integrations quickly? One Day Developers (OD2) delivers exceptional results in just 24 hours*!",
-    url: "https://od2.in", // Replace with your actual site URL
+    url: "https://www.od2.in", // Replace with your actual site URL
     siteName: "One Day Developers",
     images: [
       {
-        url: "https://od2.in/odd.png", // Replace with your actual image URL
+        url: "https://www.od2.in/odd.png", // Replace with your actual image URL
         width: 1200,
         height: 630,
         alt: "One Day Developers - Rapid Project Delivery",
@@ -45,7 +45,7 @@ export const metadata = {
     title: "One Day Developers - Rapid Project Delivery",
     description:
       "Your trusted partner for high-quality software, desktop applications, and Android development delivered within just 24 hours*.",
-    images: ["https://od2.in/odd.png"], // Replace with your actual image URL
+    images: ["https://www.od2.in/odd.png"], // Replace with your actual image URL
   },
 };
 

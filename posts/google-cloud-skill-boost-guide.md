@@ -81,5 +81,5 @@ Are you ready to elevate your cloud skills? Start your journey with Google Cloud
 
 ---
 
-*Have thoughts or experiences to share about Google Cloud Skill Boost? Leave a comment below or visit [OD2](https://od2.in) to explore more tech insights.*
+*Have thoughts or experiences to share about Google Cloud Skill Boost? Leave a comment below or visit [OD2](https://www.od2.in) to explore more tech insights.*
 
