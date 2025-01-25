@@ -10,10 +10,10 @@ const defaultMetadata = {
     title: "OD2 Blog - Technical Tutorials and Insights",
     description:
       "Discover in-depth tutorials, guides, and project solutions from OD2 Blog. Specializing in software development and delivering quality content for developers.",
-    url: "https://od2.in/blog",
+    url: "https://www.od2.in/blog",
     images: [
       {
-        url: "https://od2.in/odd.png",
+        url: "https://www.od2.in/odd.png",
         width: 1200,
         height: 630,
         alt: "OD2 Blog Banner - Technical Tutorials and Insights",
@@ -26,7 +26,7 @@ const defaultMetadata = {
     title: "OD2 Blog - Your Technical Resource Hub",
     description:
       "Get the latest tutorials, quick solutions, and expert advice on software development from OD2 Blog.",
-    images: ["https://od2.in/odd.png"],
+    images: ["https://www.od2.in/odd.png"],
   },
 };
 export async function getData(slug) {
@@ -56,7 +56,7 @@ export function generateMetadata({ params }) {
         ...defaultMetadata.openGraph,
         title: title || defaultMetadata.openGraph.title,
         description: description || defaultMetadata.openGraph.description,
-        url: `https://od2.in/blog/${slug}`,
+        url: `https://www.od2.in/blog/${slug}`,
       },
       twitter: {
         ...defaultMetadata.twitter,

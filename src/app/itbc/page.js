@@ -69,6 +69,55 @@ export default function ImageToDataURL() {
           </div>
         )}
       </div>
+      <div className="max-w-3xl mx-auto text-center pt-3">
+        <p className="text-lg text-gray-300 mb-6">
+          Convert images into Base64 Data URLs quickly and easily. This tool is perfect for embedding images directly into web pages, CSS, or JavaScript.  
+        </p>
+
+        {/* Call to Action */}
+        <a href="https://www.od2.in/itbc" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg inline-block mb-6 transition">
+          Try the Tool Now!
+        </a>
+
+        {/* Features Section */}
+        <div className="bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+          <h2 className="text-2xl font-semibold mb-4">Why Use This Tool?</h2>
+          <ul className="text-left text-gray-300 list-disc pl-6 space-y-2">
+            <li>🚀 <strong>Faster Loading</strong> – Reduces HTTP requests.</li>
+            <li>📂 <strong>Offline Support</strong> – No external image hosting needed.</li>
+            <li>🔒 <strong>Improved Security</strong> – Prevents image hotlinking.</li>
+            <li>📧 <strong>Ideal for Emails</strong> – Keeps images visible in email templates.</li>
+            <li>🛠️ <strong>Free & Easy</strong> – No sign-up required, just upload and convert.</li>
+          </ul>
+        </div>
+
+        {/* Usage Instructions */}
+        <div className="bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+          <h2 className="text-2xl font-semibold mb-4">How to Convert an Image?</h2>
+          <ol className="text-left text-gray-300 list-decimal pl-6 space-y-2">
+            <li>📤 <strong>Upload</strong> an image (JPG, PNG, GIF, SVG, etc.).</li>
+            <li>⚡ The tool will **automatically convert** it to a **Base64 Data URL**.</li>
+            <li>📋 <strong>Copy or Download</strong> the generated Data URL for your project.</li>
+          </ol>
+        </div>
+
+        {/* Use Cases */}
+        <div className="bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+          <h2 className="text-2xl font-semibold mb-4">Where Can You Use Data URLs?</h2>
+          <ul className="text-left text-gray-300 list-disc pl-6 space-y-2">
+            <li>💻 <strong>Web Development</strong> – Embed images in HTML, CSS, or JavaScript.</li>
+            <li>📧 <strong>Email Templates</strong> – Prevents broken images in newsletters.</li>
+            <li>📊 <strong>Data Storage</strong> – Store small images in JSON or databases.</li>
+            <li>🔐 <strong>Privacy & Security</strong> – No external hosting required.</li>
+          </ul>
+        </div>
+
+        {/* External Link & Final CTA */}
+        <div className="bg-blue-600 p-4 rounded-lg shadow-md text-xl font-semibold">
+          Start Converting Your Images Instantly!  
+          <a href="https://www.od2.in/itbc" className="underline ml-2">Click Here to Use the Tool</a>
+        </div>
+      </div>
     </div>
   );
 }

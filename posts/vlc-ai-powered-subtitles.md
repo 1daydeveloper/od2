@@ -93,5 +93,5 @@ Stay tuned for this [exciting update](https://www.videolan.org/press/index.html)
 
 ---
 
-*What are your thoughts on VLC’s AI-powered subtitle feature? Share your insights in the comments or explore more tech innovations on [OD2](https://od2.in).*
+*What are your thoughts on VLC’s AI-powered subtitle feature? Share your insights in the comments or explore more tech innovations on [OD2](https://www.od2.in).*
 

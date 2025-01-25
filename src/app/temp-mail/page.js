@@ -481,7 +481,7 @@ export default function GetEmailByID() {
                   <li>
                     <strong>Instant Inbox Access:</strong> Simply visit{" "}
                     <a
-                      href="https://od2.in/temp-mail"
+                      href="https://www.od2.in/temp-mail"
                       className=" hover:underline"
                       target="_blank"
                       rel="noopener"

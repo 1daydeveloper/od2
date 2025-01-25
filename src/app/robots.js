@@ -5,6 +5,6 @@ export default function robots() {
         allow: '/',
         disallow: '/private/',
       },
-      sitemap: 'https://od2.in/sitemap.xml',
+      sitemap: 'https://www.od2.in/sitemap.xml',
     }
   }
