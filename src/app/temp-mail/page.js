@@ -151,7 +151,7 @@ export default function GetEmailByID() {
     if (!navigator.clipboard) {
       toast.error("Clipboard not supported on this browser");
     } else {
-      navigator.clipboard.writeText(id + "@tm.www.od2.in");
+      navigator.clipboard.writeText(id + "@tm.od2.in");
       toast.success("Email Copied!");
     }
   };
@@ -200,7 +200,7 @@ export default function GetEmailByID() {
             autoComplete="off"
             required
             className="w-full bg-transparent h-10 placeholder:text-slate-400 text-white text-sm border border-slate-200 rounded-md pr-6 pl-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-            placeholder="Enter your email prefix/Username (we will add @tm.www.od2.in for you)"
+            placeholder="Enter your email prefix/Username (we will add @tm.od2.in for you)"
           />
 
           <svg
@@ -233,7 +233,7 @@ export default function GetEmailByID() {
       )}
       <div className="p-3 rounded-md flex gap-2 items-center ">
         <p>
-          Email:<span className="text-yellow-400"> {id}@tm.www.od2.in</span>
+          Email:<span className="text-yellow-400"> {id}@tm.od2.in</span>
         </p>
         <button
           onClick={copyToClipboard}
@@ -376,7 +376,7 @@ export default function GetEmailByID() {
                 </div>
 
                 <div className="font-bold text-xl mt-4">
-                  Enter your email prefix (we will add @tm.www.od2.in for you){" "}
+                  Enter your email prefix (we will add @tm.od2.in for you){" "}
                 </div>
               </div>
             )}
@@ -475,7 +475,7 @@ export default function GetEmailByID() {
                   <li>
                     <strong>No Signup Required:</strong> Create emails
                     effortlessly by using{" "}
-                    <code>&lt;yourusername&gt;@tm.www.od2.in</code>. No
+                    <code>&lt;yourusername&gt;@tm.od2.in</code>. No
                     registrations, no hassle.
                   </li>
                   <li>
