@@ -27,6 +27,11 @@ export default function GetEmailByID() {
     setEmails([]);
     stopRetry();
     setEmailContent({});
+    gtag("event", "submit", {
+      event_category: "user_engagement",
+      event_label: "Temp_Mail_Submit",
+      value: id,
+    });
     const retryFetch = () => {
       setIsRefreshing(true);
       setError(""); // Reset the error message
@@ -107,12 +112,39 @@ export default function GetEmailByID() {
     return usernameRegex.test(username);
   }
   function handleInputChange(e) {
+    const reservedUsernames = [
+      "admin",
+      "support",
+      "contact",
+      "help",
+      "sales",
+      "billing",
+      "hr",
+      "ceo",
+      "info",
+      "team",
+      "noreply",
+      "security",
+      "jobs",
+      "marketing",
+      "press",
+      "developer",
+      "feedback",
+      "customerservice",
+    ];
     const inputText = e.target.value.toLowerCase(); // Convert to lowercase
     setError(""); // Reset the error message
 
     let filteredText = inputText;
     if (inputText.includes("@")) {
       filteredText = inputText.split("@")[0]; // Remove everything after '@'
+    }
+
+    // Check if the username is reserved
+    if (reservedUsernames.includes(filteredText)) {
+      setError("This is a reserved address. Please use a different username.");
+      setIsSubmitEnabled(false);
+      return;
     }
 
     // Update the state with the filtered text
@@ -123,7 +155,11 @@ export default function GetEmailByID() {
       setIsSubmitEnabled(false); // Disable submit button
       return;
     }
-
+    gtag("event", "button_click", {
+      event_category: "user_engagement",
+      event_label: "Temp_Mail_Click",
+      value: filteredText,
+    });
     // Validate the username
     if (!isValidUsername(filteredText)) {
       setError(
@@ -135,11 +171,6 @@ export default function GetEmailByID() {
 
     // Enable submit button and log event
     setIsSubmitEnabled(true);
-    gtag("event", "button_click", {
-      event_category: "engagement",
-      event_label: "Temp_Mail_Click",
-      value: filteredText,
-    });
   }
 
   function addKeyToInput(data) {
