@@ -15,9 +15,8 @@ export default function DeletionTimer() {
 
   function getTimeUntilMidnight() {
     const now = new Date();
-    const nextMidnight = new Date();
-    nextMidnight.setHours(24, 0, 0, 0); // Set to midnight of the next day
-    const diff = nextMidnight - now; // Difference in milliseconds
+    const nextMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1));
+    const diff = nextMidnight - now;
 
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
