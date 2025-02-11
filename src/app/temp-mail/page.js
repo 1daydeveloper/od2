@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import TrendingWords from "@/app/components/trending";
+import DeletionTimer from "@/app/components/temp-mail/DeletionTimer";
 import { toast } from "react-toastify";
 export default function GetEmailByID() {
   const [id, setId] = useState("");
@@ -521,7 +522,7 @@ export default function GetEmailByID() {
                 </li>
                 <li>
                   <strong>Email Auto-Deletion:</strong> All emails are
-                  automatically deleted every <strong>12 hours</strong>,
+                  automatically deleted every <strong>24 hours</strong>,
                   ensuring your inbox stays clean and private.
                 </li>
                 <li>
@@ -530,6 +531,7 @@ export default function GetEmailByID() {
                 </li>
               </ul>
             </div>
+           
 
             <div>
               <h2 className="text-2xl font-semibold  mb-4">Perfect For:</h2>
@@ -550,6 +552,9 @@ export default function GetEmailByID() {
               </ul>
             </div>
           </div>
+          <section className="card text-center py-12 my-2">
+            <DeletionTimer/>
+            </section>
           <div id="userNameRules" className="mb-3">
             <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
               Username Rules
