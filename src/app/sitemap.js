@@ -8,7 +8,7 @@ export default function sitemap() {
   blogPosts.forEach(post => {
     links.push({
       url: `https://www.od2.in/blog/${post.id}`,
-      priority: 0.8,
+      priority: 0.5,
       changeFrequency: "weekly",
       lastModified: new Date(post.date),
     });
@@ -19,7 +19,7 @@ export default function sitemap() {
     {
       url: "https://www.od2.in",
       lastModified: new Date(),
-      changeFrequency: "daily",
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     {
@@ -29,16 +29,22 @@ export default function sitemap() {
       priority: 1.0,
     },
     {
+      url: "https://www.od2.in/broken-link-checker",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: "https://www.od2.in/photo",
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 1.0,
+      priority: 0.8,
     },
     {
       url: "https://www.od2.in/itbc",
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 1.0,
+      priority: 0.8,
     },
     {
       url: "https://www.od2.in/products",
