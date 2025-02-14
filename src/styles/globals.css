@@ -8,7 +8,7 @@
   --color-button-bg: #ffae00;
   --color-button-text: #ffffff;
   --color-button-hover: #000000;
-  --color-button-hover-bg: #fffa88;
+  --color-button-hover-bg: #ffe34a;
 
   /* Prose Styles */
   --color-paragraph: #432405;
@@ -16,7 +16,7 @@
   --color-strong: #734610;
   --color-list-item: #432405;
   --color-blockquote-border: #fffa88;
-  --color-blockquote-text: #432405;
+  --color-blockquote-text: #fffec2;
   --color-blockquote-bg: #fffec2;
   --color-code-bg: #fefde8;
   --color-code-text: #432405;
@@ -30,7 +30,7 @@
   --color-secondary: #eec404;
   --color-background: #fefde8;
   --color-text: #432405;
-  --color-text-secondary: #734610;
+  --color-text-secondary: #fefde8;
   --color-border: #fffa88;
   --color-error: #DC2626;
   --color-success: #16A34A;
@@ -56,7 +56,7 @@
   /* Button Styles */
   --color-button-bg: #000000;
   --color-button-text: #ffffff;
-  --color-button-hover-bg: #cacaca;
+  --color-button-hover-bg: #a1a1a1;
   --color-button-hover: #000000;
 
   /* Prose Styles */
@@ -86,22 +86,25 @@
   --color-warning: #f59e0b;
   --color-info: #3b82f6;
   --color-link: #3b82f6;
-  --color-link-hover: #2563eb;
+  --color-link-hover: #4f8cff;
   --color-shadow: rgba(0, 0, 0, 0.1);
   --color-overlay: rgba(0, 0, 0, 0.5);
   --color-card-background: #666666;
   --color-card-text: #d1d1d1;
-  --color-card-border: #ffffff;
+  --color-card-border: #666666;
   --color-main-card-background: #454545;
   --color-main-card-border: #5d5d5d;
   --color-main-card-text: #d1d1d1;
   --color-header-bg: #454545;
   --color-header-text: #d1d1d1;
   --color-footer-bg: #3d3d3d;
-  --color-footer-text: #0e63c4;
+  --color-footer-text: #4fa3ff;
 }
 
 
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-heading);
+}
 h1 {
   @apply text-5xl font-bold;
   color: var(--color-text);
@@ -125,7 +128,7 @@ h5 {
 
 p {
   @apply mt-1;
-
+  color: var(--color-text);
 }
 
 image {
