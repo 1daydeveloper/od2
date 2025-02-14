@@ -103,9 +103,9 @@ export default function RootLayout({ children }) {
           </>
         )}
       </head>
-      <body className={"bg-background text-text"}>
+      <body className={"bg-background"}>
         <Header />
-        <div className="p-2 py-6 lg:mx-40">{children}</div>
+        <div className="p-2 py-6 lg:px-32">{children}</div>
         <ToastContainer
           position="bottom-right"
           autoClose={5000}
