@@ -33,7 +33,7 @@ Using a service like TMail helps users avoid spam, phishing attempts, and other 
    Your personal email remains protected, and the temporary email address ensures anonymity. TMail is perfect for preventing spam, phishing attempts, and unwanted newsletters. For further guidance on staying anonymous online, refer to [PrivacyTools](https://www.privacytools.io/).
 
 4. **[12-Hour Email Lifespan](https://www.od2.in/temp-mail)**  
-   Users can enjoy a specific validity period of 12 hours for their temporary email address, making it flexible for various use cases.
+   Users can enjoy a specific validity period of 24 hours for their temporary email address, making it flexible for various use cases.
 
 5. **[Secure Storage](https://www.od2.in/temp-mail)**  
    OD2 prioritizes data security. Emails received at your TMail address are stored temporarily and securely, ensuring your privacy and data protection. Learn more about email security at [Proton Mail Blog](https://proton.me/blog).
@@ -46,7 +46,7 @@ Using **[TMail](https://www.od2.in/temp-mail)** is as straightforward as its des
 2. Generate a temporary email address.  
 3. Use the address for registrations, verifications, or other online activities.  
 4. Access received emails directly on the TMail interface.  
-5. Once done, the email expires automatically after 12 hours.  
+5. Once done, the email expires automatically after 24 hours.  
 
 For developers interested in integrating temporary emails into their projects, check out [Mailgun’s API](https://www.mailgun.com/) for advanced email handling.
 

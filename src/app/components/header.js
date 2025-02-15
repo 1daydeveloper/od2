@@ -16,12 +16,12 @@ const Header = () => {
   const navLinks = [
     { id: "", label: "Home" },
     { id: "temp-mail", label: "Temp Mail" },
-    { id: "photo", label: "Photo Maker" },
+    { id: "passport-photo-printing", label: "Photo Maker" },
     { id: "broken-link-checker", label: "⛓️‍💥 Checker" },
     { id: "products", label: "Products" },
-    { id: "products/od2bs", label: "Billing System" },
+    { id: "products//od2-billing-system", label: "Billing System" },
     { id: "about", label: "About" },
-    { id: "itbc", label: "Image to Blob" },
+    { id: "convert-image-to-blob", label: "Image to Blob" },
     { id: "blog", label: "Blog" },
   ];
   const currentTitle = navLinks.find(

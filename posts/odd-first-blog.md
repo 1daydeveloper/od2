@@ -65,7 +65,7 @@ Discover our innovative and user-friendly products, each designed to enhance you
 Generate disposable emails effortlessly. Protect your privacy while signing up for services or testing software.
 
 - **No signup required**
-- **Auto-deletion in 12 hours**
+- **Auto-deletion in 24 hours**
 - **Instant inbox access**
   [Learn More](/temp-mail)
 
@@ -78,7 +78,7 @@ Upload and generate 8 perfectly aligned passport-sized photos in seconds, optimi
 - **Instant photo processing**
 - **Perfect dimensions**
 - **Affordable and accessible**
-  [Learn More](/photo)
+  [Learn More](/passport-photo-printing)
 
 ---
 

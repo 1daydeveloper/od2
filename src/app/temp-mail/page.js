@@ -223,7 +223,7 @@ export default function GetEmailByID() {
         </span>
       </h2>
       <form onSubmit={handleSubmit}>
-        <div className="md:flex-col relative min-w-20 items-center space-x-2">
+        <div className="md:flex-col relative min-w-20 items-center space-x-2 self-center ">
           <input
             type="text"
             id="username"
@@ -231,14 +231,13 @@ export default function GetEmailByID() {
             onChange={handleInputChange}
             autoComplete="off"
             required
-            className="w-full bg-transparent h-10 placeholder:text-slate-400  text-sm border border-slate-200 rounded-md pr-6 pl-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            className="w-full bg-transparent h-10  placeholder:text-slate-400  text-sm border border-slate-200 rounded-md pr-6 pl-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
             placeholder="Enter your email prefix/Username (we will add @tm.od2.in for you)"
           />
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="currentColor"
             className="size-7 absolute left-1 top-1  items-center"
           >
             <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
@@ -265,7 +264,7 @@ export default function GetEmailByID() {
       )}
       <div className="p-3 rounded-md flex gap-2 items-center ">
         <p>
-          Email:<span className="text-yellow-400"> {id}@tm.od2.in</span>
+          Email:<span className="font-bold"> {id}@tm.od2.in</span>
         </p>
         <button
           onClick={copyToClipboard}
