@@ -1,126 +1,281 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { toast } from "react-toastify";
+import { CSVLink } from "react-csv";
 
 export default function BrokenLinkChecker() {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
+  const [urlError, setUrlError] = useState("");
+  const [urlFilter, setUrlFilter] = useState("");
+  const [statusCodeFilter, setStatusCodeFilter] = useState("");
+  const [sourceFilter, setSourceFilter] = useState("");
+  const [scanOption, setScanOption] = useState("single");
+  const [totalLinks, setTotalLinks] = useState(0);
+  const [scannedLinks, setScannedLinks] = useState(0);
+  const controllerRef = useRef(null);
+
+  const validateUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  };
 
   const handleCheckLinks = async () => {
+    if (!validateUrl(url)) {
+      setUrlError("Please enter a valid URL.");
+      return;
+    }
+    setUrlError("");
     setLoading(true);
     setError("");
     setResults([]);
+    controllerRef.current = new AbortController();
 
     try {
       const response = await fetch("/api/check-links", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url, scanOption }),
+        signal: controllerRef.current.signal,
       });
 
       if (!response.ok) {
         throw new Error(await response.text());
       }
 
-      const { brokenLinks } = await response.json();
+      const { brokenLinks, totalLinks, scannedLinks } = await response.json();
       setResults(brokenLinks);
+      setTotalLinks(totalLinks);
+      setScannedLinks(scannedLinks);
 
       if (brokenLinks.length === 0) {
-        toast.success("No broken links found!");
+        toast.success(`No broken links found! Scanned ${scannedLinks} links.`);
       } else {
         toast.info(`${brokenLinks.length} broken link(s) found!`);
       }
     } catch (err) {
-      setError(err.message);
-      toast.error("Failed to check links.");
+      if (err.name === "AbortError") {
+        toast.info("Scanning stopped.");
+      } else {
+        setError(err.message);
+        toast.error("Failed to check links.");
+      }
     } finally {
       setLoading(false);
     }
   };
 
+  const handleStopScan = () => {
+    if (controllerRef.current) {
+      controllerRef.current.abort();
+    }
+  };
+
+  const filteredResults = results.filter(
+    (link) =>
+      link.url.includes(urlFilter) &&
+      link.statusCode.toString().includes(statusCodeFilter) &&
+      link.source.includes(sourceFilter)
+  );
+
   return (
-    <div className="max-w-4xl mx-auto rounded-2xl shadow-lg p-8">
+    <div className="rounded-2xl shadow-lg p-8">
       <h1 className="text-2xl font-bold  text-center mb-6">
-        Broken Link Checker
+        Free Broken Link Checker
       </h1>
       <div className="space-y-4">
         <input
           type="url"
           value={url}
-          onChange={(e) => setUrl(e.target.value)}
+          onChange={(e) => {
+            setUrl(e.target.value);
+            setUrlError("");
+          }}
           placeholder="Enter a URL (e.g., https://example.com)"
           className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2 "
         />
-        <button
-          onClick={handleCheckLinks}
-          disabled={loading || !url}
-          className="w-full font-semibold p-3 rounded-lg flex justify-center items-center"
-        >
-          {loading ? (
-            <>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="size-6 animate-spin mr-2"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Scanning...
-            </>
-          ) : (
-            "Check for Broken Links"
+        {urlError && <p className="mt-2 text-red-500">{urlError}</p>}
+        <div className="flex space-x-4">
+          <label className="flex items-center">
+            <input
+              type="radio"
+              value="single"
+              checked={scanOption === "single"}
+              onChange={() => setScanOption("single")}
+              className="mr-2"
+            />
+            Single Page
+          </label>
+          {/* <label className="flex items-center">
+            <input
+              type="radio"
+              value="whole"
+              checked={scanOption === "whole"}
+              onChange={() => setScanOption("whole")}
+              className="mr-2"
+            />
+            Whole Site
+          </label> */}
+          <label className="flex items-center">
+            <input
+              type="radio"
+              value="sitemap"
+              checked={scanOption === "sitemap"}
+              onChange={() => setScanOption("sitemap")}
+              className="mr-2"
+            />
+            check the link in Sitemap
+          </label>
+        </div>
+        {loading && (    <p className="text-sm text-gray-600 bg-gray-100 border-l-4 border-blue-500 p-3 rounded-md shadow-sm">
+          <span className="font-semibold">Note:</span> Checking links may take a
+          few seconds to minutes, depending on the number of links. Please be
+          patient.
+        </p>)}
+
+        <div className="flex space-x-4">
+          <button
+            onClick={handleCheckLinks}
+            disabled={loading || !url}
+            className="w-full font-semibold p-3 rounded-lg flex justify-center items-center"
+          >
+            {loading ? (
+              <>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="size-6 animate-spin mr-2"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Scanning...
+              </>
+            ) : (
+              "Check for Broken Links"
+            )}
+          </button>
+          {loading && (
+            <button
+              onClick={handleStopScan}
+              className="w-full font-semibold p-3 rounded-lg flex justify-center items-center bg-red-500 text-white"
+            >
+              Stop
+            </button>
           )}
-        </button>
+        </div>
       </div>
 
       {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
 
       {results.length > 0 && (
         <div className="mt-6">
-          <h2 className="text-lg font-semibold mb-4">Broken Links</h2>
-          <ul className="space-y-2">
-            {results.map((link, idx) => (
-              <li
-                key={idx}
-                className="bg-red-100 p-3 rounded-lg border border-red-300"
-              >
-                <p className="text-gray-700">
-                  <span className="font-bold">URL:</span>{" "}
-                  <a
-                    href={link.url}
-                    className="text-red-500 underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {link.url}
-                  </a>
-                </p>
-                <p className="text-gray-700">
-                  <span className="font-bold">Status Code:</span>{" "}
-                  {link.statusCode}
-                </p>
-                <p className="text-gray-700">
-                  <span className="font-bold">Source:</span>{" "}
-                  <a
-                    href={link.source}
-                    className="text-blue-500 underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {link.source}
-                  </a>
-                </p>
-              </li>
-            ))}
-          </ul>
+          <h2 className="text-lg font-semibold">Broken Links</h2>
+          <p className="py-3 text-green-500">
+            Total Links: {totalLinks}, Scanned Links: {scannedLinks} <br></br>{" "}
+            <span className="text-red-500">
+              {" "}
+              {results.length} broken link&apos;s found!(
+              <a href="#download-csv" class="scroll-down">
+                📜⏬ Scroll Down to Download as CSV
+              </a>{" "}
+            </span>
+            )
+          </p>
+          <div className="grid grid-cols-3 gap-4 mb-4">
+            <input
+              type="text"
+              value={urlFilter}
+              onChange={(e) => setUrlFilter(e.target.value)}
+              placeholder="Filter by URL"
+              className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+            />
+            <input
+              type="text"
+              value={statusCodeFilter}
+              onChange={(e) => setStatusCodeFilter(e.target.value)}
+              placeholder="Filter by Status Code"
+              className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+            />
+            <input
+              type="text"
+              value={sourceFilter}
+              onChange={(e) => setSourceFilter(e.target.value)}
+              placeholder="Filter by Source"
+              className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+            />
+          </div>
+
+          <div className="flex flex-col overflow-x-auto">
+            <table className="min-w-full table-auto">
+              <thead>
+                <tr>
+                  <th className="px-4 py-2">URL</th>
+                  <th className="px-4 py-2">Status Code</th>
+                  <th className="px-4 py-2">Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredResults.map((link, idx) => (
+                  <tr key={idx} className="bg-red-100 border-b">
+                    <td className="px-4 py-2">
+                      <a
+                        href={link.url}
+                        className="text-red-500 underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.url}
+                      </a>
+                    </td>
+                    <td className="px-4 py-2">{link.statusCode}</td>
+                    <td className="px-4 py-2">
+                      <a
+                        href={link.source}
+                        className="text-blue-500 underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.source}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <CSVLink
+            data={filteredResults}
+            headers={[
+              { label: "URL", key: "url" },
+              { label: "Status Code", key: "statusCode" },
+              { label: "Source", key: "source" },
+            ]}
+            filename="od2-broken-links.csv"
+            className="abtn mt-4 inline-block p-2 rounded"
+            id="download-csv"
+          >
+            Download CSV
+          </CSVLink>
+        </div>
+      )}
+      {results.length === 0 && scannedLinks > 0 && (
+        <div className="mt-6">
+          <h2 className="text-lg font-semibold">No Broken Links Found</h2>
+          <p className="py-3 text-green-500">
+            Total Links: {totalLinks}, Scanned Links: {scannedLinks}
+          </p>
         </div>
       )}
       <div className="maincard rounded-lg shadow mt-8">

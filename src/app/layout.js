@@ -1,11 +1,13 @@
-import "../styles/globals.css";
 import Footer from "@/app/components/footer";
 import Header from "@/app/components/header";
 import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Clarity from "@microsoft/clarity";
+import { Inter } from 'next/font/google';
+import "../styles/globals.css";
 
+const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   title: {
     template: "%s | One Day Developers",
@@ -93,7 +95,7 @@ export default function RootLayout({ children }) {
 
   Clarity.init(projectId);
   return (
-    <html lang="en" className="dark">
+    <html lang="en" >
       <head>
         {process.env.ENVIRONMENT !== "" && (
           <>
@@ -120,6 +122,7 @@ export default function RootLayout({ children }) {
                 })(window,document,'script','dataLayer','GTM-K3JKX9NM');`,
               }}
             ></Script>
+           
             <Script
               id="clarity-analytics"
               strategy="afterInteractive"
@@ -141,7 +144,7 @@ export default function RootLayout({ children }) {
           </>
         )}
       </head>
-      <body className={"bg-background"}>
+      <body className={`${inter.className} bg-background`}>
         <Header />
         <div className="p-2 py-6 lg:px-32">{children}</div>
         <ToastContainer

@@ -9,25 +9,9 @@ export default function ThemeToggle() {
       if (localTheme) {
         return localTheme;
       }
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      return systemTheme || "dark";
     }
     return "dark";
   });
-
-  useEffect(() => {
-    const systemThemeListener = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleSystemThemeChange = (e) => {
-      const newSystemTheme = e.matches ? "dark" : "light";
-      setTheme(newSystemTheme);
-    };
-
-    systemThemeListener.addEventListener("change", handleSystemThemeChange);
-
-    return () => {
-      systemThemeListener.removeEventListener("change", handleSystemThemeChange);
-    };
-  }, []);
 
   useEffect(() => {
     if (theme === "dark") {
@@ -36,6 +20,20 @@ export default function ThemeToggle() {
       document.documentElement.classList.remove("dark");
     }
     localStorage.setItem("theme", theme);
+
+    const body = document.body;
+    body.classList.add("theme-change");
+    setTimeout(() => {
+      body.classList.remove("theme-change");
+    }, 1000);
+
+    const button = document.querySelector("button[aria-label='theme-toggle']");
+    if (button) {
+      button.classList.add("button-highlight");
+      setTimeout(() => {
+        button.classList.remove("button-highlight");
+      }, 1000);
+    }
   }, [theme]);
 
   return (
@@ -45,6 +43,7 @@ export default function ThemeToggle() {
     >
       {theme === "dark" ? (
         <svg
+          key="dark-icon"
           className="w-6 h-6 text-yellow-400"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
@@ -61,6 +60,7 @@ export default function ThemeToggle() {
         </svg>
       ) : (
         <svg
+          key="light-icon"
           className="w-6 h-6 text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"

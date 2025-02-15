@@ -221,7 +221,7 @@ export default function GetEmailByID() {
         <span className="m-3 inline-block px-2 py-1 text-xl font-semibold !text-slate-950 bg-yellow-500 rounded-full">
           Beta
         </span>
-      </h2>a
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="md:flex-col relative min-w-20 items-center space-x-2 self-center ">
           <input
