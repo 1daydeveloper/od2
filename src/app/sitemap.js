@@ -35,13 +35,13 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
-      url: "https://www.od2.in/photo",
+      url: "https://www.od2.in/passport-photo-printing",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: "https://www.od2.in/itbc",
+      url: "https://www.od2.in/convert-image-to-blob",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
@@ -53,7 +53,7 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
-      url: "https://www.od2.in/products/od2bs",
+      url: "https://www.od2.in/products/od2-billing-system",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,

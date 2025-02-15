@@ -10,15 +10,18 @@ export const metadata = {
     "web development tools",
     "convert image to blob online",
     "blob downloader",
+    "Free Image to Blob Converter",
+    "OD2 Image to Blob Converter",
+    "OD2",
   ],
   author: "One Day Developers Team",
   robots: "index, follow",
-  canonical: "https://www.od2.in/itbc",
+  canonical: "https://www.od2.in/convert-image-to-blob",
   openGraph: {
     title: "Image to Blob Converter",
     description:
       "Easily convert your images to blob format for web development and other use cases. Upload, preview, and download blobs quickly with this user-friendly tool.",
-    url: "https://www.od2.in/itbc",
+    url: "https://www.od2.in/convert-image-to-blob",
     type: "website",
     locale: "en_US",
     site_name: "Image to Blob Converter",
@@ -29,7 +32,7 @@ export const metadata = {
     name: "Image to Blob Converter",
     description:
       "Easily convert your images to blob format for web development and other use cases. Upload, preview, and download blobs quickly with this user-friendly tool.",
-    url: "https://www.od2.in/itbc",
+    url: "https://www.od2.in/convert-image-to-blob",
   },
 };
 

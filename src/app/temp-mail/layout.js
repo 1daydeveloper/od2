@@ -2,8 +2,23 @@ export const metadata = {
   title: "Temp Mail - Secure and Disposable Email Addresses | OD2",
   description:
     "OD2 Temporary Mail provides a quick, secure, and anonymous way to create disposable email addresses. Protect your privacy, avoid spam, and manage temporary communication without any registration. Perfect for one-time use or anonymous sign-ups.",
-  keywords:
-    "temporary email, disposable email, secure email, privacy protection, avoid spam, temporary communication, anonymous email, no registration required",
+  keywords: [
+    "temp mail",
+    "temporary mail",
+    "disposable email",
+    "temporary email",
+    "secure email",
+    "anonymous email",
+    "OD2 temp mail",
+    "OD2 temporary mail",
+    "OD2 disposable email",
+    "Free temporary email",
+    "Free temp mail",
+    "Free disposable email",
+    "Free secure email",
+    "Free anonymous email",
+    "OD2",
+    ],
   author: "One Day Developers (OD2)",
   robots: "index, follow", // Allow search engines to index the page
   openGraph: {

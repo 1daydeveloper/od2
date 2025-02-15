@@ -78,7 +78,7 @@ export default function ImageToDataURL() {
 
         {/* Call to Action */}
         <a
-          href="https://www.od2.in/itbc"
+          href="https://www.od2.in/convert-image-to-blob"
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg inline-block mb-6 transition"
         >
           Try the Tool Now!
@@ -157,7 +157,7 @@ export default function ImageToDataURL() {
         {/* External Link & Final CTA */}
         <div className="card p-4 rounded-lg shadow-md text-xl font-semibold">
           Start Converting Your Images Instantly!
-          <a href="https://www.od2.in/itbc" className="underline ml-2">
+          <a href="https://www.od2.in/convert-image-to-blob" className="underline ml-2">
             Click Here to Use the Tool
           </a>
         </div>
