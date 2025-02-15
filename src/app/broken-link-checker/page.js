@@ -8,8 +8,23 @@ export default function BrokenLinkChecker() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
+  const [urlError, setUrlError] = useState("");
+
+  const validateUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  };
 
   const handleCheckLinks = async () => {
+    if (!validateUrl(url)) {
+      setUrlError("Please enter a valid URL.");
+      return;
+    }
+    setUrlError("");
     setLoading(true);
     setError("");
     setResults([]);
@@ -50,10 +65,14 @@ export default function BrokenLinkChecker() {
         <input
           type="url"
           value={url}
-          onChange={(e) => setUrl(e.target.value)}
+          onChange={(e) => {
+            setUrl(e.target.value);
+            setUrlError("");
+          }}
           placeholder="Enter a URL (e.g., https://example.com)"
           className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2 "
         />
+        {urlError && <p className="mt-2 text-red-500">{urlError}</p>}
         <button
           onClick={handleCheckLinks}
           disabled={loading || !url}

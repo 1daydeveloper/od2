@@ -132,11 +132,17 @@ p {
 }
 
 image {
-  @apply rounded-lg shadow-md w-full
+  @apply rounded-lg shadow-md w-full;
+  display: block; /* Ensure images are block elements */
+  max-width: 100%; /* Ensure images do not exceed container width */
+  height: auto; /* Maintain aspect ratio */
 }
 
-
-
+iframe {
+  display: block; /* Ensure iframes are block elements */
+  max-width: 100%; /* Ensure iframes do not exceed container width */
+  height: auto; /* Maintain aspect ratio */
+}
 
 .abtn, button {
   background-color: var(--color-button-bg);
@@ -260,6 +266,13 @@ a:hover {
   color: var(--color-link-hover); /* Ensure hover color uses the variable */
 }
 
-input[type='text'] {
+input[type='text'], input[type='email'], input[type='password'], input[type='number'], input[type='tel'], input[type='url'] {
   color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+button:disabled,
+.abtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
