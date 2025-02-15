@@ -95,7 +95,7 @@ export default function RootLayout({ children }) {
 
   Clarity.init(projectId);
   return (
-    <html lang="en" className="dark">
+    <html lang="en" >
       <head>
         {process.env.ENVIRONMENT !== "" && (
           <>
@@ -122,6 +122,7 @@ export default function RootLayout({ children }) {
                 })(window,document,'script','dataLayer','GTM-K3JKX9NM');`,
               }}
             ></Script>
+           
             <Script
               id="clarity-analytics"
               strategy="afterInteractive"
