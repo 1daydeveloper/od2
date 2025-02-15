@@ -218,10 +218,10 @@ export default function GetEmailByID() {
     <div className="flex flex-col gap-4 min-h-screen ">
       <h2 className="text-2xl font-bold mb-4">
         Temp Mail
-        <span className="m-3 inline-block px-2 py-1 text-xl font-semibold text-black bg-yellow-500 rounded-full">
+        <span className="m-3 inline-block px-2 py-1 text-xl font-semibold !text-slate-950 bg-yellow-500 rounded-full">
           Beta
         </span>
-      </h2>
+      </h2>a
       <form onSubmit={handleSubmit}>
         <div className="md:flex-col relative min-w-20 items-center space-x-2 self-center ">
           <input
@@ -231,21 +231,21 @@ export default function GetEmailByID() {
             onChange={handleInputChange}
             autoComplete="off"
             required
-            className="w-full bg-transparent h-10  placeholder:text-slate-400  text-sm border border-slate-200 rounded-md pr-6 pl-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            className="w-full bg-transparent h-10 placeholder:text-slate-400  text-sm border border-slate-200 rounded-md pr-6 pl-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
             placeholder="Enter your email prefix/Username (we will add @tm.od2.in for you)"
           />
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            className="size-7 absolute left-1 top-1  items-center"
+            className="size-7 absolute left-1 top-1 items-center"
           >
             <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
             <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
           </svg>
 
           <button
-            className={`absolute right-1 top-1  bg-yellow-600   py-1 px-2.5 border border-transparent text-center text-sm text-white shadow-sm hover:shadow  focus:shadow-none ${
+            className={`absolute right-1 top-1  py-1 px-2.5 border border-transparent text-center text-sm  shadow-sm hover:shadow  focus:shadow-none ${
               isSubmitEnabled
                 ? ""
                 : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
