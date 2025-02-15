@@ -36,8 +36,8 @@
   --color-success: #16A34A;
   --color-warning: #D97706;
   --color-info: #2563EB;
-  --color-link: #1D4ED8;
-  --color-link-hover: #1E40AF;
+  --color-link: #0a58ca; /* Updated to a higher contrast color */
+  --color-link-hover: #084298; /* Updated to a higher contrast color */
   --color-shadow: rgba(0, 0, 0, 0.05);
   --color-overlay: rgba(255, 255, 255, 0.8);
   --color-card-background: #fffec2;
@@ -85,8 +85,8 @@
   --color-success: #22c55e;
   --color-warning: #f59e0b;
   --color-info: #3b82f6;
-  --color-link: #3b82f6;
-  --color-link-hover: #4f8cff;
+  --color-link: #4fa3ff; /* Updated to a higher contrast color */
+  --color-link-hover: #1e90ff; /* Updated to a higher contrast color */
   --color-shadow: rgba(0, 0, 0, 0.1);
   --color-overlay: rgba(0, 0, 0, 0.5);
   --color-card-background: #666666;
@@ -253,7 +253,11 @@ h1 {
 }
 
 a {
-  @apply text-blue-600 hover:text-blue-500;
+  color: var(--color-link); /* Ensure link color uses the variable */
+}
+
+a:hover {
+  color: var(--color-link-hover); /* Ensure hover color uses the variable */
 }
 
 input[type='text'] {
