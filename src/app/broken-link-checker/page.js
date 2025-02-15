@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { CSVLink } from "react-csv";
 
 export default function BrokenLinkChecker() {
   const [url, setUrl] = useState("");
@@ -9,6 +10,9 @@ export default function BrokenLinkChecker() {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
   const [urlError, setUrlError] = useState("");
+  const [urlFilter, setUrlFilter] = useState("");
+  const [statusCodeFilter, setStatusCodeFilter] = useState("");
+  const [sourceFilter, setSourceFilter] = useState("");
 
   const validateUrl = (url) => {
     try {
@@ -56,8 +60,14 @@ export default function BrokenLinkChecker() {
     }
   };
 
+  const filteredResults = results.filter((link) =>
+    link.url.includes(urlFilter) &&
+    link.statusCode.toString().includes(statusCodeFilter) &&
+    link.source.includes(sourceFilter)
+  );
+
   return (
-    <div className="max-w-4xl mx-auto rounded-2xl shadow-lg p-8">
+    <div className="rounded-2xl shadow-lg p-8">
       <h1 className="text-2xl font-bold  text-center mb-6">
         Broken Link Checker
       </h1>
@@ -105,41 +115,84 @@ export default function BrokenLinkChecker() {
       {results.length > 0 && (
         <div className="mt-6">
           <h2 className="text-lg font-semibold mb-4">Broken Links</h2>
-          <ul className="space-y-2">
-            {results.map((link, idx) => (
-              <li
-                key={idx}
-                className="bg-red-100 p-3 rounded-lg border border-red-300"
-              >
-                <p className="text-gray-700">
-                  <span className="font-bold">URL:</span>{" "}
-                  <a
-                    href={link.url}
-                    className="text-red-500 underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {link.url}
-                  </a>
-                </p>
-                <p className="text-gray-700">
-                  <span className="font-bold">Status Code:</span>{" "}
-                  {link.statusCode}
-                </p>
-                <p className="text-gray-700">
-                  <span className="font-bold">Source:</span>{" "}
-                  <a
-                    href={link.source}
-                    className="text-blue-500 underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {link.source}
-                  </a>
-                </p>
-              </li>
-            ))}
-          </ul>
+          <div className="grid grid-cols-3 gap-4 mb-4">
+            <input
+              type="text"
+              value={urlFilter}
+              onChange={(e) => setUrlFilter(e.target.value)}
+              placeholder="Filter by URL"
+              className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+            />
+            <input
+              type="text"
+              value={statusCodeFilter}
+              onChange={(e) => setStatusCodeFilter(e.target.value)}
+              placeholder="Filter by Status Code"
+              className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+            />
+            <input
+              type="text"
+              value={sourceFilter}
+              onChange={(e) => setSourceFilter(e.target.value)}
+              placeholder="Filter by Source"
+              className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+            />
+          </div>
+          <p className="p-3 text-red-500">{results.length} broken link&apos;s found!(<a href="#download-csv" class="scroll-down">
+  📜⏬ Scroll Down to Download as CSV
+</a> )</p>
+
+          <div className="flex flex-col overflow-x-auto">
+            <table className="min-w-full table-auto">
+              <thead>
+                <tr>
+                  <th className="px-4 py-2">URL</th>
+                  <th className="px-4 py-2">Status Code</th>
+                  <th className="px-4 py-2">Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredResults.map((link, idx) => (
+                  <tr key={idx} className="bg-red-100 border-b">
+                    <td className="px-4 py-2">
+                      <a
+                        href={link.url}
+                        className="text-red-500 underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.url}
+                      </a>
+                    </td>
+                    <td className="px-4 py-2">{link.statusCode}</td>
+                    <td className="px-4 py-2">
+                      <a
+                        href={link.source}
+                        className="text-blue-500 underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.source}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <CSVLink
+            data={filteredResults}
+            headers={[
+              { label: "URL", key: "url" },
+              { label: "Status Code", key: "statusCode" },
+              { label: "Source", key: "source" },
+            ]}
+            filename="od2-broken-links.csv"
+            className="abtn mt-4 inline-block p-2 rounded"
+            id="download-csv"
+          >
+            Download CSV
+          </CSVLink>
         </div>
       )}
       <div className="maincard rounded-lg shadow mt-8">

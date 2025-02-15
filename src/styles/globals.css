@@ -276,3 +276,32 @@ button:disabled,
   cursor: not-allowed;
   opacity: 0.7;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border: 2px solid var(--color-border); /* Added border to the table */
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+table th {
+  background-color: var(--color-card-background);
+  color: var(--color-text);
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: var(--color-card-background);
+}
+
+table tr:hover {
+  background-color: var(--color-overlay);
+}

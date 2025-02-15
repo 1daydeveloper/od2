@@ -17,7 +17,7 @@ const Header = () => {
     { id: "", label: "Home" },
     { id: "temp-mail", label: "Temp Mail" },
     { id: "passport-photo-printing", label: "Photo Maker" },
-    { id: "broken-link-checker", label: "⛓️‍💥 Checker" },
+    { id: "broken-link-checker", label: "⛓️‍💥 Link Checker" },
     { id: "products", label: "Products" },
     { id: "products//od2-billing-system", label: "Billing System" },
     { id: "about", label: "About" },
