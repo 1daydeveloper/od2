@@ -89,7 +89,7 @@
   --color-success: #22c55e;
   --color-warning: #f59e0b;
   --color-info: #3b82f6;
-  --color-link: #4fa3ff;
+  --color-link: #fffb00 ;
   /* Updated to a higher contrast color */
   --color-link-hover: #1e90ff;
   /* Updated to a higher contrast color */
@@ -280,6 +280,7 @@ h1 {
 
 a {
   color: var(--color-link);
+  @apply font-semibold;
 }
 
 a:hover {
