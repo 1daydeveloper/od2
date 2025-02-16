@@ -191,7 +191,7 @@ export default function RootLayout({ children }) {
                 "@type": "Service",
                 "name": "Software Development",
                 "description": "Custom software solutions tailored to your needs.",
-                "url": "https://yourwebsite.com/software-development"
+                "url": "https://www.od2.in/products"
               }
             },
             {
@@ -209,7 +209,7 @@ export default function RootLayout({ children }) {
                 "offers": {
                   "@type": "Offer",
                   "priceCurrency": "INR",
-                  "price": "4999.00",
+                  "price": "9999.00",
                   "availability": "https://schema.org/InStock"
                 }
               }
@@ -229,7 +229,7 @@ export default function RootLayout({ children }) {
                 "offers": {
                   "@type": "Offer",
                   "priceCurrency": "INR",
-                  "price": "0.00",
+                  "price": "Free",
                   "availability": "https://schema.org/InStock"
                 }
               }
@@ -249,7 +249,7 @@ export default function RootLayout({ children }) {
                 "offers": {
                   "@type": "Offer",
                   "priceCurrency": "INR",
-                  "price": "99.00",
+                  "price": "Free",
                   "availability": "https://schema.org/InStock"
                 }
               }
@@ -269,7 +269,7 @@ export default function RootLayout({ children }) {
                 "offers": {
                   "@type": "Offer",
                   "priceCurrency": "INR",
-                  "price": "49.00",
+                  "price": "Free",
                   "availability": "https://schema.org/InStock"
                 }
               }
