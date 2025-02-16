@@ -168,21 +168,24 @@ export default function RootLayout({ children }) {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Temp Mail"
+                "name": "Temp Mail",
+                "description": "Generate disposable emails on-the-go! Secure, fast, and perfect for protecting your privacy or testing software."
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Passport Size Photo Maker"
+                "name": "Passport Size Photo Maker",
+                "description": "Get your passport-size photo perfectly resized and ready for print. Quick, easy, and high-quality images for all your official document needs."
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Broken Link Checker"
+                "name": "Broken Link Checker",
+                "description": "Easily check your website for broken links and ensure all your links are working correctly. Quick, efficient, and reliable link checking for your web pages."
               }
             },
             {
@@ -214,66 +217,7 @@ export default function RootLayout({ children }) {
                 }
               }
             },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Product",
-                "name": "OD2 Temp Mail",
-                "description": "Generate disposable emails on-the-go! Secure, fast, and perfect for protecting your privacy or testing software.",
-                "url": "https://www.od2.in/temp-mail",
-                "image": "https://www.od2.in/odd.png",
-                "brand": {
-                  "@type": "Brand",
-                  "name": "OD2"
-                },
-                "offers": {
-                  "@type": "Offer",
-                  "priceCurrency": "INR",
-                  "price": "Free",
-                  "availability": "https://schema.org/InStock"
-                }
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Product",
-                "name": "OD2 Broken Link Checker",
-                "description": "Easily check your website for broken links and ensure all your links are working correctly. Quick, efficient, and reliable link checking for your web pages.",
-                "url": "https://www.od2.in/broken-link-checker",
-                "image": "https://www.od2.in/odd.png",
-                "brand": {
-                  "@type": "Brand",
-                  "name": "OD2"
-                },
-                "offers": {
-                  "@type": "Offer",
-                  "priceCurrency": "INR",
-                  "price": "Free",
-                  "availability": "https://schema.org/InStock"
-                }
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Product",
-                "name": "OD2 Passport Size Printable Photo Maker(6*4)",
-                "description": "Get your passport-size photo perfectly resized and ready for print on 6x4 or 4x6 paper. Quick, easy, and high-quality images for all your official document needs.",
-                "url": "https://www.od2.in/passport-photo-printing",
-                "image": "https://www.od2.in/odd.png",
-                "brand": {
-                  "@type": "Brand",
-                  "name": "OD2"
-                },
-                "offers": {
-                  "@type": "Offer",
-                  "priceCurrency": "INR",
-                  "price": "Free",
-                  "availability": "https://schema.org/InStock"
-                }
-              }
-            }
+           
           ]
         }
       },
