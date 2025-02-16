@@ -3,8 +3,8 @@ title: "OD2 One Day Developers Blog: Submission Guidelines"
 date: "2025-01-01"
 author: "Pradeep Kumar O"
 category: "Guidelines"
-description: "Official submission guidelines for contributing to the OD2 One Day Developers blog."
-keywords: "OD2, blog guidelines, technical writing, blog submission, content submission, developer community, contribution rules, markdown, SEO, blog standards"
+description: "Learn how to contribute to the OD2 One Day Developers blog. Follow our official submission guidelines for technical writing, formatting, and SEO best practices."
+keywords: "OD2, blog guidelines, technical writing, blog submission, content submission, developer community, contribution rules, markdown, SEO, blog standards, writing for developers, guest blogging, coding blogs"
 urlpath: "od2-blog-submission-guidelines"
 ---
 
@@ -16,11 +16,11 @@ To ensure uniformity and structure across all blog posts, each submission should
 
 ```markdown
 ---
-title: "Title of the Blog"
+title: "Title of the Blog(min 50 characters, max 100 characters)"
 date: "YYYY-MM-DD"
 author: "Author's Name(Seperated by commas if the author is more than one)"
 category: "Category based on the topic"
-description: "A brief 2-line description summarizing the blog for the homepage"
+description: "A brief 2-line description summarizing the blog for the homepage(min 150 characters)"
 keywords: "At least 20 relevant keywords to help with search indexing"
 urlpath: "a URL-friendly, concise version of the blog's title"
 ---

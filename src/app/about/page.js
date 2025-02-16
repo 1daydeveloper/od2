@@ -11,7 +11,7 @@ export default function About() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <h1>
-            About <span className="text-warning">One Day Developers (OD2)</span>
+           OD2 - One Day Developers | Who We Are & What We Do
           </h1>
           <p>
             A Company with the Unique Target to Complete Projects in 24 Hours

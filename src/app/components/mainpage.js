@@ -154,7 +154,7 @@ const Mainpage = () => {
           </Link>
         </div>
       </div>
-      <div className={"flex flex-col w-full gap-2 md:flex-row"}>
+      <div className={"bg-slate-400 flex flex-col w-full gap-2 md:flex-row p-2"}>
         <div className="card flex flex-col gap-2 p-6 rounded-lg shadow">
           <svg
             className="w-[40px] h-[40px]"
