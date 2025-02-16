@@ -487,7 +487,6 @@ export default function GetEmailByID() {
           <p className="text-lg text-center mb-8">
             Generate{" "}
             <a
-              className="text-blue-700"
               href="https://en.wikipedia.org/wiki/Disposable_email_address"
             >
               disposable emails
