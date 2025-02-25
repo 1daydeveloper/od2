@@ -322,7 +322,7 @@ export default function GetEmailByID() {
                     className={`px-1 py-1 rounded-md shadow-md border-2 border-gray-100 ${
                       activeTab === email._id
                         ? "bg-blue-500 text-white"
-                        : "bg-gray-200 hover:bg-gray-300 text-gray-800"
+                        : " "
                     } 	`}
                     onClick={() => getemailcontentdata(email._id)} // Update the active tab
                   >
