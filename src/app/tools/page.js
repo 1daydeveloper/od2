@@ -34,23 +34,6 @@ export default function Products() {
         </div>
 
         <div className="card">
-          <h2 className="text-2xl font-semibold mb-4 p-3 rounded-lg">
-            Broken Link Checker
-          </h2>
-          <p className=" mb-6">
-            Identify and fix broken links on your website to improve SEO and
-            enhance user experience.
-          </p>
-          <ul className="text-sm  mb-6 space-y-2">
-            <li>Improve website SEO</li>
-            <li>Enhance user experience</li>
-            <li>Comprehensive reports</li>
-          </ul>
-          <Link href="/broken-link-checker" className="abtn inline-block atbn">
-          Try Now
-          </Link>
-        </div>
-        <div className="card">
         <h2 className="text-2xl font-semibold mb-4 p-3 rounded-lg">
           Convert Images to Base64
         </h2>

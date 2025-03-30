@@ -27,13 +27,7 @@ export default function sitemap() {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
-    },
-    {
-      url: "https://www.od2.in/broken-link-checker",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+    }
     {
       url: "https://www.od2.in/passport-photo-printing",
       lastModified: new Date(),
