@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState, React } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button"
+
 const Mainpage = () => {
   const [openCollapseIndex, setOpenCollapseIndex] = useState(null); // Track which collapse is open
 
@@ -734,13 +736,13 @@ const Mainpage = () => {
                 key={index}
                 className="border rounded-lg shadow-sm my-2"
               >
-                <button
+                <Button variant="outline"
+                  className="flex justify-between items-center w-full p-4 text-left rounded-lg"
                   onClick={() => toggleCollapse(index)}
-                  className="flex justify-between items-center w-full p-4 hover:border-headfoot_color rounded-lg focus:outline-none"
                 >
                   <span className="text-lg font-bold">{item.title}</span>
                   {openCollapseIndex === index ? <UpArrow /> : <DownArrow />}
-                </button>
+                </Button>
 
                 {openCollapseIndex === index && (
                   <div className="p-4 rounded-b-lg ">
