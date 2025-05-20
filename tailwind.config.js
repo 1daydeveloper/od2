@@ -155,7 +155,6 @@ module.exports = {
   						backgroundColor: 'var(--color-html-bg)'
   					},
   					'*': {
-  						fontFamily: 'Roboto", sans-serif',
   						boxSizing: 'border-box'
   					}
   				}

@@ -107,6 +107,9 @@
   --color-footer-text: #4fa3ff;
 }
 
+html, body {
+  font-family: 'Roboto', sans-serif;
+}
 
 h1,
 h2,
@@ -177,8 +180,6 @@ button:hover {
   @apply scale-95
 }
 
-
-
 .card {
   background-color: var(--color-card-background);
   border-color: var(--color-card-border);
@@ -186,19 +187,16 @@ button:hover {
   @apply rounded-xl shadow-lg p-6;
 }
 
-
 .maincard {
   background-color: var(--color-main-card-background);
   border: 1px solid var(--color-main-card-border);
   color: var(--color-main-card-text);
   @apply rounded-xl shadow-lg p-6;
-
 }
 
 .gradient_card {
   background-image: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
 }
-
 
 /* styles/globals.css */
 html {
@@ -225,7 +223,6 @@ html {
   }
 }
 
-
 /* styles/globals.css or styles/WaveEffect.module.css */
 @keyframes wave {
   0% {
@@ -245,7 +242,6 @@ html {
   animation: wave 2s infinite linear;
 }
 
-
 @layer utilities {
   .truncate-lines {
     display: -webkit-box;
@@ -257,7 +253,6 @@ html {
     /* Adds the ellipsis (…) */
   }
 }
-
 
 @keyframes spin {
   0% {
@@ -297,7 +292,6 @@ input[type='url'] {
 label {
   color: var(--color-text);
 }
-
 
 button:disabled,
 .abtn:disabled {
@@ -367,8 +361,6 @@ table tr:hover {
   }
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -424,8 +416,6 @@ table tr:hover {
     --chart-5: 340 75% 55%;
   }
 }
-
-
 
 @layer base {
   * {
