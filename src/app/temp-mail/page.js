@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import TrendingWords from "@/app/components/trending";
 import DeletionTimer from "@/app/components/temp-mail/DeletionTimer";
 import { toast } from "react-toastify";
+import { ThumbsUp, ThumbsDown } from "lucide-react";
 export default function GetEmailByID() {
   const [id, setId] = useState("");
   const [emails, setEmails] = useState([]);
@@ -13,6 +14,7 @@ export default function GetEmailByID() {
   const [intervalId, SetIntervalId] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
+  const [feedbackLoading, setFeedbackLoading] = useState(false); // Feedback state
 
   const stopRetry = () => {
     if (intervalId) {
@@ -213,6 +215,38 @@ export default function GetEmailByID() {
     const date = new Date(isoDate);
     return date.toLocaleString(); // Local time with date and time
   }
+
+  const handleFeedback = (type) => async () => {
+    if (!emailcontent._id) return;
+    let description = "";
+    if (type === "bad") {
+      description = window.prompt("Please provide a description (optional):", "");
+      // If user cancels prompt, don't send feedback
+      if (description === null) return;
+    }
+    setFeedbackLoading(true);
+    try {
+      const res = await fetch("/api/emails/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          emailId: emailcontent._id,
+          mail: emailcontent.to?.value?.[0]?.address, // send the recipient email address
+          feedback: type === "good" ? "Good" : "Bad",
+          description: description || "",
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        toast.success("Feedback submitted. Thank you!");
+      } else {
+        toast.error(data.error || "Failed to submit feedback");
+      }
+    } catch (err) {
+      toast.error("Failed to submit feedback");
+    }
+    setFeedbackLoading(false);
+  };
 
   return (
     <div className="flex flex-col gap-4 min-h-screen ">
@@ -439,8 +473,25 @@ export default function GetEmailByID() {
                         "Untitled Email"}
                     </p>
                   </div>
+                  <div className="flex gap-2">
+                    <p>
+                      Feedback:
+                    </p>
+                    <ThumbsUp
+                      color="currentcolor"
+                      fill="green"
+                      className={`hover:cursor-pointer ${feedbackLoading ? "opacity-50 pointer-events-none" : ""}`}
+                      onClick={handleFeedback('good')}
+                    />
+                    <ThumbsDown
+                      color="currentcolor"
+                      fill="red"
+                      className={`hover:cursor-pointer ${feedbackLoading ? "opacity-50 pointer-events-none" : ""}`}
+                      onClick={handleFeedback('bad')}
+                    />
+                  </div>
                 </div>
-                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+                <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
 
                 <p>
                   <strong>Content:</strong>

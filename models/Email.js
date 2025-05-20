@@ -31,6 +31,22 @@ const emailSchema = new mongoose.Schema({
   messageId: String,
 });
 
+const emailFeedbackSchema = new mongoose.Schema({
+  emailId: { type: mongoose.Schema.Types.ObjectId, ref: 'Email' },
+  isSpam: {
+    type: String,
+    enum: ['spam', 'not spam'],
+  },
+  feedback: {
+    type: String,
+    enum: ['Good', 'Bad'],
+    default: 'Good',
+    required: true,
+  },
+  date: { type: Date, default: Date.now },
+  description: { type: String },
+});
+
 
 const emailHistorySchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
@@ -88,5 +104,6 @@ emailSchema.pre('save', async function (next) {
 // Ensure the models are only created once
 const Email = mongoose.models.Email || mongoose.model('Email', emailSchema);
 const EmailHistory = mongoose.models.EmailHistory || mongoose.model('EmailHistory', emailHistorySchema);
+const EmailFeedback = mongoose.models.EmailFeedback || mongoose.model('EmailFeedback', emailFeedbackSchema);
 
-export { Email, EmailHistory };
+export { Email, EmailHistory, EmailFeedback };
