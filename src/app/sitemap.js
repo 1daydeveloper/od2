@@ -27,7 +27,7 @@ export default function sitemap() {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
-    }
+    },
     {
       url: "https://www.od2.in/passport-photo-printing",
       lastModified: new Date(),
