@@ -1,3 +1,4 @@
+import { BellDot } from "lucide-react";
 export default function BlogLayout({ children, frontMatter, content }) {
   return (
     <>
@@ -33,21 +34,7 @@ export default function BlogLayout({ children, frontMatter, content }) {
       <div className="mt-3 rounded-lg bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 text-white">
         <div className="flex flex-row flex-wrap w-full gap-5 justify-center items-center p-5">
           <div className="my-auto text-lg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="lucide lucide-check-circle"
-              width="50"
-              height="50"
-            >
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <path d="m9 11 3 3L22 4"></path>
-            </svg>
+           <BellDot size={48} />
           </div>
           <div>
             <div className="font-bold text-lg">

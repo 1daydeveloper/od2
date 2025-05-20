@@ -230,7 +230,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.className} bg-background`}>
         <Header />
-        <div className="p-2 py-6 lg:px-32">{children}</div>
+        <div className="p-2 py-3 lg:px-16">{children}</div>
         <ToastContainer
           position="bottom-right"
           autoClose={5000}

@@ -1,6 +1,8 @@
 // pages/index.js or any other relevant page in your Next.js project
 
+import { Circle, ListStartIcon } from "lucide-react";
 import Head from "next/head";
+import { CircleCheck } from "lucide-react";
 
 export default function BillingSystem() {
   return (
@@ -73,75 +75,37 @@ export default function BillingSystem() {
           </h3>
           <ul className="space-y-4 text-lg   max-w-4xl m-5">
             <li class="flex items-center  space-x-3 rtl:space-x-reverse">
-              <svg
-                class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-              </svg>
+              <CircleCheck className="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" />
               <span>
                 Built for performance and scalability with HTML and Bootstap
                 CSS.
               </span>
             </li>
             <li class="flex items-center space-x-3 rtl:space-x-reverse">
-              <svg
-                class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-              </svg>
+              <CircleCheck className="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" />
               <span>
                 Highly customizable, flexible workflows to suit any business
                 requirement.
               </span>
             </li>
             <li class="flex items-center space-x-3 rtl:space-x-reverse">
-              <svg
-                class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-              </svg>
+              <CircleCheck className="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" />
               <span>
                 Advanced querying capabilities to manage and analyze your
                 billing data effectively.
               </span>
             </li>
             <li class="flex items-center space-x-3 rtl:space-x-reverse">
-              <svg
-                class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-              </svg>
+                            <CircleCheck className="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" />
+
               <span>
                 Comprehensive security with authentication-based access to
                 ensure your data is always safe.
               </span>
             </li>
             <li class="flex items-center space-x-3 rtl:space-x-reverse">
-              <svg
-                class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-              </svg>
+                            <CircleCheck className="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" />
+
               <span>
                 Support for multi-language and multi-platform use, so you can
                 reach a global audience.

@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useState, React } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button"
+import { ArrowDown, ArrowUpIcon, Brain, ChartAreaIcon, CloudCogIcon, CodeXml, Columns4, FolderCode, Megaphone, MoveRight, Package, ShoppingBag, Sliders, Table2Icon, TabletSmartphone, TargetIcon } from "lucide-react";
+
 const Mainpage = () => {
   const [openCollapseIndex, setOpenCollapseIndex] = useState(null); // Track which collapse is open
 
@@ -28,45 +31,15 @@ const Mainpage = () => {
     setOpenCollapseIndex(openCollapseIndex === index ? null : index); // Open/close the collapse
   };
 
-  const DownArrow = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="w-5 h-5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 9l-7.5 7.5L4.5 9"
-      />
-    </svg>
-  );
 
-  const UpArrow = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="w-5 h-5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M4.5 15l7.5-7.5L19.5 15"
-      />
-    </svg>
-  );
+
+
 
   return (
     <div className={"flex flex-col gap-3"}>
       {" "}
       <div className="flex flex-col text-center">
-        <div>
+        <div >
           <Link
             href="/temp-mail"
             className="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800"
@@ -77,21 +50,7 @@ const Mainpage = () => {
             <span className="text-sm font-medium">
               New Temp Mail System is Lached Check that Now!
             </span>
-            <svg
-              className="w-2.5 h-2.5 ms-2 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m1 9 4-4-4-4"
-              />
-            </svg>
+          <MoveRight className="ml-3" />
           </Link>
         </div>
         <div>
@@ -156,22 +115,7 @@ const Mainpage = () => {
       </div>
       <div className={"bg-slate-400 flex flex-col w-full gap-2 md:flex-row p-2"}>
         <div className="card flex flex-col gap-2 p-6 rounded-lg shadow">
-          <svg
-            className="w-[40px] h-[40px]"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="currentColor"
-              fillRule="evenodd"
-              d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <Megaphone size={40} />
 
           <Link href="#advertising">
             <h2 className="mb-2 text-2xl font-bold tracking-tight ">
@@ -187,42 +131,12 @@ const Mainpage = () => {
             className="abtn inline-flex w-1/2 items-center px-3 py-2 text-sm font-medium text-center focus:ring-4 focus:outline-none"
           >
             Get Popular!
-            <svg
-              className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
+           <MoveRight className="ml-3" />
           </Link>
         </div>
 
         <div className="card flex flex-col gap-2 p-6  ">
-          <svg
-            className="w-[40px] h-[40px] "
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="m8 8-4 4 4 4m8 0 4-4-4-4m-2-3-4 14"
-            />
-          </svg>
+         <CodeXml size={40} />
 
           <Link href="#development">
             <h2 className="mb-2 text-2xl font-bold tracking-tight  ">
@@ -238,40 +152,12 @@ const Mainpage = () => {
             className="abtn inline-flex w-1/2 items-center px-3 py-2 text-sm font-medium text-center"
           >
             Let Us Start!
-            <svg
-              className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
+           <MoveRight className="ml-3" />
           </Link>
         </div>
 
         <div className="card flex flex-col gap-2 p-6 ">
-          <svg
-            className="w-[40px] h-[40px]"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fillRule="evenodd"
-              d="M11 4.717c-2.286-.58-4.16-.756-7.045-.71A1.99 1.99 0 0 0 2 6v11c0 1.133.934 2.022 2.044 2.007 2.759-.038 4.5.16 6.956.791V4.717Zm2 15.081c2.456-.631 4.198-.829 6.956-.791A2.013 2.013 0 0 0 22 16.999V6a1.99 1.99 0 0 0-1.955-1.993c-2.885-.046-4.76.13-7.045.71v15.081Z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <Package size={40} />
 
           <Link href="/products">
             <h2 className="mb-2 text-2xl   font-bold tracking-tight ">
@@ -287,21 +173,7 @@ const Mainpage = () => {
             className="abtn inline-flex items-center px-3 w-1/2 py-2 text-sm font-medium text-center"
           >
             Check Out!
-            <svg
-              className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
+           <MoveRight className="ml-3" />
           </Link>
         </div>
         <div></div>
@@ -322,14 +194,7 @@ const Mainpage = () => {
             {/* Advanced Strategy */}
             <div className="card flex flex-col items-center p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className=" text-4xl mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="size-12"
-                >
-                  <path d="M6 12a.75.75 0 0 1-.75-.75v-7.5a.75.75 0 1 1 1.5 0v7.5A.75.75 0 0 1 6 12ZM18 12a.75.75 0 0 1-.75-.75v-7.5a.75.75 0 0 1 1.5 0v7.5A.75.75 0 0 1 18 12ZM6.75 20.25v-1.5a.75.75 0 0 0-1.5 0v1.5a.75.75 0 0 0 1.5 0ZM18.75 18.75v1.5a.75.75 0 0 1-1.5 0v-1.5a.75.75 0 0 1 1.5 0ZM12.75 5.25v-1.5a.75.75 0 0 0-1.5 0v1.5a.75.75 0 0 0 1.5 0ZM12 21a.75.75 0 0 1-.75-.75v-7.5a.75.75 0 0 1 1.5 0v7.5A.75.75 0 0 1 12 21ZM3.75 15a2.25 2.25 0 1 0 4.5 0 2.25 2.25 0 0 0-4.5 0ZM12 11.25a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5ZM15.75 15a2.25 2.25 0 1 0 4.5 0 2.25 2.25 0 0 0-4.5 0Z" />
-                </svg>
+                <Sliders size={40} />
               </div>
               <h3 className="text-xl font-semibold  mb-3">Advanced Strategy</h3>
               <p className=" text-center">
@@ -350,18 +215,7 @@ const Mainpage = () => {
             {/* Targeted Advertising */}
             <div className="card flex flex-col items-center p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className=" text-4xl mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="size-12"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12 1.5a.75.75 0 0 1 .75.75V4.5a.75.75 0 0 1-1.5 0V2.25A.75.75 0 0 1 12 1.5ZM5.636 4.136a.75.75 0 0 1 1.06 0l1.592 1.591a.75.75 0 0 1-1.061 1.06l-1.591-1.59a.75.75 0 0 1 0-1.061Zm12.728 0a.75.75 0 0 1 0 1.06l-1.591 1.592a.75.75 0 0 1-1.06-1.061l1.59-1.591a.75.75 0 0 1 1.061 0Zm-6.816 4.496a.75.75 0 0 1 .82.311l5.228 7.917a.75.75 0 0 1-.777 1.148l-2.097-.43 1.045 3.9a.75.75 0 0 1-1.45.388l-1.044-3.899-1.601 1.42a.75.75 0 0 1-1.247-.606l.569-9.47a.75.75 0 0 1 .554-.68ZM3 10.5a.75.75 0 0 1 .75-.75H6a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 10.5Zm14.25 0a.75.75 0 0 1 .75-.75h2.25a.75.75 0 0 1 0 1.5H18a.75.75 0 0 1-.75-.75Zm-8.962 3.712a.75.75 0 0 1 0 1.061l-1.591 1.591a.75.75 0 1 1-1.061-1.06l1.591-1.592a.75.75 0 0 1 1.06 0Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+               <TargetIcon size={40} />
               </div>
               <h3 className="text-xl font-semibold mb-3">
                 Targeted Advertising
@@ -384,23 +238,7 @@ const Mainpage = () => {
             {/* Comprehensive Analytics */}
             <div className="card flex flex-col items-center p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="text-4xl mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="size-12"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M2.25 13.5a8.25 8.25 0 0 1 8.25-8.25.75.75 0 0 1 .75.75v6.75H18a.75.75 0 0 1 .75.75 8.25 8.25 0 0 1-16.5 0Z"
-                    clipRule="evenodd"
-                  />
-                  <path
-                    fillRule="evenodd"
-                    d="M12.75 3a.75.75 0 0 1 .75-.75 8.25 8.25 0 0 1 8.25 8.25.75.75 0 0 1-.75.75h-7.5a.75.75 0 0 1-.75-.75V3Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <ChartAreaIcon size={40} />
               </div>
               <h3 className="text-xl font-semibold  mb-3">
                 Comprehensive Analytics
@@ -456,16 +294,7 @@ const Mainpage = () => {
             {/* Web Development */}
             <div className="card flex flex-col items-center p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className=" text-4xl mb-4">
-                <svg
-                  className="w-12 h-12"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M19 9l-7 7-7-7" />
-                </svg>
+                <FolderCode size={40} />
               </div>
               <h3 className="text-xl font-semibold  mb-3">Web Development</h3>
               <p className="text-center">
@@ -493,16 +322,7 @@ const Mainpage = () => {
             {/* Mobile Development */}
             <div className="card flex flex-col items-center p-6  rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className=" text-4xl mb-4">
-                <svg
-                  className="w-12 h-12"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M12 2L2 12l10 10 10-10-10-10z" />
-                </svg>
+              <TabletSmartphone size={40} />
               </div>
               <h3 className="text-xl font-semibold  mb-3">
                 Mobile Development
@@ -533,16 +353,7 @@ const Mainpage = () => {
             {/* Custom Software Development */}
             <div className="card flex flex-col items-center p-6  rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className=" text-4xl mb-4">
-                <svg
-                  className="w-12 h-12"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M12 4.5v15m7.5-7.5H4.5" />
-                </svg>
+              <Columns4 size={40} />
               </div>
               <h3 className="text-xl font-semibold  mb-3">
                 Custom Software Development
@@ -580,16 +391,7 @@ const Mainpage = () => {
             {/* Cloud Solutions */}
             <div className="card flex flex-col items-center p-6  rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className=" text-4xl mb-4">
-                <svg
-                  className="w-12 h-12"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M6 3H3v18h3V3zm12 18h3V3h-3v18z" />
-                </svg>
+                <CloudCogIcon size={40} />
               </div>
               <h3 className="text-xl font-semibold  mb-3">Cloud Solutions</h3>
               <p className=" text-center">
@@ -625,16 +427,7 @@ const Mainpage = () => {
             {/* E-Commerce Solutions */}
             <div className="card flex flex-col items-center p-6  rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className=" text-4xl mb-4">
-                <svg
-                  className="w-12 h-12"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M2 12l2-2m0 0l4 4 4-4 4 4 4-4m0 0l2 2m-4-4l2-2" />
-                </svg>
+               <ShoppingBag size={40} />
               </div>
               <h3 className="text-xl font-semibold  mb-3">
                 E-Commerce Solutions
@@ -672,16 +465,7 @@ const Mainpage = () => {
             {/* AI & Machine Learning */}
             <div className="card flex flex-col items-center p-6  rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className=" text-4xl mb-4">
-                <svg
-                  className="w-12 h-12"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M12 3v18M3 12h18" />
-                </svg>
+               <Brain size={40} />
               </div>
               <h3 className="text-xl font-semibold  mb-3">
                 AI & Machine Learning
@@ -734,13 +518,13 @@ const Mainpage = () => {
                 key={index}
                 className="border rounded-lg shadow-sm my-2"
               >
-                <button
+                <Button variant="outline"
+                  className="flex justify-between items-center w-full p-4 text-left rounded-lg"
                   onClick={() => toggleCollapse(index)}
-                  className="flex justify-between items-center w-full p-4 hover:border-headfoot_color rounded-lg focus:outline-none"
                 >
                   <span className="text-lg font-bold">{item.title}</span>
-                  {openCollapseIndex === index ? <UpArrow /> : <DownArrow />}
-                </button>
+                  {openCollapseIndex === index ? <ArrowUpIcon /> : <ArrowDown />}
+                </Button>
 
                 {openCollapseIndex === index && (
                   <div className="p-4 rounded-b-lg ">

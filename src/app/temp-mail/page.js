@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import TrendingWords from "@/app/components/trending";
 import DeletionTimer from "@/app/components/temp-mail/DeletionTimer";
 import { toast } from "react-toastify";
+import { ThumbsUp, ThumbsDown, Mail, ClipboardCopy, Copy, Loader, Loader2Icon, PencilLineIcon, MailX } from "lucide-react";
 export default function GetEmailByID() {
   const [id, setId] = useState("");
   const [emails, setEmails] = useState([]);
@@ -13,6 +14,7 @@ export default function GetEmailByID() {
   const [intervalId, SetIntervalId] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
+  const [feedbackLoading, setFeedbackLoading] = useState(false); // Feedback state
 
   const stopRetry = () => {
     if (intervalId) {
@@ -214,6 +216,38 @@ export default function GetEmailByID() {
     return date.toLocaleString(); // Local time with date and time
   }
 
+  const handleFeedback = (type) => async () => {
+    if (!emailcontent._id) return;
+    let description = "";
+    if (type === "bad") {
+      description = window.prompt("Please provide a description (optional):", "");
+      // If user cancels prompt, don't send feedback
+      if (description === null) return;
+    }
+    setFeedbackLoading(true);
+    try {
+      const res = await fetch("/api/emails/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          emailId: emailcontent._id,
+          mail: emailcontent.to?.value?.[0]?.address, // send the recipient email address
+          feedback: type === "good" ? "Good" : "Bad",
+          description: description || "",
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        toast.success("Feedback submitted. Thank you!");
+      } else {
+        toast.error(data.error || "Failed to submit feedback");
+      }
+    } catch (err) {
+      toast.error("Failed to submit feedback");
+    }
+    setFeedbackLoading(false);
+  };
+
   return (
     <div className="flex flex-col gap-4 min-h-screen ">
       <h2 className="text-2xl font-bold mb-4">
@@ -235,15 +269,7 @@ export default function GetEmailByID() {
             placeholder="Enter your email prefix/Username (we will add @tm.od2.in for you)"
           />
 
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="size-7 absolute left-1 top-1 items-center"
-          >
-            <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-            <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
-          </svg>
-
+            <Mail className="absolute left-1 top-2 " />
           <button
             className={`absolute right-1 top-1  py-1 px-2.5 border border-transparent text-center text-sm  shadow-sm hover:shadow  focus:shadow-none ${
               isSubmitEnabled
@@ -269,21 +295,13 @@ export default function GetEmailByID() {
         <button
           onClick={copyToClipboard}
           disabled={!isSubmitEnabled}
-          className={`bg-blue-500 flex gap-1 text-white px-3 py-1 rounded-md ${
+          className={`bg-yellow-500 flex gap-1 text-white px-3 py-1 rounded-md ${
             isSubmitEnabled
               ? ""
               : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           }`}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 20"
-            fill="currentColor"
-            className="size-4"
-          >
-            <path d="M7.5 3.375c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 0 1 3.75 3.75v1.875C13.5 8.161 14.34 9 15.375 9h1.875A3.75 3.75 0 0 1 21 12.75v3.375C21 17.16 20.16 18 19.125 18h-9.75A1.875 1.875 0 0 1 7.5 16.125V3.375Z" />
-            <path d="M15 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 17.25 7.5h-1.875A.375.375 0 0 1 15 7.125V5.25ZM4.875 6H6v10.125A3.375 3.375 0 0 0 9.375 19.5H16.5v1.125c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625V7.875C3 6.839 3.84 6 4.875 6Z" />
-          </svg>
+          <Copy />
           Copy
         </button>
       </div>
@@ -291,24 +309,15 @@ export default function GetEmailByID() {
 
       <div className="flex flex-col lg:flex-row gap-2">
         <div className="maincard flex flex-col space-y-2 lg:w-1/3 w-full  p-4 rounded-md">
-          <div className="card relative items-center flex justify-center rounded-md ">
+          <div className="card relative items-center flex gap-3 justify-center rounded-md ">
             <h3 className="text-2xl">Inbox</h3>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-6 absolute right-1"
+            <Loader
               style={{
                 animation: isRefreshing ? "spin 1s linear infinite" : "none", // Spin when refreshing
               }}
               hidden={!isRefreshing}
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z"
-                clipRule="evenodd"
-              />
-            </svg>
+            />
+              
           </div>
 
           <div className="flex flex-col overflow-y-auto gap-2 w-100 max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
@@ -328,15 +337,7 @@ export default function GetEmailByID() {
                   >
                     <div className="flex flex-row gap-3">
                       <div className="w-30">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          className="size-6"
-                        >
-                          <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-                          <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
-                        </svg>
+                        <Mail size={24} />
                       </div>
                       <div className="text-start">
                         <p className="font-bold md:text-sm">
@@ -361,23 +362,12 @@ export default function GetEmailByID() {
                 ))
             ) : isLoading ? (
               <div className="flex flex-col items-center p-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="size-11"
-                  style={{
+                <Loader2Icon size={48} style={{
                     animation: isRefreshing
                       ? "spin 1s linear infinite"
                       : "none", // Spin when refreshing
                   }}
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                />
                 <div>
                   <p className="text-dark text-center">
                     Waiting for the First Mail to Touch our Inbox
@@ -396,14 +386,7 @@ export default function GetEmailByID() {
             ) : (
               <div className="flex flex-col items-center justify-center px-2 py-4 text-center">
                 <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="size-12"
-                  >
-                    <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
-                  </svg>
+                 <PencilLineIcon size={48} />
                 </div>
 
                 <div className="font-bold text-xl mt-4">
@@ -439,8 +422,25 @@ export default function GetEmailByID() {
                         "Untitled Email"}
                     </p>
                   </div>
+                  <div className="flex gap-2">
+                    <p>
+                      Feedback:
+                    </p>
+                    <ThumbsUp
+                      color="currentcolor"
+                      fill="green"
+                      className={`hover:cursor-pointer ${feedbackLoading ? "opacity-50 pointer-events-none" : ""}`}
+                      onClick={handleFeedback('good')}
+                    />
+                    <ThumbsDown
+                      color="currentcolor"
+                      fill="red"
+                      className={`hover:cursor-pointer ${feedbackLoading ? "opacity-50 pointer-events-none" : ""}`}
+                      onClick={handleFeedback('bad')}
+                    />
+                  </div>
                 </div>
-                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+                <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
 
                 <p>
                   <strong>Content:</strong>
@@ -457,18 +457,7 @@ export default function GetEmailByID() {
             ) : (
               <div className="flex flex-col items-center justify-center px-2 py-4 text-center">
                 <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="size-12"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12 1.5a.75.75 0 0 1 .75.75V4.5a.75.75 0 0 1-1.5 0V2.25A.75.75 0 0 1 12 1.5ZM5.636 4.136a.75.75 0 0 1 1.06 0l1.592 1.591a.75.75 0 0 1-1.061 1.06l-1.591-1.59a.75.75 0 0 1 0-1.061Zm12.728 0a.75.75 0 0 1 0 1.06l-1.591 1.592a.75.75 0 0 1-1.06-1.061l1.59-1.591a.75.75 0 0 1 1.061 0Zm-6.816 4.496a.75.75 0 0 1 .82.311l5.228 7.917a.75.75 0 0 1-.777 1.148l-2.097-.43 1.045 3.9a.75.75 0 0 1-1.45.388l-1.044-3.899-1.601 1.42a.75.75 0 0 1-1.247-.606l.569-9.47a.75.75 0 0 1 .554-.68ZM3 10.5a.75.75 0 0 1 .75-.75H6a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 10.5Zm14.25 0a.75.75 0 0 1 .75-.75h2.25a.75.75 0 0 1 0 1.5H18a.75.75 0 0 1-.75-.75Zm-8.962 3.712a.75.75 0 0 1 0 1.061l-1.591 1.591a.75.75 0 1 1-1.061-1.06l1.591-1.592a.75.75 0 0 1 1.06 0Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+              <MailX size={48} />
                 </div>
 
                 <div className="font-bold text-xl mt-4">
