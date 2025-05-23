@@ -17,6 +17,7 @@ const Header = () => {
   const navLinks = [
     { id: "", label: "Home" },
     { id: "temp-mail", label: "Temp Mail" },
+    { id: "captcha", label: "reCAPTCHA" },
     { id: "passport-photo-printing", label: "Photo Maker" },
     { id: "products", label: "Products" },
     { id: "products//od2-billing-system", label: "Billing System" },
@@ -46,7 +47,7 @@ const Header = () => {
                 />
               </Link>
               <h2 className="ml-2 text-xl font-bold">
-                OD2 - {currentTitle.label}
+                <Link className="text-current" href="/">OD2 - {currentTitle.label}</Link>
               </h2>
             </div>
 

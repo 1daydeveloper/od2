@@ -41,14 +41,14 @@ const Mainpage = () => {
       <div className="flex flex-col text-center">
         <div >
           <Link
-            href="/temp-mail"
+            href="/captcha"
             className="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800"
           >
             <span className="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 me-3">
               New
             </span>{" "}
             <span className="text-sm font-medium">
-              New Temp Mail System is Lached Check that Now!
+              New CAPTCHA Test Suit is Introduced check that out!
             </span>
           <MoveRight className="ml-3" />
           </Link>
