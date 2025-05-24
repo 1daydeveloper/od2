@@ -25,6 +25,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 // ListItem styled like shadcn/ui demo
 const ListItem = React.forwardRef(
@@ -70,7 +72,7 @@ const FeatureCard = ({ icon: Icon, title, description, href }) => (
 );
 
 // Desktop navigation menu using menuItems, shadcn/ui style
-function NavigationMenuDemo() {
+function NavigationDesktop() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -224,41 +226,47 @@ const Header = () => {
     };
 
   return (
-    <header className="bg-header_bg text-header_text">
-      <nav className="px-4 sm:px-6 py-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center">
-              <Link href="/">
-                <Image
-                  src="/odd.png"
-                  alt="Next.js Logo"
-                  width={50}
-                  height={50}
-                  className="h-30 w-30 rounded-full"
-                  priority
-                />
-              </Link>
-              <h2 className="ml-2 text-xl font-bold">
-                <Link className="text-current" href="/">
-                  OD2 - {currentTitle.label}
+    <Card
+      as="header"
+      className="sticky top-0 z-50 bg-header_bg/95 backdrop-blur border-0 rounded-none shadow-none"
+    >
+      <CardContent className="p-0">
+        <nav className="px-4 sm:px-6 py-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center">
+                <Link href="/">
+                  <Image
+                    src="/odd.png"
+                    alt="Next.js Logo"
+                    width={50}
+                    height={50}
+                    className="h-30 w-30 rounded-full"
+                    priority
+                  />
                 </Link>
-              </h2>
-            </div>
-            {/* Desktop nav */}
-            <div className="hidden md:flex items-center space-x-8">
-              <NavigationMenuDemo />
-              <ThemeToggle />
-            </div>
-            {/* Mobile nav */}
-            <div className="flex md:hidden items-center space-x-2">
-              <ThemeToggle />
-              <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+                <h2 className="ml-2 text-xl font-bold">
+                  <Link className="text-current" href="/">
+                    OD2 - {currentTitle.label}
+                  </Link>
+                </h2>
+              </div>
+              {/* Desktop nav */}
+              <div className="hidden md:flex items-center space-x-8">
+                <NavigationDesktop />
+                <ThemeToggle />
+              </div>
+              {/* Mobile nav */}
+              <div className="flex md:hidden items-center space-x-2">
+                <ThemeToggle />
+                <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+        <Separator />
+      </CardContent>
+    </Card>
   );
 };
 

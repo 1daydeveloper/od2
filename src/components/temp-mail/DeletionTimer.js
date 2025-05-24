@@ -1,6 +1,8 @@
 // pages/deletion-timer.js
 
 import { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default function DeletionTimer() {
   const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnight());
@@ -27,30 +29,44 @@ export default function DeletionTimer() {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h2 className="text-4xl font-bold mb-6">Deletion Timer</h2>
-      <div className="flex space-x-4">
-        {/* Hour Block */}
-        <div className="flex flex-col items-center">
-          <p className="text-6xl font-bold text-red-600 animate-pulse">
-            {String(timeLeft.hours).padStart(2, "0")}
-          </p>
-          <p className="text-lg uppercase mt-2">Hours</p>
-        </div>
-        {/* Minute Block */}
-        <div className="flex flex-col items-center">
-          <p className="text-6xl font-bold text-red-600 animate-bounce">
-            {String(timeLeft.minutes).padStart(2, "0")}
-          </p>
-          <p className="text-lg uppercase mt-2">Minutes</p>
-        </div>
-        {/* Second Block */}
-        <div className="flex flex-col items-center">
-          <p className="text-6xl font-bold text-red-600 animate-pulse">
-            {String(timeLeft.seconds).padStart(2, "0")}
-          </p>
-          <p className="text-lg uppercase mt-2">Seconds</p>
-        </div>
-      </div>
+      <Card className="w-full max-w-md shadow-lg">
+        <CardHeader>
+          <CardTitle className="text-center text-3xl font-bold">
+            Deletion Timer
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex justify-center space-x-6">
+            {/* Hour Block */}
+            <div className="flex flex-col items-center">
+              <span className="text-5xl font-mono font-bold text-destructive">
+                {String(timeLeft.hours).padStart(2, "0")}
+              </span>
+              <Badge variant="outline" className="mt-2 uppercase">
+                Hours
+              </Badge>
+            </div>
+            {/* Minute Block */}
+            <div className="flex flex-col items-center">
+              <span className="text-5xl font-mono font-bold text-destructive">
+                {String(timeLeft.minutes).padStart(2, "0")}
+              </span>
+              <Badge variant="outline" className="mt-2 uppercase">
+                Minutes
+              </Badge>
+            </div>
+            {/* Second Block */}
+            <div className="flex flex-col items-center">
+              <span className="text-5xl font-mono font-bold text-destructive">
+                {String(timeLeft.seconds).padStart(2, "0")}
+              </span>
+              <Badge variant="outline" className="mt-2 uppercase">
+                Seconds
+              </Badge>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
