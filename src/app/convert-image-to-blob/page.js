@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
 
 export default function ImageToDataURL() {
   const [imageFile, setImageFile] = useState(null);
@@ -25,142 +28,158 @@ export default function ImageToDataURL() {
   };
 
   return (
-    <div className=" flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       <h1 className="text-2xl font-bold mb-4">
-        Image to Data URL Converter(Blob Converter)
+        Image to Data URL Converter (Blob Converter)
       </h1>
-      <div className=" p-6 shadow-md border rounded-lg">
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          className="block mb-4 w-full border border-gray-300 rounded-lg p-2"
-        />
-        {imageFile && (
-          <div>
-            <h2 className="font-semibold mb-2">Uploaded Image Preview:</h2>
-            <img
-              src={dataUrl}
-              alt="Uploaded"
-              className="w-full max-w-xs rounded-lg mb-4"
-            />
-            <h3 className="font-semibold mb-2">Data URL:</h3>
-            <div className="flex items-center mb-4">
-              <input
-                type="text"
-                value={dataUrl}
-                readOnly
-                className="flex-grow border  bg-transparent rounded-lg p-2 mr-2"
+      <Card className="p-6 mb-4 w-full max-w-4xl">
+        <CardHeader>
+          <CardTitle>Upload Image</CardTitle>
+          <CardDescription>
+            Select an image to convert it to a Base64 Data URL.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="mb-4"
+          />
+          {imageFile && (
+            <div>
+              <div className="mb-2 font-semibold">Uploaded Image Preview:</div>
+              <img
+                src={dataUrl}
+                alt="Uploaded"
+                className="w-full max-w-xs rounded-lg mb-4"
               />
-              <button
-                onClick={copyToClipboard}
-                className="bg-blue-500  px-4 py-2 rounded-lg hover:bg-blue-600"
-              >
-                Copy
-              </button>
+              <div className="mb-2 font-semibold">Data URL:</div>
+              <div className="flex items-center mb-4 gap-2">
+                <Input
+                  type="text"
+                  value={dataUrl}
+                  readOnly
+                  className="flex-grow"
+                />
+                <Button onClick={copyToClipboard} variant="default">
+                  Copy
+                </Button>
+              </div>
+              <Button asChild variant="default">
+                <a href={dataUrl} download="converted-image.png">
+                  Download Image
+                </a>
+              </Button>
             </div>
-            <a
-              href={dataUrl}
-              download="converted-image.png"
-              className="inline-block bg-blue-500  px-4 py-2 rounded-lg hover:bg-blue-600"
-            >
-              Download Image
-            </a>
-          </div>
-        )}
-      </div>
+          )}
+        </CardContent>
+      </Card>
       <div className="maincard max-w-3xl mx-auto text-center mt-3">
         <p className="text-lg mb-6">
           Convert images into Base64 Data URLs quickly and easily. This tool is
           perfect for embedding images directly into web pages, CSS, or
           JavaScript.
         </p>
-
         {/* Call to Action */}
-        <a
-          href="https://www.od2.in/convert-image-to-blob"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg inline-block mb-6 transition"
-        >
-          Try the Tool Now!
-        </a>
-
-        {/* Features Section */}
-        <div className="card p-6 rounded-lg shadow-md mb-6">
-          <h2 className="text-2xl font-semibold mb-4">Why Use This Tool?</h2>
-          <ul className="text-left list-disc pl-6 space-y-2">
-            <li>
-              🚀 <strong>Faster Loading</strong> – Reduces HTTP requests.
-            </li>
-            <li>
-              📂 <strong>Offline Support</strong> – No external image hosting
-              needed.
-            </li>
-            <li>
-              🔒 <strong>Improved Security</strong> – Prevents image hotlinking.
-            </li>
-            <li>
-              📧 <strong>Ideal for Emails</strong> – Keeps images visible in
-              email templates.
-            </li>
-            <li>
-              🛠️ <strong>Free & Easy</strong> – No sign-up required, just upload
-              and convert.
-            </li>
-          </ul>
-        </div>
-
-        {/* Usage Instructions */}
-        <div className="card p-6 rounded-lg shadow-md mb-6">
-          <h2 className="text-2xl font-semibold mb-4">
-            How to Convert an Image?
-          </h2>
-          <ol className="text-left list-decimal pl-6 space-y-2">
-            <li>
-              📤 <strong>Upload</strong> an image (JPG, PNG, GIF, SVG, etc.).
-            </li>
-            <li>
-              ⚡ The tool will **automatically convert** it to a **Base64 Data
-              URL**.
-            </li>
-            <li>
-              📋 <strong>Copy or Download</strong> the generated Data URL for
-              your project.
-            </li>
-          </ol>
-        </div>
-
-        {/* Use Cases */}
-        <div className="card p-6 rounded-lg shadow-md mb-6">
-          <h2 className="text-2xl font-semibold mb-4">
-            Where Can You Use Data URLs?
-          </h2>
-          <ul className="text-left  list-disc pl-6 space-y-2">
-            <li>
-              💻 <strong>Web Development</strong> – Embed images in HTML, CSS,
-              or JavaScript.
-            </li>
-            <li>
-              📧 <strong>Email Templates</strong> – Prevents broken images in
-              newsletters.
-            </li>
-            <li>
-              📊 <strong>Data Storage</strong> – Store small images in JSON or
-              databases.
-            </li>
-            <li>
-              🔐 <strong>Privacy & Security</strong> – No external hosting
-              required.
-            </li>
-          </ul>
-        </div>
-
-        {/* External Link & Final CTA */}
-        <div className="card p-4 rounded-lg shadow-md text-xl font-semibold">
-          Start Converting Your Images Instantly!
-          <a href="https://www.od2.in/convert-image-to-blob" className="underline ml-2">
-            Click Here to Use the Tool
+        <Button asChild size="lg" className="mb-6">
+          <a
+            href="https://www.od2.in/convert-image-to-blob"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Try the Tool Now!
           </a>
-        </div>
+        </Button>
+        {/* Features Section */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Why Use This Tool?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="text-left list-disc pl-6 space-y-2">
+              <li>
+                🚀 <strong>Faster Loading</strong> – Reduces HTTP requests.
+              </li>
+              <li>
+                📂 <strong>Offline Support</strong> – No external image hosting
+                needed.
+              </li>
+              <li>
+                🔒 <strong>Improved Security</strong> – Prevents image hotlinking.
+              </li>
+              <li>
+                📧 <strong>Ideal for Emails</strong> – Keeps images visible in
+                email templates.
+              </li>
+              <li>
+                🛠️ <strong>Free & Easy</strong> – No sign-up required, just upload
+                and convert.
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+        {/* Usage Instructions */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>How to Convert an Image?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ol className="text-left list-decimal pl-6 space-y-2">
+              <li>
+                📤 <strong>Upload</strong> an image (JPG, PNG, GIF, SVG, etc.).
+              </li>
+              <li>
+                ⚡ The tool will <strong>automatically convert</strong> it to a <strong>Base64 Data
+                URL</strong>.
+              </li>
+              <li>
+                📋 <strong>Copy or Download</strong> the generated Data URL for
+                your project.
+              </li>
+            </ol>
+          </CardContent>
+        </Card>
+        {/* Use Cases */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Where Can You Use Data URLs?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="text-left list-disc pl-6 space-y-2">
+              <li>
+                💻 <strong>Web Development</strong> – Embed images in HTML, CSS,
+                or JavaScript.
+              </li>
+              <li>
+                📧 <strong>Email Templates</strong> – Prevents broken images in
+                newsletters.
+              </li>
+              <li>
+                📊 <strong>Data Storage</strong> – Store small images in JSON or
+                databases.
+              </li>
+              <li>
+                🔐 <strong>Privacy & Security</strong> – No external hosting
+                required.
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+        {/* External Link & Final CTA */}
+        <Card>
+          <CardContent className="text-xl font-semibold flex flex-col items-center">
+            Start Converting Your Images Instantly!
+            <a
+              href="https://www.od2.in/convert-image-to-blob"
+              className="underline mt-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Click Here to Use the Tool
+            </a>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

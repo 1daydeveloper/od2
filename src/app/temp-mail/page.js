@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import TrendingWords from "@/app/components/trending";
-import DeletionTimer from "@/app/components/temp-mail/DeletionTimer";
+import TrendingWords from "@/components/trending";
+import DeletionTimer from "@/components/temp-mail/DeletionTimer";
 import { toast } from "react-toastify";
 import { ThumbsUp, ThumbsDown, Mail, ClipboardCopy, Copy, Loader, Loader2Icon, PencilLineIcon, MailX } from "lucide-react";
+import { Card } from "@/components/ui/card";
+
 export default function GetEmailByID() {
   const [id, setId] = useState("");
   const [emails, setEmails] = useState([]);
@@ -204,10 +206,10 @@ export default function GetEmailByID() {
     } else if (diffInMinutes < 60) {
       return `${diffInMinutes}m ago`; // Less than 1 hour
     } else if (diffInHours < 24) {
-      return `${diffInHours}h ${diffInMinutes % 60}m ago`; // Less than 24 hours
-    } else {
       const diffInDays = Math.floor(diffInHours / 24);
       return `${diffInDays}d ago`; // More than 24 hours
+    } else {
+      return `${diffInHours}h ${diffInMinutes % 60}m ago`; // Less than 24 hours
     }
   }
 
@@ -271,7 +273,7 @@ export default function GetEmailByID() {
 
             <Mail className="absolute left-1 top-2 " />
           <button
-            className={`absolute right-1 top-1  py-1 px-2.5 border border-transparent text-center text-sm  shadow-sm hover:shadow  focus:shadow-none ${
+            className={`absolute right-1 top-1 py-1 px-2.5 border border-transparent text-center text-sm  shadow-sm hover:shadow  focus:shadow-none ${
               isSubmitEnabled
                 ? ""
                 : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -308,18 +310,16 @@ export default function GetEmailByID() {
       <TrendingWords addKeyToInput={addKeyToInput} />
 
       <div className="flex flex-col lg:flex-row gap-2">
-        <div className="maincard flex flex-col space-y-2 lg:w-1/3 w-full  p-4 rounded-md">
-          <div className="card relative items-center flex gap-3 justify-center rounded-md ">
+        <Card className="flex flex-col space-y-2 lg:w-1/3 w-full  p-4 rounded-md">
+          <Card className="relative items-center flex gap-3 justify-center rounded-md ">
             <h3 className="text-2xl">Inbox</h3>
             <Loader
               style={{
-                animation: isRefreshing ? "spin 1s linear infinite" : "none", // Spin when refreshing
+                animation: isRefreshing ? "spin 1s linear infinite" : "none",
               }}
               hidden={!isRefreshing}
             />
-              
-          </div>
-
+          </Card>
           <div className="flex flex-col overflow-y-auto gap-2 w-100 max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
             {emails && emails.length !== 0 ? (
               emails
@@ -395,13 +395,13 @@ export default function GetEmailByID() {
               </div>
             )}
           </div>
-        </div>
+        </Card>
 
-        <div className="maincard flex-grow lg:w-2/3 w-full space-y-4   p-4 rounded-md">
-          <div className="card items-center flex justify-center  rounded-md ">
+        <Card className="flex-grow lg:w-2/3 w-full space-y-4   p-4 rounded-md">
+          <Card className="items-center flex justify-center  rounded-md ">
             <h3 className="text-2xl">Email Content</h3>
-          </div>{" "}
-          <div className="card overflow-y-auto max-h-[calc(100vh-170px)] max-lg:max-h-[calc(100vh-180px)]">
+          </Card>
+          <Card className="overflow-y-auto max-h-[calc(100vh-170px)] max-lg:max-h-[calc(100vh-180px)]">
             {Object.keys(emailcontent).length !== 0 ? (
               <div>
                 <div className="rounded p-1">
@@ -465,10 +465,10 @@ export default function GetEmailByID() {
                 </div>
               </div>
             )}
-          </div>
-        </div>
+          </Card>
+        </Card>
       </div>
-      <div className="maincard rounded-lg shadow ">
+      <Card className="maincard rounded-lg shadow ">
         <div className="container mx-auto mb-2">
           <h2 className="text-3xl md:text-5xl font-bold text-centermb-6">
             Temporary Email(temp Mail) Made Simple with OD2
@@ -539,9 +539,9 @@ export default function GetEmailByID() {
               </ul>
             </div>
           </div>
-          <section className="card text-center py-12 my-2">
+          <Card className="text-center py-12 my-2">
             <DeletionTimer/>
-            </section>
+          </Card>
           <div id="userNameRules" className="mb-3">
             <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
               Username Rules
@@ -574,7 +574,7 @@ export default function GetEmailByID() {
             </ul>
           </div>
           <div className="flex flex-col gap-3">
-            <section className="card shadow-lg rounded-lg ">
+            <Card className="shadow-lg rounded-lg ">
               <h2 className="text-2xl font-bold ">
                 Why Choose Temporary Mail?
               </h2>
@@ -589,9 +589,9 @@ export default function GetEmailByID() {
                   information.
                 </li>
               </ul>
-            </section>
+            </Card>
 
-            <section className="card text-center py-12">
+            <Card className="text-center py-12">
               <h2 className="text-3xl font-bold">Try It Now</h2>
               <p className="mt-4 text-lg">
                 Ready to protect your inbox and maintain your privacy?
@@ -599,8 +599,8 @@ export default function GetEmailByID() {
               <a href="#" className="abtn inline-block">
                 Get Started for Free
               </a>
-            </section>
-            <section className="card shadow-lg rounded-lg p-6 mt-8">
+            </Card>
+            <Card className="shadow-lg rounded-lg p-6 mt-8">
               <h2 className="text-2xl font-bold">
                 Features of Our Temp Mail Service
               </h2>
@@ -622,9 +622,9 @@ export default function GetEmailByID() {
                   CSS for a sleek experience.
                 </li>
               </ul>
-            </section>
+            </Card>
 
-            <section className="card shadow-lg rounded-lg p-6 mt-8">
+            <Card className="shadow-lg rounded-lg p-6 mt-8">
               <h2 className="text-2xl font-bold ">How It Works</h2>
               <ol className="list-decimal list-inside mt-4 space-y-2">
                 <li>Visit our website.</li>
@@ -634,9 +634,9 @@ export default function GetEmailByID() {
                 </li>
                 <li>Receive emails in real-time and delete them when done.</li>
               </ol>
-            </section>
+            </Card>
 
-            <section className="card border shadow-lg rounded-lg p-6 mt-8">
+            <Card className="border shadow-lg rounded-lg p-6 mt-8">
               <h2 className="text-2xl font-bold">FAQs About Temporary Mail</h2>
               <div className="mt-4 space-y-4">
                 <div>
@@ -660,13 +660,13 @@ export default function GetEmailByID() {
                   </p>
                 </div>
               </div>
-            </section>
-            <section className="card border shadow-xl rounded-xl  text-center py-12">
+            </Card>
+            <Card className="border shadow-xl rounded-xl  text-center py-12">
               <h1 className="text-4xl font-bold">Temporary Email Service</h1>
               <p className="mt-4 text-lg">
                 Fast, Secure, and Hassle-Free Disposable Email for Everyone
               </p>
-            </section>
+            </Card>
 
             {/* History and Features Section */}
             <section className="max-w-6xl mx-auto py-12 px-4">
@@ -687,7 +687,7 @@ export default function GetEmailByID() {
                 </a>
               </p>
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="card p-6 shadow-md rounded-md">
+                <Card className="p-6 shadow-md rounded-md">
                   <h3 className="text-xl font-semibold ">
                     Secure Online Signups
                   </h3>
@@ -695,8 +695,8 @@ export default function GetEmailByID() {
                     Use temporary mail for registrations on websites, forums, or
                     social media platforms without sharing your permanent email.
                   </p>
-                </div>
-                <div className="card p-6 shadow-md rounded-md">
+                </Card>
+                <Card className="p-6 shadow-md rounded-md">
                   <h3 className="text-xl font-semibold ">Prevent Spam</h3>
                   <p className="mt-2 ">
                     Avoid promotional emails and unsolicited offers in your
@@ -710,8 +710,8 @@ export default function GetEmailByID() {
                       Learn how to manage spam.
                     </a>
                   </p>
-                </div>
-                <div className="card p-6  shadow-md rounded-md">
+                </Card>
+                <Card className="p-6  shadow-md rounded-md">
                   <h3 className="text-xl font-semibold ">
                     Testing and Development
                   </h3>
@@ -719,20 +719,20 @@ export default function GetEmailByID() {
                     Ideal for developers and QA testers to test email workflows
                     without cluttering real accounts.
                   </p>
-                </div>
-                <div className="card p-6  shadow-md rounded-md">
+                </Card>
+                <Card className="p-6  shadow-md rounded-md">
                   <h3 className="text-xl font-semibold ">Enhanced Privacy</h3>
                   <p className="mt-2 ">
                     Safeguard your identity while participating in online
                     surveys, polls, or giveaways.
                   </p>
-                </div>
+                </Card>
               </div>
             </section>
 
             {/* Call-to-Action Section */}
           </div>
-          <div className="card shadow-lg rounded-lg p-6 mt-8  text-center">
+          <Card className="shadow-lg rounded-lg p-6 mt-8  text-center">
             <h3 className="text-xl md:text-2xl font-semibold 800 mb-4">
               Ready to Simplify Your Email Experience?
             </h3>
@@ -746,9 +746,9 @@ export default function GetEmailByID() {
             >
               Access Your Temporary Inbox
             </a>
-          </div>
+          </Card>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

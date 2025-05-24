@@ -1,11 +1,12 @@
-import Footer from "@/app/components/footer";
-import Header from "@/app/components/header";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
 import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Clarity from "@microsoft/clarity";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
+import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
@@ -228,7 +229,13 @@ export default function RootLayout({ children }) {
 />
 
       </head>
-      <body className={`${inter.className} bg-background`}>
+      <body className={`${inter.className}`}>
+         <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
         <Header />
         <div className="p-2 py-3 lg:px-16">{children}</div>
         <ToastContainer
@@ -254,6 +261,7 @@ export default function RootLayout({ children }) {
             ></iframe>
           </noscript>
         )}
+        </ThemeProvider>
       </body>
     </html>
   );

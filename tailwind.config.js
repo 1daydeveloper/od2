@@ -25,6 +25,16 @@ module.exports = {
   	},
   	extend: {
   		colors: {
+			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
@@ -32,36 +42,6 @@ module.exports = {
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			warning: 'var(--color-warning)',
-  			error: 'var(--color-error)',
-  			success: 'var(--color-success)',
-  			info: 'var(--color-info)',
-  			background: 'hsl(var(--background))',
-  			text: 'var(--color-text)',
-  			'text-secondary': 'var(--color-text-secondary)',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			card_border: 'var(--color-border)',
-  			heading_color: 'var(--color-heading)',
-  			text_color: 'var(--color-text)',
-  			bg_color: 'var(--color-bg)',
-  			hover_colorL: 'var(--color-hover)',
-  			card_bg_color: 'var(--color-card-bg)',
-  			btn_color: 'var(--color-btn)',
-  			btn_hover_color: 'var(--color-btn-hover)',
-  			black: 'var(--color-black)',
-  			btn_text_color: 'var(--color-btn-text)',
-  			header_bg: 'var(--color-header-bg)',
-  			header_text: 'var(--color-header-text)',
-  			footer_bg: 'var(--color-footer-bg)',
-  			footer_text: 'var(--color-footer-text)',
-  			foreground: 'hsl(var(--foreground))',
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
   			},
   			muted: {
   				DEFAULT: 'hsl(var(--muted))',
@@ -165,7 +145,9 @@ module.exports = {
   			'144': '36rem'
   		},
   		animation: {
-  			gradient: 'gradient 10s cubic-bezier(0.4, 0, 0.2, 1) infinite'
+  			gradient: 'gradient 10s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
   		},
   		keyframes: {
   			gradient: {
@@ -174,6 +156,22 @@ module.exports = {
   				},
   				'50%': {
   					backgroundPosition: '100% 20%'
+  				}
+  			},
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
   				}
   			}
   		},
