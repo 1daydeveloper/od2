@@ -273,7 +273,7 @@ export default function GetEmailByID() {
 
             <Mail className="absolute left-1 top-2 " />
           <button
-            className={`absolute right-1 top-1  py-1 px-2.5 border border-transparent text-center text-sm  shadow-sm hover:shadow  focus:shadow-none ${
+            className={`absolute right-1 top-1 text-primary py-1 px-2.5 border border-transparent text-center text-sm  shadow-sm hover:shadow  focus:shadow-none ${
               isSubmitEnabled
                 ? ""
                 : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
