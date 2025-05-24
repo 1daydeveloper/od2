@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import TrendingWords from "@/app/components/trending";
-import DeletionTimer from "@/app/components/temp-mail/DeletionTimer";
+import TrendingWords from "@/components/trending";
+import DeletionTimer from "@/components/temp-mail/DeletionTimer";
 import { toast } from "react-toastify";
 import { ThumbsUp, ThumbsDown, Mail, ClipboardCopy, Copy, Loader, Loader2Icon, PencilLineIcon, MailX } from "lucide-react";
 export default function GetEmailByID() {

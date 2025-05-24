@@ -3,7 +3,7 @@
 "use client";
 import React, { useEffect } from "react";
 import Image from "next/image";
-import Technologies from "@/app/components/about/technologies";
+import Technologies from "@/components/about/technologies";
 
 export default function About() {
   return (

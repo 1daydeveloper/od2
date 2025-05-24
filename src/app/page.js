@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Mainpage from "@/app/components/mainpage";
+import Mainpage from "@/components/mainpage";
 
 const Home = () => {
   return <Mainpage />;
