@@ -103,12 +103,12 @@ iframe {
 }
 
 
-button {
-  /* background-color: hsl(var(--primary)); */
+/* button {
+   background-color: hsl(var(--primary)); 
   color: hsl(var(--primary-foreground));
   border: 2px solid hsl(var(--border));
   @apply px-8 py-3 font-semibold rounded-lg;
-}
+} */
 
 
 button:hover {
