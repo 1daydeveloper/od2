@@ -1,12 +1,26 @@
 export const metadata = {
-    title: "Passport Size Printable",
-    description: "Get your passport-size photo perfectly resized and ready for print on 6x4 or 4x6 paper. Quick, easy, and high-quality images for all your official document needs.",
+    title: "Passport Size Printable Photo Maker (6x4) | OD2",
+    description: "Create passport size photos for India, UK, USA, and Australia with our free online Passport Size Printable Photo Maker (6x4). Upload, crop, preview, and generate printable sheets with cut lines. Supports DPI selection, country-specific sizes, and instant download.",
     openGraph: {
-      title: "Passporr Size Printable",
-      description: "Get your passport-size photo perfectly resized and ready for print on 6x4 or 4x6 paper. Quick, easy, and high-quality images for all your official document needs.",
+      title: "Passport Size Printable Photo Maker (6x4) | OD2",
+      description: "Easily create and print passport size photos for multiple countries. Upload, crop, preview, and download a printable 6x4 sheet with cut lines. Supports India, UK, USA, Australia, DPI selection, and more.",
     },
     keywords: [
+      "passport photo maker",
       "passport size photo",
+      "printable passport photo",
+      "passport photo sheet",
+      "passport photo online",
+      "passport photo crop",
+      "passport photo generator",
+      "passport photo download",
+      "passport photo 6x4",
+      "passport photo India",
+      "passport photo UK",
+      "passport photo USA",
+      "passport photo Australia",
+      "DPI passport photo",
+      "free passport photo tool",
       "passport photo print",
       "passport photo print online",
       "passport photo print near me",
@@ -77,9 +91,8 @@ export const metadata = {
       "OD2 Passport Size Printable",
       "OD2",
     ],
-    };
+  };
   
   export default function PhotoLayout({ children }) {
     return <>{children}</>;
   }
-  

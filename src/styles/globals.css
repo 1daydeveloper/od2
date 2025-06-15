@@ -23,6 +23,7 @@
   --input: 20 5.9% 90%;
   --ring: 20 14.3% 4.1%;
   --radius: 0.5rem;
+  --color-link: #1a0dab;
 
 }
 
@@ -47,6 +48,7 @@
   --input: 12 6.5% 15.1%;
   --ring: 24 5.7% 82.9%;
   --radius: 0.5rem;
+  --color-link: #8ab4f8;
 }
 
 html, body {
@@ -228,7 +230,7 @@ h1 {
 }
 
 a {
-  color: hsl(var(--primary));
+  color: var(--color-link);
   @apply font-semibold;
 }
 
