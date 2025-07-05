@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { menuItems } from "@/components/common";
+import { menuItems } from "@/lib/common";
 
 function renderToolCard(item) {
   return (

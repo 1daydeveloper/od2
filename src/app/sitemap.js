@@ -59,6 +59,18 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
+      url: "https://www.od2.in/awd",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: "https://www.od2.in/awd/docs",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
+    {
       url: "https://www.od2.in/captcha",
       lastModified: new Date(),
       changeFrequency: "weekly",

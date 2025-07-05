@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OD2 Workflow Viewer - Public CDN Integration</title>
+  <link rel="stylesheet" href="/awd/workflow-viewer.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f9fafb;
+    }
+    .demo-section {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #e5e7eb;
+    }
+    .code-block {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 15px;
+      margin: 10px 0;
+      overflow-x: auto;
+    }
+    .code-block code {
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    h1, h2, h3 {
+      color: #111827;
+    }
+    .workflow-demo {
+      height: 400px;
+      margin: 20px 0;
+      border: 2px dashed #d1d5db;
+      border-radius: 8px;
+    }
+    .theme-switcher {
+      margin: 10px 0;
+    }
+    .theme-switcher button {
+      margin-right: 10px;
+      padding: 8px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+    }
+    .theme-switcher button.active {
+      background: #3b82f6;
+      color: white;
+      border-color: #3b82f6;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔄 OD2 Workflow Viewer - Public CDN Integration</h1>
+  
+  <div class="demo-section">
+    <h2>📦 Quick Start - External CDN</h2>
+    <p>Include the OD2 Workflow Viewer in your website using our public CDN:</p>
+    
+    <div class="code-block">
+      <code>&lt;!-- Include CSS from OD2 CDN --&gt;
+&lt;link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css"&gt;
+
+&lt;!-- Include JavaScript from OD2 CDN --&gt;
+&lt;script src="https://od2.in/awd/workflow-viewer.js"&gt;&lt;/script&gt;
+
+&lt;!-- Create container --&gt;
+&lt;div id="workflow-container" style="height: 400px;"&gt;&lt;/div&gt;
+
+&lt;!-- Simple API - just pass container ID and JSON data --&gt;
+&lt;script&gt;
+  // Your workflow data
+  const workflowData = {
+    name: "My Workflow",
+    nodes: [...],
+    edges: [...]
+  };
+  
+  // Render the workflow
+  od2ApiWorkflowRenderer('workflow-container', workflowData);
+&lt;/script&gt;</code>
+    </div>
+    
+    <h3>📦 Local Development</h3>
+    <p>If you're working on the OD2 site itself, use relative paths:</p>
+    
+    <div class="code-block">
+      <code>&lt;!-- For local OD2 development --&gt;
+&lt;link rel="stylesheet" href="/awd/workflow-viewer.css"&gt;
+&lt;script src="/awd/workflow-viewer.js"&gt;&lt;/script&gt;</code>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>🎨 Live Demo</h2>
+    <p>Interactive workflow viewer with theme switching:</p>
+    
+    <div class="theme-switcher">
+      <button onclick="switchTheme('light')" class="active" id="light-btn">Light Theme</button>
+      <button onclick="switchTheme('dark')" id="dark-btn">Dark Theme</button>
+      <button onclick="switchTheme('auto')" id="auto-btn">Auto Theme</button>
+    </div>
+    
+    <div id="demo-workflow" class="workflow-demo"></div>
+  </div>
+
+  <div class="demo-section">
+    <h2>⚙️ Usage Options</h2>
+    
+    <h3>Simple API (Recommended)</h3>
+    <p>For basic embedding, use the global <code>od2ApiWorkflowRenderer</code> function:</p>
+    <div class="code-block">
+      <code>// Basic usage
+od2ApiWorkflowRenderer('container-id', workflowData);
+
+// With options
+od2ApiWorkflowRenderer('container-id', workflowData, {
+  theme: 'dark',
+  height: '600px',
+  interactive: true,
+  showControls: true
+});</code>
+    </div>
+
+    <h3>Advanced API</h3>
+    <p>For more control, use the full OD2WorkflowViewer API:</p>
+    <div class="code-block">
+      <code>OD2WorkflowViewer.render({
+  container: '#workflow-container',     // CSS selector or DOM element
+  workflowUrl: '/path/to/workflow.json', // URL to workflow JSON file
+  // OR
+  workflow: workflowData,               // Direct workflow data object
+  
+  // Display options
+  theme: 'light',                       // 'light', 'dark', or 'auto'
+  width: '100%',                        // Container width
+  height: '400px',                      // Container height
+  
+  // Interaction options
+  interactive: true,                    // Enable pan/zoom/drag
+  showControls: true,                   // Show zoom controls
+  fitView: true,                        // Auto-fit workflow to container
+  
+  // Event handlers
+  onNodeClick: function(node) {
+    console.log('Node clicked:', node);
+  }
+});</code>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>🔗 CDN URLs</h2>
+    <p>Use these public CDN URLs to include the workflow viewer in any website:</p>
+    
+    <div class="code-block">
+      <code><strong>CSS:</strong> https://od2.in/awd/workflow-viewer.css
+<strong>JS:</strong>  https://od2.in/awd/workflow-viewer.js</code>
+    </div>
+    
+    <p><strong>Benefits of using OD2 CDN:</strong></p>
+    <ul>
+      <li>✅ No external dependencies - host everything yourself</li>
+      <li>✅ Consistent availability from od2.in</li>
+      <li>✅ Fast global delivery</li>
+      <li>✅ Privacy friendly (no tracking)</li>
+      <li>✅ Always up-to-date with latest features</li>
+      <li>✅ Free to use for any project</li>
+    </ul>
+    
+    <h3>🌐 Copy-Paste Integration</h3>
+    <div class="code-block">
+      <code>&lt;!-- Copy this into your &lt;head&gt; --&gt;
+&lt;link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css"&gt;
+
+&lt;!-- Copy this before &lt;/body&gt; --&gt;
+&lt;script src="https://od2.in/awd/workflow-viewer.js"&gt;&lt;/script&gt;</code>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>📝 Integration Examples</h2>
+    
+    <h3>Basic HTML Integration</h3>
+    <div class="code-block">
+      <code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Workflow App&lt;/title&gt;
+  &lt;link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;My API Workflow&lt;/h1&gt;
+  &lt;div id="my-workflow" style="height: 500px;"&gt;&lt;/div&gt;
+  
+  &lt;script src="https://od2.in/awd/workflow-viewer.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+    // Simple API usage
+    od2ApiWorkflowRenderer('my-workflow', {
+      name: "Payment Flow",
+      nodes: [
+        {
+          id: "1",
+          position: { x: 100, y: 100 },
+          data: {
+            name: "Validate Payment",
+            method: "POST",
+            path: "/api/payments/validate"
+          }
+        }
+        // ... more nodes
+      ],
+      edges: [/* your edges */]
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>
+    </div>
+
+    <h3>React Integration</h3>
+    <div class="code-block">
+      <code>// First, add the CDN link to your public/index.html:
+// &lt;link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css"&gt;
+// &lt;script src="https://od2.in/awd/workflow-viewer.js"&gt;&lt;/script&gt;
+
+import { useEffect, useRef } from 'react';
+
+function WorkflowDisplay({ workflowData }) {
+  const containerRef = useRef(null);
+  
+  useEffect(() => {
+    if (containerRef.current && workflowData && window.od2ApiWorkflowRenderer) {
+      od2ApiWorkflowRenderer(containerRef.current, workflowData, {
+        theme: 'auto',
+        height: '400px'
+      });
+    }
+  }, [workflowData]);
+  
+  return &lt;div ref={containerRef} style={{ height: '400px' }} /&gt;;
+}</code>
+    </div>
+
+    <h3>Vue.js Integration</h3>
+    <div class="code-block">
+      <code>// First, add to your public/index.html:
+// &lt;link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css"&gt;
+// &lt;script src="https://od2.in/awd/workflow-viewer.js"&gt;&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div ref="workflowContainer" style="height: 400px;"&gt;&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: ['workflowData'],
+  mounted() {
+    if (this.workflowData && window.od2ApiWorkflowRenderer) {
+      od2ApiWorkflowRenderer(this.$refs.workflowContainer, this.workflowData, {
+        theme: 'light'
+      });
+    }
+  }
+}
+&lt;/script&gt;</code>
+    </div>
+  </div>
+
+  <script src="/awd/workflow-viewer.js"></script>
+  <script>
+    // Sample workflow data for demo
+    const sampleWorkflow = {
+      name: "Sample API Workflow",
+      nodes: [
+        {
+          id: "1",
+          position: { x: 50, y: 50 },
+          data: {
+            name: "Get User",
+            description: "Retrieve user information",
+            method: "GET",
+            path: "/api/users/{id}",
+            operationId: "getUser"
+          }
+        },
+        {
+          id: "2", 
+          position: { x: 350, y: 50 },
+          data: {
+            name: "Update Profile",
+            description: "Update user profile data",
+            method: "PUT", 
+            path: "/api/users/{id}/profile",
+            operationId: "updateProfile"
+          }
+        },
+        {
+          id: "3",
+          position: { x: 350, y: 200 },
+          data: {
+            name: "Send Notification",
+            description: "Send email notification", 
+            method: "POST",
+            path: "/api/notifications",
+            operationId: "sendNotification"
+          }
+        }
+      ],
+      edges: [
+        {
+          id: "e1-2",
+          source: "1", 
+          target: "2",
+          sourceHandle: "success"
+        },
+        {
+          id: "e2-3",
+          source: "2",
+          target: "3", 
+          sourceHandle: "success"
+        }
+      ]
+    };
+
+    let currentViewer = null;
+    let currentTheme = 'light';
+
+    // Initialize demo using simple API
+    function initDemo() {
+      currentViewer = od2ApiWorkflowRenderer('demo-workflow', sampleWorkflow, {
+        theme: currentTheme,
+        width: '100%',
+        height: '400px',
+        onNodeClick: function(node) {
+          alert(`Clicked: ${node.data.name}\nMethod: ${node.data.method}\nPath: ${node.data.path}`);
+        }
+      });
+    }
+
+    // Switch theme
+    function switchTheme(theme) {
+      currentTheme = theme;
+      
+      // Update button states
+      document.querySelectorAll('.theme-switcher button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById(theme + '-btn').classList.add('active');
+      
+      // Re-render with new theme
+      initDemo();
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', initDemo);
+  </script>
+</body>
+</html>

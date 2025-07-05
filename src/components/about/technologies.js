@@ -1,5 +1,5 @@
 import React from "react";
-import { technologies } from "@/components/common";
+import { technologies } from "@/lib/common";
 import {
   Card,
   CardHeader,

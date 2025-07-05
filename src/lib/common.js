@@ -1,4 +1,4 @@
-import { Home, Inbox, Calendar, Search, Settings, MailIcon, Package, PersonStanding, Dock, CalculatorIcon, CheckCircle, Aperture, Camera, Calculator } from "lucide-react";
+import { Home, Mail, Package, PersonStanding, Dock, Calculator, CheckCircle, Aperture, Camera } from "lucide-react";
 
 const menuItems = {
     main: [
@@ -56,7 +56,7 @@ const menuItems = {
             id: "temp-mail",
             label: "Temp Mail",
             url: "/temp-mail",
-            icon: MailIcon,
+            icon: Mail,
             priority: 1,
             description: "Generate temporary email addresses for privacy.",
             features: [
@@ -98,6 +98,19 @@ const menuItems = {
             icon: Aperture,
             priority: 3,
             description: "Create and print passport photos easily.",
+            features: [
+                "Instant photo processing",
+                "Perfect dimensions",
+                "Affordable and accessible",
+            ],
+        },
+           {
+            id: "awd",
+            label: "API Workflow Designer",
+            url: "/awd",
+            icon: Aperture,
+            priority: 3,
+            description: "Create and manage API workflows easily.",
             features: [
                 "Instant photo processing",
                 "Perfect dimensions",

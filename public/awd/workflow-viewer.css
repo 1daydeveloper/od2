@@ -1,0 +1,419 @@
+/**
+ * OD2 Workflow Viewer - CSS Styles
+ * Version: 1.0.0
+ */
+
+/* Light Theme (Default) */
+.od2-workflow-viewer.od2-theme-light {
+  --od2-bg-color: #ffffff;
+  --od2-border-color: #e5e7eb;
+  --od2-text-color: #111827;
+  --od2-text-muted: #6b7280;
+  --od2-node-bg: #f9fafb;
+  --od2-node-border: #d1d5db;
+  --od2-success-color: #10b981;
+  --od2-error-color: #ef4444;
+  --od2-input-color: #3b82f6;
+  --od2-shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Theme */
+.od2-workflow-viewer.od2-theme-dark {
+  --od2-bg-color: #111827;
+  --od2-border-color: #374151;
+  --od2-text-color: #f9fafb;
+  --od2-text-muted: #9ca3af;
+  --od2-node-bg: #1f2937;
+  --od2-node-border: #4b5563;
+  --od2-success-color: #10b981;
+  --od2-error-color: #ef4444;
+  --od2-input-color: #60a5fa;
+  --od2-shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Auto Theme - follows system preference */
+@media (prefers-color-scheme: dark) {
+  .od2-workflow-viewer.od2-theme-auto {
+    --od2-bg-color: #111827;
+    --od2-border-color: #374151;
+    --od2-text-color: #f9fafb;
+    --od2-text-muted: #9ca3af;
+    --od2-node-bg: #1f2937;
+    --od2-node-border: #4b5563;
+    --od2-success-color: #10b981;
+    --od2-error-color: #ef4444;
+    --od2-input-color: #60a5fa;
+    --od2-shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .od2-workflow-viewer.od2-theme-auto {
+    --od2-bg-color: #ffffff;
+    --od2-border-color: #e5e7eb;
+    --od2-text-color: #111827;
+    --od2-text-muted: #6b7280;
+    --od2-node-bg: #f9fafb;
+    --od2-node-border: #d1d5db;
+    --od2-success-color: #10b981;
+    --od2-error-color: #ef4444;
+    --od2-input-color: #3b82f6;
+    --od2-shadow: rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Base Container Styles */
+.od2-workflow-viewer {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.od2-workflow-viewer * {
+  box-sizing: border-box;
+}
+
+/* SVG Styles */
+.od2-workflow-viewer svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Node Styles */
+.od2-node {
+  transition: all 0.2s ease;
+}
+
+.od2-node:hover {
+  filter: brightness(1.05);
+}
+
+.od2-node rect {
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px var(--od2-shadow);
+}
+
+.od2-node:hover rect {
+  stroke-width: 3;
+  box-shadow: 0 4px 8px var(--od2-shadow);
+}
+
+/* Connection Handle Styles */
+.od2-node circle {
+  transition: all 0.2s ease;
+}
+
+.od2-node circle:hover {
+  r: 8;
+  stroke-width: 3;
+}
+
+/* Control Buttons */
+.od2-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+}
+
+.od2-controls button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--od2-border-color);
+  background: var(--od2-bg-color);
+  color: var(--od2-text-color);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px var(--od2-shadow);
+}
+
+.od2-controls button:hover {
+  background: var(--od2-node-bg);
+  border-color: var(--od2-input-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px var(--od2-shadow);
+}
+
+.od2-controls button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px var(--od2-shadow);
+}
+
+/* Loading State */
+.od2-workflow-viewer.od2-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.od2-workflow-viewer.od2-loading::before {
+  content: '';
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--od2-border-color);
+  border-top: 3px solid var(--od2-input-color);
+  border-radius: 50%;
+  animation: od2-spin 1s linear infinite;
+}
+
+@keyframes od2-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.od2-workflow-viewer .od2-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--od2-error-color);
+  text-align: center;
+  padding: 20px;
+}
+
+.od2-workflow-viewer .od2-error-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.od2-workflow-viewer .od2-error-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.od2-workflow-viewer .od2-error-message {
+  font-size: 14px;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .od2-controls {
+    top: 5px;
+    right: 5px;
+    gap: 3px;
+  }
+  
+  .od2-controls button {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+  
+  .od2-workflow-viewer {
+    border-radius: 4px;
+  }
+}
+
+/* High DPI Display Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .od2-workflow-viewer svg {
+    shape-rendering: geometricPrecision;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .od2-controls {
+    display: none;
+  }
+  
+  .od2-workflow-viewer {
+    border: 1px solid #ccc;
+    background: white;
+  }
+}
+
+/* Accessibility */
+.od2-workflow-viewer:focus-within {
+  outline: 2px solid var(--od2-input-color);
+  outline-offset: 2px;
+}
+
+.od2-controls button:focus {
+  outline: 2px solid var(--od2-input-color);
+  outline-offset: 1px;
+}
+
+/* Animation for node connections */
+@keyframes od2-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.od2-node circle.od2-connecting {
+  animation: od2-pulse 1s ease-in-out infinite;
+}
+
+/* Smooth zoom transitions */
+.od2-main-group {
+  transition: transform 0.2s ease-out;
+}
+
+/* Custom scrollbar for overflow areas */
+.od2-workflow-viewer::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.od2-workflow-viewer::-webkit-scrollbar-track {
+  background: var(--od2-bg-color);
+}
+
+.od2-workflow-viewer::-webkit-scrollbar-thumb {
+  background: var(--od2-border-color);
+  border-radius: 4px;
+}
+
+.od2-workflow-viewer::-webkit-scrollbar-thumb:hover {
+  background: var(--od2-text-muted);
+}
+
+/* Tooltip styles for node information */
+.od2-tooltip {
+  position: absolute;
+  background: var(--od2-node-bg);
+  border: 1px solid var(--od2-border-color);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--od2-text-color);
+  box-shadow: 0 4px 12px var(--od2-shadow);
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.od2-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid var(--od2-border-color);
+}
+
+/* Node status indicators */
+.od2-node.od2-status-success rect {
+  border-left: 4px solid var(--od2-success-color);
+}
+
+.od2-node.od2-status-error rect {
+  border-left: 4px solid var(--od2-error-color);
+}
+
+.od2-node.od2-status-pending rect {
+  border-left: 4px solid #f59e0b;
+}
+
+/* Minimap styles (if added later) */
+.od2-minimap {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 150px;
+  height: 100px;
+  border: 1px solid var(--od2-border-color);
+  border-radius: 4px;
+  background: var(--od2-bg-color);
+  opacity: 0.8;
+  z-index: 5;
+}
+
+/* Edge animation */
+.od2-edge-animated {
+  stroke-dasharray: 5;
+  animation: od2-dash 1s linear infinite;
+}
+
+@keyframes od2-dash {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+/* Action button styles */
+.od2-action-button {
+  transition: all 0.2s ease-in-out;
+}
+
+.od2-action-button:hover {
+  transform: scale(1.1);
+}
+
+.od2-action-button circle {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Image modal styles */
+.od2-image-modal-overlay {
+  backdrop-filter: blur(4px);
+  animation: od2-fade-in 0.2s ease-out;
+}
+
+@keyframes od2-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.od2-image-modal-container {
+  animation: od2-scale-in 0.2s ease-out;
+}
+
+@keyframes od2-scale-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Action button tooltip styles */
+.od2-action-button-tooltip {
+  position: absolute;
+  background: var(--od2-node-bg);
+  color: var(--od2-text-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  border: 1px solid var(--od2-border-color);
+  box-shadow: 0 2px 4px var(--od2-shadow);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.od2-action-button:hover .od2-action-button-tooltip {
+  opacity: 1;
+}
