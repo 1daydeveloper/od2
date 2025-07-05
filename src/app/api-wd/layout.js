@@ -1,8 +1,8 @@
 export const metadata = {
-  title: "Automated Workflow Designer | JSON-Based Visual Workflow Builder",
+  title: "API Workflow Designer | JSON-Based Visual Workflow Builder",
   description: "Create visual API workflows with OpenAPI integration. Build, export, and embed interactive workflow diagrams with our drag-and-drop interface. Perfect for API documentation and workflow visualization.",
   openGraph: {
-    title: "Automated Workflow Designer | Visual API Workflow Builder",
+    title: "API Workflow Designer | Visual API Workflow Builder",
     description: "Create visual API workflows with OpenAPI integration. Build, export, and embed interactive workflow diagrams with our drag-and-drop interface. Perfect for API documentation and workflow visualization.",
   },
   keywords: [
@@ -15,7 +15,7 @@ export const metadata = {
     "visual API designer",
     "workflow visualization",
     "API flow chart",
-    "automated workflow",
+    "api workflow",
     "JSON workflow",
     "drag and drop workflow",
     "workflow export",
@@ -59,6 +59,6 @@ export const metadata = {
   ],
 };
   
-export default function AWDLayout({ children }) {
+export default function APIWDLayout({ children }) {
   return <>{children}</>;
 }

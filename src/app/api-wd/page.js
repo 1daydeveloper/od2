@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import WorkflowBuilder from "@/components/workflow/WorkflowBuilder";
 
-export default function AWDPage() {
+export default function APIWDPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation Links */}

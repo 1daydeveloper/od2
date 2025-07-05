@@ -11,12 +11,12 @@ Include the workflow viewer directly from OD2's CDN - no downloads needed:
 <html>
 <head>
   <title>My Workflow App</title>
-  <link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css">
+  <link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css">
 </head>
 <body>
   <div id="my-workflow" style="height: 500px;"></div>
   
-  <script src="https://od2.in/awd/workflow-viewer.js"></script>
+  <script src="https://od2.in/api-wd/workflow-viewer.js"></script>
   <script>
     // Your workflow data
     const workflowData = {
@@ -40,8 +40,8 @@ For local OD2 development, use relative paths:
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="/awd/workflow-viewer.css">
-  <script src="/awd/workflow-viewer.js"></script>
+  <link rel="stylesheet" href="/api-wd/workflow-viewer.css">
+  <script src="/api-wd/workflow-viewer.js"></script>
 </head>
 <body>
   <div id="my-workflow" style="height: 500px;"></div>
@@ -113,7 +113,7 @@ The viewer supports three themes:
 ## 📁 File Structure
 
 ```
-/awd/
+/api-wd/
   ├── workflow-viewer.js     # Main viewer component
   ├── workflow-viewer.css    # Styles and themes
   └── demo.html             # Integration examples
@@ -139,6 +139,6 @@ Part of the OD2 platform. See main project for licensing information.
 
 ## 🔗 Resources
 
-- [Workflow Builder](../awd/) - Create and edit workflows
-- [Documentation](../awd/docs/) - Complete integration guide
+- [Workflow Builder](../api-wd/) - Create and edit workflows
+- [Documentation](../api-wd/docs/) - Complete integration guide
 - [Demo](demo.html) - Live integration examples

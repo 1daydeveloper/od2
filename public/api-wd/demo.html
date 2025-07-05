@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OD2 Workflow Viewer - Public CDN Integration</title>
-  <link rel="stylesheet" href="/awd/workflow-viewer.css">
+  <link rel="stylesheet" href="/api-wd/workflow-viewer.css">
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -69,10 +69,10 @@
     
     <div class="code-block">
       <code>&lt;!-- Include CSS from OD2 CDN --&gt;
-&lt;link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css"&gt;
+&lt;link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css"&gt;
 
 &lt;!-- Include JavaScript from OD2 CDN --&gt;
-&lt;script src="https://od2.in/awd/workflow-viewer.js"&gt;&lt;/script&gt;
+&lt;script src="https://od2.in/api-wd/workflow-viewer.js"&gt;&lt;/script&gt;
 
 &lt;!-- Create container --&gt;
 &lt;div id="workflow-container" style="height: 400px;"&gt;&lt;/div&gt;
@@ -96,8 +96,8 @@
     
     <div class="code-block">
       <code>&lt;!-- For local OD2 development --&gt;
-&lt;link rel="stylesheet" href="/awd/workflow-viewer.css"&gt;
-&lt;script src="/awd/workflow-viewer.js"&gt;&lt;/script&gt;</code>
+&lt;link rel="stylesheet" href="/api-wd/workflow-viewer.css"&gt;
+&lt;script src="/api-wd/workflow-viewer.js"&gt;&lt;/script&gt;</code>
     </div>
   </div>
 
@@ -164,8 +164,8 @@ od2ApiWorkflowRenderer('container-id', workflowData, {
     <p>Use these public CDN URLs to include the workflow viewer in any website:</p>
     
     <div class="code-block">
-      <code><strong>CSS:</strong> https://od2.in/awd/workflow-viewer.css
-<strong>JS:</strong>  https://od2.in/awd/workflow-viewer.js</code>
+      <code><strong>CSS:</strong> https://od2.in/api-wd/workflow-viewer.css
+<strong>JS:</strong>  https://od2.in/api-wd/workflow-viewer.js</code>
     </div>
     
     <p><strong>Benefits of using OD2 CDN:</strong></p>
@@ -181,10 +181,10 @@ od2ApiWorkflowRenderer('container-id', workflowData, {
     <h3>🌐 Copy-Paste Integration</h3>
     <div class="code-block">
       <code>&lt;!-- Copy this into your &lt;head&gt; --&gt;
-&lt;link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css"&gt;
+&lt;link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css"&gt;
 
 &lt;!-- Copy this before &lt;/body&gt; --&gt;
-&lt;script src="https://od2.in/awd/workflow-viewer.js"&gt;&lt;/script&gt;</code>
+&lt;script src="https://od2.in/api-wd/workflow-viewer.js"&gt;&lt;/script&gt;</code>
     </div>
   </div>
 
@@ -197,13 +197,13 @@ od2ApiWorkflowRenderer('container-id', workflowData, {
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;My Workflow App&lt;/title&gt;
-  &lt;link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css"&gt;
+  &lt;link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;h1&gt;My API Workflow&lt;/h1&gt;
   &lt;div id="my-workflow" style="height: 500px;"&gt;&lt;/div&gt;
   
-  &lt;script src="https://od2.in/awd/workflow-viewer.js"&gt;&lt;/script&gt;
+  &lt;script src="https://od2.in/api-wd/workflow-viewer.js"&gt;&lt;/script&gt;
   &lt;script&gt;
     // Simple API usage
     od2ApiWorkflowRenderer('my-workflow', {
@@ -230,8 +230,8 @@ od2ApiWorkflowRenderer('container-id', workflowData, {
     <h3>React Integration</h3>
     <div class="code-block">
       <code>// First, add the CDN link to your public/index.html:
-// &lt;link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css"&gt;
-// &lt;script src="https://od2.in/awd/workflow-viewer.js"&gt;&lt;/script&gt;
+// &lt;link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css"&gt;
+// &lt;script src="https://od2.in/api-wd/workflow-viewer.js"&gt;&lt;/script&gt;
 
 import { useEffect, useRef } from 'react';
 
@@ -254,8 +254,8 @@ function WorkflowDisplay({ workflowData }) {
     <h3>Vue.js Integration</h3>
     <div class="code-block">
       <code>// First, add to your public/index.html:
-// &lt;link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css"&gt;
-// &lt;script src="https://od2.in/awd/workflow-viewer.js"&gt;&lt;/script&gt;
+// &lt;link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css"&gt;
+// &lt;script src="https://od2.in/api-wd/workflow-viewer.js"&gt;&lt;/script&gt;
 
 &lt;template&gt;
   &lt;div ref="workflowContainer" style="height: 400px;"&gt;&lt;/div&gt;
@@ -276,7 +276,7 @@ export default {
     </div>
   </div>
 
-  <script src="/awd/workflow-viewer.js"></script>
+  <script src="/api-wd/workflow-viewer.js"></script>
   <script>
     // Sample workflow data for demo
     const sampleWorkflow = {

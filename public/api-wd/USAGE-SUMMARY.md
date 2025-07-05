@@ -5,8 +5,8 @@
 Users can now embed workflows with the global function `od2ApiWorkflowRenderer`:
 
 ```html
-<script src="https://od2.in/awd/workflow-viewer.js"></script>
-<link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css">
+<script src="https://od2.in/api-wd/workflow-viewer.js"></script>
+<link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css">
 
 <div id="workflow"></div>
 <script>
@@ -57,10 +57,10 @@ fetch('/api/workflow.json')
 
 ## ✅ Updated Files
 
-- ✅ `public/awd/workflow-viewer.js` - Added `od2ApiWorkflowRenderer` global function
-- ✅ `public/awd/demo.html` - Updated examples to use new function name
-- ✅ `src/app/awd/docs/page.js` - Updated documentation
-- ✅ `public/awd/README.md` - Updated API documentation
+- ✅ `public/api-wd/workflow-viewer.js` - Added `od2ApiWorkflowRenderer` global function
+- ✅ `public/api-wd/demo.html` - Updated examples to use new function name
+- ✅ `src/app/api-wd/docs/page.js` - Updated documentation
+- ✅ `public/api-wd/README.md` - Updated API documentation
 
 ## 🚀 Ready for Production
 

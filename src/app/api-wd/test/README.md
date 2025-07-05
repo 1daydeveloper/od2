@@ -1,6 +1,6 @@
 # Workflow Viewer Test Page
 
-This test page demonstrates the OD2 Workflow Viewer functionality at `/awd/test`.
+This test page demonstrates the OD2 Workflow Viewer functionality at `/api-wd/test`.
 
 ## Features
 
@@ -97,7 +97,7 @@ Workflows should follow this basic structure:
 
 ## Usage
 
-1. Visit `/awd/test` in your browser
+1. Visit `/api-wd/test` in your browser
 2. Select a workflow from the dropdown
 3. Choose a theme (light/dark/auto)
 4. Interact with the visualization
@@ -105,11 +105,11 @@ Workflows should follow this basic structure:
 
 ## Files
 
-- `/src/app/awd/test/page.js` - Main test page component
-- `/src/app/awd/test/layout.js` - Layout configuration
+- `/src/app/api-wd/test/page.js` - Main test page component
+- `/src/app/api-wd/test/layout.js` - Layout configuration
 - `/src/app/api/workflow/route.js` - API endpoint for workflow data
-- `/public/awd/workflow-viewer.js` - Workflow renderer script
-- `/public/awd/workflow-viewer.css` - Viewer styles
+- `/public/api-wd/workflow-viewer.js` - Workflow renderer script
+- `/public/api-wd/workflow-viewer.css` - Viewer styles
 - `/public/examples/*.json` - Sample workflow files
 
 ## Development

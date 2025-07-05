@@ -288,7 +288,7 @@ export default function WorkflowBuilder() {
       </div>
 
       {/* Main Workflow Canvas */}
-      <div className="flex-1 relative">
+      <div className="flex-1 relative flex flex-col min-w-0 overflow-hidden">
         <WorkflowToolbar
           workflowName={workflowName}
           onNameChange={setWorkflowName}
@@ -297,8 +297,8 @@ export default function WorkflowBuilder() {
           onImport={handleImport}
           onClear={clearWorkflow}
         />
-        
-        <div className="h-full" ref={reactFlowWrapper}>
+
+        <div className="flex-1 min-h-0" ref={reactFlowWrapper} style={{ minHeight: 0 }}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -314,18 +314,18 @@ export default function WorkflowBuilder() {
             fitView
             snapToGrid
             snapGrid={[20, 20]}
+            className="h-full"
+            style={{ height: "100%" }}
           >
             <Background />
             <Controls />
             <MiniMap />
-            <Panel position="bottom-right" className="text-xs text-muted-foreground">
+            <Panel position="bottom-center" className="text-xs text-muted-foreground">
               Drag API endpoints from the left sidebar to create workflow nodes
             </Panel>
           </ReactFlow>
         </div>
       </div>
-
-      {/* Node Form Modal */}
       {showNodeModal && (
         <NodeFormModal
           node={editingNode}

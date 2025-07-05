@@ -59,13 +59,13 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
-      url: "https://www.od2.in/awd",
+      url: "https://www.od2.in/api-wd",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
     },
     {
-      url: "https://www.od2.in/awd/docs",
+      url: "https://www.od2.in/api-wd/docs",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.6,

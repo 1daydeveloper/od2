@@ -1,9 +1,9 @@
 export const metadata = {
-  title: "Workflow Builder Documentation | How to Use AWD",
-  description: "Complete guide on how to use the Automated Workflow Designer. Learn to create visual API workflows, manage OpenAPI schemas, and embed interactive diagrams.",
+  title: "Workflow Builder Documentation | How to Use API Workflow Designer",
+  description: "Complete guide on how to use the API Workflow Designer. Learn to create visual API workflows, manage OpenAPI schemas, and embed interactive diagrams.",
   openGraph: {
-    title: "Workflow Builder Documentation | AWD Guide",
-    description: "Complete guide on how to use the Automated Workflow Designer. Learn to create visual API workflows, manage OpenAPI schemas, and embed interactive diagrams.",
+    title: "Workflow Builder Documentation | API Workflow Designer Guide",
+    description: "Complete guide on how to use the API Workflow Designer. Learn to create visual API workflows, manage OpenAPI schemas, and embed interactive diagrams.",
   },
   keywords: [
     "workflow builder tutorial",

@@ -13,13 +13,13 @@ export default function DocsPage() {
         {/* Header */}
                 <div className="flex items-center gap-4 mb-8">
 
-           <Link href="/awd">
+           <Link href="/api-wd">
             <Button variant="outline" size="sm">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Workflow Builder
             </Button>
           </Link>
-          <Link href="/awd/test">
+          <Link href="/api-wd/test">
             <Button variant="outline" size="sm">
               🔧 Test Viewer
             </Button>
@@ -175,7 +175,7 @@ export default function DocsPage() {
               
               <div className="mt-3 pt-3 border-t border-secondary">
                 <Link 
-                  href="/awd/test" 
+                  href="/api-wd/test" 
                   className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors text-sm font-medium"
                 >
                   🔧 Open Test Viewer
@@ -541,13 +541,13 @@ export default function DocsPage() {
                 <div className="bg-white/80 dark:bg-gray-900/50 rounded-lg p-3 border">
                   <div className="text-xs text-gray-500 mb-1">CSS</div>
                   <code className="text-sm text-blue-600 dark:text-blue-400 font-mono break-all">
-                    https://od2.in/awd/workflow-viewer.css
+                    https://od2.in/api-wd/workflow-viewer.css
                   </code>
                 </div>
                 <div className="bg-white/80 dark:bg-gray-900/50 rounded-lg p-3 border">
                   <div className="text-xs text-gray-500 mb-1">JavaScript</div>
                   <code className="text-sm text-blue-600 dark:text-blue-400 font-mono break-all">
-                    https://od2.in/awd/workflow-viewer.js
+                    https://od2.in/api-wd/workflow-viewer.js
                   </code>
                 </div>
               </div>
@@ -555,8 +555,8 @@ export default function DocsPage() {
               <div className="mt-4 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
                 <div className="text-xs font-semibold text-green-700 dark:text-green-400 mb-2">Copy-Paste Integration:</div>
                 <code className="text-xs text-green-600 dark:text-green-400 block">
-                  {'<link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css">'}<br/>
-                  {'<script src="https://od2.in/awd/workflow-viewer.js"></script>'}
+                  {'<link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css">'}<br/>
+                  {'<script src="https://od2.in/api-wd/workflow-viewer.js"></script>'}
                 </code>
               </div>
             </div>
@@ -572,7 +572,7 @@ export default function DocsPage() {
                   Main workflow viewer script with all functionality
                 </p>
                 <a 
-                  href="/awd/workflow-viewer.js" 
+                  href="/api-wd/workflow-viewer.js" 
                   download="workflow-viewer.js"
                   className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                 >
@@ -594,7 +594,7 @@ export default function DocsPage() {
                   Themes and styling for the workflow viewer
                 </p>
                 <a 
-                  href="/awd/workflow-viewer.css" 
+                  href="/api-wd/workflow-viewer.css" 
                   download="workflow-viewer.css"
                   className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                 >
@@ -616,7 +616,7 @@ export default function DocsPage() {
                   Interactive demo with CDN integration examples and theme switching
                 </p>
                 <a 
-                  href="/awd/demo.html" 
+                  href="/api-wd/demo.html" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-accent text-accent-foreground hover:bg-accent/80 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
@@ -637,7 +637,7 @@ export default function DocsPage() {
               </h4>
               <div className="grid md:grid-cols-1 gap-3">
                 <a 
-                  href="/awd/demo.html" 
+                  href="/api-wd/demo.html" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 text-sm"
@@ -663,7 +663,7 @@ export default function DocsPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold text-blue-600">2.</span>
-                  <span>Upload files to your website&apos;s /awd/ directory (or any path)</span>
+                  <span>Upload files to your website&apos;s /api-wd/ directory (or any path)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold text-blue-600">3.</span>
@@ -687,13 +687,13 @@ export default function DocsPage() {
                 <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg">
                   <div className="text-sm font-medium mb-1">CSS File:</div>
                   <code className="text-sm text-blue-600 dark:text-blue-400">
-                    https://od2.in/awd/workflow-viewer.css
+                    https://od2.in/api-wd/workflow-viewer.css
                   </code>
                 </div>
                 <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg">
                   <div className="text-sm font-medium mb-1">JavaScript File:</div>
                   <code className="text-sm text-blue-600 dark:text-blue-400">
-                    https://od2.in/awd/workflow-viewer.js
+                    https://od2.in/api-wd/workflow-viewer.js
                   </code>
                 </div>
               </div>
@@ -755,8 +755,8 @@ export default function DocsPage() {
 <html>
 <head>
   <!-- Include OD2 Public CDN -->
-  <link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css">
-  <script src="https://od2.in/awd/workflow-viewer.js"></script>
+  <link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css">
+  <script src="https://od2.in/api-wd/workflow-viewer.js"></script>
 </head>
 <body>
   <!-- Workflow Container -->
@@ -790,8 +790,8 @@ export default function DocsPage() {
 <html>
 <head>
   <!-- Include OD2 Public CDN -->
-  <link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css">
-  <script src="https://od2.in/awd/workflow-viewer.js"></script>
+  <link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css">
+  <script src="https://od2.in/api-wd/workflow-viewer.js"></script>
 </head>
 <body>
   <!-- Workflow Container -->
@@ -1061,7 +1061,7 @@ Returns:
   <title>My API Workflow</title>
   
   <!-- Include OD2 Workflow Viewer CSS -->
-  <link rel="stylesheet" href="https://od2.in/awd/workflow-viewer.css">
+  <link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css">
 </head>
 <body>
   <!-- Container with explicit dimensions -->
@@ -1073,7 +1073,7 @@ Returns:
   "></div>
 
   <!-- Include OD2 Workflow Viewer JavaScript -->
-  <script src="https://od2.in/awd/workflow-viewer.js"></script>
+  <script src="https://od2.in/api-wd/workflow-viewer.js"></script>
   
   <script>
     // Load and render workflow

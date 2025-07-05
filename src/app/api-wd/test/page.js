@@ -97,17 +97,17 @@ export default function WorkflowTestPage() {
   useEffect(() => {
     const loadScripts = () => {
       // Load CSS
-      if (!document.querySelector('link[href="/awd/workflow-viewer.css"]')) {
+      if (!document.querySelector('link[href="/api-wd/workflow-viewer.css"]')) {
         const cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';
-        cssLink.href = '/awd/workflow-viewer.css';
+        cssLink.href = '/api-wd/workflow-viewer.css';
         document.head.appendChild(cssLink);
       }
 
       // Load JS
-      if (!document.querySelector('script[src="/awd/workflow-viewer.js"]')) {
+      if (!document.querySelector('script[src="/api-wd/workflow-viewer.js"]')) {
         const script = document.createElement('script');
-        script.src = '/awd/workflow-viewer.js';
+        script.src = '/api-wd/workflow-viewer.js';
         script.onload = () => {
           // Scripts loaded, render workflow if data is available
           if (workflowData) {
@@ -144,13 +144,13 @@ export default function WorkflowTestPage() {
         {/* Header with back button */}
         <div className="flex items-center gap-4 mb-6">
           <Link 
-            href="/awd"
+            href="/api-wd"
             className="inline-flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            ← Back to AWD
+            ← Back to API Workflow Designer
           </Link>
           <Link 
-            href="/awd/docs"
+            href="/api-wd/docs"
             className="inline-flex items-center gap-2 px-3 py-2 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
           >
             📚 Documentation

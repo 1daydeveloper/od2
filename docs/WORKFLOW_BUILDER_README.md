@@ -1,4 +1,4 @@
-# Automated Workflow Designer (AWD)
+# API Workflow Designer (API-WD)
 
 A powerful JSON-Based Visual Workflow Builder with OpenAPI Integration that can be embedded via iframe for documentation systems.
 
@@ -59,7 +59,7 @@ npm install
 npm run dev
 ```
 
-4. Open [http://localhost:3000/awd](http://localhost:3000/awd) in your browser
+4. Open [http://localhost:3000/api-wd](http://localhost:3000/api-wd) in your browser
 
 ## Usage
 
@@ -89,7 +89,7 @@ npm run dev
 
 ```html
 <iframe 
-  src="http://localhost:3000/awd" 
+  src="http://localhost:3000/api-wd" 
   width="100%" 
   height="600px" 
   frameborder="0">
@@ -202,7 +202,7 @@ src/
 ├── lib/
 │   └── workflowUtils.js            # Import/export utilities
 └── app/
-    └── awd/
+    └── api-wd/
         ├── page.js                 # Main page
         └── layout.js               # Metadata & layout
 ```

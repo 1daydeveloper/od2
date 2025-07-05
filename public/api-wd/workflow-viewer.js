@@ -3,8 +3,8 @@
  * Version: 1.0.0
  * 
  * Usage:
- * <script src="/awd/workflow-viewer.js"></script>
- * <link rel="stylesheet" href="/awd/workflow-viewer.css">
+ * <script src="/api-wd/workflow-viewer.js"></script>
+ * <link rel="stylesheet" href="/api-wd/workflow-viewer.css">
  * 
  * <div id="workflow-container"></div>
  * <script>

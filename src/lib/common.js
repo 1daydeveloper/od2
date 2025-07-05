@@ -105,9 +105,9 @@ const menuItems = {
             ],
         },
            {
-            id: "awd",
+            id: "api-wd",
             label: "API Workflow Designer",
-            url: "/awd",
+            url: "/api-wd",
             icon: Aperture,
             priority: 3,
             description: "Create and manage API workflows easily.",

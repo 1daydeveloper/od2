@@ -71,7 +71,7 @@ export default function WorkflowToolbar({
       </div>
 
       <div className="flex items-center gap-2">
-        <Link href="/awd/docs">
+        <Link href="/api-wd/docs">
           <Button
             variant="outline"
             size="sm"
@@ -82,7 +82,7 @@ export default function WorkflowToolbar({
             Docs
           </Button>
         </Link>
-        <Link href="/awd/test">
+        <Link href="/api-wd/test">
           <Button
             variant="outline"
             size="sm"
