@@ -5,7 +5,7 @@ author: "OD2 Development Team"
 category: "Tools"
 description: "Discover API Workflow Designer - A powerful JSON-based visual workflow builder with OpenAPI integration that transforms how you design, document, and implement API workflows."
 keywords: "API Workflow Designer, OpenAPI, Visual Workflow Builder, API Integration, JSON, ReactFlow, OD2"
-urlpath: "introducing-automated-workflow-designer-api-wd"
+urlpath: "introducing-api-workflow-designer-api-wd"
 ---
 
 # Introducing API Workflow Designer: The Revolutionary Workflow Builder
@@ -29,26 +29,38 @@ The **API Workflow Designer** is a comprehensive **JSON-based Visual Workflow Bu
 - **Drag-to-Create**: Simply drag endpoints from the sidebar to create workflow nodes instantly
 - **Sample Files**: Try with our [sample OpenAPI specification](/examples/sample-openapi.json)
 
-### 🎨 Visual Workflow Canvas
-Powered by **[ReactFlow](https://reactflow.dev/)**, our canvas provides:
+### 🎨 Advanced Visual Workflow Canvas
+Powered by **[ReactFlow](https://reactflow.dev/)** and our custom SVG renderer, our canvas provides:
 - **Intuitive Drag-and-Drop Interface**: Create complex workflows without writing a single line of code
 - **Smart Node Connections**: Connect workflow steps with color-coded connectors:
   - ✅ **Success Flow** (Green) - Define the happy path
   - ❌ **Failure Handling** (Red) - Plan for error scenarios
+- **Interactive Pan & Zoom**: Navigate large workflows with mouse controls and zoom gestures
 - **Real-time Visual Feedback**: See your workflow come to life as you build it
+- **Multi-Theme Support**: Switch between light, dark, and auto themes instantly
+- **Interactive Controls**: Built-in zoom, pan, and fit-to-view controls
 - **Example Workflows**: Browse our [sample workflow gallery](/examples/sample-workflow.json)
 
-### ⚙️ Advanced Node Configuration
-Each workflow node can be configured with rich metadata:
+### ⚙️ Advanced Node Configuration & Visualization
+Each workflow node can be configured with rich metadata and interactive features:
 - **Descriptive Names**: Give meaningful names to each step
-- **API Documentation Links**: Direct links to relevant API documentation
+- **HTTP Method Badges**: Visual indicators for GET, POST, PUT, DELETE, PATCH methods
+- **API Documentation Links**: Direct links to relevant API documentation with clickable icons
+- **Visual Assets**: Upload images or link external resources with inline preview
 - **Detailed Descriptions**: Add comprehensive explanations for each node
-- **Visual Assets**: Upload images or link external resources for better documentation
+- **Interactive Action Buttons**: Click to view images, open documentation, or access external links
+- **Connection Handles**: Visual success/error connection points for building flows
+- **Path Display**: Show API endpoints directly on workflow nodes
 - **Custom Properties**: Extend nodes with additional configuration options
 
-### 💾 Robust Workflow Management
+### 💾 Robust Workflow Management & Testing
 - **Export to JSON**: Save complete workflows as portable JSON files
 - **Import & Edit**: Load existing workflows for modification and enhancement
+- **Interactive Test Environment**: [Test workflows in real-time](/api-wd/test) with live data
+- **Theme Switching**: Test workflows in different visual themes
+- **API Integration Testing**: Load workflows via API endpoints or direct file access
+- **Custom JSON Support**: Paste and test custom workflow JSON instantly
+- **Error Handling**: Comprehensive error detection and user-friendly messages
 - **Version Control**: Track changes and maintain workflow history with [Git integration](https://git-scm.com/)
 - **Clear & Reset**: Start fresh with a clean canvas anytime
 - **Documentation**: [View complete API documentation](/api-wd/docs) for advanced features
@@ -77,20 +89,25 @@ Each workflow node can be configured with rich metadata:
 
 ---
 
-## 🛠️ Technical Excellence
+## 🛠️ Technical Excellence & Architecture
 
 ### Built with Modern Technologies
 - **[React](https://react.dev/) & [Next.js](https://nextjs.org/)**: Ensuring optimal performance and user experience
-- **[ReactFlow](https://reactflow.dev/)**: Industry-leading workflow visualization library
+- **[ReactFlow](https://reactflow.dev/)**: Industry-leading workflow visualization library for the builder
+- **Custom SVG Renderer**: Lightweight, performant visualization engine for embedded workflows
 - **[OpenAPI 3.0+](https://spec.openapis.org/oas/v3.1.0) Support**: Full compatibility with modern API specifications
 - **JSON-First Approach**: Lightweight, portable, and version-control friendly
 - **[TypeScript](https://www.typescriptlang.org/)**: Type-safe development for reliability
+- **Responsive Design**: Works seamlessly across desktop, tablet, and mobile devices
 
-### Embeddable & Extensible
+### Embeddable & Extensible Architecture
+- **Multiple Integration Options**: CDN-hosted files, vanilla JavaScript, and iframe embedding
 - **iframe Integration**: Embed API Workflow Designer directly into documentation systems
-- **Customizable Themes**: Adapt the interface to match your brand
+- **CDN Support**: Include via [od2 CDN](/api-wd/workflow-viewer.js) for any website
+- **Customizable Themes**: Adapt the interface to match your brand with CSS variables
 - **Plugin Architecture**: Extend functionality with custom components
 - **API-First Design**: Integrate with existing toolchains and platforms
+- **Self-Hosted Options**: Deploy on your own infrastructure with full control
 
 ---
 
@@ -113,30 +130,74 @@ Plan and document integration with external services, including authentication f
 ## 🚀 Getting Started with API Workflow Designer
 
 ### Try the Live Demo
-Experience API Workflow Designer firsthand at [od2.dev/api-wd](/api-wd) - no installation required!
+Experience API Workflow Designer firsthand at [/api-wd](/api-wd) - no installation required!
 
-### Interactive Tutorial
-Follow our [step-by-step tutorial](/api-wd/docs) to build your first workflow in under 5 minutes.
+### Interactive Test Environment
+Explore our comprehensive [testing environment](/api-wd/test) featuring:
+- **Multiple Sample Workflows**: E-commerce, authentication, and integration examples
+- **Theme Testing**: Switch between light, dark, and auto themes instantly
+- **API Endpoint Testing**: Compare file-based vs. API-based workflow loading
+- **Custom JSON Input**: Test your own workflow definitions
+- **Real-time Visualization**: See changes applied immediately
 
-### Test with Sample Data
+### Sample Data & Examples
 - **[Sample OpenAPI Schema](/examples/sample-openapi.json)** - E-commerce API specification
 - **[Sample Workflow](/examples/sample-workflow.json)** - Payment processing workflow
 - **[Embedded Demo](/examples/sample-embed-flow.json)** - Complete integration example
+- **[Interactive Test Page](/api-wd/test)** - Live testing environment with multiple workflows
 
-### Embed in Your Documentation
+### Quick Integration Guide
+
+#### ⚡ CDN Integration (No Installation Required)
+Get started instantly with our CDN-hosted files:
+
 ```html
-<iframe 
-  src="https://od2.dev/api-wd" 
-  width="100%" 
-  height="600px" 
-  frameborder="0">
-</iframe>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Workflow Page</title>
+    <!-- Load CSS -->
+    <link rel="stylesheet" href="https://od2.in/api-wd/workflow-viewer.css">
+</head>
+<body>
+    <!-- Workflow container -->
+    <div id="workflow-container" style="width: 100%; height: 600px;"></div>
+    
+    <!-- Load JavaScript -->
+    <script src="https://od2.in/api-wd/workflow-viewer.js"></script>
+    
+    <script>
+        // Your workflow data
+        const workflowData = {
+            name: "Sample Workflow",
+            nodes: [
+                {
+                    id: "1",
+                    position: { x: 100, y: 100 },
+                    data: {
+                        name: "API Call",
+                        method: "GET",
+                        path: "/api/users",
+                        description: "Fetch users"
+                    }
+                }
+            ],
+            edges: []
+        };
+        
+        // Render the workflow
+        od2ApiWorkflowRenderer('workflow-container', workflowData, {
+            theme: 'light',
+            interactive: true,
+            showControls: true,
+            fitView: true
+        });
+    </script>
+</body>
+</html>
 ```
 
-### Integration Options
-- **React Component**: Install via [npm package](https://www.npmjs.com/package/@od2/workflow-viewer)
-- **Vanilla JavaScript**: Include via [CDN](https://unpkg.com/@od2/workflow-viewer/dist/vanilla.min.js) for any website
-- **Self-Hosted**: Deploy on your own infrastructure - [View GitHub Repository](https://github.com/od2/workflow-viewer)
+
 
 ---
 
@@ -144,15 +205,37 @@ Follow our [step-by-step tutorial](/api-wd/docs) to build your first workflow in
 
 API Workflow Designer represents just the beginning of our vision for API workflow design. We're continuously working on exciting new features:
 
+### 🚀 Currently Available Features
+- **✅ Interactive Workflow Testing**: [Live test environment](/api-wd/test) with theme switching
+- **✅ Multi-format Support**: API endpoints, direct file loading, and custom JSON input
+- **✅ Embeddable Components**: CDN-hosted vanilla JS and iframe integration options
+- **✅ Responsive Design**: Works seamlessly across all device types
+- **✅ Advanced Node Features**: Image modals, documentation links, and interactive buttons
+- **✅ Pan & Zoom Controls**: Full navigation control with mouse and touch support
+
+### 🔧 Under Development
 - **AI-Powered Suggestions**: Intelligent workflow optimization recommendations using [OpenAI](https://openai.com/) integration
 - **Code Generation**: Automatic generation of implementation code from workflows
 - **Advanced Analytics**: Workflow performance insights and optimization suggestions
+- **Step-by-Step Execution**: Interactive workflow runner with real API testing
+- **Workflow Templates**: Pre-built templates for common integration patterns
+
+### 🌟 Planned Features
 - **Collaborative Editing**: Real-time multi-user workflow design with [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) technology
 - **Version Control Integration**: Native [Git](https://git-scm.com/) integration for workflow versioning
 - **Cloud Sync**: [AWS](https://aws.amazon.com/) and [Azure](https://azure.microsoft.com/) integration for team collaboration
+- **Export Formats**: PNG, SVG, and PDF export options
+- **Custom Node Types**: Build and share custom workflow components
 
 ### Upcoming Features Roadmap
 Check our [public roadmap](/api-wd/roadmap) to see what's coming next and vote on features you'd like to see!
+
+### 📋 Additional Resources
+- **[Workflow JSON Schema →](/api-wd/docs/schema)** - Technical specification for workflow format
+- **[Integration Examples →](/api-wd/docs/examples)** - Real-world implementation guides
+- **[Best Practices →](/api-wd/docs/best-practices)** - Tips for effective workflow design
+- **[Migration Guide →](/api-wd/docs/migration)** - Upgrade from other workflow tools
+- **[Troubleshooting →](/api-wd/docs/troubleshooting)** - Common issues and solutions
 
 ---
 
@@ -161,15 +244,18 @@ Check our [public roadmap](/api-wd/roadmap) to see what's coming next and vote o
 We believe that great tools are built through community collaboration. Here's how you can get involved:
 
 ### For Users
-- **Share Feedback**: Help us improve by sharing your experience
-- **Request Features**: Tell us what features would make your workflow design easier
-- **Share Workflows**: Contribute example workflows for common use cases
+- **Share Feedback**: Help us improve by sharing your experience at [GitHub Discussions](https://github.com/od2/workflow-viewer/discussions)
+- **Request Features**: Tell us what features would make your workflow design easier via [Feature Requests](https://github.com/od2/workflow-viewer/issues/new?template=feature_request.md)
+- **Share Workflows**: Contribute example workflows for common use cases in our [Community Examples](https://github.com/od2/workflow-examples)
+- **Join Beta Testing**: Get early access to new features at [Beta Testing Program](/api-wd/test)
 
 ### For Developers
 - **Contribute Code**: Help us build new features and fix issues on [GitHub](https://github.com/od2/workflow-viewer)
+- **Test New Features**: Participate in our [interactive testing environment](/api-wd/test) 
 - **Create Plugins**: Extend API Workflow Designer with custom functionality - [Plugin Development Guide](/api-wd/docs/plugins)
-- **Write Documentation**: Help others learn and use API Workflow Designer effectively
-- **Join Testing**: Participate in our [beta testing program](/api-wd/test) for early access to new features
+- **Write Documentation**: Help others learn and use API Workflow Designer effectively - [Docs Repo](https://github.com/od2/workflow-docs)
+- **Integration Examples**: Share how you've embedded workflows in your projects at [Show & Tell](https://github.com/od2/workflow-viewer/discussions/categories/show-and-tell)
+- **Report Issues**: Help us improve by reporting bugs at [Bug Reports](https://github.com/od2/workflow-viewer/issues/new?template=bug_report.md)
 
 ---
 
@@ -190,7 +276,17 @@ At **One Day Developers**, we don't just build tools - we craft solutions that t
 
 Ready to revolutionize how you design and document workflows? **API Workflow Designer is available now** and ready to transform your development process.
 
-**[Try API Workflow Designer Now →](/api-wd)**
+### 🎯 Quick Access Links
+- **🚀 [Try API Workflow Designer Now →](/api-wd)** - Start building workflows immediately
+- **🔧 [Interactive Test Environment →](/api-wd/test)** - Test with sample workflows
+- **📚 [Complete Documentation →](/api-wd/docs)** - Learn all features and capabilities
+- **📖 [API Reference Guide →](/api-wd/docs/api)** - Developer integration documentation
+- **💻 [View Source Code →](https://github.com/od2/workflow-viewer)** - Explore the codebase
+
+### 🌟 Sample Resources
+- **[E-commerce Workflow Example →](/examples/sample-workflow.json)** - Complete order processing flow
+- **[OpenAPI Schema Sample →](/examples/sample-openapi.json)** - API specification example
+- **[Embed Flow Demo →](/examples/sample-embed-flow.json)** - Integration showcase
 
 Whether you're a solo developer planning your next project or part of a large enterprise team coordinating complex integrations, API Workflow Designer provides the tools you need to succeed.
 
@@ -203,12 +299,8 @@ Whether you're a solo developer planning your next project or part of a large en
 *OD2 is a dynamic development community committed to delivering innovative solutions at lightning speed. From rapid prototyping to enterprise-grade applications, we combine expertise with efficiency to turn ideas into reality - often in just 24 hours.*
 
 **Connect with us:**
-- Website: [od2.dev](/)
-- GitHub: [github.com/od2](https://github.com/od2)
-- Documentation: [Complete API Workflow Designer Documentation](/api-wd/docs)
-- API Reference: [API Workflow Designer API Documentation](/api-wd/docs/api)
-- Community: Join our growing developer community on [Discord](https://discord.gg/od2-community)
-- Support: Get help and share feedback via [GitHub Issues](https://github.com/od2/workflow-viewer/issues)
-- Testing: [Beta Testing Program](/api-wd/test) - Try new features first
+- **🌐 Website**: [od2.in](/) - Main platform and workflow builder
+- **🔧 Test Environment**: [Interactive Testing](/api-wd/test) - Try features with live data
+- **📚 Documentation**: [Complete API Workflow Designer Documentation](/api-wd/docs)
 
 *Ready to build something amazing? Let's make it happen in one day.*
