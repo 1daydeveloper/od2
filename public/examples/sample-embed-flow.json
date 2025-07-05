@@ -1,0 +1,102 @@
+{
+  "name": "Sample API Integration Flow",
+  "version": "1.0.0",
+  "exportType": "embed",
+  "exportedAt": "2025-01-01T00:00:00.000Z",
+  "nodes": [
+    {
+      "id": "node-1",
+      "type": "customNode",
+      "position": { "x": 100, "y": 100 },
+      "data": {
+        "name": "User Authentication",
+        "description": "Authenticate user credentials and obtain access token",
+        "method": "POST",
+        "path": "/auth/login",
+        "operationId": "loginUser",
+        "tags": ["Authentication"],
+        "apiDocumentationLink": "https://api.example.com/docs#/Authentication/loginUser",
+        "imageLink": "https://via.placeholder.com/64x64/007ACC/FFFFFF?text=AUTH"
+      }
+    },
+    {
+      "id": "node-2",
+      "type": "customNode",
+      "position": { "x": 400, "y": 100 },
+      "data": {
+        "name": "Get User Profile",
+        "description": "Retrieve the authenticated user's profile information",
+        "method": "GET",
+        "path": "/users/{id}",
+        "operationId": "getUserById",
+        "tags": ["Users"],
+        "apiDocumentationLink": "https://api.example.com/docs#/Users/getUserById",
+        "imageLink": "https://via.placeholder.com/64x64/28A745/FFFFFF?text=USER"
+      }
+    },
+    {
+      "id": "node-3",
+      "type": "customNode",
+      "position": { "x": 700, "y": 100 },
+      "data": {
+        "name": "Update User Settings",
+        "description": "Update user preferences and account settings",
+        "method": "PUT",
+        "path": "/users/{id}/settings",
+        "operationId": "updateUserSettings",
+        "tags": ["Users"],
+        "apiDocumentationLink": "https://api.example.com/docs#/Users/updateUserSettings",
+        "imageLink": "https://via.placeholder.com/64x64/FFC107/FFFFFF?text=SET"
+      }
+    },
+    {
+      "id": "node-4",
+      "type": "customNode",
+      "position": { "x": 400, "y": 300 },
+      "data": {
+        "name": "Handle Auth Error",
+        "description": "Handle authentication failure and redirect to login",
+        "method": "GET",
+        "path": "/auth/error",
+        "operationId": "handleAuthError",
+        "tags": ["Authentication", "Error"],
+        "apiDocumentationLink": "https://api.example.com/docs#/Authentication/handleAuthError",
+        "imageLink": "https://via.placeholder.com/64x64/DC3545/FFFFFF?text=ERR"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-1",
+      "source": "node-1",
+      "target": "node-2",
+      "sourceHandle": "success",
+      "targetHandle": "input",
+      "animated": true,
+      "label": ""
+    },
+    {
+      "id": "edge-2",
+      "source": "node-2",
+      "target": "node-3",
+      "sourceHandle": "success",
+      "targetHandle": "input",
+      "animated": true,
+      "label": ""
+    },
+    {
+      "id": "edge-3",
+      "source": "node-1",
+      "target": "node-4",
+      "sourceHandle": "failure",
+      "targetHandle": "input",
+      "animated": true,
+      "label": ""
+    }
+  ],
+  "metadata": {
+    "nodeCount": 4,
+    "edgeCount": 3,
+    "isEmbedExport": true
+  }
+}

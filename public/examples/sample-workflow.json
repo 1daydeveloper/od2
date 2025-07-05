@@ -1,0 +1,156 @@
+{
+  "name": "E-commerce Order Processing Workflow",
+  "description": "Complete workflow for processing customer orders from creation to shipping",
+  "nodes": [
+    {
+      "id": "node-1",
+      "type": "customNode",
+      "position": { "x": 100, "y": 100 },
+      "data": {
+        "name": "Create User Account",
+        "method": "POST",
+        "path": "/users",
+        "operationId": "createUser",
+        "description": "Register a new user in the system before they can place orders",
+        "apiDocumentationLink": "https://api.example.com/docs#/users/createUser",
+        "imageLink": "https://cdn-icons-png.flaticon.com/512/1077/1077114.png",
+        "tags": ["users", "authentication"]
+      }
+    },
+    {
+      "id": "node-2",
+      "type": "customNode",
+      "position": { "x": 400, "y": 100 },
+      "data": {
+        "name": "Browse Products",
+        "method": "GET",
+        "path": "/products",
+        "operationId": "getProducts",
+        "description": "Allow users to browse available products with pagination support",
+        "apiDocumentationLink": "https://api.example.com/docs#/products/getProducts",
+        "imageLink": "https://cdn-icons-png.flaticon.com/512/2331/2331970.png",
+        "tags": ["products"]
+      }
+    },
+    {
+      "id": "node-3",
+      "type": "customNode",
+      "position": { "x": 700, "y": 100 },
+      "data": {
+        "name": "Create Order",
+        "method": "POST",
+        "path": "/orders",
+        "operationId": "createOrder",
+        "description": "Create a new order with selected products for the authenticated user",
+        "apiDocumentationLink": "https://api.example.com/docs#/orders/createOrder",
+        "imageLink": "https://cdn-icons-png.flaticon.com/512/891/891462.png",
+        "tags": ["orders"]
+      }
+    },
+    {
+      "id": "node-4",
+      "type": "customNode",
+      "position": { "x": 1000, "y": 50 },
+      "data": {
+        "name": "Process Payment",
+        "method": "POST",
+        "path": "/orders/{orderId}/payment",
+        "operationId": "processPayment",
+        "description": "Process payment for the created order using various payment methods",
+        "apiDocumentationLink": "https://api.example.com/docs#/orders/processPayment",
+        "imageLink": "https://cdn-icons-png.flaticon.com/512/1077/1077976.png",
+        "tags": ["orders", "payment"]
+      }
+    },
+    {
+      "id": "node-5",
+      "type": "customNode",
+      "position": { "x": 1300, "y": 50 },
+      "data": {
+        "name": "Initiate Shipping",
+        "method": "POST",
+        "path": "/orders/{orderId}/shipping",
+        "operationId": "initiateShipping",
+        "description": "Start the shipping process for successfully paid orders",
+        "apiDocumentationLink": "https://api.example.com/docs#/orders/initiateShipping",
+        "imageLink": "https://cdn-icons-png.flaticon.com/512/411/411763.png",
+        "tags": ["orders", "shipping"]
+      }
+    },
+    {
+      "id": "node-6",
+      "type": "customNode",
+      "position": { "x": 1000, "y": 250 },
+      "data": {
+        "name": "Handle Payment Failure",
+        "method": "GET",
+        "path": "/orders",
+        "operationId": "getOrders",
+        "description": "Retrieve order details and notify user of payment failure",
+        "apiDocumentationLink": "https://api.example.com/docs#/orders/getOrders",
+        "imageLink": "https://cdn-icons-png.flaticon.com/512/753/753345.png",
+        "tags": ["orders", "error-handling"]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-1",
+      "source": "node-1",
+      "target": "node-2",
+      "sourceHandle": "success",
+      "targetHandle": null,
+      "type": "default",
+      "label": "✅ Success",
+      "style": { "stroke": "#10b981" }
+    },
+    {
+      "id": "edge-2",
+      "source": "node-2",
+      "target": "node-3",
+      "sourceHandle": "success",
+      "targetHandle": null,
+      "type": "default",
+      "label": "✅ Success",
+      "style": { "stroke": "#10b981" }
+    },
+    {
+      "id": "edge-3",
+      "source": "node-3",
+      "target": "node-4",
+      "sourceHandle": "success",
+      "targetHandle": null,
+      "type": "default",
+      "label": "✅ Success",
+      "style": { "stroke": "#10b981" }
+    },
+    {
+      "id": "edge-4",
+      "source": "node-4",
+      "target": "node-5",
+      "sourceHandle": "success",
+      "targetHandle": null,
+      "type": "default",
+      "label": "✅ Success",
+      "style": { "stroke": "#10b981" }
+    },
+    {
+      "id": "edge-5",
+      "source": "node-4",
+      "target": "node-6",
+      "sourceHandle": "failure",
+      "targetHandle": null,
+      "type": "default",
+      "label": "❌ Failure",
+      "style": { "stroke": "#ef4444" }
+    }
+  ],
+  "openAPISchema": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Example E-commerce API",
+      "version": "1.0.0"
+    }
+  },
+  "createdAt": "2025-01-03T10:00:00.000Z"
+}

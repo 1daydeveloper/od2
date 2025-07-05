@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TypographyH1, TypographyH2, TypographyP } from "@/components/ui/typography";
-import { menuItems } from "@/components/common";
+import { menuItems } from "@/lib/common";
 
 function renderCard(item) {
   return (

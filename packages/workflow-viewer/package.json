@@ -1,0 +1,58 @@
+{
+  "name": "@od2/workflow-viewer",
+  "version": "1.0.0",
+  "description": "Embeddable workflow viewer for displaying API workflows created with OD2 Workflow Builder",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "prepare": "npm run build",
+    "clean": "rm -rf dist",
+    "demo": "python -m http.server 8080 || python3 -m http.server 8080",
+    "test": "echo \"Open demo.html in browser to test\" && exit 0"
+  },
+  "keywords": [
+    "workflow",
+    "api",
+    "diagram",
+    "viewer",
+    "embed",
+    "openapi",
+    "visualization"
+  ],
+  "author": "OD2 Team",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "rollup": "^4.9.1",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "reactflow": "^11.10.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/od2/workflow-viewer.git"
+  },
+  "homepage": "https://github.com/od2/workflow-viewer#readme",
+  "bugs": {
+    "url": "https://github.com/od2/workflow-viewer/issues"
+  }
+}

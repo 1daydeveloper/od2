@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OD2 Workflow Viewer Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .demo-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .workflow-container {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn:hover {
+            background: #f3f4f6;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 16px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .info-panel {
+            background: #e7f3ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔄 OD2 Workflow Viewer Demo</h1>
+            <p>Interactive demonstration of the embeddable workflow viewer</p>
+            <button class="btn theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+        </div>
+
+        <div class="info-panel">
+            <h3>📋 Instructions</h3>
+            <p>This demo shows how to embed workflow diagrams using the OD2 Workflow Viewer. The sample data uses the <strong>embed flow export format</strong> - a lightweight JSON structure optimized for embedding (exported from OD2 Workflow Builder using "Export for Embed").</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>📊 Sample Workflow</h2>
+            <div class="controls">
+                <button class="btn" onclick="viewer.fitToView()">🎯 Fit to View</button>
+                <button class="btn" onclick="viewer.zoomIn()">🔍 Zoom In</button>
+                <button class="btn" onclick="viewer.zoomOut()">🔍 Zoom Out</button>
+                <button class="btn" onclick="viewer.reset()">🔄 Reset</button>
+                <button class="btn" onclick="loadSampleWorkflow()">📁 Load Sample</button>
+                <button class="btn" onclick="exportWorkflow()">💾 Export JSON</button>
+            </div>
+            <div id="workflow-container" class="workflow-container"></div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🔧 Usage Example</h2>
+            <div class="code-block">
+&lt;script src="https://unpkg.com/@od2/workflow-viewer/dist/vanilla.min.js"&gt;&lt;/script&gt;
+
+&lt;div id="my-workflow"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+const workflowData = {
+    name: "API Integration Flow",
+    nodes: [
+        {
+            id: "auth",
+            type: "customNode",
+            position: { x: 100, y: 100 },
+            data: {
+                name: "Authentication",
+                description: "Authenticate with API",
+                method: "POST",
+                path: "/auth/login"
+            }
+        }
+    ],
+    edges: []
+};
+
+const viewer = new WorkflowViewer.EmbeddableWorkflowViewer(workflowData, {
+    container: '#my-workflow',
+    theme: 'light',
+    fitView: true
+});
+&lt;/script&gt;
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>📄 Current Workflow JSON</h2>
+            <div class="code-block" id="workflow-json">
+                Loading...
+            </div>
+        </div>
+    </div>
+
+    <!-- In a real implementation, this would be loaded from CDN -->
+    <script>
+        // Mock implementation for demo purposes
+        class MockEmbeddableWorkflowViewer {
+            constructor(workflow, options) {
+                this.workflow = workflow;
+                this.options = options;
+                this.container = typeof options.container === 'string' 
+                    ? document.querySelector(options.container)
+                    : options.container;
+                this.theme = options.theme || 'light';
+                this.init();
+            }
+
+            init() {
+                this.container.innerHTML = '';
+                this.container.style.position = 'relative';
+                this.container.style.backgroundColor = this.theme === 'dark' ? '#1a1a1a' : '#ffffff';
+                this.container.style.border = '1px solid #e2e8f0';
+                this.container.style.borderRadius = '8px';
+                this.container.style.padding = '20px';
+                this.container.style.overflow = 'hidden';
+
+                // Create mock workflow visualization
+                const mockFlow = document.createElement('div');
+                mockFlow.style.width = '100%';
+                mockFlow.style.height = '100%';
+                mockFlow.style.display = 'flex';
+                mockFlow.style.alignItems = 'center';
+                mockFlow.style.justifyContent = 'center';
+                mockFlow.style.flexDirection = 'column';
+                mockFlow.style.gap = '20px';
+
+                // Add workflow nodes
+                this.workflow.nodes.forEach((node, index) => {
+                    const nodeEl = document.createElement('div');
+                    nodeEl.style.background = this.theme === 'dark' ? '#374151' : '#ffffff';
+                    nodeEl.style.border = '2px solid #e2e8f0';
+                    nodeEl.style.borderRadius = '12px';
+                    nodeEl.style.padding = '16px';
+                    nodeEl.style.minWidth = '200px';
+                    nodeEl.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                    nodeEl.style.position = 'relative';
+
+                    const title = document.createElement('h4');
+                    title.textContent = node.data.name;
+                    title.style.margin = '0 0 8px 0';
+                    title.style.color = this.theme === 'dark' ? '#ffffff' : '#1f2937';
+
+                    if (node.data.method && node.data.path) {
+                        const method = document.createElement('span');
+                        method.textContent = node.data.method;
+                        method.style.background = this.getMethodColor(node.data.method);
+                        method.style.color = '#ffffff';
+                        method.style.padding = '2px 6px';
+                        method.style.borderRadius = '4px';
+                        method.style.fontSize = '10px';
+                        method.style.fontWeight = 'bold';
+                        method.style.marginRight = '8px';
+
+                        const path = document.createElement('span');
+                        path.textContent = node.data.path;
+                        path.style.fontSize = '12px';
+                        path.style.color = this.theme === 'dark' ? '#9ca3af' : '#6b7280';
+                        path.style.fontFamily = 'monospace';
+
+                        const apiInfo = document.createElement('div');
+                        apiInfo.style.marginBottom = '8px';
+                        apiInfo.appendChild(method);
+                        apiInfo.appendChild(path);
+                        nodeEl.appendChild(title);
+                        nodeEl.appendChild(apiInfo);
+                    } else {
+                        nodeEl.appendChild(title);
+                    }
+
+                    if (node.data.description) {
+                        const desc = document.createElement('p');
+                        desc.textContent = node.data.description;
+                        desc.style.margin = '0';
+                        desc.style.fontSize = '12px';
+                        desc.style.color = this.theme === 'dark' ? '#9ca3af' : '#6b7280';
+                        nodeEl.appendChild(desc);
+                    }
+
+                    mockFlow.appendChild(nodeEl);
+
+                    // Add arrow if not last node
+                    if (index < this.workflow.nodes.length - 1) {
+                        const arrow = document.createElement('div');
+                        arrow.textContent = '↓';
+                        arrow.style.fontSize = '24px';
+                        arrow.style.color = '#10b981';
+                        mockFlow.appendChild(arrow);
+                    }
+                });
+
+                this.container.appendChild(mockFlow);
+                this.updateJSON();
+            }
+
+            getMethodColor(method) {
+                const colors = {
+                    'GET': '#28a745',
+                    'POST': '#007bff',
+                    'PUT': '#ffc107',
+                    'DELETE': '#dc3545',
+                    'PATCH': '#6f42c1'
+                };
+                return colors[method.toUpperCase()] || '#6c757d';
+            }
+
+            fitToView() {
+                console.log('Fit to view');
+            }
+
+            zoomIn() {
+                console.log('Zoom in');
+            }
+
+            zoomOut() {
+                console.log('Zoom out');
+            }
+
+            reset() {
+                console.log('Reset view');
+            }
+
+            updateWorkflow(workflow) {
+                this.workflow = workflow;
+                this.init();
+            }
+
+            updateJSON() {
+                const jsonEl = document.getElementById('workflow-json');
+                if (jsonEl) {
+                    jsonEl.textContent = JSON.stringify(this.workflow, null, 2);
+                }
+            }
+        }
+
+        // Mock the global WorkflowViewer object
+        window.WorkflowViewer = {
+            EmbeddableWorkflowViewer: MockEmbeddableWorkflowViewer
+        };
+
+        // Sample workflow data (embed flow format)
+        const sampleWorkflow = {
+            name: "User Authentication Flow",
+            version: "1.0.0",
+            exportType: "embed",
+            exportedAt: new Date().toISOString(),
+            nodes: [
+                {
+                    id: "node-1",
+                    type: "customNode",
+                    position: { x: 100, y: 100 },
+                    data: {
+                        name: "User Login",
+                        description: "Authenticate user credentials and obtain access token",
+                        method: "POST",
+                        path: "/auth/login",
+                        operationId: "loginUser",
+                        tags: ["Authentication"],
+                        apiDocumentationLink: "https://api.example.com/docs#/auth",
+                        imageLink: ""
+                    }
+                },
+                {
+                    id: "node-2",
+                    type: "customNode",
+                    position: { x: 400, y: 100 },
+                    data: {
+                        name: "Get User Profile",
+                        description: "Retrieve authenticated user's profile information",
+                        method: "GET",
+                        path: "/users/me",
+                        operationId: "getUserProfile",
+                        tags: ["Users"],
+                        apiDocumentationLink: "https://api.example.com/docs#/users",
+                        imageLink: ""
+                    }
+                },
+                {
+                    id: "node-3",
+                    type: "customNode",
+                    position: { x: 700, y: 100 },
+                    data: {
+                        name: "Update Preferences",
+                        description: "Update user preferences and settings",
+                        method: "PUT",
+                        path: "/users/me/preferences",
+                        operationId: "updatePreferences",
+                        tags: ["Users"],
+                        apiDocumentationLink: "",
+                        imageLink: ""
+                    }
+                }
+            ],
+            edges: [
+                {
+                    id: "edge-1",
+                    source: "node-1",
+                    target: "node-2",
+                    sourceHandle: "success",
+                    targetHandle: "input",
+                    animated: true,
+                    label: ""
+                },
+                {
+                    id: "edge-2",
+                    source: "node-2",
+                    target: "node-3",
+                    sourceHandle: "success",
+                    targetHandle: "input",
+                    animated: true,
+                    label: ""
+                }
+            ],
+            metadata: {
+                nodeCount: 3,
+                edgeCount: 2,
+                isEmbedExport: true
+            }
+        };
+
+        // Initialize viewer
+        let viewer = new WorkflowViewer.EmbeddableWorkflowViewer(sampleWorkflow, {
+            container: '#workflow-container',
+            theme: 'light',
+            interactive: true,
+            showControls: true,
+            fitView: true
+        });
+
+        // Demo functions
+        function toggleTheme() {
+            const newTheme = viewer.theme === 'light' ? 'dark' : 'light';
+            viewer.theme = newTheme;
+            document.body.style.backgroundColor = newTheme === 'dark' ? '#1a1a1a' : '#f8f9fa';
+            document.body.style.color = newTheme === 'dark' ? '#ffffff' : '#000000';
+            viewer.init();
+        }
+
+        function loadSampleWorkflow() {
+            // Add a new node to demonstrate dynamic updates
+            const newNode = {
+                id: `node-${Date.now()}`,
+                type: "customNode",
+                position: { x: 100, y: 300 },
+                data: {
+                    name: "New API Call",
+                    description: "Dynamically added endpoint",
+                    method: "GET",
+                    path: "/api/new-endpoint"
+                }
+            };
+            
+            const updatedWorkflow = {
+                ...sampleWorkflow,
+                nodes: [...sampleWorkflow.nodes, newNode]
+            };
+            
+            viewer.updateWorkflow(updatedWorkflow);
+        }
+
+        function exportWorkflow() {
+            const dataStr = JSON.stringify(viewer.workflow, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'workflow-export.json';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

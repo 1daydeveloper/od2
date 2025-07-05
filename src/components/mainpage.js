@@ -60,12 +60,12 @@ const Mainpage = () => {
       <div className="flex flex-col text-center gap-3 p-4 sm:p-6 rounded-lg shadow">
         <div className="hidden lg:block">
           <Button asChild variant="secondary" className="mb-7 rounded-full px-1 pe-4">
-            <Link href="/captcha" className="inline-flex items-center">
+            <Link href="/api-wd" className="inline-flex items-center">
               <span className="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 me-3">
                 New
               </span>
               <span className="text-sm font-medium">
-                New CAPTCHA Test Suit is Introduced check that out!
+                Try our new API Workflow Designer
               </span>
               <MoveRight className="ml-3" />
             </Link>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import { Menu } from "lucide-react";
-import { menuItems } from "@/components/common";
+import { menuItems } from "@/lib/common";
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
