@@ -4,11 +4,11 @@ import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Clarity from "@microsoft/clarity";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: {
     template: "%s | One Day Developers",
@@ -229,7 +229,7 @@ export default function RootLayout({ children }) {
 />
 
       </head>
-      <body className={`${inter.className}`}>
+      <body className="font-sans">
          <ThemeProvider
             attribute="class"
             defaultTheme="system"
