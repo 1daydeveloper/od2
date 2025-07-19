@@ -11,71 +11,41 @@ import { ThemeProvider } from "@/components/theme-provider"
 // const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: {
-    template: "%s | One Day Developers",
-    default: "One Day Developers - Rapid Project Delivery",
+    template: "%s | OD2 Trip Expense Tracker",
+    default: "OD2 Trip Expense Tracker - Track Your Travel Expenses",
   },
   description:
-    "One Day Developers (OD2) specializes in delivering high-quality software, desktop applications, Android development, and integration services within just 24 hours*. Your trusted partner for rapid development and innovation.",
+    "OD2 Trip Expense Tracker helps you manage and track all your travel expenses efficiently. Organize expenses by trip, categorize spending, and keep track of your travel budget.",
   keywords: [
-    "One Day Developers",
+    "trip expense tracker",
+    "travel expense management", 
+    "expense tracking",
+    "travel budget",
+    "expense organizer",
+    "trip planning",
+    "travel expenses",
+    "expense calculator",
+    "budget tracker",
     "OD2",
-    "software development",
-    "Android development",
-    "desktop applications",
-    "integration services",
-    "24-hour project delivery",
-    "rapid development",
-    "rapid innovation",
-    "rapid project delivery",
-    "OD2.in",
-    "Free Image to Blob Converter",
-    "OD2 Image to Blob Converter",
-    "Free temp mail",
-    "OD2 temp mail",
-    "Free temporary email",
-    "OD2 temporary email",
-    "Free disposable email",
-    "OD2 disposable email",
-    "Free throwaway email",
-    "OD2 throwaway email",
-    "Free fake email",
-    "OD2 fake email",
-    "Free email generator",
-    "OD2 email generator",
-    "Free email service",
-    "OD2 email service",
-    "Free email provider",
-    "OD2 email provider",
-    "Free email address",
-    "OD2 email address",
-    "Free email account",
-    "OD2 email account",
-    "Free email inbox",
-    "OD2 email inbox",
-    "Free email domain",
-    "OD2 email domain",
-    "Free email hosting",
-    "OD2 email hosting",
-    "Free email forwarding",
-    "OD2 email forwarding",
-    "Free email alias",
-    "OD2 email alias",
-    "Free email service provider",
-    "OD2 email service provider",
+    "expense management app",
+    "travel finance",
+    "trip budgeting",
+    "expense categories",
+    "travel cost tracking"
   ],
-  author: "One Day Developers (OD2)",
+  author: "OD2 - One Day Developers",
   openGraph: {
-    title: "One Day Developers - Complete Your Project in 24 Hours",
+    title: "OD2 Trip Expense Tracker - Manage Your Travel Expenses",
     description:
-      "Need high-quality software, apps, or integrations quickly? One Day Developers (OD2) delivers exceptional results in just 24 hours*!",
-    url: "https://www.od2.in", // Replace with your actual site URL
-    siteName: "One Day Developers",
+      "Track and manage your travel expenses with ease. Organize by trip, categorize spending, and stay within budget.",
+    url: "https://www.od2.in",
+    siteName: "OD2 Trip Expense Tracker",
     images: [
       {
-        url: "https://www.od2.in/odd.png", // Replace with your actual image URL
+        url: "https://www.od2.in/odd.png",
         width: 1200,
         height: 630,
-        alt: "One Day Developers - Rapid Project Delivery",
+        alt: "OD2 Trip Expense Tracker",
       },
     ],
     locale: "en_US",
@@ -83,10 +53,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "One Day Developers - Rapid Project Delivery",
+    title: "OD2 Trip Expense Tracker - Track Your Travel Expenses",
     description:
-      "Your trusted partner for high-quality software, desktop applications, and Android development delivered within just 24 hours*.",
-    images: ["https://www.od2.in/odd.png"], // Replace with your actual image URL
+      "Manage your travel expenses efficiently with our easy-to-use trip expense tracker.",
+    images: ["https://www.od2.in/odd.png"],
   },
 };
 
@@ -144,83 +114,24 @@ export default function RootLayout({ children }) {
     __html: JSON.stringify(
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "OD2 - One Day Developers",
+        "@type": "WebApplication",
+        "name": "OD2 Trip Expense Tracker",
         "url": "https://od2.in",
-        "logo": "https://www.od2.in/odd.png",
-        "sameAs": [
-          "https://www.instagram.com/onedaydevelopers/",
-          "https://www.youtube.com/channel/UCtgc_t09aTJUxYTu4CAaBAA",
-          "https://x.com/onedaydev2020"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "admin@od2.in",
-          "telephone": "+917010178914",
-          "contactType": "customer service"
+        "description": "A comprehensive trip expense tracker to help travelers manage and organize their travel expenses by trip and category.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
         },
-        "foundingDate": "2020",
-        "description": "OD2 - One Day Developers specializes in web, app, and software development with high performance and SEO optimization.",
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Services",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Temp Mail",
-                "description": "Generate disposable emails on-the-go! Secure, fast, and perfect for protecting your privacy or testing software."
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Passport Size Photo Maker",
-                "description": "Get your passport-size photo perfectly resized and ready for print. Quick, easy, and high-quality images for all your official document needs."
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Broken Link Checker",
-                "description": "Easily check your website for broken links and ensure all your links are working correctly. Quick, efficient, and reliable link checking for your web pages."
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Software Development",
-                "description": "Custom software solutions tailored to your needs.",
-                "url": "https://www.od2.in/products"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Product",
-                "name": "OD2 Billing System",
-                "description": "A fast and efficient billing system for businesses with low price.",
-                "url": "https://www.od2.in/products/od2-billing-system",
-                "image": "https://www.od2.in/odd.png",
-                "brand": {
-                  "@type": "Brand",
-                  "name": "OD2"
-                },
-                "offers": {
-                  "@type": "Offer",
-                  "priceCurrency": "INR",
-                  "price": "9999.00",
-                  "availability": "https://schema.org/InStock"
-                }
-              }
-            },
-           
-          ]
-        }
+        "featureList": [
+          "Track expenses by trip",
+          "Categorize expenses",
+          "View expense summaries",
+          "Local data storage",
+          "Responsive design"
+        ]
       },
       null,
       2

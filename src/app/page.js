@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import Mainpage from "@/components/mainpage";
+import ExpenseTracker from "@/components/expense-tracker";
 
 const Home = () => {
-  return <Mainpage />;
+  return <ExpenseTracker />;
 };
 
 export default Home;
