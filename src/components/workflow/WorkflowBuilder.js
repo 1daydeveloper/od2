@@ -296,6 +296,7 @@ export default function WorkflowBuilder() {
           onEmbedExport={handleEmbedExport}
           onImport={handleImport}
           onClear={clearWorkflow}
+          hasNodes={nodes.length > 0}
         />
 
         <div className="flex-1 min-h-0" ref={reactFlowWrapper} style={{ minHeight: 0 }}>

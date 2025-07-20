@@ -13,6 +13,7 @@ export default function WorkflowToolbar({
   onEmbedExport,
   onImport,
   onClear,
+  hasNodes = false,
 }) {
   const fileInputRef = useRef(null);
 
@@ -71,7 +72,7 @@ export default function WorkflowToolbar({
       </div>
 
       <div className="flex items-center gap-2">
-        <Link href="/api-wd/docs">
+        <Link href="/api-wd/docs" target="_blank" rel="noopener noreferrer">
           <Button
             variant="outline"
             size="sm"
@@ -82,7 +83,7 @@ export default function WorkflowToolbar({
             Docs
           </Button>
         </Link>
-        <Link href="/api-wd/test">
+        <Link href="/api-wd/test" target="_blank" rel="noopener noreferrer">
           <Button
             variant="outline"
             size="sm"
@@ -93,7 +94,6 @@ export default function WorkflowToolbar({
             Test
           </Button>
         </Link>
-       
         <Button
           variant="outline"
           size="sm"
@@ -109,8 +109,9 @@ export default function WorkflowToolbar({
           variant="outline"
           size="sm"
           onClick={onExport}
+          disabled={!hasNodes}
           className="flex items-center gap-2"
-          title="Export full workflow with OpenAPI schema"
+          title={!hasNodes ? "Add nodes to export a workflow" : "Export full workflow with OpenAPI schema"}
         >
           <Download className="w-4 h-4" />
           Export Workflow
@@ -120,8 +121,9 @@ export default function WorkflowToolbar({
           variant="outline"
           size="sm"
           onClick={onEmbedExport}
+          disabled={!hasNodes}
           className="flex items-center gap-2"
-          title="Export flow for embedding (lightweight)"
+          title={!hasNodes ? "Add nodes to export for embed" : "Export flow for embedding (lightweight)"}
         >
           <Globe className="w-4 h-4" />
           Export for Embed
@@ -149,7 +151,9 @@ export default function WorkflowToolbar({
           variant="destructive"
           size="sm"
           onClick={onClear}
+          disabled={!hasNodes}
           className="flex items-center gap-2"
+          title={!hasNodes ? "No nodes to clear" : "Clear all nodes and workflow"}
         >
           <Trash2 className="w-4 h-4" />
           Clear

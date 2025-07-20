@@ -19,7 +19,7 @@ export default function DocsPage() {
               Back to Workflow Builder
             </Button>
           </Link>
-          <Link href="/api-wd/test">
+          <Link href="/api-wd/test" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="sm">
               🔧 Test Viewer
             </Button>
@@ -176,6 +176,8 @@ export default function DocsPage() {
               <div className="mt-3 pt-3 border-t border-secondary">
                 <Link 
                   href="/api-wd/test" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors text-sm font-medium"
                 >
                   🔧 Open Test Viewer
