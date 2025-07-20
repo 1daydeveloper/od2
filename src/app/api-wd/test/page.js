@@ -151,6 +151,8 @@ export default function WorkflowTestPage() {
           </Link>
           <Link 
             href="/api-wd/docs"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-3 py-2 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
           >
             📚 Documentation

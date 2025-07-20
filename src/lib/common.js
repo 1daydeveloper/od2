@@ -125,9 +125,9 @@ const menuItems = {
             priority: 4,
             description: "Convert images to blob format for uploads.",
             features: [
-                "🚀 Faster loading – Reduces HTTP requests",
-                "📂 Offline support – No external hosting needed",
-                "🔒 Improved security – Prevents image hotlinking",
+                "Faster loading – Reduces HTTP requests",
+                "Offline support – No external hosting needed",
+                "Improved security – Prevents image hotlinking",
             ],
         },
     ],
