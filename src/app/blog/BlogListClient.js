@@ -1,9 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { BookOpenIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { LinkIcon } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -22,8 +24,13 @@ import {
 } from "@/components/ui/pagination";
 
 export default function BlogListClient({ allPostsData }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const pageSize = 5;
-  const [currentPage, setCurrentPage] = useState(1);
+  
+  // Get initial page from URL or default to 1
+  const initialPage = parseInt(searchParams.get('page')) || 1;
+  const [currentPage, setCurrentPage] = useState(initialPage);
   const totalPages = Math.ceil(allPostsData.length / pageSize);
 
   const pagedPosts = allPostsData.slice(
@@ -33,7 +40,19 @@ export default function BlogListClient({ allPostsData }) {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    // Update URL with new page parameter
+    const params = new URLSearchParams(searchParams);
+    params.set('page', page.toString());
+    router.push(`?${params.toString()}`, { scroll: false });
   };
+
+  // Update current page when URL changes
+  useEffect(() => {
+    const urlPage = parseInt(searchParams.get('page')) || 1;
+    if (urlPage !== currentPage) {
+      setCurrentPage(urlPage);
+    }
+  }, [searchParams, currentPage]);
 
   return (
     <>
@@ -42,7 +61,7 @@ export default function BlogListClient({ allPostsData }) {
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 ">
         {pagedPosts.map(
-          ({ id, title, date, author, keywords, category, description }) => (
+          ({ id, title, date, author, authorLink, keywords, category, description }) => (
             <Link
               href={`/blog/${id}`}
               key={id}
@@ -56,7 +75,10 @@ export default function BlogListClient({ allPostsData }) {
                   <CardDescription>
                     <div className="flex flex-wrap mb-3 font-bold gap-2">
                       <Badge variant="destructive">Publish Date: {date}</Badge>
-                      <Badge variant="outline" className="ml-2">Author: {author}</Badge>
+                      <Link href={authorLink ? authorLink : "#"} target="_blank" rel="noopener noreferrer">
+                        <Badge variant="outline" className="ml-2 flex gap-2">Author: {author}                                 {authorLink ? <LinkIcon className="inline mr-1" /> : ""}
+                        </Badge>
+                      </Link>
                       <Badge variant="secondary" className="ml-2">Category: {category}</Badge>
                     </div>
                   </CardDescription>

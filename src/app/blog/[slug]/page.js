@@ -4,7 +4,8 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { LinkIcon } from "lucide-react";
+import Link from "next/link";
 
 const PostPage = ({ frontMatter, content }) => {
   const convertToHashTags = (text) => {
@@ -33,9 +34,11 @@ const PostPage = ({ frontMatter, content }) => {
               <Badge variant="outline" className="text-lg mb-4  w-fit">
                 {frontMatter.date}
               </Badge>
-              <Badge variant="outline" className="text-lg mb-4  w-fit">
-                {frontMatter.author}
-              </Badge>
+              <Link href={frontMatter.authorLink ? frontMatter.authorLink : "#"} target="_blank" rel="noopener noreferrer">
+                <Badge variant="outline" className="text-lg mb-4  w-fit">
+                  {frontMatter.authorLink ? <LinkIcon className="inline mr-1" /> : ""}  {frontMatter.author}
+                </Badge>
+              </Link>
             </div>
           </div>
         </CardHeader>
