@@ -2,29 +2,30 @@ import { BellDot } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TypographyH2, TypographyP } from "@/components/ui/typography";
+import "@/styles/blog.css";
 
 export default function BlogLayout({ children, frontMatter, content }) {
   return (
-    <>
-      <div className="p-3">{children}</div>
-      <Card className="w-full bg-gradient-to-r py-5 from-indigo-500 via-purple-500 to-pink-500 my-8 rounded-lg shadow-lg">
-        <CardContent>
-          <div className="max-w-screen-lg mx-auto text-center text-white">
-            <TypographyH2 className="mb-4">
+    <div className="w-full max-w-none">
+      <div className="px-2 sm:px-4">{children}</div>
+      <Card className="w-full bg-gradient-to-r py-6 from-primary via-primary to-primary my-8 rounded-lg shadow-lg">
+        <CardContent className="px-4 sm:px-6">
+          <div className="max-w-screen-lg mx-auto text-center text-primary-foreground">
+            <TypographyH2 className="mb-4 text-xl sm:text-2xl lg:text-3xl text-primary-foreground">
               Ready to Share Your Knowledge? Publish Your Blog Today!
             </TypographyH2>
-            <TypographyP className="mb-6 text-lg">
+            <TypographyP className="mb-6 text-sm sm:text-base lg:text-lg text-primary-foreground/90">
               Writing blog posts on technical topics helps you grow your audience,
               improves SEO, and contributes to the developer community. Share your
               experience with us!
             </TypographyP>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild variant="secondary" className="text-indigo-600 bg-white hover:bg-indigo-100">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button asChild variant="secondary" className="bg-background text-foreground hover:bg-muted">
                 <a href="/blog/od2-blog-submission-guidelines">
                   View Guidelines
                 </a>
               </Button>
-              <Button asChild variant="default" className="bg-indigo-600 hover:bg-indigo-500">
+              <Button asChild variant="default" className="bg-foreground text-background hover:bg-foreground/90">
                 <a target="blank" href="https://forms.gle/DatwRJyuUAJvCcw67">
                   Submit Your Blog
                 </a>
@@ -33,18 +34,18 @@ export default function BlogLayout({ children, frontMatter, content }) {
           </div>
         </CardContent>
       </Card>
-      <Card className="mt-3 rounded-lg bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 text-white">
-        <CardContent>
-          <div className="flex flex-row flex-wrap w-full gap-5 justify-center items-center p-5">
+      <Card className="mt-3 rounded-lg bg-gradient-to-r from-muted via-muted to-muted">
+        <CardContent className="px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row w-full gap-4 sm:gap-5 justify-center items-center p-4 sm:p-5">
             <div className="my-auto text-lg">
-              <BellDot size={48} />
+              <BellDot size={48} className="mx-auto sm:mx-0 text-foreground" />
             </div>
-            <div>
-              <div className="font-bold text-lg">
+            <div className="text-center sm:text-left">
+              <div className="font-bold text-base sm:text-lg mb-3 text-foreground">
                 Get Notification on New Latest Blogs
               </div>
-              <div className="text-base">
-                <Button className="bg-black hover:bg-blue-700 justify-center flex gap-1 font-extrabold p-3 rounded-md transition-all">
+              <div className="flex justify-center sm:justify-start">
+                <Button className="bg-foreground text-background hover:bg-foreground/90 flex items-center gap-1 font-extrabold px-4 py-3 rounded-md transition-all">
                   Subscribe For Free
                 </Button>
               </div>
@@ -53,20 +54,21 @@ export default function BlogLayout({ children, frontMatter, content }) {
         </CardContent>
       </Card>
       <section className="maincard mt-2">
-        <Card className="mt-4 border-4 border-white shadow-xl shadow-yellow-600/100 p-4 md:p-10 flex flex-col items-center justify-center text-center">
-          <CardContent>
-            <TypographyP className="text-xl md:text-2xl font-bold border-b-4 border-b-black">
+        <Card className="mt-4 border-4 border-border shadow-xl p-4 sm:p-6 md:p-10 flex flex-col items-center justify-center text-center">
+          <CardContent className="px-2 sm:px-4">
+            <TypographyP className="text-lg sm:text-xl md:text-2xl font-bold border-b-4 border-b-border mb-4">
               Stay in Touch With Us
             </TypographyP>
-            <ul className="flex flex-row items-center justify-center text-center mt-5">
-              <li className="mx-2">
+            <ul className="flex flex-row items-center justify-center text-center mt-3 sm:mt-5 gap-4 sm:gap-6">
+              <li>
                 <a
                   href="https://www.youtube.com/channel/UCtgc_t09aTJUxYTu4CAaBAA"
                   target="_blank"
                   aria-label="Share on Youtube"
+                  className="blog-social-icon"
                 >
                   <svg
-                    className="w-12 h-12"
+                    className="w-10 h-10 sm:w-12 sm:h-12"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -82,14 +84,15 @@ export default function BlogLayout({ children, frontMatter, content }) {
                   </svg>
                 </a>
               </li>
-              <li className="mx-2">
+              <li>
                 <a
                   href="https://www.instagram.com/onedaydevelopers/"
                   target="_blank"
                   aria-label="Share on Instagram"
+                  className="blog-social-icon"
                 >
                   <svg
-                    className="w-12 h-12"
+                    className="w-10 h-10 sm:w-12 sm:h-12"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -110,7 +113,7 @@ export default function BlogLayout({ children, frontMatter, content }) {
           </CardContent>
         </Card>
       </section>
-    </>
+    </div>
   );
 }
 

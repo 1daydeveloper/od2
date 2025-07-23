@@ -56,10 +56,10 @@ export default function BlogListClient({ allPostsData }) {
 
   return (
     <>
-      <h1 className="text-2x font-extrabold mb-4 text-center">
+      <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold mb-6 text-center">
         OD2 LATEST BLOGS
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 ">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6">
         {pagedPosts.map(
           ({ id, title, date, author, authorLink, keywords, category, description }) => (
             <Link
@@ -67,29 +67,35 @@ export default function BlogListClient({ allPostsData }) {
               key={id}
               className="w-full"
             >
-              <Card className="w-full hover:scale-105 transition-transform duration-200">
-                <CardHeader>
-                  <CardTitle className="text-2xl font-extrabold sm:text-3xl mb-2">
+              <Card className="w-full blog-card-hover">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg sm:text-xl lg:text-2xl font-extrabold leading-tight mb-3">
                     {title}
                   </CardTitle>
                   <CardDescription>
-                    <div className="flex flex-wrap mb-3 font-bold gap-2">
-                      <Badge variant="destructive">Publish Date: {date}</Badge>
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 font-bold">
+                      <Badge variant="destructive" className="text-xs sm:text-sm w-fit">
+                        Publish Date: {date}
+                      </Badge>
                       <Link href={authorLink ? authorLink : "#"} target="_blank" rel="noopener noreferrer">
-                        <Badge variant="outline" className="ml-2 flex gap-2">Author: {author}                                 {authorLink ? <LinkIcon className="inline mr-1" /> : ""}
+                        <Badge variant="outline" className="text-xs sm:text-sm w-fit flex items-center gap-1">
+                          Author: {author}
+                          {authorLink && <LinkIcon className="h-3 w-3" />}
                         </Badge>
                       </Link>
-                      <Badge variant="secondary" className="ml-2">Category: {category}</Badge>
+                      <Badge variant="secondary" className="text-xs sm:text-sm w-fit">
+                        Category: {category}
+                      </Badge>
                     </div>
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-base line-clamp-3 mb-2">{description}</p>
+                <CardContent className="pt-0">
+                  <p className="text-sm sm:text-base line-clamp-3 mb-4 text-muted-foreground">{description}</p>
                 </CardContent>
-                <CardFooter>
-                  <Button variant="outline" className="flex gap-3 font-extrabold w-25 p-2 rounded-xl justify-center">
-                    <BookOpenIcon />
-                    <span className="self-center">Read This Blog</span>
+                <CardFooter className="pt-0">
+                  <Button variant="outline" className="flex items-center gap-2 font-extrabold w-auto px-4 py-2 rounded-xl">
+                    <BookOpenIcon className="h-4 w-4" />
+                    <span>Read This Blog</span>
                   </Button>
                 </CardFooter>
               </Card>
@@ -99,10 +105,11 @@ export default function BlogListClient({ allPostsData }) {
       </div>
       <div className="flex justify-center mt-8">
         <Pagination>
-          <PaginationContent>
+          <PaginationContent className="blog-pagination">
             <PaginationItem>
               <PaginationPrevious
                 href="#"
+                className="text-sm sm:text-base"
                 onClick={e => {
                   e.preventDefault();
                   if (currentPage > 1) handlePageChange(currentPage - 1);
@@ -114,6 +121,7 @@ export default function BlogListClient({ allPostsData }) {
               <PaginationItem key={idx}>
                 <PaginationLink
                   href="#"
+                  className="text-sm sm:text-base min-w-[2.5rem] sm:min-w-[3rem]"
                   isActive={currentPage === idx + 1}
                   onClick={e => {
                     e.preventDefault();
@@ -127,6 +135,7 @@ export default function BlogListClient({ allPostsData }) {
             <PaginationItem>
               <PaginationNext
                 href="#"
+                className="text-sm sm:text-base"
                 onClick={e => {
                   e.preventDefault();
                   if (currentPage < totalPages) handlePageChange(currentPage + 1);

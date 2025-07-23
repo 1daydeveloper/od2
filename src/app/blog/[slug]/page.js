@@ -12,7 +12,7 @@ const PostPage = ({ frontMatter, content }) => {
     return text.split(",").map((word, index) => {
       if (word) {
         return (
-          <Badge key={index} variant="secondary" className="text-lg rounded-full px-3">
+          <Badge key={index} variant="secondary" className="text-sm sm:text-base lg:text-lg rounded-full px-2 sm:px-3 py-1">
             {word.trim()}
           </Badge>
         );
@@ -21,49 +21,50 @@ const PostPage = ({ frontMatter, content }) => {
     });
   };
   return (
-    <>
-      <Card className="prose lg:prose-xl max-w-full mx-auto lg:text-lg !w-full">
-        <CardHeader>
-          <div className="flex flex-col gap-3 flex-wrap">
+    <div className="w-full max-w-none">
+      <Card className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none mx-auto !w-full">
+        <CardHeader className="px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-3">
             <div className="flex flex-wrap">
-              <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+              <h1 className="scroll-m-20 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight leading-tight">
                 {frontMatter.title}
               </h1>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <Badge variant="outline" className="text-lg mb-4  w-fit">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3">
+              <Badge variant="outline" className="text-sm lg:text-base mb-2 sm:mb-4 w-fit">
                 {frontMatter.date}
               </Badge>
               <Link href={frontMatter.authorLink ? frontMatter.authorLink : "#"} target="_blank" rel="noopener noreferrer">
-                <Badge variant="outline" className="text-lg mb-4  w-fit">
-                  {frontMatter.authorLink ? <LinkIcon className="inline mr-1" /> : ""}  {frontMatter.author}
+                <Badge variant="outline" className="text-sm lg:text-base mb-2 sm:mb-4 w-fit flex items-center gap-1">
+                  {frontMatter.authorLink && <LinkIcon className="h-3 w-3 sm:h-4 sm:w-4" />}
+                  {frontMatter.author}
                 </Badge>
               </Link>
             </div>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-4 sm:px-6 lg:px-8">
           <div
-            className="post-content"
+            className="blog-post-content blog-content-wrapper prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none overflow-hidden"
             dangerouslySetInnerHTML={{
               __html: marked(content),
             }}
           />
         </CardContent>
       </Card>
-      <Card className="flex flex-wrap gap-3 p-5 rounded-3xl mt-6">
-        <CardHeader>
-          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+      <Card className="flex flex-wrap gap-3 p-4 sm:p-5 lg:p-6 rounded-3xl mt-6">
+        <CardHeader className="px-0 pb-2">
+          <h3 className="scroll-m-20 text-xl sm:text-2xl font-semibold tracking-tight">
             Keywords
           </h3>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-0 pt-0">
           <div className="flex flex-wrap mb-2 gap-2">
             {convertToHashTags(frontMatter.keywords)}
           </div>
         </CardContent>
       </Card>
-    </>
+    </div>
   );
 };
 

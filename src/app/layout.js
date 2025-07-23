@@ -16,6 +16,12 @@ export const metadata = {
   },
   description:
     "One Day Developers (OD2) specializes in delivering high-quality software, desktop applications, Android development, and integration services within just 24 hours*. Your trusted partner for rapid development and innovation.",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
   keywords: [
     "One Day Developers",
     "OD2",
@@ -237,7 +243,7 @@ export default function RootLayout({ children }) {
             disableTransitionOnChange
           >
         <Header />
-        <div className="p-2 py-3 lg:px-16">{children}</div>
+        <div className="px-2 py-3 sm:px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">{children}</div>
         <ToastContainer
           position="bottom-right"
           autoClose={5000}

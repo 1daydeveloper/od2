@@ -67,7 +67,7 @@ export function generateMetadata({ params }) {
   });
 }
 
-// Page Component
-export default async function Page({ params, children }) {
-  return <div className="p-5">{children}</div>;
+// Layout Component
+export default async function Layout({ params, children }) {
+  return <div className="blog-content-wrapper">{children}</div>;
 }
