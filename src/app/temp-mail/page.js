@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import TrendingWords from "@/components/trending";
 import DeletionTimer from "@/components/temp-mail/DeletionTimer";
 import { toast } from "react-toastify";
 import { ThumbsUp, ThumbsDown, Mail, ClipboardCopy, Copy, Loader, Loader2Icon, PencilLineIcon, MailX } from "lucide-react";
@@ -177,12 +176,6 @@ export default function GetEmailByID() {
     // Enable submit button and log event
     setIsSubmitEnabled(true);
   }
-
-  function addKeyToInput(data) {
-    setId("inputText");
-    setId(data);
-    setIsSubmitEnabled(true);
-  }
   const copyToClipboard = () => {
     if (!navigator.clipboard) {
       toast.error("Clipboard not supported on this browser");
@@ -307,7 +300,6 @@ export default function GetEmailByID() {
           Copy
         </button>
       </div>
-      <TrendingWords addKeyToInput={addKeyToInput} />
 
       <div className="flex flex-col lg:flex-row gap-2">
         <Card className="flex flex-col space-y-2 lg:w-1/3 w-full  p-4 rounded-md">
