@@ -24,7 +24,20 @@
   --ring: 20 14.3% 4.1%;
   --radius: 0.5rem;
   --color-link: #1a0dab;
-
+  --color-strong: #1a1a1a;
+  --color-paragraph: #374151;
+  --color-heading: #111827;
+  --color-list-item: #4b5563;
+  --color-link-hover: #1e40af;
+  --color-blockquote-border: #d1d5db;
+  --color-blockquote-text: #4b5563;
+  --color-blockquote-bg: #f9fafb;
+  --color-code-bg: #f3f4f6;
+  --color-code-text: #111827;
+  --color-pre-bg: #1f2937;
+  --color-pre-text: #f9fafb;
+  --color-html-text: #111827;
+  --color-html-bg: #ffffff;
 }
 
 .dark {
@@ -49,6 +62,20 @@
   --ring: 24 5.7% 82.9%;
   --radius: 0.5rem;
   --color-link: #8ab4f8;
+  --color-strong: #f0f0f0;
+  --color-paragraph: #d1d5db;
+  --color-heading: #f9fafb;
+  --color-list-item: #9ca3af;
+  --color-link-hover: #60a5fa;
+  --color-blockquote-border: #374151;
+  --color-blockquote-text: #d1d5db;
+  --color-blockquote-bg: #1f2937;
+  --color-code-bg: #374151;
+  --color-code-text: #f9fafb;
+  --color-pre-bg: #111827;
+  --color-pre-text: #f3f4f6;
+  --color-html-text: #f9fafb;
+  --color-html-bg: #111827;
 }
 
 html, body {
@@ -339,6 +366,20 @@ table tr:hover {
     --input: 20 5.9% 90%;
     --ring: 20 14.3% 4.1%;
     --radius: 0.5rem;
+    --color-strong: #1a1a1a;
+    --color-paragraph: #374151;
+    --color-heading: #111827;
+    --color-list-item: #4b5563;
+    --color-link-hover: #1e40af;
+    --color-blockquote-border: #d1d5db;
+    --color-blockquote-text: #4b5563;
+    --color-blockquote-bg: #f9fafb;
+    --color-code-bg: #f3f4f6;
+    --color-code-text: #111827;
+    --color-pre-bg: #1f2937;
+    --color-pre-text: #f9fafb;
+    --color-html-text: #111827;
+    --color-html-bg: #ffffff;
   }
   .dark {
     --background: 20 14.3% 4.1%;
@@ -361,6 +402,20 @@ table tr:hover {
     --input: 12 6.5% 15.1%;
     --ring: 24 5.7% 82.9%;
     --radius: 0.5rem;
+    --color-strong: #f0f0f0;
+    --color-paragraph: #d1d5db;
+    --color-heading: #f9fafb;
+    --color-list-item: #9ca3af;
+    --color-link-hover: #60a5fa;
+    --color-blockquote-border: #374151;
+    --color-blockquote-text: #d1d5db;
+    --color-blockquote-bg: #1f2937;
+    --color-code-bg: #374151;
+    --color-code-text: #f9fafb;
+    --color-pre-bg: #111827;
+    --color-pre-text: #f3f4f6;
+    --color-html-text: #f9fafb;
+    --color-html-bg: #111827;
   }
 }
 

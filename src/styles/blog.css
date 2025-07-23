@@ -1,0 +1,109 @@
+/* Blog-specific styles */
+
+/* Mobile-first responsive improvements for blog content */
+@media (max-width: 768px) {
+  .blog-post-content {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .blog-post-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+  }
+  
+  .blog-post-content pre {
+    overflow-x: auto;
+    font-size: 0.875rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.5rem;
+  }
+  
+  .blog-post-content table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    border: 1px solid hsl(var(--border));
+  }
+  
+  .blog-post-content blockquote {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid hsl(var(--border));
+    background-color: hsl(var(--muted));
+    border-radius: 0.25rem;
+  }
+  
+  .blog-post-content code {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Blog card hover effects using existing colors */
+.blog-card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.blog-card-hover:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px -5px hsl(var(--muted-foreground) / 0.1);
+}
+
+/* Blog pagination responsive styles */
+.blog-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Blog social icons hover effect */
+.blog-social-icon {
+  transition: transform 0.2s ease-in-out;
+  color: hsl(var(--foreground));
+}
+
+.blog-social-icon:hover {
+  transform: scale(1.1);
+  color: hsl(var(--primary));
+}
+
+/* Blog content typography improvements */
+.blog-content-wrapper {
+  line-height: 1.7;
+}
+
+.blog-content-wrapper h1,
+.blog-content-wrapper h2,
+.blog-content-wrapper h3,
+.blog-content-wrapper h4,
+.blog-content-wrapper h5,
+.blog-content-wrapper h6 {
+  color: hsl(var(--foreground));
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content-wrapper p {
+  margin-bottom: 1rem;
+  color: hsl(var(--foreground));
+}
+
+.blog-content-wrapper a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+}
+
+
