@@ -77,12 +77,9 @@ export default function BlogListClient({ allPostsData }) {
                       <Badge variant="destructive" className="text-xs sm:text-sm w-fit">
                         Publish Date: {date}
                       </Badge>
-                      <Link href={authorLink ? authorLink : "#"} target="_blank" rel="noopener noreferrer">
-                        <Badge variant="outline" className="text-xs sm:text-sm w-fit flex items-center gap-1">
-                          Author: {author}
-                          {authorLink && <LinkIcon className="h-3 w-3" />}
-                        </Badge>
-                      </Link>
+                      <Badge variant="outline" className="text-xs sm:text-sm w-fit flex items-center gap-1">
+                        Author: {author}
+                      </Badge>
                       <Badge variant="secondary" className="text-xs sm:text-sm w-fit">
                         Category: {category}
                       </Badge>

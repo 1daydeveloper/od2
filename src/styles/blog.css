@@ -106,10 +106,4 @@
   text-decoration: underline;
 }
 
-.blog-content-wrapper a:hover {
-  color: hsl(var(--primary-foreground));
-  background-color: hsl(var(--primary));
-  text-decoration: none;
-  padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
-}
+

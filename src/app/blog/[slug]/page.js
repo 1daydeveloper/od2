@@ -34,7 +34,7 @@ const PostPage = ({ frontMatter, content }) => {
               <Badge variant="outline" className="text-sm lg:text-base mb-2 sm:mb-4 w-fit">
                 {frontMatter.date}
               </Badge>
-              <Link href={frontMatter.authorLink ? frontMatter.authorLink : "#"} target="_blank" rel="noopener noreferrer">
+              <Link href={frontMatter.authorLink && !/^https?:\/\//i.test(frontMatter.authorLink) ? `https://${frontMatter.authorLink}` : frontMatter.authorLink || "#"} target="_blank" rel="noopener noreferrer">
                 <Badge variant="outline" className="text-sm lg:text-base mb-2 sm:mb-4 w-fit flex items-center gap-1">
                   {frontMatter.authorLink && <LinkIcon className="h-3 w-3 sm:h-4 sm:w-4" />}
                   {frontMatter.author}
