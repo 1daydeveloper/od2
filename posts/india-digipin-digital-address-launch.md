@@ -1,7 +1,8 @@
 ---
 title: "India Says Goodbye to PIN Codes: Introducing DigiPIN for Hyper-Accurate Addressing"
 date: "2025-07-24"
-author: "Harish Kumar R"
+author: "HARISH KUMAR R"
+authorLink: "www.linkedin.com/in/harish-bcomca"
 category: "Technology, Innovation, Digital India"
 description: "India launches DigiPIN — a digital address revolution by India Post, IIT-Hyderabad & ISRO that replaces PIN codes with precise 10-character geolocation codes."
 keywords: "DigiPIN, India Post, Digital Address, Geolocation, Smart Address, IIT Hyderabad, ISRO, Indian Innovation, PIN Code Replacement, GPS Addressing, Digital India, Location Accuracy, Tech for India, Rural Addressing, Emergency Services India, E-commerce Delivery, Offline Mapping, No Address Zones, Logistics Technology, Bharat Maps"
