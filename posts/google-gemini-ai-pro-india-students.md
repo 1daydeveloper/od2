@@ -1,7 +1,7 @@
 ---
 title: "Google Offers Free Gemini AI Pro to Indian Students!"
 date: "2025-07-22"
-author: "HARISH R"
+author: "HARISH KUMAR R"
 authorLink: "www.linkedin.com/in/harish-bcomca"
 category: "Technology, Education"
 description: "Google is offering a free one-year subscription to its AI Pro plan, powered by Gemini 2.5 Pro, for eligible students in India. Discover how this powerful AI tool can transform your academic journey and how to claim your free access."
