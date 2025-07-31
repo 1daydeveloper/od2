@@ -20,13 +20,24 @@ const Footer = () => {
               priority
             />
           </div>
-          <p className="mt-4 text-center text-sm lg:mt-0 lg:text-right">
-            Copyright &copy; 2020-2027. All rights reserved.
-          </p>
+          <div className="flex flex-row gap-2 sm:flex-row  sm:justify-end mt-4 sm:mt-0 space-x-0 sm:space-x-4">
+
+            <p className="text-sm ">
+              Copyright &copy; 2020-2027. All rights reserved.
+            </p>|| <a
+              href="/privacy"
+              className="text-blue-600 underline hover:text-blue-800 transition-colors"
+            >
+              Privacy Policy
+            </a>
+          </div>
         </div>
+
       </CardContent>
     </Card>
-  );
+  )
 };
+
+
 
 export default Footer;
