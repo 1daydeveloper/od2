@@ -1,7 +1,8 @@
 ---
 title: "Willow: Google's Quantum Computing Breakthrough"
 date: "2025-01-24"
-author: "Harish R"
+author: "HARISH KUMAR R"
+authorLink: "www.linkedin.com/in/harish-bcomca"
 category: "Technology, Quantum Computing"
 description: "A deep dive into Google's groundbreaking quantum computing chip 'Willow' and its transformative potential across industries."
 keywords: "Google, Willow, quantum computing, quantum chip, qubits, superconducting qubits, transmon qubits, quantum noise, error correction, superposition, quantum applications, drug discovery, fusion energy, battery design, quantum advantage, Sundar Pichai, technological innovation, quantum benchmarks, decoherence, classical computing, quantum circuits"
