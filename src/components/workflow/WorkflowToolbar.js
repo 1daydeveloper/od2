@@ -58,9 +58,8 @@ export default function WorkflowToolbar({
   };
 
   return (
-    <div className="bg-card border-b border-border p-4 flex items-center justify-between">
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
+    <div className="bg-card border-b border-border p-4 flex flex-col gap-3">
+       <div className="flex flex-row  items-center left-0 gap-2">
           <Edit className="w-4 h-4 text-muted-foreground" />
           <Input
             value={workflowName}
@@ -69,8 +68,6 @@ export default function WorkflowToolbar({
             placeholder="Workflow Name"
           />
         </div>
-      </div>
-
       <div className="flex items-center gap-2">
         <Link href="/api-wd/docs" target="_blank" rel="noopener noreferrer">
           <Button
@@ -126,7 +123,7 @@ export default function WorkflowToolbar({
           title={!hasNodes ? "Add nodes to export for embed" : "Export flow for embedding (lightweight)"}
         >
           <Globe className="w-4 h-4" />
-          Export for Embed
+          Embed
         </Button>
 
         <Button

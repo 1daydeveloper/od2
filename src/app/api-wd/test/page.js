@@ -9,6 +9,7 @@ export default function WorkflowTestPage() {
   const [error, setError] = useState(null);
   const [selectedFile, setSelectedFile] = useState('/examples/sample-workflow.json');
   const [theme, setTheme] = useState('light');
+  const [jsonError, setJsonError] = useState('');
   const workflowContainerRef = useRef(null);
 
   const availableWorkflows = useMemo(() => [
@@ -138,6 +139,36 @@ export default function WorkflowTestPage() {
     }
   };
 
+  const handleJsonFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (file.type !== 'application/json' && !file.name.endsWith('.json')) {
+      setJsonError('Please select a valid JSON file');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const jsonContent = e.target.result;
+        const data = JSON.parse(jsonContent);
+        setWorkflowData(data);
+        setSelectedFile(`uploaded-${file.name}`);
+        setJsonError('');
+        renderWorkflow(data);
+        // Reset file input
+        event.target.value = '';
+      } catch (err) {
+        setJsonError(`Invalid JSON file: ${err.message}`);
+      }
+    };
+    reader.onerror = () => {
+      setJsonError('Error reading file');
+    };
+    reader.readAsText(file);
+  };
+
   return (
     <div className="min-h-screen bg-background py-8">
       <div className="max-w-6xl mx-auto px-4">
@@ -185,12 +216,32 @@ export default function WorkflowTestPage() {
                   </option>
                 ))}
               </select>
-              <button
-                onClick={handleCustomJson}
-                className="mt-2 px-4 py-2 text-sm bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition-colors"
-              >
-                Load Custom JSON
-              </button>
+              <div className="flex gap-2 mt-2">
+                <button
+                  onClick={handleCustomJson}
+                  className="px-4 py-2 text-sm bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition-colors"
+                >
+                  Quick JSON Input
+                </button>
+              </div>
+              
+              {/* JSON File Upload */}
+              <div className="mt-3">
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Upload JSON File
+                </label>
+                <input
+                  type="file"
+                  accept=".json,application/json"
+                  onChange={handleJsonFileUpload}
+                  className="w-full p-2 border border-border rounded-md bg-background text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 cursor-pointer"
+                />
+                {jsonError && (
+                  <div className="mt-2 p-2 bg-destructive/10 border border-destructive/20 rounded text-destructive text-sm">
+                    {jsonError}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Theme Selection */}
