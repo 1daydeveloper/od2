@@ -18,15 +18,23 @@ import OpenAPISidebar from "./OpenAPISidebar";
 import NodeFormModal from "./NodeFormModal";
 import WorkflowToolbar from "./WorkflowToolbar";
 import CustomNode from "./CustomNode";
-import { exportWorkflow, exportEmbedFlow, importWorkflow } from "@/lib/workflowUtils";
+import CustomEdge from "./CustomEdge";
+import { exportWorkflow, exportEmbedFlow, importWorkflow, importWorkflowFromURL } from "@/lib/workflowUtils";
 
 const nodeTypes = {
   customNode: CustomNode,
 };
 
+const edgeTypes = {
+  default: CustomEdge,
+  custom: CustomEdge,
+};
+
 const defaultEdgeOptions = {
   animated: true,
   style: { strokeWidth: 2 },
+  deletable: true,
+  focusable: true,
 };
 
 export default function WorkflowBuilder() {
@@ -51,6 +59,14 @@ export default function WorkflowBuilder() {
     setEdges((eds) => eds.filter((edge) => edge.source !== nodeId && edge.target !== nodeId));
   }, [setNodes, setEdges]);
 
+  const onSelectionChange = useCallback(({ nodes: selectedNodes, edges: selectedEdges }) => {
+    // Optional: Add any additional logic when selection changes
+    // For example, you could show selection info in a toast or update state
+    if (selectedEdges.length > 0) {
+      console.log(`Selected ${selectedEdges.length} edge(s)`);
+    }
+  }, []);
+
   const onConnect = useCallback(
     (params) => {
       const edgeId = uuidv4();
@@ -62,6 +78,8 @@ export default function WorkflowBuilder() {
         style: {
           stroke: params.sourceHandle === "success" ? "#10b981" : "#ef4444",
         },
+        deletable: true,
+        focusable: true,
       };
       setEdges((eds) => addEdge(newEdge, eds));
     },
@@ -194,6 +212,12 @@ export default function WorkflowBuilder() {
       setNodes(nodesWithHandlers || []);
       setEdges(workflowData.edges || []);
       setOpenAPISchema(workflowData.openAPISchema || null);
+      // Fit view to show all imported nodes after a short delay
+      setTimeout(() => {
+        if (reactFlowInstance && nodesWithHandlers.length > 0) {
+          reactFlowInstance.fitView({ padding: 0.1, duration: 800 });
+        }
+      }, 100);
       
       // Show success toast with import details
       const schemaInfo = workflowData.openAPISchema ? 
@@ -235,6 +259,13 @@ export default function WorkflowBuilder() {
       setNodes(nodesWithHandlers || []);
       setEdges(workflowData.edges || []);
       setOpenAPISchema(workflowData.openAPISchema || null);
+      
+      // Fit view to show all imported nodes after a short delay
+      setTimeout(() => {
+        if (reactFlowInstance && nodesWithHandlers.length > 0) {
+          reactFlowInstance.fitView({ padding: 0.1, duration: 800 });
+        }
+      }, 100);
       
       // Show success toast with import details
       const schemaInfo = workflowData.openAPISchema ? 
@@ -306,17 +337,22 @@ export default function WorkflowBuilder() {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
+            onSelectionChange={onSelectionChange}
             onInit={setReactFlowInstance}
             onDrop={onDrop}
             onDragOver={onDragOver}
             nodeTypes={nodeTypes}
+            edgeTypes={edgeTypes}
             defaultEdgeOptions={defaultEdgeOptions}
             colorMode={theme === "dark" ? "dark" : "light"}
-            fitView
+            fitView={false}
             snapToGrid
             snapGrid={[20, 20]}
             className="h-full"
             style={{ height: "100%" }}
+            deleteKeyCode={["Backspace", "Delete"]}
+            multiSelectionKeyCode={["Meta", "Shift"]}
+            selectionOnDrag={false}
           >
             <Background />
             <Controls />
