@@ -8,6 +8,8 @@ export const POST = async (req) => {
     return new Response(JSON.stringify({ message: 'Invalid Method.' }), { status: 405 });
   }
 
+  let connection = null;
+  
   try {
     const emailData = await req.json();
 
@@ -20,7 +22,9 @@ export const POST = async (req) => {
     };
 
     const parsedEmail = await simpleParser(emailData.raw, options);
-    await connectToDatabase();
+    
+    // Connect to database with error handling
+    connection = await connectToDatabase();
 
     const newEmail = new Email({
       ...parsedEmail,
@@ -31,6 +35,25 @@ export const POST = async (req) => {
     return new Response(JSON.stringify({ message: 'Email saved successfully' }), { status: 200 });
   } catch (error) {
     console.error('Error processing email:', error);
-    return new Response(JSON.stringify({ message: 'Error saving email to database', error: error.message }), { status: 500 });
+    
+    // Return appropriate error based on error type
+    if (error.name === 'ValidationError') {
+      return new Response(JSON.stringify({ 
+        message: 'Email data validation failed', 
+        error: error.message 
+      }), { status: 400 });
+    }
+    
+    if (error.name === 'MongoNetworkError' || error.name === 'MongoServerError') {
+      return new Response(JSON.stringify({ 
+        message: 'Database connection error', 
+        error: 'Service temporarily unavailable' 
+      }), { status: 503 });
+    }
+    
+    return new Response(JSON.stringify({ 
+      message: 'Error saving email to database', 
+      error: error.message 
+    }), { status: 500 });
   }
 };
