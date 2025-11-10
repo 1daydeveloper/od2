@@ -1,6 +1,6 @@
 import connectToDatabase from '../../../../lib/mongodb';
 import { Email } from '../../../../models/Email';
-const { simpleParser } = require('mailparser');
+import { simpleParser } from 'mailparser';
 
 // Batch processing for better performance
 let emailBatch = [];
