@@ -1,5 +1,4 @@
-import connectToDatabase from '../../../../lib/mongodb'; // Update the path to your database helper
-import {Email} from '../../../../models/Email'; // Update the path to your Email model
+import dbUtil from '../../../../lib/db.js'; // Updated to use singleton database utility
 
 export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
@@ -9,17 +8,12 @@ export const GET = async (req) => {
     return new Response(JSON.stringify({ message: 'ID is required' }), { status: 400 });
   }
 
-  let connection = null;
-
   try {
-    // Connect to the database with error handling
-    connection = await connectToDatabase();
-
-    // Find the email document that matches the ID (you may need to adjust based on your schema)
-    const emails = await Email.find({ 'to.value.address': `${id}@tm.od2.in` })
-      .sort({ date: -1 }) // Sort by date, newest first
-      .limit(50) // Limit results to prevent memory issues
-      .lean(); // Use lean for better performance
+    // Use the singleton database utility - no need to manage connections manually
+    const emails = await dbUtil.getEmails(
+      { 'to.value.address': `${id}@tm.od2.in` },
+      { limit: 50, sort: { date: -1 } }
+    );
 
     // Always return an array, even if empty
     return new Response(JSON.stringify(emails || []), {
@@ -31,6 +25,14 @@ export const GET = async (req) => {
     });
   } catch (error) {
     console.error('Error fetching email:', error);
+    
+    // Check if it's a database connection issue
+    if (!dbUtil.isConnected()) {
+      return new Response(
+        JSON.stringify({ message: 'Database connection error', error: 'Service temporarily unavailable' }),
+        { status: 503 }
+      );
+    }
     
     if (error.name === 'MongoNetworkError' || error.name === 'MongoServerError') {
       return new Response(

@@ -1,15 +1,12 @@
-import connectToDatabase from '../../../../lib/mongodb'; // Ensure this helper is correct
-import { Email } from '../../../../models/Email';
+import { withDatabase } from '../../../../lib/middleware/database.js';
 import { simpleParser } from 'mailparser';
 
-// Named export for the POST method
-export const POST = async (req) => {
+// Enhanced POST handler using singleton database pattern
+const handlePost = async (req) => {
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ message: 'Invalid Method.' }), { status: 405 });
   }
 
-  let connection = null;
-  
   try {
     const emailData = await req.json();
 
@@ -23,16 +20,16 @@ export const POST = async (req) => {
 
     const parsedEmail = await simpleParser(emailData.raw, options);
     
-    // Connect to database with error handling
-    connection = await connectToDatabase();
-
-    const newEmail = new Email({
+    // Use database utility from request object (injected by withDatabase middleware)
+    const savedEmail = await req.db.saveEmail({
       ...parsedEmail,
     });
 
-    await newEmail.save();
-
-    return new Response(JSON.stringify({ message: 'Email saved successfully' }), { status: 200 });
+    return new Response(JSON.stringify({ 
+      message: 'Email saved successfully',
+      emailId: savedEmail._id,
+      timestamp: new Date().toISOString()
+    }), { status: 200 });
   } catch (error) {
     console.error('Error processing email:', error);
     
@@ -57,3 +54,6 @@ export const POST = async (req) => {
     }), { status: 500 });
   }
 };
+
+// Export POST handler wrapped with database middleware
+export const POST = withDatabase(handlePost);

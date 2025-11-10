@@ -1,55 +1,58 @@
-import mongoose from 'mongoose';
+import dbUtil from '../../../../../lib/db.js';
 
 export const GET = async (req) => {
   try {
-    const dbState = mongoose.connection.readyState;
-    const stateNames = {
-      0: 'disconnected',
-      1: 'connected', 
-      2: 'connecting',
-      3: 'disconnecting'
-    };
-
-    // Simple connection estimation for M0 cluster
-    const estimatedConnections = dbState === 1 ? Math.floor(Math.random() * 3) + 1 : 0;
-    const maxConnections = 10;
-    const utilization = Math.round((estimatedConnections / maxConnections) * 100);
-
+    // Use the singleton database utility for health check
+    const health = await dbUtil.healthCheck();
+    const stats = dbUtil.getStats();
+    
+    // Enhanced health data using singleton pattern
     const healthData = {
-      status: dbState === 1 ? 'healthy' : 'unhealthy',
+      status: health.status,
+      connected: health.connected,
       database: {
-        state: stateNames[dbState],
-        host: mongoose.connection.host,
-        name: mongoose.connection.name,
-        readyState: dbState
+        state: stats.state,
+        host: stats.details?.host || 'unknown',
+        name: stats.details?.name || 'unknown',
+        readyState: stats.readyState,
+        collections: stats.collections || [],
+        models: stats.models || []
       },
-      connections: {
-        tracked: estimatedConnections,
-        max: maxConnections,
-        queued: 0,
-        utilization: `${utilization}%`
+      singleton: {
+        instance: 'DatabaseConnection',
+        isConnected: dbUtil.isConnected(),
+        connectionState: dbUtil.getConnectionState()
       },
-      timestamp: new Date().toISOString(),
-      note: 'Connection count is estimated (actual monitoring requires paid Atlas tiers)'
+      performance: health.testQuery || {},
+      timestamp: health.timestamp,
+      note: 'Using singleton database connection pattern for optimal performance'
     };
 
-    // Add warning if estimated connection usage is high
-    if (estimatedConnections > maxConnections * 0.8) {
-      healthData.warning = 'High connection usage detected (estimated)';
+    // Add any errors from health check
+    if (health.error) {
+      healthData.error = health.error;
     }
 
+    const status = health.status === 'healthy' ? 200 : 503;
+
     return new Response(JSON.stringify(healthData, null, 2), {
-      status: dbState === 1 ? 200 : 503,
+      status,
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache'
       }
     });
   } catch (error) {
+    console.error('Database health check failed:', error);
+    
     return new Response(JSON.stringify({
       status: 'error',
       message: 'Failed to check database health',
       error: error.message,
+      singleton: {
+        isConnected: dbUtil.isConnected(),
+        connectionState: dbUtil.getConnectionState()
+      },
       timestamp: new Date().toISOString()
     }), {
       status: 500,
