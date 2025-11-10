@@ -1,6 +1,6 @@
 import connectToDatabase from '../../../../lib/mongodb'; // Ensure this helper is correct
 import { Email } from '../../../../models/Email';
-const { simpleParser } = require('mailparser');
+import { simpleParser } from 'mailparser';
 
 // Named export for the POST method
 export const POST = async (req) => {

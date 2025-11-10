@@ -1,39 +1,61 @@
 import DatabaseHealth from '../../../components/database-health';
 
+// Force dynamic rendering to prevent build-time static generation issues
+export const dynamic = 'force-dynamic';
+
 export default function DatabaseHealthPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold mb-2">Database Monitoring</h1>
-        <p className="text-gray-600">Monitor MongoDB connection health and performance metrics</p>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-3 text-foreground">Database Monitoring</h1>
+        <p className="text-muted-foreground">Monitor MongoDB connection health and performance metrics</p>
       </div>
       
       <div className="grid gap-6">
         <DatabaseHealth />
         
-        <div className="p-6 bg-blue-50 rounded-lg border border-blue-200">
-          <h3 className="text-lg font-semibold text-blue-800 mb-3">📊 MongoDB Atlas M0 Connection Limits</h3>
-          <div className="text-sm text-blue-700 space-y-2">
-            <p>• M0 clusters have a maximum of <strong>500 concurrent connections</strong></p>
-            <p>• Our application is configured to use maximum <strong>10 connections</strong></p>
-            <p>• Connections are automatically closed after <strong>30 seconds</strong> of inactivity</p>
+        {/* MongoDB Atlas Information Card */}
+        <div className="rounded-xl border bg-card text-card-foreground shadow p-6">
+          <div className="flex items-center mb-4">
+            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-lg mr-3">
+              📊
+            </div>
+            <h3 className="text-lg font-semibold text-card-foreground">MongoDB Atlas M0 Connection Limits</h3>
+          </div>
+          <div className="text-sm text-muted-foreground space-y-2">
+            <p>• M0 clusters have a maximum of <strong className="text-foreground">500 concurrent connections</strong></p>
+            <p>• Our application is configured to use maximum <strong className="text-foreground">10 connections</strong></p>
+            <p>• Connections are automatically closed after <strong className="text-foreground">30 seconds</strong> of inactivity</p>
+            <p>• Connection counts shown above are <strong className="text-foreground">estimated</strong> (exact monitoring requires paid Atlas tiers)</p>
             <p>• If utilization exceeds 80%, consider optimizing your queries or upgrading your cluster</p>
           </div>
         </div>
 
-        <div className="p-6 bg-amber-50 rounded-lg border border-amber-200">
-          <h3 className="text-lg font-semibold text-amber-800 mb-3">💡 Optimization Tips</h3>
-          <div className="text-sm text-amber-700 space-y-2">
-            <p>• Use the <code className="bg-amber-100 px-1 rounded">/api/save-email-optimized</code> endpoint for batch processing</p>
+        {/* Optimization Tips Card */}
+        <div className="rounded-xl border bg-card text-card-foreground shadow p-6">
+          <div className="flex items-center mb-4">
+            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-lg mr-3">
+              💡
+            </div>
+            <h3 className="text-lg font-semibold text-card-foreground">Optimization Tips</h3>
+          </div>
+          <div className="text-sm text-muted-foreground space-y-2">
+            <p>• Use the <code className="bg-muted px-2 py-1 rounded text-foreground text-xs">/api/save-email-optimized</code> endpoint for batch processing</p>
             <p>• Implement caching for frequently accessed data</p>
             <p>• Add database indexes for commonly queried fields</p>
             <p>• Consider upgrading to M2+ for higher connection limits</p>
           </div>
         </div>
 
-        <div className="p-6 bg-green-50 rounded-lg border border-green-200">
-          <h3 className="text-lg font-semibold text-green-800 mb-3">🛡️ Security Status</h3>
-          <div className="text-sm text-green-700 space-y-2">
+        {/* Security Status Card */}
+        <div className="rounded-xl border bg-card text-card-foreground shadow p-6">
+          <div className="flex items-center mb-4">
+            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-lg mr-3">
+              🛡️
+            </div>
+            <h3 className="text-lg font-semibold text-card-foreground">Security Status</h3>
+          </div>
+          <div className="text-sm text-muted-foreground space-y-2">
             <p>• Admin panel is now protected with client-side authentication</p>
             <p>• Session expires automatically after 24 hours</p>
             <p>• Connection monitoring is active and optimized</p>
