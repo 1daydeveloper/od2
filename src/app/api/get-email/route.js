@@ -21,15 +21,8 @@ export const GET = async (req) => {
       .limit(50) // Limit results to prevent memory issues
       .lean(); // Use lean for better performance
 
-    if (!emails || emails.length === 0) {
-      return new Response(
-        JSON.stringify({ message: `No email found for the ID: ${id}` }),
-        { status: 404 }
-      );
-    }
-
-    // Return the email data
-    return new Response(JSON.stringify(emails), {
+    // Always return an array, even if empty
+    return new Response(JSON.stringify(emails || []), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',

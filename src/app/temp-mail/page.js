@@ -1,9 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DeletionTimer from "@/components/temp-mail/DeletionTimer";
 import { toast } from "react-toastify";
 import { ThumbsUp, ThumbsDown, Mail, ClipboardCopy, Copy, Loader, Loader2Icon, PencilLineIcon, MailX } from "lucide-react";
 import { Card } from "@/components/ui/card";
+
+/**
+ * Temp Mail Component with Google Analytics tracking
+ * 
+ * GA Events tracked:
+ * 1. inbox_check - When user submits form to check inbox (includes full email)
+ * 2. temp_email_usage - Usage analytics for tm.od2.in domain
+ * 3. email_input - When user types in the email input field
+ * 4. emails_received - When emails are successfully fetched (includes count)
+ * 5. email_view - When user clicks to view an email
+ * 6. email_details - Additional details about viewed emails (subject, sender)
+ */
 
 export default function GetEmailByID() {
   const [id, setId] = useState("");
@@ -16,6 +28,15 @@ export default function GetEmailByID() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [feedbackLoading, setFeedbackLoading] = useState(false); // Feedback state
+
+  // Cleanup interval on component unmount
+  useEffect(() => {
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [intervalId]);
 
   const stopRetry = () => {
     if (intervalId) {
@@ -31,32 +52,67 @@ export default function GetEmailByID() {
     setEmails([]);
     stopRetry();
     setEmailContent({});
-    gtag("event", "submit", {
-      event_category: "user_engagement",
-      event_label: "Temp_Mail_Submit",
-      value: id,
-    });
+    
+    // Safely call gtag if available - Track inbox check with full email address
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      const fullEmail = `${id}@tm.od2.in`;
+      window.gtag("event", "inbox_check", {
+        event_category: "temp_mail_usage",
+        event_label: "Check_Inbox",
+        custom_parameter_1: fullEmail,
+        custom_parameter_2: id,
+        value: id,
+      });
+      
+      // Also track as a custom event for email domain usage
+      window.gtag("event", "temp_email_usage", {
+        event_category: "email_services",
+        event_label: "tm.od2.in",
+        custom_parameter_1: fullEmail,
+        value: 1,
+      });
+    }
     const retryFetch = () => {
       setIsRefreshing(true);
       setError(""); // Reset the error message
       const attemptFetch = () => {
         // If retry is stopped, exit immediately
         fetch(`/api/get-email/?id=${id}`)
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
           .then((data) => {
+            // Ensure data is an array
+            const emailsArray = Array.isArray(data) ? data : [];
+            
             // If retry is stopped, exit immediately
-            if (data.length === 0) {
+            if (emailsArray.length === 0) {
               setIsLoading(true); // Set loading to true when fetching
               // Retry after 10 seconds
             } else {
               setIsLoading(false); // Set loading to false when fetch is done
-              setEmails(data);
+              setEmails(emailsArray);
               setIsRefreshing(false);
+              
+              // Track successful email reception
+              if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                const fullEmail = `${id}@tm.od2.in`;
+                window.gtag("event", "emails_received", {
+                  event_category: "temp_mail_success",
+                  event_label: "Emails_Found",
+                  custom_parameter_1: fullEmail,
+                  custom_parameter_2: id,
+                  value: emailsArray.length, // Number of emails received
+                });
+              }
             }
           })
           .catch((err) => {
             // If retry is stopped, exit immediately
-
+            // console.error("Error fetching emails:", err);
             setError("An error occurred while fetching emails");
             setIsLoading(false); // Stop loading if an error occurs
             setIsRefreshing(false); //
@@ -74,9 +130,39 @@ export default function GetEmailByID() {
   function getemailcontentdata(emailid) {
     setActiveTab(emailid);
 
-    setEmailContent(emails.find((email) => email._id === emailid));
+    const selectedEmail = emails.find((email) => email._id === emailid);
+    setEmailContent(selectedEmail);
+    
+    // Track email viewing
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      const fullEmail = `${id}@tm.od2.in`;
+      window.gtag("event", "email_view", {
+        event_category: "temp_mail_interaction",
+        event_label: "Email_Opened",
+        custom_parameter_1: fullEmail,
+        custom_parameter_2: id,
+        custom_parameter_3: emailid,
+        value: 1,
+      });
+      
+      // Track email details if available
+      if (selectedEmail) {
+        window.gtag("event", "email_details", {
+          event_category: "temp_mail_analytics",
+          event_label: "Email_Subject_Viewed",
+          custom_parameter_1: selectedEmail.subject || "No Subject",
+          custom_parameter_2: selectedEmail.from?.value?.[0]?.address || "Unknown Sender",
+          value: 1,
+        });
+      }
+    }
   }
   const decodeHtml = (html) => {
+    // Ensure we're running in browser environment
+    if (typeof window === 'undefined') {
+      return html; // Return original html on server-side
+    }
+    
     // Decode HTML content
     const txt = document.createElement("textarea");
     let attachments = emailcontent.attachments;
@@ -159,11 +245,18 @@ export default function GetEmailByID() {
       setIsSubmitEnabled(false); // Disable submit button
       return;
     }
-    gtag("event", "button_click", {
-      event_category: "user_engagement",
-      event_label: "Temp_Mail_Click",
-      value: filteredText,
-    });
+    
+    // Safely call gtag if available - Track email typing
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      const fullEmail = `${filteredText}@tm.od2.in`;
+      window.gtag("event", "email_input", {
+        event_category: "temp_mail_interaction",
+        event_label: "Email_Typing",
+        custom_parameter_1: fullEmail,
+        custom_parameter_2: filteredText,
+        value: filteredText,
+      });
+    }
     // Validate the username
     if (!isValidUsername(filteredText)) {
       setError(
