@@ -1,16 +1,25 @@
-// pages/api/emails.js
+// app/api/emails/route.js
+import connectToDatabase from '../../../../lib/mongodb';
 import {Email} from '../../../../models/Email';
 
-export default async function handler(req, res) {
-  if (req.method === 'GET') {
-    try {
-
-      const emails = await Email.find().sort({ date: -1 }); // Sort emails by date in descending order
-      res.status(200).json(emails);
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch emails' });
-    }
-  } else {
-    res.status(405).json({ error: 'Method Not Allowed' });
+export const GET = async (req) => {
+  try {
+    await connectToDatabase();
+    const emails = await Email.find().sort({ date: -1 }).limit(50).lean(); // Sort emails by date in descending order, limit results
+    
+    return new Response(JSON.stringify(emails), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching emails:', error);
+    return new Response(JSON.stringify({ error: 'Failed to fetch emails' }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   }
-}
+};
