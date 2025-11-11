@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +9,18 @@ export default function ImageToDataURL() {
   const [imageFile, setImageFile] = useState(null);
   const [dataUrl, setDataUrl] = useState("");
 
+  // Track page view on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: 'Image to Data URL Converter',
+        page_location: window.location.href,
+        event_category: 'image_converter',
+        event_label: 'page_loaded'
+      });
+    }
+  }, []);
+
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -16,14 +28,45 @@ export default function ImageToDataURL() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setDataUrl(reader.result);
+        
+        // Track successful image conversion
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'image_converted', {
+            event_category: 'image_converter',
+            event_label: 'conversion_success',
+            file_size: file.size,
+            file_type: file.type,
+            file_name: file.name
+          });
+        }
       };
       reader.readAsDataURL(file);
+      
+      // Track image upload event
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'file_upload', {
+          event_category: 'image_converter',
+          event_label: 'image_uploaded',
+          file_size: file.size,
+          file_type: file.type
+        });
+      }
     }
   };
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(dataUrl).then(() => {
       toast.success("Data URL copied to clipboard!");
+      
+      // Track copy to clipboard event
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'copy_data_url', {
+          event_category: 'image_converter',
+          event_label: 'clipboard_copy',
+          data_url_length: dataUrl.length,
+          custom_parameter: 'user_copied'
+        });
+      }
     });
   };
 
@@ -66,8 +109,32 @@ export default function ImageToDataURL() {
                   Copy
                 </Button>
               </div>
-              <Button asChild variant="default">
-                <a href={dataUrl} download="converted-image.png">
+              <Button 
+                onClick={() => {
+                  // Create standardized filename with timestamp
+                  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+                  const originalName = imageFile?.name || 'image';
+                  const fileExtension = originalName.split('.').pop() || 'png';
+                  const downloadFileName = `OD2_converted_image_${timestamp}.${fileExtension}`;
+                  
+                  // Track download click
+                  if (typeof window !== 'undefined' && window.gtag) {
+                    window.gtag('event', 'download', {
+                      event_category: 'image_converter',
+                      event_label: 'image_download',
+                      file_name: downloadFileName,
+                      data_url_length: dataUrl.length,
+                      original_file_name: originalName
+                    });
+                  }
+                }}
+                asChild 
+                variant="default"
+              >
+                <a 
+                  href={dataUrl} 
+                  download={`OD2_converted_image_${new Date().toISOString().replace(/[:.]/g, "-")}.${imageFile?.name.split('.').pop() || 'png'}`}
+                >
                   Download Image
                 </a>
               </Button>
@@ -82,7 +149,21 @@ export default function ImageToDataURL() {
           JavaScript.
         </p>
         {/* Call to Action */}
-        <Button asChild size="lg" className="mb-6">
+        <Button 
+          onClick={() => {
+            // Track CTA click
+            if (typeof window !== 'undefined' && window.gtag) {
+              window.gtag('event', 'cta_click', {
+                event_category: 'image_converter',
+                event_label: 'try_tool_now_click',
+                custom_parameter: 'main_cta'
+              });
+            }
+          }}
+          asChild 
+          size="lg" 
+          className="mb-6"
+        >
           <a
             href="https://www.od2.in/convert-image-to-blob"
             target="_blank"
@@ -175,6 +256,16 @@ export default function ImageToDataURL() {
               className="underline mt-2"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                // Track bottom CTA click
+                if (typeof window !== 'undefined' && window.gtag) {
+                  window.gtag('event', 'cta_click', {
+                    event_category: 'image_converter',
+                    event_label: 'bottom_cta_click',
+                    custom_parameter: 'final_cta'
+                  });
+                }
+              }}
             >
               Click Here to Use the Tool
             </a>

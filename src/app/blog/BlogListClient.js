@@ -38,12 +38,36 @@ export default function BlogListClient({ allPostsData }) {
     currentPage * pageSize
   );
 
+  // Track page view on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: 'Blog List',
+        page_location: window.location.href,
+        event_category: 'blog',
+        event_label: 'blog_list_loaded',
+        total_posts: allPostsData.length,
+        current_page: currentPage
+      });
+    }
+  }, [allPostsData.length, currentPage]);
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
     // Update URL with new page parameter
     const params = new URLSearchParams(searchParams);
     params.set('page', page.toString());
     router.push(`?${params.toString()}`, { scroll: false });
+    
+    // Track pagination
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'pagination', {
+        event_category: 'blog',
+        event_label: 'page_navigation',
+        page_number: page,
+        total_pages: totalPages
+      });
+    }
   };
 
   // Update current page when URL changes
@@ -66,6 +90,19 @@ export default function BlogListClient({ allPostsData }) {
               href={`/blog/${id}`}
               key={id}
               className="w-full"
+              onClick={() => {
+                // Track blog post click
+                if (typeof window !== 'undefined' && window.gtag) {
+                  window.gtag('event', 'blog_post_click', {
+                    event_category: 'blog',
+                    event_label: 'post_clicked',
+                    blog_title: title,
+                    blog_id: id,
+                    blog_category: category,
+                    page_number: currentPage
+                  });
+                }
+              }}
             >
               <Card className="w-full blog-card-hover">
                 <CardHeader className="pb-3">

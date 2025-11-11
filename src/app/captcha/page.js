@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { BotOff } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,6 +8,18 @@ import { Separator } from "@/components/ui/separator";
 import { TypographyH1, TypographyH2, TypographyP } from "@/components/ui/typography";
 
 export default function CaptchaIntro() {
+  // Track page view on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: 'CAPTCHA Testing Hub',
+        page_location: window.location.href,
+        event_category: 'captcha_testing',
+        event_label: 'main_page_loaded'
+      });
+    }
+  }, []);
+
   return (
     <section className="py-12 px-6 lg:px-20 rounded-lg">
       <div className="max-w-3xl mx-auto text-center">
@@ -28,12 +40,40 @@ export default function CaptchaIntro() {
           <CardContent>
             <div className="flex flex-col py-8 sm:flex-row justify-center gap-6">
               <Link href="/captcha/v2" passHref legacyBehavior>
-                <Button asChild variant="default" className="bg-blue-600 hover:bg-blue-700">
+                <Button 
+                  onClick={() => {
+                    // Track reCAPTCHA v2 navigation
+                    if (typeof window !== 'undefined' && window.gtag) {
+                      window.gtag('event', 'navigation', {
+                        event_category: 'captcha_testing',
+                        event_label: 'v2_test_click',
+                        custom_parameter: 'recaptcha_v2'
+                      });
+                    }
+                  }}
+                  asChild 
+                  variant="default" 
+                  className="bg-blue-600 hover:bg-blue-700"
+                >
                   <a>Test reCAPTCHA v2</a>
                 </Button>
               </Link>
               <Link href="/captcha/v3" passHref legacyBehavior>
-                <Button asChild variant="default" className="bg-green-600 hover:bg-green-700">
+                <Button 
+                  onClick={() => {
+                    // Track reCAPTCHA v3 navigation
+                    if (typeof window !== 'undefined' && window.gtag) {
+                      window.gtag('event', 'navigation', {
+                        event_category: 'captcha_testing',
+                        event_label: 'v3_test_click',
+                        custom_parameter: 'recaptcha_v3'
+                      });
+                    }
+                  }}
+                  asChild 
+                  variant="default" 
+                  className="bg-green-600 hover:bg-green-700"
+                >
                   <a>Test reCAPTCHA v3</a>
                 </Button>
               </Link>
@@ -148,6 +188,16 @@ export default function CaptchaIntro() {
                     className="underline"
                     target="_blank"
                     rel="noopener"
+                    onClick={() => {
+                      // Track blog link click
+                      if (typeof window !== 'undefined' && window.gtag) {
+                        window.gtag('event', 'external_link_click', {
+                          event_category: 'captcha_testing',
+                          event_label: 'v2_blog_click',
+                          link_url: '/blog/test-google-reCAPTCHA-v2'
+                        });
+                      }
+                    }}
                   >
                     How to Test Google reCAPTCHA v2 (Blog)
                   </a>
@@ -158,6 +208,16 @@ export default function CaptchaIntro() {
                     className="underline"
                     target="_blank"
                     rel="noopener"
+                    onClick={() => {
+                      // Track blog link click
+                      if (typeof window !== 'undefined' && window.gtag) {
+                        window.gtag('event', 'external_link_click', {
+                          event_category: 'captcha_testing',
+                          event_label: 'v3_blog_click',
+                          link_url: '/blog/test-google-reCAPTCHA-v3'
+                        });
+                      }
+                    }}
                   >
                     How to Test Google reCAPTCHA v3 (Blog)
                   </a>

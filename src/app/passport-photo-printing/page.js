@@ -56,6 +56,18 @@ export default function Photo() {
 		canvasdRef.current = canvasd;
 	}, [canvasd]);
 
+	// Track page view on component mount
+	React.useEffect(() => {
+		if (typeof window !== 'undefined' && window.gtag) {
+			window.gtag('event', 'page_view', {
+				page_title: 'Passport Photo Printing',
+				page_location: window.location.href,
+				event_category: 'passport_photo',
+				event_label: 'page_loaded'
+			});
+		}
+	}, []);
+
 	// Placeholder handlers
 	const handleImageChange = (e) => {
 		const file = e.target.files[0];
@@ -63,6 +75,16 @@ export default function Photo() {
 			setImage(file);
 			setImageName(file.name);
 			setUploadError("");
+			
+			// Track image upload event
+			if (typeof window !== 'undefined' && window.gtag) {
+				window.gtag('event', 'file_upload', {
+					event_category: 'passport_photo',
+					event_label: 'image_uploaded',
+					file_size: file.size,
+					file_type: file.type
+				});
+			}
 		}
 	};
 
@@ -72,6 +94,16 @@ export default function Photo() {
 			setImage(file);
 			setImageName(file.name);
 			setUploadError("");
+			
+			// Track drag & drop upload event
+			if (typeof window !== 'undefined' && window.gtag) {
+				window.gtag('event', 'file_drop', {
+					event_category: 'passport_photo',
+					event_label: 'image_dropped',
+					file_size: file.size,
+					file_type: file.type
+				});
+			}
 		}
 	};
 
@@ -80,17 +112,47 @@ export default function Photo() {
 	};
 
 	const handleCountryChange = (e) => {
-		setCountry(e.target.value);
+		const newCountry = e.target.value;
+		setCountry(newCountry);
 		setCroppedPhoto(null);
 		setCanvasd(null); // Remove generated sheet
 		setStage(0);
+		
+		// Track country selection
+		if (typeof window !== 'undefined' && window.gtag) {
+			window.gtag('event', 'country_selection', {
+				event_category: 'passport_photo',
+				event_label: newCountry,
+				custom_parameter: 'country_changed'
+			});
+		}
 	};
 
 	const handleOpenCrop = () => {
 		setShowCropModal(true);
 		setStage(1);
+		
+		// Track crop modal opening
+		if (typeof window !== 'undefined' && window.gtag) {
+			window.gtag('event', 'crop_modal_open', {
+				event_category: 'passport_photo',
+				event_label: 'crop_started',
+				custom_parameter: country
+			});
+		}
 	};
-	const handleCloseCrop = () => setShowCropModal(false);
+	const handleCloseCrop = () => {
+		setShowCropModal(false);
+		
+		// Track crop modal cancellation
+		if (typeof window !== 'undefined' && window.gtag) {
+			window.gtag('event', 'crop_cancelled', {
+				event_category: 'passport_photo',
+				event_label: 'crop_modal_closed',
+				custom_parameter: 'user_cancelled'
+			});
+		}
+	};
 
 	const handleCropComplete = (_, croppedAreaPixels) => {
 		setCroppedAreaPixels(croppedAreaPixels);
@@ -103,10 +165,28 @@ export default function Photo() {
 		setCanvasd(null); // Remove generated sheet when cropping is updated
 		setShowCropModal(false);
 		setStage(2);
+		
+		// Track successful crop completion
+		if (typeof window !== 'undefined' && window.gtag) {
+			window.gtag('event', 'crop_completed', {
+				event_category: 'passport_photo',
+				event_label: 'crop_confirmed',
+				custom_parameter: country
+			});
+		}
 	};
 
 	const handlePhotoSettingsChange = (dpi) => {
 		setPhotoSettings({ DPI: dpi });
+		
+		// Track DPI setting change
+		if (typeof window !== 'undefined' && window.gtag) {
+			window.gtag('event', 'dpi_setting_change', {
+				event_category: 'passport_photo',
+				event_label: `dpi_${dpi}`,
+				value: dpi
+			});
+		}
 	};
 
 	// Download handler for single and sheet
@@ -135,6 +215,16 @@ export default function Photo() {
 		const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
 		const url = await resizeImageToSize(croppedPhoto, selected.size[0], selected.size[1]);
 		triggerDownload(url, `OD2_Single_passport_photo_${timestamp}.jpg`);
+		
+		// Track single photo download
+		if (typeof window !== 'undefined' && window.gtag) {
+			window.gtag('event', 'download', {
+				event_category: 'passport_photo',
+				event_label: 'single_photo_download',
+				custom_parameter: country,
+				file_name: `OD2_Single_passport_photo_${timestamp}.jpg`
+			});
+		}
 	};
 
 	// Generate printable sheet and set preview
@@ -143,6 +233,15 @@ export default function Photo() {
 		const selected = countryOptions.find(opt => opt.value === country);
 		const url = await createPrintableSheet(croppedPhoto, selected.size);
 		setCanvasd(url);
+		
+		// Track printable sheet generation
+		if (typeof window !== 'undefined' && window.gtag) {
+			window.gtag('event', 'generate_sheet', {
+				event_category: 'passport_photo',
+				event_label: 'printable_sheet_generated',
+				custom_parameter: country
+			});
+		}
 	};
 
 	// Download the generated printable sheet PNG
@@ -154,6 +253,16 @@ export default function Photo() {
 	  link.href = canvasdRef.current;
 	  link.click();
 	  link.remove();
+	  
+	  // Track printable sheet download
+	  if (typeof window !== 'undefined' && window.gtag) {
+	    window.gtag('event', 'download', {
+	      event_category: 'passport_photo',
+	      event_label: 'printable_sheet_download',
+	      custom_parameter: country,
+	      file_name: `OD2_Printable_passport_photo_${timestamp}.png`
+	    });
+	  }
 	};
 
 	return (
@@ -313,6 +422,15 @@ export default function Photo() {
 												setCroppedPhoto(null);
 												setCanvasd(null);
 												setStage(0);
+												
+												// Track reset action
+												if (typeof window !== 'undefined' && window.gtag) {
+													window.gtag('event', 'form_reset', {
+														event_category: 'passport_photo',
+														event_label: 'form_cleared',
+														custom_parameter: 'user_reset'
+													});
+												}
 											}}
 											className="bg-red-500 hover:bg-red-700 justify-center flex gap-1 w-full text-white font-extrabold p-3 rounded-md"
 										>
