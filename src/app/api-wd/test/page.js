@@ -12,6 +12,18 @@ export default function WorkflowTestPage() {
   const [jsonError, setJsonError] = useState('');
   const workflowContainerRef = useRef(null);
 
+  // Track page view on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: 'API Workflow Designer - Test Viewer',
+        page_location: window.location.href,
+        event_category: 'api_workflow_designer',
+        event_label: 'test_viewer_loaded'
+      });
+    }
+  }, []);
+
   const availableWorkflows = useMemo(() => [
     { path: '/examples/sample-workflow.json', name: 'E-commerce Order Processing', type: 'file' },
     { path: '/examples/sample-embed-flow.json', name: 'Sample Embed Flow', type: 'file' },
@@ -36,13 +48,32 @@ export default function WorkflowTestPage() {
         showControls: true,
         fitView: true
       });
+
+      // Track workflow rendering
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'workflow_rendered', {
+          event_category: 'api_workflow_designer',
+          event_label: 'test_workflow_displayed',
+          theme: theme,
+          workflow_file: selectedFile
+        });
+      }
     }
-  }, [theme]);
+  }, [theme, selectedFile]);
 
   // Load workflow data
   const loadWorkflow = useCallback(async (filePath) => {
     setIsLoading(true);
     setError(null);
+    
+    // Track workflow loading attempt
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'workflow_load_start', {
+        event_category: 'api_workflow_designer',
+        event_label: 'test_workflow_load_started',
+        workflow_file: filePath
+      });
+    }
     
     try {
       let response;
@@ -70,11 +101,31 @@ export default function WorkflowTestPage() {
       
       setWorkflowData(data);
       
+      // Track successful workflow loading
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'workflow_load_success', {
+          event_category: 'api_workflow_designer',
+          event_label: 'test_workflow_loaded',
+          workflow_file: filePath,
+          load_type: selectedWorkflow?.type || 'file'
+        });
+      }
+      
       // Render workflow after data is loaded
       setTimeout(() => renderWorkflow(data), 100);
     } catch (err) {
       setError(err.message);
       console.error('Error loading workflow:', err);
+      
+      // Track workflow loading error
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'workflow_load_error', {
+          event_category: 'api_workflow_designer',
+          event_label: 'test_workflow_load_failed',
+          workflow_file: filePath,
+          error_message: err.message
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -133,8 +184,26 @@ export default function WorkflowTestPage() {
         setWorkflowData(data);
         setSelectedFile('custom');
         renderWorkflow(data);
+        
+        // Track custom JSON input
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'custom_json_input', {
+            event_category: 'api_workflow_designer',
+            event_label: 'test_custom_json_used',
+            input_method: 'prompt'
+          });
+        }
       } catch (err) {
         alert('Invalid JSON format');
+        
+        // Track JSON parsing error
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'json_parse_error', {
+            event_category: 'api_workflow_designer',
+            event_label: 'test_invalid_json',
+            error_type: 'custom_input'
+          });
+        }
       }
     }
   };
@@ -145,6 +214,16 @@ export default function WorkflowTestPage() {
 
     if (file.type !== 'application/json' && !file.name.endsWith('.json')) {
       setJsonError('Please select a valid JSON file');
+      
+      // Track invalid file type
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'file_upload_error', {
+          event_category: 'api_workflow_designer',
+          event_label: 'test_invalid_file_type',
+          file_type: file.type,
+          file_name: file.name
+        });
+      }
       return;
     }
 
@@ -159,12 +238,41 @@ export default function WorkflowTestPage() {
         renderWorkflow(data);
         // Reset file input
         event.target.value = '';
+        
+        // Track successful file upload
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'file_upload_success', {
+            event_category: 'api_workflow_designer',
+            event_label: 'test_json_file_uploaded',
+            file_name: file.name,
+            file_size: file.size
+          });
+        }
       } catch (err) {
         setJsonError(`Invalid JSON file: ${err.message}`);
+        
+        // Track JSON parsing error from file
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'json_parse_error', {
+            event_category: 'api_workflow_designer',
+            event_label: 'test_invalid_json_file',
+            error_type: 'file_upload',
+            error_message: err.message
+          });
+        }
       }
     };
     reader.onerror = () => {
       setJsonError('Error reading file');
+      
+      // Track file reading error
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'file_read_error', {
+          event_category: 'api_workflow_designer',
+          event_label: 'test_file_read_failed',
+          file_name: file.name
+        });
+      }
     };
     reader.readAsText(file);
   };
@@ -177,6 +285,16 @@ export default function WorkflowTestPage() {
           <Link 
             href="/api-wd"
             className="inline-flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            onClick={() => {
+              // Track navigation back to main
+              if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'navigation', {
+                  event_category: 'api_workflow_designer',
+                  event_label: 'test_back_to_main',
+                  destination: '/api-wd'
+                });
+              }
+            }}
           >
             ← Back to API Workflow Designer
           </Link>
@@ -185,6 +303,16 @@ export default function WorkflowTestPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-3 py-2 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+            onClick={() => {
+              // Track documentation link
+              if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'navigation', {
+                  event_category: 'api_workflow_designer',
+                  event_label: 'test_docs_click',
+                  destination: '/api-wd/docs'
+                });
+              }
+            }}
           >
             📚 Documentation
           </Link>
@@ -207,7 +335,20 @@ export default function WorkflowTestPage() {
               </label>
               <select
                 value={selectedFile}
-                onChange={(e) => setSelectedFile(e.target.value)}
+                onChange={(e) => {
+                  setSelectedFile(e.target.value);
+                  
+                  // Track workflow selection
+                  if (typeof window !== 'undefined' && window.gtag) {
+                    const selectedWorkflow = availableWorkflows.find(w => w.path === e.target.value);
+                    window.gtag('event', 'workflow_selection', {
+                      event_category: 'api_workflow_designer',
+                      event_label: 'test_workflow_selected',
+                      workflow_name: selectedWorkflow?.name || 'unknown',
+                      workflow_type: selectedWorkflow?.type || 'unknown'
+                    });
+                  }
+                }}
                 className="w-full p-3 border border-border rounded-md bg-background text-foreground focus:ring-2 focus:ring-ring focus:border-ring"
               >
                 {availableWorkflows.map((workflow) => (
@@ -253,7 +394,19 @@ export default function WorkflowTestPage() {
                 {['light', 'dark', 'auto'].map((themeOption) => (
                   <button
                     key={themeOption}
-                    onClick={() => setTheme(themeOption)}
+                    onClick={() => {
+                      setTheme(themeOption);
+                      
+                      // Track theme change
+                      if (typeof window !== 'undefined' && window.gtag) {
+                        window.gtag('event', 'theme_change', {
+                          event_category: 'api_workflow_designer',
+                          event_label: 'test_theme_changed',
+                          theme_selected: themeOption,
+                          previous_theme: theme
+                        });
+                      }
+                    }}
                     className={`px-4 py-2 rounded-md capitalize transition-colors ${
                       theme === themeOption
                         ? 'bg-primary text-primary-foreground'

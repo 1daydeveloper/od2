@@ -56,21 +56,13 @@ export default function GetEmailByID() {
     // Safely call gtag if available - Track inbox check with full email address
     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
       const fullEmail = `${id}@tm.od2.in`;
-      window.gtag("event", "inbox_check", {
-        event_category: "temp_mail_usage",
+      window.gtag("event", "temp_email_creation", {
+        event_category: "temp_mail",
         event_label: "Check_Inbox",
-        custom_parameter_1: fullEmail,
-        custom_parameter_2: id,
+        custom_mail_id_created: id,
         value: id,
       });
       
-      // Also track as a custom event for email domain usage
-      window.gtag("event", "temp_email_usage", {
-        event_category: "email_services",
-        event_label: "tm.od2.in",
-        custom_parameter_1: fullEmail,
-        value: 1,
-      });
     }
     const retryFetch = () => {
       setIsRefreshing(true);
@@ -96,18 +88,6 @@ export default function GetEmailByID() {
               setIsLoading(false); // Set loading to false when fetch is done
               setEmails(emailsArray);
               setIsRefreshing(false);
-              
-              // Track successful email reception
-              if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-                const fullEmail = `${id}@tm.od2.in`;
-                window.gtag("event", "emails_received", {
-                  event_category: "temp_mail_success",
-                  event_label: "Emails_Found",
-                  custom_parameter_1: fullEmail,
-                  custom_parameter_2: id,
-                  value: emailsArray.length, // Number of emails received
-                });
-              }
             }
           })
           .catch((err) => {
@@ -132,30 +112,6 @@ export default function GetEmailByID() {
 
     const selectedEmail = emails.find((email) => email._id === emailid);
     setEmailContent(selectedEmail);
-    
-    // Track email viewing
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-      const fullEmail = `${id}@tm.od2.in`;
-      window.gtag("event", "email_view", {
-        event_category: "temp_mail_interaction",
-        event_label: "Email_Opened",
-        custom_parameter_1: fullEmail,
-        custom_parameter_2: id,
-        custom_parameter_3: emailid,
-        value: 1,
-      });
-      
-      // Track email details if available
-      if (selectedEmail) {
-        window.gtag("event", "email_details", {
-          event_category: "temp_mail_analytics",
-          event_label: "Email_Subject_Viewed",
-          custom_parameter_1: selectedEmail.subject || "No Subject",
-          custom_parameter_2: selectedEmail.from?.value?.[0]?.address || "Unknown Sender",
-          value: 1,
-        });
-      }
-    }
   }
   const decodeHtml = (html) => {
     // Ensure we're running in browser environment
@@ -246,17 +202,6 @@ export default function GetEmailByID() {
       return;
     }
     
-    // Safely call gtag if available - Track email typing
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-      const fullEmail = `${filteredText}@tm.od2.in`;
-      window.gtag("event", "email_input", {
-        event_category: "temp_mail_interaction",
-        event_label: "Email_Typing",
-        custom_parameter_1: fullEmail,
-        custom_parameter_2: filteredText,
-        value: filteredText,
-      });
-    }
     // Validate the username
     if (!isValidUsername(filteredText)) {
       setError(

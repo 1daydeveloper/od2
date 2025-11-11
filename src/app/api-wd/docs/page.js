@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Upload, Download, MousePointer, GitBranch, Settings, FileText, Globe, Zap, Code, BookOpen, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,29 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 export default function DocsPage() {
+  // Track page view on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: 'API Workflow Designer - Documentation',
+        page_location: window.location.href,
+        event_category: 'api_workflow_designer',
+        event_label: 'docs_page_loaded'
+      });
+    }
+  }, []);
+
+  const handleNavigationClick = (destination, label) => {
+    // Track navigation clicks
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'navigation', {
+        event_category: 'api_workflow_designer',
+        event_label: `docs_${label}_click`,
+        destination: destination
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto p-6">
@@ -14,13 +37,21 @@ export default function DocsPage() {
                 <div className="flex items-center gap-4 mb-8">
 
            <Link href="/api-wd">
-            <Button variant="outline" size="sm">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => handleNavigationClick('/api-wd', 'back_to_builder')}
+            >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Workflow Builder
             </Button>
           </Link>
           <Link href="/api-wd/test" target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="sm">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => handleNavigationClick('/api-wd/test', 'test_viewer')}
+            >
               🔧 Test Viewer
             </Button>
           </Link>

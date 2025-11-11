@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { SEOContent } from "./SEOContent";
 import { Input } from "@/components/ui/input";
@@ -35,6 +35,18 @@ export default function CaptchaV2Page() {
   const recaptchaWidgetRef = useRef(null);
   const [widgetLoaded, setWidgetLoaded] = useState(false);
 
+  // Track page view on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: 'reCAPTCHA v2 Testing',
+        page_location: window.location.href,
+        event_category: 'captcha_testing',
+        event_label: 'v2_page_loaded'
+      });
+    }
+  }, []);
+
   // Load reCAPTCHA widget when siteKey is set
   React.useEffect(() => {
     if (!siteKey || widgetLoaded) return;
@@ -44,6 +56,15 @@ export default function CaptchaV2Page() {
           sitekey: siteKey,
           callback: function (token) {
             setResponseToken(token);
+            
+            // Track successful CAPTCHA completion
+            if (typeof window !== 'undefined' && window.gtag) {
+              window.gtag('event', 'captcha_completed', {
+                event_category: 'captcha_testing',
+                event_label: 'v2_captcha_solved',
+                custom_parameter: siteKey === TEST_SITE_KEY ? 'test_key' : 'custom_key'
+              });
+            }
           },
         });
       }
@@ -69,6 +90,15 @@ export default function CaptchaV2Page() {
     setShowTestCreds(true);
     setResponseToken("");
     setWidgetLoaded(false);
+    
+    // Track test credentials usage
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'test_credentials_used', {
+        event_category: 'captcha_testing',
+        event_label: 'v2_test_fill_clicked',
+        custom_parameter: 'google_test_keys'
+      });
+    }
   };
 
   const handleReset = (e) => {
@@ -77,11 +107,33 @@ export default function CaptchaV2Page() {
     setShowTestCreds(false);
     setResponseToken("");
     setWidgetLoaded(false);
+    
+    // Track form reset
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'form_reset', {
+        event_category: 'captcha_testing',
+        event_label: 'v2_form_reset',
+        custom_parameter: 'user_reset'
+      });
+    }
   };
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text).then(() => {
       toast.success("Copied to clipboard!", { autoClose: 1200 });
+      
+      // Track copy actions
+      if (typeof window !== 'undefined' && window.gtag) {
+        const copyType = text === responseToken ? 'response_token' : 
+                        text === TEST_SITE_KEY ? 'test_site_key' : 
+                        text === TEST_SECRET ? 'test_secret' : 'unknown';
+        
+        window.gtag('event', 'copy_action', {
+          event_category: 'captcha_testing',
+          event_label: `v2_${copyType}_copied`,
+          custom_parameter: copyType
+        });
+      }
     });
   };
 
@@ -123,6 +175,15 @@ export default function CaptchaV2Page() {
                   setShowTestCreds(false);
                   setResponseToken("");
                   setWidgetLoaded(false);
+                  
+                  // Track site key input
+                  if (e.target.value && typeof window !== 'undefined' && window.gtag) {
+                    window.gtag('event', 'site_key_entered', {
+                      event_category: 'captcha_testing',
+                      event_label: 'v2_site_key_input',
+                      custom_parameter: e.target.value === TEST_SITE_KEY ? 'test_key' : 'custom_key'
+                    });
+                  }
                 }}
                 required
                 id="sitekey-input"
@@ -132,7 +193,18 @@ export default function CaptchaV2Page() {
                 <Button
                   type="button"
                   variant="default"
-                  onClick={() => setWidgetLoaded(false)}
+                  onClick={() => {
+                    setWidgetLoaded(false);
+                    
+                    // Track new response generation
+                    if (typeof window !== 'undefined' && window.gtag) {
+                      window.gtag('event', 'generate_response', {
+                        event_category: 'captcha_testing',
+                        event_label: 'v2_new_response_generated',
+                        custom_parameter: siteKey === TEST_SITE_KEY ? 'test_key' : 'custom_key'
+                      });
+                    }
+                  }}
                   disabled={!siteKey}
                   className="w-full sm:w-auto"
                 >
@@ -160,13 +232,22 @@ export default function CaptchaV2Page() {
                   type="button"
                   variant="ghost"
                   id="register-site-btn"
-                  onClick={() =>
+                  onClick={() => {
                     window.open(
                       "https://www.google.com/recaptcha/admin/create",
                       "_blank",
                       "noopener"
-                    )
-                  }
+                    );
+                    
+                    // Track external link click
+                    if (typeof window !== 'undefined' && window.gtag) {
+                      window.gtag('event', 'external_link_click', {
+                        event_category: 'captcha_testing',
+                        event_label: 'v2_register_site_click',
+                        link_url: 'https://www.google.com/recaptcha/admin/create'
+                      });
+                    }
+                  }}
                   className="w-full sm:w-auto"
                 >
                   Register New Site

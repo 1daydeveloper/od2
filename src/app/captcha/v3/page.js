@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { SEOContent } from "./SEOContent";
 import { Input } from "@/components/ui/input";
@@ -16,6 +16,18 @@ export default function CaptchaV3Page() {
   const [widgetLoaded, setWidgetLoaded] = useState(false);
 
   const recaptchaStatusRef = useRef(null);
+
+  // Track page view on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: 'reCAPTCHA v3 Testing',
+        page_location: window.location.href,
+        event_category: 'captcha_testing',
+        event_label: 'v3_page_loaded'
+      });
+    }
+  }, []);
 
   // Load reCAPTCHA script when siteKey is set
   React.useEffect(() => {
@@ -44,17 +56,45 @@ export default function CaptchaV3Page() {
     setResponseToken("");
     setStatus("");
     setWidgetLoaded(false);
+    
+    // Track form reset
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'form_reset', {
+        event_category: 'captcha_testing',
+        event_label: 'v3_form_reset',
+        custom_parameter: 'user_reset'
+      });
+    }
   };
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text).then(() => {
       toast.success("Copied to clipboard!", { autoClose: 1200 });
+      
+      // Track copy action
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'copy_action', {
+          event_category: 'captcha_testing',
+          event_label: 'v3_response_token_copied',
+          custom_parameter: 'response_token'
+        });
+      }
     });
   };
 
   const handleGenerateToken = async (e) => {
     e.preventDefault();
     setStatus("Generating token...");
+    
+    // Track token generation start
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'generate_token_start', {
+        event_category: 'captcha_testing',
+        event_label: 'v3_token_generation_started',
+        custom_parameter: 'recaptcha_v3'
+      });
+    }
+    
     if (window.grecaptcha && siteKey) {
       window.grecaptcha.ready(function () {
         window.grecaptcha
@@ -63,19 +103,55 @@ export default function CaptchaV3Page() {
             if (token) {
               setResponseToken(token);
               setStatus("Token generated.");
+              
+              // Track successful token generation
+              if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'token_generated', {
+                  event_category: 'captcha_testing',
+                  event_label: 'v3_token_generation_success',
+                  custom_parameter: 'token_success'
+                });
+              }
             } else {
               setStatus("Failed to generate token.");
               toast.error("Failed to generate reCAPTCHA token.");
+              
+              // Track failed token generation
+              if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'token_generation_failed', {
+                  event_category: 'captcha_testing',
+                  event_label: 'v3_token_generation_failed',
+                  custom_parameter: 'token_empty'
+                });
+              }
             }
           })
           .catch(function () {
             setStatus("Failed to generate token.");
             toast.error("Failed to generate reCAPTCHA token.");
+            
+            // Track token generation error
+            if (typeof window !== 'undefined' && window.gtag) {
+              window.gtag('event', 'token_generation_error', {
+                event_category: 'captcha_testing',
+                event_label: 'v3_token_generation_error',
+                custom_parameter: 'token_exception'
+              });
+            }
           });
       });
     } else {
       setStatus("reCAPTCHA not loaded.");
       toast.error("reCAPTCHA not loaded.");
+      
+      // Track reCAPTCHA not loaded error
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'recaptcha_not_loaded', {
+          event_category: 'captcha_testing',
+          event_label: 'v3_recaptcha_not_loaded',
+          custom_parameter: 'script_not_ready'
+        });
+      }
     }
   };
 
@@ -114,6 +190,15 @@ export default function CaptchaV3Page() {
                   setResponseToken("");
                   setStatus("");
                   setWidgetLoaded(false);
+                  
+                  // Track site key input
+                  if (e.target.value && typeof window !== 'undefined' && window.gtag) {
+                    window.gtag('event', 'site_key_entered', {
+                      event_category: 'captcha_testing',
+                      event_label: 'v3_site_key_input',
+                      custom_parameter: 'custom_key'
+                    });
+                  }
                 }}
                 required
                 id="sitekey-input"
@@ -140,13 +225,22 @@ export default function CaptchaV3Page() {
                   type="button"
                   variant="ghost"
                   id="register-site-btn"
-                  onClick={() =>
+                  onClick={() => {
                     window.open(
                       "https://www.google.com/recaptcha/admin/create",
                       "_blank",
                       "noopener"
-                    )
-                  }
+                    );
+                    
+                    // Track external link click
+                    if (typeof window !== 'undefined' && window.gtag) {
+                      window.gtag('event', 'external_link_click', {
+                        event_category: 'captcha_testing',
+                        event_label: 'v3_register_site_click',
+                        link_url: 'https://www.google.com/recaptcha/admin/create'
+                      });
+                    }
+                  }}
                 >
                   Register New Site
                 </Button>
