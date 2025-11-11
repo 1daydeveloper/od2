@@ -104,20 +104,27 @@ export default function RootLayout({ children }) {
     <html lang="en" className="dark">
       <head>
         <>
-          {/* Google Analytics using next/script */}
-          <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-1CC0XPGF77"
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              window.gtag = gtag;
-              gtag('js', new Date());
-              gtag('config', 'G-1CC0XPGF77');
-            `}
-          </Script>
+          {/* Google Analytics - Only load in production */}
+          {process.env.NODE_ENV === 'production' && (
+            <>
+              <Script
+                src="https://www.googletagmanager.com/gtag/js?id=G-1CC0XPGF77"
+                strategy="afterInteractive"
+              />
+              <Script id="google-analytics" strategy="afterInteractive">
+                {`
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  window.gtag = gtag;
+                  gtag('js', new Date());
+                  gtag('config', 'G-1CC0XPGF77', {
+                    debug_mode: ${process.env.NODE_ENV === 'development'},
+                    send_page_view: true
+                  });
+                `}
+              </Script>
+            </>
+          )}
             <Script
               id="google-tag"
               dangerouslySetInnerHTML={{
