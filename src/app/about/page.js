@@ -55,6 +55,13 @@ export default function About() {
                     that businesses of all sizes can achieve their goals with
                     cutting-edge technology customized to their requirements.
                   </p>
+                  <p className="text-lg mb-4 leading-relaxed">
+                    Founded with the vision of revolutionizing software development 
+                    timelines, we specialize in rapid prototyping, MVP development, 
+                    and emergency technical solutions. Our team comprises experienced 
+                    developers, designers, and technical consultants who understand 
+                    the critical importance of time-to-market in today&apos;s competitive landscape.
+                  </p>
                   <CardTitle asChild>
                     <h2 className="text-lg leading-relaxed font-semibold">
                       At OD2, our promise is to transform your ideas into reality
@@ -67,6 +74,129 @@ export default function About() {
             </div>
           </CardContent>
         </Card>
+        
+        {/* Our Values Section */}
+        <Card className="py-5 mt-6">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold text-center mb-6">
+              Our Core Values
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Speed & Efficiency</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    We deliver quality solutions within 24 hours without compromising 
+                    on excellence. Our streamlined processes ensure rapid development cycles.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Innovation</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    We embrace cutting-edge technologies and innovative approaches 
+                    to solve complex problems and create exceptional user experiences.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Client Success</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Your success is our priority. We work closely with clients to 
+                    understand their needs and deliver solutions that exceed expectations.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Our Expertise Section */}
+        <Card className="py-5 mt-6">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold text-center mb-6">
+              Our Expertise
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Development Services</h3>
+                <ul className="space-y-2 text-sm">
+                  <li>• Full-Stack Web Development</li>
+                  <li>• Mobile Application Development</li>
+                  <li>• Desktop Application Development</li>
+                  <li>• API Development & Integration</li>
+                  <li>• E-commerce Solutions</li>
+                  <li>• Custom Software Development</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Technical Consulting</h3>
+                <ul className="space-y-2 text-sm">
+                  <li>• System Architecture Design</li>
+                  <li>• Technology Stack Selection</li>
+                  <li>• Performance Optimization</li>
+                  <li>• Security Assessment</li>
+                  <li>• Code Review & Quality Assurance</li>
+                  <li>• Technical Documentation</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Why Choose Us Section */}
+        <Card className="py-5 mt-6">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold text-center mb-6">
+              Why Choose One Day Developers?
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-yellow-500 mb-2">24hrs</div>
+                <h3 className="font-semibold mb-2">Rapid Delivery</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Most projects completed within 24 hours
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-yellow-500 mb-2">5+</div>
+                <h3 className="font-semibold mb-2">Years Experience</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Proven track record in software development
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-yellow-500 mb-2">100%</div>
+                <h3 className="font-semibold mb-2">Quality Assured</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Rigorous testing and quality control
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-yellow-500 mb-2"> Dedicated</div>
+                <h3 className="font-semibold mb-2">Support</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Ongoing maintenance and support
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
         <Card className="py-5 mt-6">
           <CardContent>
             <Technologies />

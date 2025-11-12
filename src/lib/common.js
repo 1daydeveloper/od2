@@ -1,4 +1,4 @@
-import { Home, Mail, Package, PersonStanding, Dock, Calculator, CheckCircle, Aperture, Camera } from "lucide-react";
+import { Home, Mail, Package, PersonStanding, Dock, Calculator, CheckCircle, Aperture, Camera, Phone, FileText } from "lucide-react";
 
 const menuItems = {
     main: [
@@ -26,6 +26,14 @@ const menuItems = {
             icon: Dock,
             priority: 7,
             description: "Read our latest articles and updates.",
+        },
+        {
+            id: "contact",
+            label: "Contact",
+            url: "/contact",
+            icon: Phone,
+            priority: 8,
+            description: "Get in touch with our team.",
         },
     ],
     products: [
