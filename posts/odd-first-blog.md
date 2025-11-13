@@ -1,7 +1,8 @@
 ---
 title: "Welcome to One Day Developers (OD2)"
 date: "2025-01-01"
-author: "Pradeep Kumar O"
+author: "One Day Developers(OD2)"
+authorLink: "https://www.linkedin.com/in/od2/"
 category: "General"
 description: "OD-2 First Blog to be published on the official website of the community and contributors"
 keywords: "OD-2,First,Blog,Mail,Tempmail,Passport Size"

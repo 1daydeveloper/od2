@@ -1,7 +1,8 @@
 ---
 title: "How to Test and Verify Google reCAPTCHA v3"
 date: "2025-05-23"
-author: "Pradeep Kumar O"
+author: "One Day Developers(OD2)"
+authorLink: "https://www.linkedin.com/in/od2/"
 category: "Web Development"
 description: "A practical guide to testing and verifying Google reCAPTCHA v3 tokens for your web applications."
 keywords: "Google reCAPTCHA v3, test, verify, API, site key, secret, web development, security"

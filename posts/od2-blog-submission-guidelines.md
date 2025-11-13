@@ -1,7 +1,8 @@
 ---
 title: "OD2 One Day Developers Blog: Submission Guidelines"
 date: "2025-01-01"
-author: "Pradeep Kumar O"
+author: "One Day Developers(OD2)"
+authorLink: "https://www.linkedin.com/in/od2/"
 category: "Guidelines"
 description: "Learn how to contribute to the OD2 One Day Developers blog. Follow our official submission guidelines for technical writing, formatting, and SEO best practices."
 keywords: "OD2, blog guidelines, technical writing, blog submission, content submission, developer community, contribution rules, markdown, SEO, blog standards, writing for developers, guest blogging, coding blogs"

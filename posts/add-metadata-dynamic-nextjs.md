@@ -1,7 +1,8 @@
 ---
 title: "How to Create Dynamic Metadata in Next.js 14 and Above"
 date: "2025-01-02"
-author: "Pradeep Kumar O"
+author: "One Day Developers(OD2)"
+authorLink: "https://www.linkedin.com/in/od2/"
 category: "Web Development"
 description: "Learn how to create dynamic metadata in Next.js 14 and above to improve SEO and enhance social sharing features."
 keywords: "Next.js, dynamic metadata, SEO, Open Graph,title, 14, Twitter card,nextjs 14, root,layout,children, blog,slug"
