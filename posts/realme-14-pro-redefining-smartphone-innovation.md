@@ -1,7 +1,8 @@
 ---
 title: "Realme 14 Pro: Redefining Smartphone Innovation"
 date: "2025-01-06"
-author: "Pradeep Kumar O"
+author: "One Day Developers(OD2)"
+authorLink: "https://www.linkedin.com/in/od2/"
 category: "Mobile"
 description: "Discover the Realme 14 Pro, featuring a stunning display, exceptional performance, and an advanced camera system. Is this the best smartphone of 2025?"
 keywords: "Realme 14 Pro, Realme flagship smartphone, Realme 14 Pro specs, Realme 14 Pro price, Realme 14 Pro features, Realme 14 Pro design, Realme 14 Pro review, Realme 14 Pro performance, smartphone innovation 2025, Realme UI 5.0, Realme fast charging, 200MP camera phone, Realme Pro series, AMOLED display, best smartphones 2025, affordable flagship smartphone, Realme mobile photography, Realme 14 Pro India, Realme 14 Pro launch"

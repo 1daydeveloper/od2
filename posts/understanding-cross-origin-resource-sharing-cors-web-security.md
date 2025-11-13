@@ -1,7 +1,8 @@
 ---
 title: "Understanding Cross-Origin Resource Sharing (CORS): A Crucial Web Security Feature"
 date: "2025-01-03"
-author: "Pradeep Kumar O"
+author: "One Day Developers(OD2)"
+authorLink: "https://www.linkedin.com/in/od2/"
 category: "Web Security, Development"
 description: "Explore Cross-Origin Resource Sharing (CORS), its functionality, and how it plays a key role in securing web applications. Learn to implement CORS in various server technologies."
 keywords: "CORS, Cross-Origin Resource Sharing, Web security, HTTP headers, CORS headers, Web development, Node.js, Django, API security, Preflight request, Access-Control-Allow-Origin, Access-Control-Allow-Methods, Express, Apache, Nginx, Security best practices, CSRF, XSSI, Server configuration, Web application security, API development, Credentials in CORS"

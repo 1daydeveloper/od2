@@ -1,7 +1,8 @@
 ---
 title: "The Most Used AI Tools in the Market: A Comprehensive Guide"
 date: "2025-01-12"
-author: "Pradeep Kumar O"
+author: "One Day Developers(OD2)"
+authorLink: "https://www.linkedin.com/in/od2/"
 category: "Artificial Intelligence"
 description: "Explore the most widely used AI tools in the market, their features, and why they are indispensable for modern businesses."
 keywords: "AI tools, artificial intelligence software, ChatGPT, TensorFlow, IBM Watson, Hugging Face, Canva AI, top AI tools, AI for business, machine learning tools, NLP software, AI applications, AI trends, business automation, productivity tools, AI for developers, AI for marketers, enterprise AI tools, AI design tools, open-source AI, AI technology"

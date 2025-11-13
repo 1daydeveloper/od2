@@ -1,7 +1,8 @@
 ---
 title: "TMail: A Revolutionary Temporary Email Solution by OD2"
 date: "2025-01-08"
-author: "OD2 Team"
+author: "One Day Developers(OD2)"
+authorLink: "www.linkedin.com/in/od2"
 category: "Software"
 description: "Discover TMail by OD2, an innovative temporary email solution designed to protect your privacy and enhance online anonymity."
 keywords: "TMail, OD2, temporary email, disposable email, spam protection, privacy, online security, temporary email service, email generator, anonymous email, secure email, free email tool, digital privacy, OD2 tools, temporary mail generator, email spam prevention, online safety, short-term email, sandbox testing email, secure communication"

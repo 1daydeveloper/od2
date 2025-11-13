@@ -1,7 +1,8 @@
 ---
 title: "OD2 Passport Size Printable Photo Maker (6x4): The Ultimate Guide to Perfect Passport Photos"
 date: "2025-06-15"
-author: "OD2 Team"
+author: "One Day Developers(OD2)"
+authorLink: "www.linkedin.com/in/od2"
 category: "Software"
 description: "Learn how to create, crop, and print perfect passport size photos for India, UK, USA, and Australia using the OD2 Passport Size Printable Photo Maker (6x4). Step-by-step guide, official size details, and expert tips included."
 keywords: "passport photo maker, OD2, printable passport photo, passport photo sheet, passport photo online, crop passport photo, passport photo generator, passport photo download, passport photo 6x4, India, UK, USA, Australia, DPI, free passport photo tool, online photo tool, print passport photo, digital passport photo, photo printing, photo cropping, photo sizing, official photo size, government photo requirements, photo studio, home printing"

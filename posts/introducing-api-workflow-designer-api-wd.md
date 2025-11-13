@@ -2,6 +2,7 @@
 title: "Introducing API Workflow Designer: The Revolutionary Workflow Builder"
 date: "2025-07-05"
 author: "OD2 Development Team"
+authorLink: "www.linkedin.com/in/od2"
 category: "Tools"
 description: "Discover API Workflow Designer - A powerful JSON-based visual workflow builder with OpenAPI integration that transforms how you design, document, and implement API workflows."
 keywords: "API Workflow Designer, OpenAPI, Visual Workflow Builder, API Integration, JSON, ReactFlow, OD2"

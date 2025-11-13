@@ -1,7 +1,7 @@
 ---
 title: "IPO Decisions: Practical Recommendation and Formula to Apply or Not for NSE & BSE Listings"
 date: "2025-11-13"
-author: "OD2"
+author: "One Day Developers(OD2)"
 authorLink: "www.linkedin.com/in/od2"
 category: "Finance"
 description: "A detailed guide on how to decide whether to apply for IPOs on NSE & BSE, featuring a practical recommendation formula for smart investing."
