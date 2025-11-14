@@ -69,7 +69,7 @@ const menuItems = {
             description: "Generate temporary email addresses for privacy.",
             features: [
                 "No signup required",
-                "Auto-deletion in 24 hours",
+                "Auto-deletion 12 hours after email receipt",
                 "Instant inbox access",
             ],
         },

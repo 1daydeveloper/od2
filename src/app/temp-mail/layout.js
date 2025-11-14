@@ -24,7 +24,7 @@ export const metadata = {
   openGraph: {
     title: "Temp Mail - OD2",
     description:
-      "OD2 Temporary Mail allows you to create disposable email addresses quickly and securely. Protect your privacy and manage temporary communications with ease.",
+      "OD2 Temporary Mail allows you to create disposable email addresses quickly and securely. Emails are automatically deleted 12 hours after receipt. Protect your privacy and manage temporary communications with ease.",
     image: "https://www.od2.in/od2.png", // Use a relevant image for social media previews
     url: "https://www.od2.in/temp-mail", // The URL of the page
     type: "website",
@@ -36,7 +36,7 @@ export const metadata = {
     "@type": "WebApplication",
     name: "OD2 Temp Mail",
     description:
-      "OD2 Temp Mail provides disposable email addresses for temporary communication. Use it to avoid spam and protect your privacy.",
+      "OD2 Temp Mail provides disposable email addresses for temporary communication. Emails are automatically deleted 12 hours after receipt. Use it to avoid spam and protect your privacy.",
     url: "https://www.od2.in/temp-mail",
     author: {
       "@type": "Organization",

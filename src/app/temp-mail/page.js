@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import DeletionTimer from "@/components/temp-mail/DeletionTimer";
 import { toast } from "react-toastify";
-import { ThumbsUp, ThumbsDown, Mail, ClipboardCopy, Copy, Loader, Loader2Icon, PencilLineIcon, MailX } from "lucide-react";
+import { ThumbsUp, ThumbsDown, Mail, Trash2Icon, Clock1, Copy, Loader, Loader2Icon, PencilLineIcon, MailX, Trash2, Clock } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 /**
@@ -223,30 +222,86 @@ export default function GetEmailByID() {
     }
   };
   function timeAgo(isoDate) {
-    const currentTime = new Date(); // Local system time
-    const targetTime = new Date(isoDate); // Target time from the ISO string
+    if (!isoDate) return "Unknown time";
+    
+    try {
+      const currentTime = new Date(); // Local system time
+      const targetTime = new Date(isoDate); // Target time from the ISO string
 
-    const diffInMs = currentTime - targetTime; // Difference in milliseconds
-    const diffInSeconds = Math.floor(diffInMs / 1000);
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
-    const diffInHours = Math.floor(diffInMinutes / 60);
+      // Check if the date is valid
+      if (isNaN(targetTime.getTime())) {
+        return "Invalid date";
+      }
 
-    // Formatting the output based on the time difference
-    if (diffInMinutes < 1) {
-      return `${diffInSeconds} seconds ago`; // Less than 1 minute
-    } else if (diffInMinutes < 60) {
-      return `${diffInMinutes}m ago`; // Less than 1 hour
-    } else if (diffInHours < 24) {
-      const diffInDays = Math.floor(diffInHours / 24);
-      return `${diffInDays}d ago`; // More than 24 hours
-    } else {
-      return `${diffInHours}h ${diffInMinutes % 60}m ago`; // Less than 24 hours
+      const diffInMs = currentTime - targetTime; // Difference in milliseconds
+      const diffInSeconds = Math.floor(diffInMs / 1000);
+      const diffInMinutes = Math.floor(diffInSeconds / 60);
+      const diffInHours = Math.floor(diffInMinutes / 60);
+
+      // Formatting the output based on the time difference
+      if (diffInMinutes < 1) {
+        return `${diffInSeconds} seconds ago`; // Less than 1 minute
+      } else if (diffInMinutes < 60) {
+        return `${diffInMinutes}m ago`; // Less than 1 hour
+      } else if (diffInHours < 12) {
+        return `${diffInHours}h ${diffInMinutes % 60}m ago`; // Less than 12 hours
+      } else {
+        const diffInDays = Math.floor(diffInHours / 24);
+        return `${diffInDays}d ago`; // More than 12 hours (should be deleted soon)
+      }
+    } catch (error) {
+      console.error('Error in timeAgo:', error);
+      return "Unknown time";
     }
   }
 
   function convertToLocalTime(isoDate) {
-    const date = new Date(isoDate);
-    return date.toLocaleString(); // Local time with date and time
+    if (!isoDate) return "Unknown date";
+    
+    try {
+      const date = new Date(isoDate);
+      if (isNaN(date.getTime())) {
+        return "Invalid date";
+      }
+      return date.toLocaleString(); // Local time with date and time
+    } catch (error) {
+      console.error('Error in convertToLocalTime:', error);
+      return "Unknown date";
+    }
+  }
+
+  function timeUntilDeletion(isoDate) {
+    if (!isoDate) return "Unknown";
+    
+    try {
+      const now = new Date();
+      const emailDate = new Date(isoDate);
+      
+      if (isNaN(emailDate.getTime())) {
+        return "Invalid date";
+      }
+      
+      const deletionTime = new Date(emailDate.getTime() + (12 * 60 * 60 * 1000)); // 12 hours after receipt
+      
+      if (deletionTime <= now) {
+        return "Deleting soon";
+      }
+      
+      const diffInMilliseconds = deletionTime - now;
+      const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
+      const diffInHours = Math.floor(diffInMinutes / 60);
+      
+      if (diffInHours > 0) {
+        return `${diffInHours}h ${diffInMinutes % 60}m left`;
+      } else if (diffInMinutes > 0) {
+        return `${diffInMinutes}m left`;
+      } else {
+        return "< 1m left";
+      }
+    } catch (error) {
+      console.error('Error in timeUntilDeletion:', error);
+      return "Unknown";
+    }
   }
 
   const handleFeedback = (type) => async () => {
@@ -350,6 +405,9 @@ export default function GetEmailByID() {
               hidden={!isRefreshing}
             />
           </Card>
+          <div className="text-center text-sm text-muted-foreground mb-2">
+            <p>📧 Emails auto-delete 12h after receipt</p>
+          </div>
           <div className="flex flex-col overflow-y-auto gap-2 w-100 max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
             {emails && emails.length !== 0 ? (
               emails
@@ -377,14 +435,23 @@ export default function GetEmailByID() {
                     </div>
 
                     <div className="flex flex-row gap-3">
-                      <div className="w-30">
-                        <p className="">
-                          {timeAgo(email.date) || "Untitled Email"}
-                        </p>
-                      </div>
+                      
                       <div className="text-wrap text-start overflow-auto">
                         <p className="truncate-lines">
                           {email.subject || "Untitled Email"}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-row gap-3 justify-between">
+                      <div >
+                        <p className="text-[10px] flex gap-1">
+                          <Clock1 size={10}/>
+                           {timeAgo(email.date || email.createdAt)}
+                        </p>
+                      </div>
+                      <div >
+                        <p className="text-[10px] text-red-500 flex gap-1">
+                          <Trash2Icon size={10}/> {timeUntilDeletion(email.date || email.createdAt)}
                         </p>
                       </div>
                     </div>
@@ -447,9 +514,9 @@ export default function GetEmailByID() {
                   </div>
                   <div className="flex">
                     <p>
-                      <strong>Recived Date:</strong>{" "}
-                      {convertToLocalTime(emailcontent.date) ||
-                        "Untitled Email"}
+                      <strong>Received Date:</strong>{" "}
+                      {convertToLocalTime(emailcontent.date || emailcontent.createdAt) ||
+                        "Unknown Date"}
                     </p>
                   </div>
                   <div className="flex gap-2">
@@ -539,7 +606,7 @@ export default function GetEmailByID() {
                 </li>
                 <li>
                   <strong>Email Auto-Deletion:</strong> All emails are
-                  automatically deleted every <strong>24 hours</strong>,
+                  automatically deleted <strong>12 hours after being received</strong>,
                   ensuring your inbox stays clean and private.
                 </li>
                 <li>
@@ -569,9 +636,6 @@ export default function GetEmailByID() {
               </ul>
             </div>
           </div>
-          <Card className="text-center py-12 my-2">
-            <DeletionTimer/>
-          </Card>
           <div id="userNameRules" className="mb-3">
             <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
               Username Rules
@@ -685,7 +749,7 @@ export default function GetEmailByID() {
                     Can I use it for long-term needs?
                   </h3>
                   <p>
-                    No, temp mail is designed for short-term use, ensuring
+                    No, temp mail is designed for short-term use. Each email is automatically deleted 12 hours after being received, ensuring
                     maximum security and privacy.
                   </p>
                 </div>

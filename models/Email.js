@@ -7,7 +7,6 @@ const emailSchema = new mongoose.Schema({
   text: String,
   textAsHtml: String,
   subject: String,
-  date: { type: Date, default: Date.now},
   to: {
     value: [
       {
@@ -29,7 +28,12 @@ const emailSchema = new mongoose.Schema({
     text: String,
   },
   messageId: String,
-});
+  date: { type: Date, default: Date.now }, // Email receive date
+}, { timestamps: true });
+
+// Add TTL index to auto-delete emails after 12 hours (43200 seconds)
+// This ensures emails are automatically removed from MongoDB after 12 hours from creation
+emailSchema.index({ "createdAt": 1 }, { expireAfterSeconds: 43200 });
 
 const emailFeedbackSchema = new mongoose.Schema({
   emailId: { type: mongoose.Schema.Types.ObjectId, ref: 'Email' },
@@ -43,9 +47,8 @@ const emailFeedbackSchema = new mongoose.Schema({
     default: 'Good',
     required: true,
   },
-  date: { type: Date, default: Date.now },
   description: { type: String },
-});
+}, { timestamps: true });
 
 
 const emailHistorySchema = new mongoose.Schema({
@@ -58,7 +61,7 @@ const emailHistorySchema = new mongoose.Schema({
     },
   ],
   count: { type: Number, default: 0 },
-});
+}, { timestamps: true });
 
 // Middleware to handle history updates on email save
 emailSchema.pre('save', async function (next) {

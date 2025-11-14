@@ -55,8 +55,7 @@ export const POST = async (req) => {
     
     // Add to batch instead of immediate save
     emailBatch.push({
-      ...parsedEmail,
-      createdAt: new Date()
+      ...parsedEmail
     });
 
     // Process batch if it reaches the size limit
