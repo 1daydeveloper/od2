@@ -138,7 +138,7 @@ export default function GetEmailByID() {
     }
 
     // Scroll to email content on mobile devices
-    const isMobile = window.innerWidth < 1024; // lg breakpoint
+    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : false; // lg breakpoint
     if (isMobile) {
       setTimeout(() => {
         const emailContentSection = document.querySelector('[data-email-content]');
@@ -347,7 +347,7 @@ export default function GetEmailByID() {
     if (!emailcontent._id) return;
     let description = "";
     if (type === "bad") {
-      description = window.prompt("Please provide a description (optional):", "");
+      description = typeof window !== 'undefined' ? window.prompt("Please provide a description (optional):", "") : "";
       // If user cancels prompt, don't send feedback
       if (description === null) return;
     }
@@ -588,7 +588,7 @@ export default function GetEmailByID() {
                     src={emailIframeSrc}
                     style={{
                       width: '100%',
-                      minHeight: window.innerWidth < 640 ? '300px' : '400px',
+                      minHeight: typeof window !== 'undefined' && window.innerWidth < 640 ? '300px' : '400px',
                       border: '1px solid #e2e8f0',
                       borderRadius: '8px',
                       backgroundColor: 'white'
@@ -605,7 +605,7 @@ export default function GetEmailByID() {
                       className="rounded p-2 sm:p-4 mb-4 overflow-hidden border border-gray-200 text-sm sm:text-base"
                       style={{ 
                         backgroundColor: 'white', 
-                        minHeight: window.innerWidth < 640 ? '300px' : '400px',
+                        minHeight: typeof window !== 'undefined' && window.innerWidth < 640 ? '300px' : '400px',
                         wordBreak: 'break-word',
                         overflowWrap: 'break-word'
                       }}
@@ -619,7 +619,7 @@ export default function GetEmailByID() {
             ) : (
               <div className="flex flex-col items-center justify-center px-2 py-8 text-center">
                 <div>
-                  <MailX size={window.innerWidth < 640 ? 36 : 48} />
+                  <MailX size={typeof window !== 'undefined' && window.innerWidth < 640 ? 36 : 48} />
                 </div>
 
                 <div className="font-bold text-lg sm:text-xl mt-4 px-2">
