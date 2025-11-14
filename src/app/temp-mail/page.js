@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import DeletionTimer from "@/components/temp-mail/DeletionTimer";
 import { toast } from "react-toastify";
-import { ThumbsUp, ThumbsDown, Mail, ClipboardCopy, Copy, Loader, Loader2Icon, PencilLineIcon, MailX } from "lucide-react";
+import { ThumbsUp, ThumbsDown, Mail, Trash2Icon, Clock1, Copy, Loader, Loader2Icon, PencilLineIcon, MailX, Trash2, Clock } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 /**
@@ -21,6 +20,7 @@ export default function GetEmailByID() {
   const [id, setId] = useState("");
   const [emails, setEmails] = useState([]);
   const [emailcontent, setEmailContent] = useState({});
+  const [emailIframeSrc, setEmailIframeSrc] = useState("");
   const [activeTab, setActiveTab] = useState(null); // To track the active tab
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Loading state
@@ -29,14 +29,18 @@ export default function GetEmailByID() {
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [feedbackLoading, setFeedbackLoading] = useState(false); // Feedback state
 
-  // Cleanup interval on component unmount
+  // Cleanup interval and blob URLs on component unmount
   useEffect(() => {
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
       }
+      // Clean up blob URL
+      if (emailIframeSrc) {
+        URL.revokeObjectURL(emailIframeSrc);
+      }
     };
-  }, [intervalId]);
+  }, [intervalId, emailIframeSrc]);
 
   const stopRetry = () => {
     if (intervalId) {
@@ -52,6 +56,12 @@ export default function GetEmailByID() {
     setEmails([]);
     stopRetry();
     setEmailContent({});
+    
+    // Clean up previous iframe src
+    if (emailIframeSrc) {
+      URL.revokeObjectURL(emailIframeSrc);
+      setEmailIframeSrc("");
+    }
     
     // Safely call gtag if available - Track inbox check with full email address
     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
@@ -112,8 +122,36 @@ export default function GetEmailByID() {
 
     const selectedEmail = emails.find((email) => email._id === emailid);
     setEmailContent(selectedEmail);
+    
+    // Create iframe content for email rendering
+    if (selectedEmail && selectedEmail.html) {
+      const decodedHtml = decodeHtml(selectedEmail.html, selectedEmail);
+      const blob = new Blob([decodedHtml], { type: 'text/html' });
+      const blobUrl = URL.createObjectURL(blob);
+      
+      // Clean up previous blob URL
+      if (emailIframeSrc) {
+        URL.revokeObjectURL(emailIframeSrc);
+      }
+      
+      setEmailIframeSrc(blobUrl);
+    }
+
+    // Scroll to email content on mobile devices
+    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : false; // lg breakpoint
+    if (isMobile) {
+      setTimeout(() => {
+        const emailContentSection = document.querySelector('[data-email-content]');
+        if (emailContentSection) {
+          emailContentSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      }, 100); // Small delay to ensure content is rendered
+    }
   }
-  const decodeHtml = (html) => {
+  const decodeHtml = (html, email = null) => {
     // Ensure we're running in browser environment
     if (typeof window === 'undefined') {
       return html; // Return original html on server-side
@@ -121,7 +159,7 @@ export default function GetEmailByID() {
     
     // Decode HTML content
     const txt = document.createElement("textarea");
-    let attachments = emailcontent.attachments;
+    let attachments = email ? email.attachments : emailcontent.attachments;
     txt.innerHTML = html;
     const decodedContent = txt.value;
 
@@ -223,37 +261,93 @@ export default function GetEmailByID() {
     }
   };
   function timeAgo(isoDate) {
-    const currentTime = new Date(); // Local system time
-    const targetTime = new Date(isoDate); // Target time from the ISO string
+    if (!isoDate) return "Unknown time";
+    
+    try {
+      const currentTime = new Date(); // Local system time
+      const targetTime = new Date(isoDate); // Target time from the ISO string
 
-    const diffInMs = currentTime - targetTime; // Difference in milliseconds
-    const diffInSeconds = Math.floor(diffInMs / 1000);
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
-    const diffInHours = Math.floor(diffInMinutes / 60);
+      // Check if the date is valid
+      if (isNaN(targetTime.getTime())) {
+        return "Invalid date";
+      }
 
-    // Formatting the output based on the time difference
-    if (diffInMinutes < 1) {
-      return `${diffInSeconds} seconds ago`; // Less than 1 minute
-    } else if (diffInMinutes < 60) {
-      return `${diffInMinutes}m ago`; // Less than 1 hour
-    } else if (diffInHours < 24) {
-      const diffInDays = Math.floor(diffInHours / 24);
-      return `${diffInDays}d ago`; // More than 24 hours
-    } else {
-      return `${diffInHours}h ${diffInMinutes % 60}m ago`; // Less than 24 hours
+      const diffInMs = currentTime - targetTime; // Difference in milliseconds
+      const diffInSeconds = Math.floor(diffInMs / 1000);
+      const diffInMinutes = Math.floor(diffInSeconds / 60);
+      const diffInHours = Math.floor(diffInMinutes / 60);
+
+      // Formatting the output based on the time difference
+      if (diffInMinutes < 1) {
+        return `${diffInSeconds} seconds ago`; // Less than 1 minute
+      } else if (diffInMinutes < 60) {
+        return `${diffInMinutes}m ago`; // Less than 1 hour
+      } else if (diffInHours < 12) {
+        return `${diffInHours}h ${diffInMinutes % 60}m ago`; // Less than 12 hours
+      } else {
+        const diffInDays = Math.floor(diffInHours / 24);
+        return `${diffInDays}d ago`; // More than 12 hours (should be deleted soon)
+      }
+    } catch (error) {
+      console.error('Error in timeAgo:', error);
+      return "Unknown time";
     }
   }
 
   function convertToLocalTime(isoDate) {
-    const date = new Date(isoDate);
-    return date.toLocaleString(); // Local time with date and time
+    if (!isoDate) return "Unknown date";
+    
+    try {
+      const date = new Date(isoDate);
+      if (isNaN(date.getTime())) {
+        return "Invalid date";
+      }
+      return date.toLocaleString(); // Local time with date and time
+    } catch (error) {
+      console.error('Error in convertToLocalTime:', error);
+      return "Unknown date";
+    }
+  }
+
+  function timeUntilDeletion(isoDate) {
+    if (!isoDate) return "Unknown";
+    
+    try {
+      const now = new Date();
+      const emailDate = new Date(isoDate);
+      
+      if (isNaN(emailDate.getTime())) {
+        return "Invalid date";
+      }
+      
+      const deletionTime = new Date(emailDate.getTime() + (12 * 60 * 60 * 1000)); // 12 hours after receipt
+      
+      if (deletionTime <= now) {
+        return "Deleting soon";
+      }
+      
+      const diffInMilliseconds = deletionTime - now;
+      const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
+      const diffInHours = Math.floor(diffInMinutes / 60);
+      
+      if (diffInHours > 0) {
+        return `${diffInHours}h ${diffInMinutes % 60}m left`;
+      } else if (diffInMinutes > 0) {
+        return `${diffInMinutes}m left`;
+      } else {
+        return "< 1m left";
+      }
+    } catch (error) {
+      console.error('Error in timeUntilDeletion:', error);
+      return "Unknown";
+    }
   }
 
   const handleFeedback = (type) => async () => {
     if (!emailcontent._id) return;
     let description = "";
     if (type === "bad") {
-      description = window.prompt("Please provide a description (optional):", "");
+      description = typeof window !== 'undefined' ? window.prompt("Please provide a description (optional):", "") : "";
       // If user cancels prompt, don't send feedback
       if (description === null) return;
     }
@@ -350,6 +444,9 @@ export default function GetEmailByID() {
               hidden={!isRefreshing}
             />
           </Card>
+          <div className="text-center text-sm text-muted-foreground mb-2">
+            <p>📧 Emails auto-delete 12h after receipt</p>
+          </div>
           <div className="flex flex-col overflow-y-auto gap-2 w-100 max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
             {emails && emails.length !== 0 ? (
               emails
@@ -377,14 +474,23 @@ export default function GetEmailByID() {
                     </div>
 
                     <div className="flex flex-row gap-3">
-                      <div className="w-30">
-                        <p className="">
-                          {timeAgo(email.date) || "Untitled Email"}
-                        </p>
-                      </div>
+                      
                       <div className="text-wrap text-start overflow-auto">
                         <p className="truncate-lines">
                           {email.subject || "Untitled Email"}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-row gap-3 justify-between">
+                      <div >
+                        <p className="text-[10px] flex gap-1">
+                          <Clock1 size={10}/>
+                           {timeAgo(email.date || email.createdAt)}
+                        </p>
+                      </div>
+                      <div >
+                        <p className="text-[10px] text-red-500 flex gap-1">
+                          <Trash2Icon size={10}/> {timeUntilDeletion(email.date || email.createdAt)}
                         </p>
                       </div>
                     </div>
@@ -427,44 +533,46 @@ export default function GetEmailByID() {
           </div>
         </Card>
 
-        <Card className="flex-grow lg:w-2/3 w-full space-y-4   p-4 rounded-md">
-          <Card className="items-center flex justify-center  rounded-md ">
-            <h3 className="text-2xl">Email Content</h3>
+        <Card className="flex-grow lg:w-2/3 w-full space-y-4 p-2 sm:p-4 rounded-md" data-email-content>
+          <Card className="items-center flex justify-center rounded-md">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold">Email Content</h3>
           </Card>
-          <Card className="overflow-y-auto max-h-[calc(100vh-170px)] max-lg:max-h-[calc(100vh-180px)]">
+          <Card className="overflow-y-auto max-h-[calc(100vh-170px)] max-lg:max-h-[calc(100vh-200px)] p-2 sm:p-4">
             {Object.keys(emailcontent).length !== 0 ? (
-              <div>
-                <div className="rounded p-1">
-                  <div className="font-bold text-xl">
+              <div className="space-y-3">
+                <div className="rounded p-2 space-y-3">
+                  <div className="font-bold text-lg sm:text-xl break-words">
                     {emailcontent.subject}
                   </div>
 
-                  <div className="flex">
-                    <p>
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0">
+                    <p className="text-sm sm:text-base break-all">
                       <strong>From:</strong>{" "}
                       {emailcontent.from.value[0].address}
                     </p>
                   </div>
-                  <div className="flex">
-                    <p>
-                      <strong>Recived Date:</strong>{" "}
-                      {convertToLocalTime(emailcontent.date) ||
-                        "Untitled Email"}
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0">
+                    <p className="text-sm sm:text-base">
+                      <strong>Received Date:</strong>{" "}
+                      {convertToLocalTime(emailcontent.date || emailcontent.createdAt) ||
+                        "Unknown Date"}
                     </p>
                   </div>
-                  <div className="flex gap-2">
-                    <p>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <p className="text-sm sm:text-base">
                       Feedback:
                     </p>
                     <ThumbsUp
                       color="currentcolor"
                       fill="green"
+                      size={18}
                       className={`hover:cursor-pointer ${feedbackLoading ? "opacity-50 pointer-events-none" : ""}`}
                       onClick={handleFeedback('good')}
                     />
                     <ThumbsDown
                       color="currentcolor"
                       fill="red"
+                      size={18}
                       className={`hover:cursor-pointer ${feedbackLoading ? "opacity-50 pointer-events-none" : ""}`}
                       onClick={handleFeedback('bad')}
                     />
@@ -472,26 +580,50 @@ export default function GetEmailByID() {
                 </div>
                 <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
 
-                <p>
+                <p className="text-sm sm:text-base font-semibold mb-2">
                   <strong>Content:</strong>
                 </p>
-                <div>
-                  <div
-                    className="rounded p-1 mb-4 overflow-hidden "
-                    dangerouslySetInnerHTML={{
-                      __html: decodeHtml(emailcontent.html),
+                <div className="w-full">
+                  <iframe
+                    src={emailIframeSrc}
+                    style={{
+                      width: '100%',
+                      minHeight: typeof window !== 'undefined' && window.innerWidth < 640 ? '300px' : '400px',
+                      border: '1px solid #e2e8f0',
+                      borderRadius: '8px',
+                      backgroundColor: 'white'
+                    }}
+                    sandbox="allow-same-origin allow-popups"
+                    title="Email Content"
+                    onError={() => {
+                      console.log('Iframe failed to load, falling back to dangerouslySetInnerHTML');
                     }}
                   />
+                  {/* Fallback for when iframe fails */}
+                  {!emailIframeSrc && (
+                    <div
+                      className="rounded p-2 sm:p-4 mb-4 overflow-hidden border border-gray-200 text-sm sm:text-base"
+                      style={{ 
+                        backgroundColor: 'white', 
+                        minHeight: typeof window !== 'undefined' && window.innerWidth < 640 ? '300px' : '400px',
+                        wordBreak: 'break-word',
+                        overflowWrap: 'break-word'
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: decodeHtml(emailcontent.html),
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center px-2 py-4 text-center">
+              <div className="flex flex-col items-center justify-center px-2 py-8 text-center">
                 <div>
-              <MailX size={48} />
+                  <MailX size={typeof window !== 'undefined' && window.innerWidth < 640 ? 36 : 48} />
                 </div>
 
-                <div className="font-bold text-xl mt-4">
-                  Select an Email Recived To Show the content of an email.
+                <div className="font-bold text-lg sm:text-xl mt-4 px-2">
+                  Select an Email Received To Show the content of an email.
                 </div>
               </div>
             )}
@@ -539,7 +671,7 @@ export default function GetEmailByID() {
                 </li>
                 <li>
                   <strong>Email Auto-Deletion:</strong> All emails are
-                  automatically deleted every <strong>24 hours</strong>,
+                  automatically deleted <strong>12 hours after being received</strong>,
                   ensuring your inbox stays clean and private.
                 </li>
                 <li>
@@ -569,9 +701,6 @@ export default function GetEmailByID() {
               </ul>
             </div>
           </div>
-          <Card className="text-center py-12 my-2">
-            <DeletionTimer/>
-          </Card>
           <div id="userNameRules" className="mb-3">
             <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
               Username Rules
@@ -685,7 +814,7 @@ export default function GetEmailByID() {
                     Can I use it for long-term needs?
                   </h3>
                   <p>
-                    No, temp mail is designed for short-term use, ensuring
+                    No, temp mail is designed for short-term use. Each email is automatically deleted 12 hours after being received, ensuring
                     maximum security and privacy.
                   </p>
                 </div>
