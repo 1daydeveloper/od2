@@ -20,6 +20,7 @@ export default function GetEmailByID() {
   const [id, setId] = useState("");
   const [emails, setEmails] = useState([]);
   const [emailcontent, setEmailContent] = useState({});
+  const [emailIframeSrc, setEmailIframeSrc] = useState("");
   const [activeTab, setActiveTab] = useState(null); // To track the active tab
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Loading state
@@ -28,14 +29,18 @@ export default function GetEmailByID() {
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [feedbackLoading, setFeedbackLoading] = useState(false); // Feedback state
 
-  // Cleanup interval on component unmount
+  // Cleanup interval and blob URLs on component unmount
   useEffect(() => {
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
       }
+      // Clean up blob URL
+      if (emailIframeSrc) {
+        URL.revokeObjectURL(emailIframeSrc);
+      }
     };
-  }, [intervalId]);
+  }, [intervalId, emailIframeSrc]);
 
   const stopRetry = () => {
     if (intervalId) {
@@ -51,6 +56,12 @@ export default function GetEmailByID() {
     setEmails([]);
     stopRetry();
     setEmailContent({});
+    
+    // Clean up previous iframe src
+    if (emailIframeSrc) {
+      URL.revokeObjectURL(emailIframeSrc);
+      setEmailIframeSrc("");
+    }
     
     // Safely call gtag if available - Track inbox check with full email address
     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
@@ -111,8 +122,36 @@ export default function GetEmailByID() {
 
     const selectedEmail = emails.find((email) => email._id === emailid);
     setEmailContent(selectedEmail);
+    
+    // Create iframe content for email rendering
+    if (selectedEmail && selectedEmail.html) {
+      const decodedHtml = decodeHtml(selectedEmail.html, selectedEmail);
+      const blob = new Blob([decodedHtml], { type: 'text/html' });
+      const blobUrl = URL.createObjectURL(blob);
+      
+      // Clean up previous blob URL
+      if (emailIframeSrc) {
+        URL.revokeObjectURL(emailIframeSrc);
+      }
+      
+      setEmailIframeSrc(blobUrl);
+    }
+
+    // Scroll to email content on mobile devices
+    const isMobile = window.innerWidth < 1024; // lg breakpoint
+    if (isMobile) {
+      setTimeout(() => {
+        const emailContentSection = document.querySelector('[data-email-content]');
+        if (emailContentSection) {
+          emailContentSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      }, 100); // Small delay to ensure content is rendered
+    }
   }
-  const decodeHtml = (html) => {
+  const decodeHtml = (html, email = null) => {
     // Ensure we're running in browser environment
     if (typeof window === 'undefined') {
       return html; // Return original html on server-side
@@ -120,7 +159,7 @@ export default function GetEmailByID() {
     
     // Decode HTML content
     const txt = document.createElement("textarea");
-    let attachments = emailcontent.attachments;
+    let attachments = email ? email.attachments : emailcontent.attachments;
     txt.innerHTML = html;
     const decodedContent = txt.value;
 
@@ -494,44 +533,46 @@ export default function GetEmailByID() {
           </div>
         </Card>
 
-        <Card className="flex-grow lg:w-2/3 w-full space-y-4   p-4 rounded-md">
-          <Card className="items-center flex justify-center  rounded-md ">
-            <h3 className="text-2xl">Email Content</h3>
+        <Card className="flex-grow lg:w-2/3 w-full space-y-4 p-2 sm:p-4 rounded-md" data-email-content>
+          <Card className="items-center flex justify-center rounded-md">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold">Email Content</h3>
           </Card>
-          <Card className="overflow-y-auto max-h-[calc(100vh-170px)] max-lg:max-h-[calc(100vh-180px)]">
+          <Card className="overflow-y-auto max-h-[calc(100vh-170px)] max-lg:max-h-[calc(100vh-200px)] p-2 sm:p-4">
             {Object.keys(emailcontent).length !== 0 ? (
-              <div>
-                <div className="rounded p-1">
-                  <div className="font-bold text-xl">
+              <div className="space-y-3">
+                <div className="rounded p-2 space-y-3">
+                  <div className="font-bold text-lg sm:text-xl break-words">
                     {emailcontent.subject}
                   </div>
 
-                  <div className="flex">
-                    <p>
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0">
+                    <p className="text-sm sm:text-base break-all">
                       <strong>From:</strong>{" "}
                       {emailcontent.from.value[0].address}
                     </p>
                   </div>
-                  <div className="flex">
-                    <p>
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0">
+                    <p className="text-sm sm:text-base">
                       <strong>Received Date:</strong>{" "}
                       {convertToLocalTime(emailcontent.date || emailcontent.createdAt) ||
                         "Unknown Date"}
                     </p>
                   </div>
-                  <div className="flex gap-2">
-                    <p>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <p className="text-sm sm:text-base">
                       Feedback:
                     </p>
                     <ThumbsUp
                       color="currentcolor"
                       fill="green"
+                      size={18}
                       className={`hover:cursor-pointer ${feedbackLoading ? "opacity-50 pointer-events-none" : ""}`}
                       onClick={handleFeedback('good')}
                     />
                     <ThumbsDown
                       color="currentcolor"
                       fill="red"
+                      size={18}
                       className={`hover:cursor-pointer ${feedbackLoading ? "opacity-50 pointer-events-none" : ""}`}
                       onClick={handleFeedback('bad')}
                     />
@@ -539,26 +580,50 @@ export default function GetEmailByID() {
                 </div>
                 <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
 
-                <p>
+                <p className="text-sm sm:text-base font-semibold mb-2">
                   <strong>Content:</strong>
                 </p>
-                <div>
-                  <div
-                    className="rounded p-1 mb-4 overflow-hidden "
-                    dangerouslySetInnerHTML={{
-                      __html: decodeHtml(emailcontent.html),
+                <div className="w-full">
+                  <iframe
+                    src={emailIframeSrc}
+                    style={{
+                      width: '100%',
+                      minHeight: window.innerWidth < 640 ? '300px' : '400px',
+                      border: '1px solid #e2e8f0',
+                      borderRadius: '8px',
+                      backgroundColor: 'white'
+                    }}
+                    sandbox="allow-same-origin allow-popups"
+                    title="Email Content"
+                    onError={() => {
+                      console.log('Iframe failed to load, falling back to dangerouslySetInnerHTML');
                     }}
                   />
+                  {/* Fallback for when iframe fails */}
+                  {!emailIframeSrc && (
+                    <div
+                      className="rounded p-2 sm:p-4 mb-4 overflow-hidden border border-gray-200 text-sm sm:text-base"
+                      style={{ 
+                        backgroundColor: 'white', 
+                        minHeight: window.innerWidth < 640 ? '300px' : '400px',
+                        wordBreak: 'break-word',
+                        overflowWrap: 'break-word'
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: decodeHtml(emailcontent.html),
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center px-2 py-4 text-center">
+              <div className="flex flex-col items-center justify-center px-2 py-8 text-center">
                 <div>
-              <MailX size={48} />
+                  <MailX size={window.innerWidth < 640 ? 36 : 48} />
                 </div>
 
-                <div className="font-bold text-xl mt-4">
-                  Select an Email Recived To Show the content of an email.
+                <div className="font-bold text-lg sm:text-xl mt-4 px-2">
+                  Select an Email Received To Show the content of an email.
                 </div>
               </div>
             )}
