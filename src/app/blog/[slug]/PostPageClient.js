@@ -2,10 +2,10 @@
 import { useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { LinkIcon } from "lucide-react";
+import { LinkIcon, Calendar, User } from "lucide-react";
 import Link from "next/link";
 
-const PostPageClient = ({ frontMatter, content, slug }) => {
+const PostPageClient = ({ frontMatter, content, slug, allPosts }) => {
   // Track blog post page view
   useEffect(() => {
     if (typeof window !== 'undefined' && window.gtag && frontMatter) {
@@ -49,6 +49,37 @@ const PostPageClient = ({ frontMatter, content, slug }) => {
       return null;
     });
   };
+
+  // Get related blogs (same category first, then latest)
+  const getRelatedBlogs = () => {
+    if (!allPosts || !frontMatter) return [];
+    
+    // Filter out current blog
+    const otherPosts = allPosts.filter(post => post.id !== slug);
+    
+    // Get posts from same category
+    const sameCategoryPosts = otherPosts.filter(
+      post => post.category && post.category.toLowerCase() === frontMatter.category?.toLowerCase()
+    );
+    
+    // Get latest posts if we need more
+    const latestPosts = otherPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    // Combine: same category first, then latest (avoiding duplicates)
+    const relatedBlogs = [...sameCategoryPosts];
+    
+    // Add latest posts if we don't have enough from the same category
+    for (const post of latestPosts) {
+      if (relatedBlogs.length >= 5) break;
+      if (!relatedBlogs.some(blog => blog.id === post.id)) {
+        relatedBlogs.push(post);
+      }
+    }
+    
+    return relatedBlogs.slice(0, 5);
+  };
+
+  const relatedBlogs = getRelatedBlogs();
 
   const handleAuthorLinkClick = () => {
     // Track author link click
@@ -100,6 +131,65 @@ const PostPageClient = ({ frontMatter, content, slug }) => {
           />
         </CardContent>
       </Card>
+      
+      {/* Related Blogs Section */}
+      {relatedBlogs.length > 0 && (
+        <Card className="p-4 sm:p-5 lg:p-6 rounded-3xl mt-6">
+          <CardHeader className="px-0 pb-4">
+            <h3 className="scroll-m-20 text-xl sm:text-2xl font-semibold tracking-tight">
+              Related Blogs
+            </h3>
+          </CardHeader>
+          <CardContent className="px-0 pt-0">
+            <div className="grid gap-4">
+              {relatedBlogs.map((blog, index) => (
+                <Link
+                  key={blog.id}
+                  href={`/blog/${blog.id}`}
+                  className="block group"
+                  onClick={() => {
+                    // Track related blog click
+                    if (typeof window !== 'undefined' && window.gtag) {
+                      window.gtag('event', 'related_blog_click', {
+                        event_category: 'blog',
+                        event_label: 'related_blog_clicked',
+                        clicked_blog: blog.id,
+                        source_blog: slug,
+                        position: index + 1
+                      });
+                    }
+                  }}
+                >
+                  <div className="p-4 border rounded-lg hover:shadow-md transition-shadow group-hover:border-primary/50">
+                    <h4 className="font-semibold text-base sm:text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                      {blog.title}
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                      {blog.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        <span>{blog.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <User className="h-3 w-3" />
+                        <span>{blog.author}</span>
+                      </div>
+                      {blog.category && (
+                        <Badge variant="outline" className="text-xs px-1 py-0">
+                          {blog.category}
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+      
       <Card className="flex flex-wrap gap-3 p-4 sm:p-5 lg:p-6 rounded-3xl mt-6">
         <CardHeader className="px-0 pb-2">
           <h3 className="scroll-m-20 text-xl sm:text-2xl font-semibold tracking-tight">

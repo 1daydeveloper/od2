@@ -17,22 +17,24 @@ To ensure uniformity and structure across all blog posts, each submission should
 
 ```markdown
 ---
-title: "Title of the Blog(min 50 characters, max 100 characters)"
+title: "Title of the Blog (min 50 characters, max 100 characters)"
 date: "YYYY-MM-DD"
-author: "Author's Name(Seperated by commas if the author is more than one)"
+author: "Author's Name (Separated by commas if more than one author)"
+authorLink: "https://www.linkedin.com/in/author-profile/"
 category: "Category based on the topic"
-description: "A brief 2-line description summarizing the blog for the homepage(min 150 characters)"
+description: "A brief 2-line description summarizing the blog for the homepage (min 150 characters)"
 keywords: "At least 20 relevant keywords to help with search indexing"
-urlpath: "a URL-friendly, concise version of the blog's title"
+urlpath: "a-url-friendly-concise-version-of-the-blog-title"
 ---
 ```
 
 **Details:**
-- **Title**: Choose a clear, descriptive, and engaging title. Keep it concise.
+- **Title**: Choose a clear, descriptive, and engaging title. Keep it concise (between 50-100 characters).
 - **Date**: Set the blog's date in YYYY-MM-DD format.
-- **Author**: Provide the full name of the author.
-- **Category**: Select the appropriate category based on the blog topic (e.g., "JavaScript", "Web Security", "Next.js").
-- **Description**: Write a 2-line summary that will be displayed on the homepage. Keep it under 160 characters.
+- **Author**: Provide the full name of the author (separated by commas if multiple authors).
+- **AuthorLink**: Include the LinkedIn profile URL or professional website link of the author.
+- **Category**: Select the appropriate category based on the blog topic (e.g., "Technology", "JavaScript", "Web Security", "Next.js").
+- **Description**: Write a 2-line summary that will be displayed on the homepage. Keep it under 160 characters but at least 150 characters.
 - **Keywords**: Use at least 20 keywords relevant to the content, separated by commas. This helps improve SEO.
 - **URL Path**: A concise, hyphenated version of the blog's title (e.g., "understanding-nextjs-hooks").
 
