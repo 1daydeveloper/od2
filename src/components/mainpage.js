@@ -538,7 +538,7 @@ const Mainpage = () => {
             <h2 className="text-2xl sm:text-3xl font-bold">Our Tools</h2>
             <p className="mt-2 sm:mt-4 text-base sm:text-lg">
               Discover our collection of powerful, free online tools designed to make your life easier.
-              From privacy protection to photo processing, we've got you covered!
+              From privacy protection to photo processing, we&apos;ve got you covered!
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
@@ -688,7 +688,7 @@ const Mainpage = () => {
                 <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-amber-600">More Tools Coming</CardTitle>
                 <span className="px-3 py-1 text-xs font-bold bg-gray-100 text-gray-800 rounded-full mb-4">COMING SOON</span>
                 <p className="text-center text-sm sm:text-base mb-4 flex-grow">
-                  We're constantly developing new tools to make your digital life easier.
+                  We&apos;re constantly developing new tools to make your digital life easier.
                   Stay tuned for more innovative solutions!
                 </p>
                 <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
