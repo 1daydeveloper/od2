@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
@@ -92,9 +93,11 @@ export default function ImageToDataURL() {
           {imageFile && (
             <div>
               <div className="mb-2 font-semibold">Uploaded Image Preview:</div>
-              <img
+              <Image
                 src={dataUrl}
                 alt="Uploaded"
+                width={300}
+                height={200}
                 className="w-full max-w-xs rounded-lg mb-4"
               />
               <div className="mb-2 font-semibold">Data URL:</div>

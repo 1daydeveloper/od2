@@ -71,6 +71,29 @@ const Mainpage = () => {
             </Link>
           </Button>
         </div>
+        
+        {/* Tools Highlight Banner */}
+        <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="text-center sm:text-left">
+              <h3 className="text-lg font-bold text-blue-800 mb-1">
+                🛠️ Free Online Tools Available Now!
+              </h3>
+              <p className="text-sm text-blue-600">
+                Temp Mail, Passport Photos, API Designer, and more - All completely free!
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700">
+                <Link href="#tools" className="inline-flex items-center">
+                  Explore Tools
+                  <MoveRight className="ml-2" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+
         <div>
           <Card className="border p-6">
             <CardTitle className="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl">
@@ -177,19 +200,27 @@ const Mainpage = () => {
           <CardHeader className="flex flex-row items-center gap-3 pb-2">
             <Package size={36} className="shrink-0" />
             <CardTitle>
-              <Link href="/products">Our Products</Link>
+              <Link href="#tools">Our Tools & Products</Link>
             </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
             <CardDescription>
-              Our products combine quality, innovation, and reliability to meet the needs of modern businesses and consumers.
+              Discover our free online tools and premium products that combine quality, innovation, and reliability to meet modern needs.
             </CardDescription>
-            <Button asChild className="w-full sm:w-auto">
-              <Link href="/products" className="inline-flex items-center">
-                Check Out!
-                <MoveRight className="ml-2" />
-              </Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Button asChild className="flex-1">
+                <Link href="#tools" className="inline-flex items-center justify-center">
+                  View Tools
+                  <MoveRight className="ml-2" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="flex-1">
+                <Link href="/products" className="inline-flex items-center justify-center">
+                  Products
+                  <MoveRight className="ml-2" />
+                </Link>
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -497,6 +528,197 @@ const Mainpage = () => {
             <Button asChild className="w-full sm:w-auto inline-block">
               <a href="#contactus">Get Started</a>
             </Button>
+          </div>
+        </div>
+      </section>
+      {/* Our Tools Section */}
+      <section id="tools" className="py-10 sm:py-16 px-2 sm:px-6 maincard rounded-lg shadow">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold">Our Tools</h2>
+            <p className="mt-2 sm:mt-4 text-base sm:text-lg">
+              Discover our collection of powerful, free online tools designed to make your life easier.
+              From privacy protection to photo processing, we&apos;ve got you covered!
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-blue-500 hover:border-l-blue-600">
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-blue-100 p-3 rounded-full mb-4">
+                  <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                </div>
+                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-blue-600">Temp Mail</CardTitle>
+                <span className="px-3 py-1 text-xs font-bold bg-green-100 text-green-800 rounded-full mb-4">FREE & POPULAR</span>
+                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
+                  Generate temporary email addresses instantly! Perfect for protecting your privacy,
+                  avoiding spam, and testing software. Auto-deletes after 12 hours.
+                </p>
+                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
+                  <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded">No Signup</span>
+                  <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded">Instant Access</span>
+                  <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded">Auto-Delete</span>
+                </div>
+              </div>
+              <Button asChild className="w-full mt-4">
+                <Link href="/temp-mail" className="inline-flex items-center justify-center">
+                  Try Temp Mail
+                  <MoveRight className="ml-2" />
+                </Link>
+              </Button>
+            </Card>
+
+            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-purple-500 hover:border-l-purple-600">
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-purple-100 p-3 rounded-full mb-4">
+                  <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <path d="M21 15l-5-5L5 21"/>
+                  </svg>
+                </div>
+                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-purple-600">Passport Photo Maker</CardTitle>
+                <span className="px-3 py-1 text-xs font-bold bg-orange-100 text-orange-800 rounded-full mb-4">FREE TOOL</span>
+                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
+                  Create perfect passport-size photos for India, UK, USA, and Australia.
+                  Upload, crop, and generate printable 6x4 sheets with cut lines instantly.
+                </p>
+                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
+                  <span className="px-2 py-1 bg-purple-50 text-purple-700 rounded">Multi-Country</span>
+                  <span className="px-2 py-1 bg-purple-50 text-purple-700 rounded">Printable</span>
+                  <span className="px-2 py-1 bg-purple-50 text-purple-700 rounded">Instant</span>
+                </div>
+              </div>
+              <Button asChild className="w-full mt-4">
+                <Link href="/passport-photo-printing" className="inline-flex items-center justify-center">
+                  Create Photos
+                  <MoveRight className="ml-2" />
+                </Link>
+              </Button>
+            </Card>
+
+            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-green-500 hover:border-l-green-600">
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-green-100 p-3 rounded-full mb-4">
+                  <CodeXml className="w-8 h-8 text-green-600" />
+                </div>
+                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-green-600">API Workflow Designer</CardTitle>
+                <span className="px-3 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded-full mb-4">NEW</span>
+                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
+                  Design and visualize API workflows with our intuitive drag-and-drop interface.
+                  Perfect for developers and API designers.
+                </p>
+                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
+                  <span className="px-2 py-1 bg-green-50 text-green-700 rounded">Drag & Drop</span>
+                  <span className="px-2 py-1 bg-green-50 text-green-700 rounded">Visual</span>
+                  <span className="px-2 py-1 bg-green-50 text-green-700 rounded">Developer</span>
+                </div>
+              </div>
+              <Button asChild className="w-full mt-4">
+                <Link href="/api-wd" className="inline-flex items-center justify-center">
+                  Try Designer
+                  <MoveRight className="ml-2" />
+                </Link>
+              </Button>
+            </Card>
+
+            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-red-500 hover:border-l-red-600">
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-red-100 p-3 rounded-full mb-4">
+                  <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4"/>
+                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.745 3.745 0 0 1 3.296-1.043A3.745 3.745 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z"/>
+                  </svg>
+                </div>
+                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-red-600">reCAPTCHA Tools</CardTitle>
+                <span className="px-3 py-1 text-xs font-bold bg-yellow-100 text-yellow-800 rounded-full mb-4">SECURITY</span>
+                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
+                  Test and implement Google reCAPTCHA v2 and v3 for your websites.
+                  Protect against spam and abuse with our testing tools.
+                </p>
+                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
+                  <span className="px-2 py-1 bg-red-50 text-red-700 rounded">v2 & v3</span>
+                  <span className="px-2 py-1 bg-red-50 text-red-700 rounded">Testing</span>
+                  <span className="px-2 py-1 bg-red-50 text-red-700 rounded">Security</span>
+                </div>
+              </div>
+              <Button asChild className="w-full mt-4">
+                <Link href="/captcha" className="inline-flex items-center justify-center">
+                  Test CAPTCHA
+                  <MoveRight className="ml-2" />
+                </Link>
+              </Button>
+            </Card>
+
+            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-indigo-500 hover:border-l-indigo-600">
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-indigo-100 p-3 rounded-full mb-4">
+                  <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-indigo-600">OD2 Billing System</CardTitle>
+                <span className="px-3 py-1 text-xs font-bold bg-purple-100 text-purple-800 rounded-full mb-4">PREMIUM</span>
+                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
+                  Robust billing system built for performance and scalability.
+                  Perfect for managing your business workflow with advanced features.
+                </p>
+                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
+                  <span className="px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Customizable</span>
+                  <span className="px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Scalable</span>
+                  <span className="px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Advanced</span>
+                </div>
+              </div>
+              <Button asChild className="w-full mt-4">
+                <Link href="/products" className="inline-flex items-center justify-center">
+                  Learn More
+                  <MoveRight className="ml-2" />
+                </Link>
+              </Button>
+            </Card>
+
+            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-amber-500 hover:border-l-amber-600">
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-amber-100 p-3 rounded-full mb-4">
+                  <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                  </svg>
+                </div>
+                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-amber-600">More Tools Coming</CardTitle>
+                <span className="px-3 py-1 text-xs font-bold bg-gray-100 text-gray-800 rounded-full mb-4">COMING SOON</span>
+                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
+                  We&apos;re constantly developing new tools to make your digital life easier.
+                  Stay tuned for more innovative solutions!
+                </p>
+                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
+                  <span className="px-2 py-1 bg-amber-50 text-amber-700 rounded">Innovation</span>
+                  <span className="px-2 py-1 bg-amber-50 text-amber-700 rounded">Updates</span>
+                  <span className="px-2 py-1 bg-amber-50 text-amber-700 rounded">Free</span>
+                </div>
+              </div>
+              <Button asChild className="w-full mt-4" disabled>
+                <span className="inline-flex items-center justify-center cursor-not-allowed opacity-50">
+                  Coming Soon
+                  <MoveRight className="ml-2" />
+                </span>
+              </Button>
+            </Card>
+          </div>
+          <div className="mt-8 sm:mt-12 text-center">
+            <p className="text-base sm:text-lg mb-3 sm:mb-4">
+              All our tools are free to use! We believe in making technology accessible to everyone.
+              Have a suggestion for a new tool? Let us know!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button asChild className="w-full sm:w-auto">
+                <Link href="/tools" className="inline-flex items-center">
+                  Browse All Tools
+                  <MoveRight className="ml-2" />
+                </Link>
+              </Button>
+             
+            </div>
           </div>
         </div>
       </section>
