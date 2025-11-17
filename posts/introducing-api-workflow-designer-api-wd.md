@@ -9,7 +9,7 @@ keywords: "API Workflow Designer, OpenAPI, Visual Workflow Builder, API Integrat
 urlpath: "introducing-api-workflow-designer-api-wd"
 ---
 
-# Introducing API Workflow Designer: The Revolutionary Workflow Builder
+
 
 ![Workflow Design](/odd.png)
 

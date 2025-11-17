@@ -39,13 +39,13 @@ const Mainpage = () => {
       id: "whatweoffer",
       title: "What We Offer?",
       content:
-        "We provide innovative software solutions tailored to your business needs.",
+        "We provide comprehensive software solutions including custom web applications, mobile app development, API integrations, database design, and technical consulting. Our expertise spans modern frameworks like Next.js, React, Node.js, and cloud technologies to deliver scalable, secure, and user-friendly solutions tailored to your business requirements.",
     },
     {
       id: "ourmission",
       title: "Our Mission",
       content:
-        "Our mission is to deliver high-quality products with maximum customer satisfaction on time with effective retention.",
+        "Our mission is to revolutionize software development by delivering high-quality, innovative solutions within 24 hours without compromising on quality. We focus on rapid prototyping, agile development methodologies, and cutting-edge technologies to ensure maximum customer satisfaction, timely delivery, and long-term client relationships through effective retention strategies.",
     },
     {
       id: "contactus",
