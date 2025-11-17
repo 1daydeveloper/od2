@@ -163,12 +163,43 @@ export default function GetEmailByID() {
     txt.innerHTML = html;
     const decodedContent = txt.value;
 
-    // If attachments are not present or empty, return decoded content
+    // If attachments are not present or empty, return original decoded content with minimal responsive wrapper
     if (!attachments || attachments.length === 0) {
-      return decodedContent;
+      return `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+              body { 
+                margin: 0; 
+                padding: 8px;
+                max-width: 100%;
+                overflow-x: hidden;
+              }
+              * {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+              }
+              img {
+                max-width: 100% !important;
+                height: auto !important;
+              }
+              table {
+                width: 100% !important;
+                max-width: 100% !important;
+              }
+            </style>
+          </head>
+          <body>
+            ${decodedContent}
+          </body>
+        </html>
+      `;
     }
 
-    // Create a mapping of CID to data URL or filename
+    // Create a mapping of CID to data URL for attachments only
     const cidMap = attachments.reduce((map, attachment) => {
       if (attachment.cid) {
         const dataUrl = `data:${attachment.contentType};base64,${attachment.content}`;
@@ -177,7 +208,7 @@ export default function GetEmailByID() {
       return map;
     }, {});
 
-    // Replace <img> tags with updated src
+    // Replace <img> tags with updated src for attachments only
     const updatedContent = decodedContent.replace(
       /<img\s+[^>]*src=["']cid:([^"']+)["'][^>]*>/g,
       (match, cid) => {
@@ -188,7 +219,38 @@ export default function GetEmailByID() {
       }
     );
 
-    return updatedContent;
+    return `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            body { 
+              margin: 0; 
+              padding: 8px;
+              max-width: 100%;
+              overflow-x: hidden;
+            }
+            * {
+              max-width: 100% !important;
+              box-sizing: border-box !important;
+            }
+            img {
+              max-width: 100% !important;
+              height: auto !important;
+            }
+            table {
+              width: 100% !important;
+              max-width: 100% !important;
+            }
+          </style>
+        </head>
+        <body>
+          ${updatedContent}
+        </body>
+      </html>
+    `;
   };
 
   function isValidUsername(username) {
@@ -445,9 +507,9 @@ export default function GetEmailByID() {
             />
           </Card>
           <div className="text-center text-sm text-muted-foreground mb-2">
-            <p>📧 Emails auto-delete 12h after receipt</p>
+            <p className="text-red-500">  Emails auto-delete 12h after receipt</p>
           </div>
-          <div className="flex flex-col overflow-y-auto gap-2 w-100 max-h-[calc(100vh-180px)] max-lg:max-h-[calc(60vh-180px)]">
+          <div className="flex flex-col overflow-y-auto gap-1 w-100 max-h-[calc(100vh-160px)] max-lg:max-h-[calc(90vh-160px)]">
             {emails && emails.length !== 0 ? (
               emails
                 .slice()
@@ -455,44 +517,34 @@ export default function GetEmailByID() {
                 .map((email) => (
                   <button
                     key={email._id}
-                    className={`px-1 py-1 rounded-md shadow-md border-2 border-gray-100 ${
+                    className={`p-2 rounded-lg border transition-colors duration-200 text-left ${
                       activeTab === email._id
-                        ? "bg-blue-500 text-white"
-                        : " "
-                    } 	`}
-                    onClick={() => getemailcontentdata(email._id)} // Update the active tab
+                        ? "bg-blue-50 border-blue-300 shadow-sm"
+                        : "bg-white border-gray-200 hover:bg-gray-50"
+                    }`}
+                    onClick={() => getemailcontentdata(email._id)}
                   >
-                    <div className="flex flex-row gap-3">
-                      <div className="w-30">
-                        <Mail size={24} />
-                      </div>
-                      <div className="text-start">
-                        <p className="font-bold md:text-sm">
-                          {email.from.value[0].address || "Untitled Email"}
+                    {/* Header with sender and time */}
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center gap-2 min-w-0 flex-1">
+                        <Mail size={14} className="text-gray-500 flex-shrink-0" />
+                        <p className="font-semibold text-xs text-gray-800 truncate">
+                          {email.from.value[0].address || "Unknown Sender"}
                         </p>
+                      </div>
+                      <div className="flex items-center text-[10px] text-gray-500 flex-shrink-0">
+                        <span className="flex items-center gap-1">
+                          <Clock1 size={10}/>
+                          {timeAgo(email.date || email.createdAt)}
+                        </span>
                       </div>
                     </div>
 
-                    <div className="flex flex-row gap-3">
-                      
-                      <div className="text-wrap text-start overflow-auto">
-                        <p className="truncate-lines">
-                          {email.subject || "Untitled Email"}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-row gap-3 justify-between">
-                      <div >
-                        <p className="text-[10px] flex gap-1">
-                          <Clock1 size={10}/>
-                           {timeAgo(email.date || email.createdAt)}
-                        </p>
-                      </div>
-                      <div >
-                        <p className="text-[10px] text-red-500 flex gap-1">
-                          <Trash2Icon size={10}/> {timeUntilDeletion(email.date || email.createdAt)}
-                        </p>
-                      </div>
+                    {/* Subject line */}
+                    <div className="pl-4">
+                      <p className="text-xs text-gray-600 truncate leading-tight">
+                        {email.subject || "No Subject"}
+                      </p>
                     </div>
                   </button>
                 ))
@@ -533,101 +585,252 @@ export default function GetEmailByID() {
           </div>
         </Card>
 
-        <Card className="flex-grow lg:w-2/3 w-full space-y-4 p-2 sm:p-4 rounded-md" data-email-content>
-          <Card className="items-center flex justify-center rounded-md">
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold">Email Content</h3>
-          </Card>
-          <Card className="overflow-y-auto max-h-[calc(100vh-170px)] max-lg:max-h-[calc(100vh-200px)] p-2 sm:p-4">
+        <Card className="flex-grow lg:w-2/3 w-full p-2 sm:p-3 rounded-md" data-email-content>
+          <div className="flex items-center justify-center py-2 ">
+            <h3 className="text-base sm:text-lg font-semibold "> Email Content</h3>
+          </div>
             {Object.keys(emailcontent).length !== 0 ? (
-              <div className="space-y-3">
-                <div className="rounded p-2 space-y-3">
-                  <div className="font-bold text-lg sm:text-xl break-words">
+              <div className="space-y-2">
+                {/* Compact header with subject */}
+                <Card >
+                <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
+                  <h4 className="font-semibold text-sm sm:text-base break-words text-gray-900 mb-2">
                     {emailcontent.subject}
+                  </h4>
+                  
+                  {/* Compact metadata in grid layout */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-gray-600">
+                    <div className="flex items-center gap-1">
+                      <span className="font-medium text-gray-700">From:</span>
+                      <span className="truncate" title={emailcontent.from.value[0].address}>
+                        {emailcontent.from.value[0].address}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="font-medium text-gray-700">Received:</span>
+                      <span className="truncate" title={convertToLocalTime(emailcontent.date || emailcontent.createdAt)}>
+                        {convertToLocalTime(emailcontent.date || emailcontent.createdAt) || "Unknown Date"}
+                      </span>
+                    </div>
                   </div>
+                  
+                  {/* Compact yet user-friendly feedback section */}
+                  <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-200">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-medium text-gray-600"> Feedback:</span>
+                      <div className="flex items-center gap-1">
+                        {/* Compact Good feedback button */}
+                        <button
+                          onClick={handleFeedback('good')}
+                          disabled={feedbackLoading}
+                          className={`group relative flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 ${
+                            feedbackLoading 
+                              ? "opacity-50 cursor-not-allowed bg-gray-50 text-gray-400" 
+                              : "bg-green-50 text-green-700 hover:bg-green-100 border border-green-200 hover:shadow-sm"
+                          }`}
+                          title="Helpful email"
+                        >
+                          <ThumbsUp
+                            size={12}
+                            className={`transition-colors duration-200 ${
+                              feedbackLoading 
+                                ? "text-gray-400" 
+                                : "text-green-600 group-hover:text-green-700"
+                            }`}
+                          />
+                          <span>Good</span>
+                          {/* Tooltip only on desktop */}
+                          <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10 hidden sm:block">
+                            Helpful
+                          </div>
+                        </button>
 
-                  <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0">
-                    <p className="text-sm sm:text-base break-all">
-                      <strong>From:</strong>{" "}
-                      {emailcontent.from.value[0].address}
-                    </p>
-                  </div>
-                  <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0">
-                    <p className="text-sm sm:text-base">
-                      <strong>Received Date:</strong>{" "}
-                      {convertToLocalTime(emailcontent.date || emailcontent.createdAt) ||
-                        "Unknown Date"}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <p className="text-sm sm:text-base">
-                      Feedback:
-                    </p>
-                    <ThumbsUp
-                      color="currentcolor"
-                      fill="green"
-                      size={18}
-                      className={`hover:cursor-pointer ${feedbackLoading ? "opacity-50 pointer-events-none" : ""}`}
-                      onClick={handleFeedback('good')}
-                    />
-                    <ThumbsDown
-                      color="currentcolor"
-                      fill="red"
-                      size={18}
-                      className={`hover:cursor-pointer ${feedbackLoading ? "opacity-50 pointer-events-none" : ""}`}
-                      onClick={handleFeedback('bad')}
-                    />
+                        {/* Compact Report feedback button */}
+                        <button
+                          onClick={handleFeedback('bad')}
+                          disabled={feedbackLoading}
+                          className={`group relative flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 ${
+                            feedbackLoading 
+                              ? "opacity-50 cursor-not-allowed bg-gray-50 text-gray-400" 
+                              : "bg-red-50 text-red-700 hover:bg-red-100 border border-red-200 hover:shadow-sm"
+                          }`}
+                          title="Report issue"
+                        >
+                          <ThumbsDown
+                            size={12}
+                            className={`transition-colors duration-200 ${
+                              feedbackLoading 
+                                ? "text-gray-400" 
+                                : "text-red-600 group-hover:text-red-700"
+                            }`}
+                          />
+                          <span>Issue</span>
+                          {/* Tooltip only on desktop */}
+                          <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10 hidden sm:block">
+                            Report
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Compact loading state */}
+                    {feedbackLoading && (
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-2.5 h-2.5 border border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                        <span className="text-xs text-blue-700">Sending</span>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
+                </Card>
 
-                <p className="text-sm sm:text-base font-semibold mb-2">
-                  <strong>Content:</strong>
-                </p>
-                <div className="w-full">
-                  <iframe
+                {/* Content section with minimal spacing */}
+                <div className="border-t border-gray-200 pt-2">
+                  <div className="w-full">
+                    <iframe
                     src={emailIframeSrc}
+                    className="w-full border border-gray-200 rounded-lg"
                     style={{
-                      width: '100%',
-                      minHeight: typeof window !== 'undefined' && window.innerWidth < 640 ? '300px' : '400px',
-                      border: '1px solid #e2e8f0',
-                      borderRadius: '8px',
-                      backgroundColor: 'white'
+                      backgroundColor: 'white',
+                      minHeight: '180px',
+                      height: 'auto'
                     }}
                     sandbox="allow-same-origin allow-popups"
+                    scrolling="no"
+                    frameBorder="0"
                     title="Email Content"
+                    onLoad={(e) => {
+                      const iframe = e.target;
+                      
+                      // Enhanced responsive height calculation
+                      const setResponsiveHeight = () => {
+                        try {
+                          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                          
+                          if (iframeDoc) {
+                            // Wait for content to load and images to render
+                            setTimeout(() => {
+                              try {
+                                const body = iframeDoc.body;
+                                const html = iframeDoc.documentElement;
+                                
+                                if (body) {
+                                  // Ensure content fits width
+                                  body.style.maxWidth = '100%';
+                                  body.style.overflowX = 'hidden';
+                                  body.style.overflowY = 'visible';
+                                  body.style.wordWrap = 'break-word';
+                                }
+                                
+                                // Calculate actual content height
+                                const contentHeight = Math.max(
+                                  body ? body.scrollHeight : 0,
+                                  body ? body.offsetHeight : 0,
+                                  html ? html.scrollHeight : 0,
+                                  html ? html.offsetHeight : 0,
+                                  200 // minimum height
+                                );
+                                
+                                // Apply height with some padding
+                                iframe.style.height = (contentHeight + 30) + 'px';
+                              } catch (error) {
+                                console.log('Could not calculate content height:', error);
+                                iframe.style.height = getResponsiveFallbackHeight();
+                              }
+                            }, 150);
+                          } else {
+                            iframe.style.height = getResponsiveFallbackHeight();
+                          }
+                        } catch (error) {
+                          console.log('Could not access iframe content:', error);
+                          iframe.style.height = getResponsiveFallbackHeight();
+                        }
+                      };
+                      
+                      // Responsive fallback height function
+                      const getResponsiveFallbackHeight = () => {
+                        if (typeof window === 'undefined') return '400px';
+                        
+                        const width = window.innerWidth;
+                        if (width < 480) return '250px';       // Mobile
+                        if (width < 640) return '300px';       // Large mobile
+                        if (width < 768) return '350px';       // Tablet portrait
+                        if (width < 1024) return '400px';      // Tablet landscape
+                        return '450px';                        // Desktop
+                      };
+                      
+                      // Initial height setting
+                      setResponsiveHeight();
+                      
+                      // Handle window resize for better responsiveness
+                      const handleResize = () => {
+                        iframe.style.height = getResponsiveFallbackHeight();
+                        setTimeout(setResponsiveHeight, 100);
+                      };
+                      
+                      // Add resize listener
+                      window.addEventListener('resize', handleResize);
+                      
+                      // Store cleanup function
+                      iframe.cleanup = () => {
+                        window.removeEventListener('resize', handleResize);
+                      };
+                    }}
                     onError={() => {
                       console.log('Iframe failed to load, falling back to dangerouslySetInnerHTML');
+                    }}
+                    ref={(iframe) => {
+                      // Cleanup on unmount
+                      return () => {
+                        if (iframe && iframe.cleanup) {
+                          iframe.cleanup();
+                        }
+                      };
                     }}
                   />
                   {/* Fallback for when iframe fails */}
                   {!emailIframeSrc && (
                     <div
-                      className="rounded p-2 sm:p-4 mb-4 overflow-hidden border border-gray-200 text-sm sm:text-base"
+                      className="rounded-lg p-3 sm:p-4 lg:p-5 mb-4 border border-gray-200 bg-white"
                       style={{ 
-                        backgroundColor: 'white', 
-                        minHeight: typeof window !== 'undefined' && window.innerWidth < 640 ? '300px' : '400px',
+                        minHeight: (() => {
+                          if (typeof window === 'undefined') return '400px';
+                          const width = window.innerWidth;
+                          if (width < 480) return '250px';
+                          if (width < 640) return '300px';
+                          if (width < 768) return '350px';
+                          if (width < 1024) return '400px';
+                          return '450px';
+                        })(),
                         wordBreak: 'break-word',
-                        overflowWrap: 'break-word'
+                        overflowWrap: 'break-word',
+                        lineHeight: '1.6',
+                        fontSize: (() => {
+                          if (typeof window === 'undefined') return '14px';
+                          const width = window.innerWidth;
+                          if (width < 480) return '12px';
+                          if (width < 640) return '13px';
+                          return '14px';
+                        })()
                       }}
                       dangerouslySetInnerHTML={{
                         __html: decodeHtml(emailcontent.html),
                       }}
                     />
                   )}
+                  </div>
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center px-2 py-8 text-center">
-                <div>
-                  <MailX size={typeof window !== 'undefined' && window.innerWidth < 640 ? 36 : 48} />
+              <div className="flex flex-col items-center justify-center px-3 py-6 text-center border-t border-gray-200">
+                <div className="mb-3">
+                  <MailX size={32}  />
                 </div>
-
-                <div className="font-bold text-lg sm:text-xl mt-4 px-2">
-                  Select an Email Received To Show the content of an email.
+                <div className="text-sm sm:text-base font-medium px-2">
+                  Select an email to view its content
                 </div>
               </div>
             )}
-          </Card>
         </Card>
       </div>
       <Card className="maincard rounded-lg shadow ">
@@ -733,7 +936,7 @@ export default function GetEmailByID() {
             </ul>
           </div>
           <div className="flex flex-col gap-3">
-            <Card className="shadow-lg rounded-lg ">
+            <Card className="shadow-lg rounded-lg p-5">
               <h2 className="text-2xl font-bold ">
                 Why Choose Temporary Mail?
               </h2>
