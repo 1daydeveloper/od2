@@ -47,6 +47,18 @@ export default function sitemap() {
       priority: 0.3,
     },
     {
+      url: "https://www.od2.in/disclaimer",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: "https://www.od2.in/about/company",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
       url: "https://www.od2.in/blog",
       lastModified: new Date(),
       changeFrequency: "weekly",

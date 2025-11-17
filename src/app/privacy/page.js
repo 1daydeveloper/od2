@@ -46,13 +46,23 @@ export default function PrivacyPolicy() {
       </ul>
       <hr className="my-6" />
       <h2 className="text-xl font-semibold mb-2">3. Third-Party Services</h2>
-      <p className="mb-2">Our app and website <strong>do not use third-party advertising SDKs or trackers</strong>.</p>
-      <p className="mb-2">We may use:</p>
+      <p className="mb-2">Our website uses the following third-party services:</p>
       <ul className="list-disc ml-6 mb-2">
-        <li><strong>Google Analytics</strong> (website only) to understand visitor behavior</li>
+        <li><strong>Google Analytics</strong> to understand visitor behavior and improve our services</li>
+        <li><strong>Google AdSense</strong> to display relevant advertisements to our visitors</li>
         <li><strong>Firebase Crashlytics</strong> (optional in future app versions) to monitor app stability</li>
       </ul>
-      <p className="mb-2">These tools collect <strong>anonymous usage data only</strong>.</p>
+      <p className="mb-2">These services collect <strong>anonymous usage data</strong> and may use cookies to provide personalized experiences.</p>
+      
+      <h3 className="font-semibold mt-4 mb-2">Google AdSense</h3>
+      <p className="mb-2">
+        We use Google AdSense to serve advertisements on our website. Google AdSense may collect and use 
+        information about your visits to this and other websites in order to provide advertisements about 
+        goods and services of interest to you. You can opt out of personalized advertising by visiting 
+        <a href="https://www.google.com/settings/ads" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
+          Google&apos;s Ads Settings
+        </a>.
+      </p>
       <hr className="my-6" />
       <h2 className="text-xl font-semibold mb-2">4. Data Security</h2>
       <p className="mb-2">We take security seriously. All data used in the app is stored locally on your device unless explicitly shared by you.</p>

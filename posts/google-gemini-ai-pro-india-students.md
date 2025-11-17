@@ -3,13 +3,12 @@ title: "Google Offers Free Gemini AI Pro to Indian Students!"
 date: "2025-07-22"
 author: "HARISH KUMAR R"
 authorLink: "www.linkedin.com/in/harish-bcomca"
-category: "Technology, Education"
+category: "Technology"
 description: "Google is offering a free one-year subscription to its AI Pro plan, powered by Gemini 2.5 Pro, for eligible students in India. Discover how this powerful AI tool can transform your academic journey and how to claim your free access."
 keywords: "Google, Gemini, AI Pro, Gemini 2.5 Pro, Indian students, free AI, education technology, academic tools, student offer, AI for students, homework help, exam preparation, writing assistance, deep research, NotebookLM, Veo 3 Fast, Gemini Live, cloud storage, Google apps integration, eligibility, how to claim, academic advantage, technology in education, digital literacy, India students, AI benefits, student resources, Google One, SheerID"
 urlpath: "google-gemini-ai-pro-india-students"
 ---
 
-# Unlock Your Academic Superpowers: Google Offers Free Gemini AI Pro to Indian Students!
 
 The landscape of education is rapidly evolving, with artificial intelligence emerging as a powerful ally for students navigating complex coursework, extensive research, and demanding deadlines. Recognizing this transformative potential, Google has launched an extraordinary initiative, making its advanced AI capabilities directly accessible to the student community in India. This report details a significant opportunity: a complimentary one-year subscription to the [Google AI Pro plan](https://gemini.google/students/?gl=IN), powered by the cutting-edge [Gemini 2.5 Pro model](https://deepmind.google/models/gemini/pro/), for eligible students across the nation.
 
