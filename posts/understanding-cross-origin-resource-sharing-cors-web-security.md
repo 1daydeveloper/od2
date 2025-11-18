@@ -147,7 +147,33 @@ If your request includes credentials (cookies, HTTP authentication), the `Access
 
 Understanding and implementing **Cross-Origin Resource Sharing (CORS)** is vital for secure and efficient web development. It allows developers to control which resources can be accessed across domains, enhancing security and user privacy. While it might seem complex at first, once you understand how to configure CORS for your server, it becomes an essential tool in your development toolkit.
 
-For a deeper dive into CORS and its applications, check out [MDN's CORS documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) and learn how you can integrate it into your projects. 
+For a deeper dive into CORS and its applications, check out [MDN's CORS documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) and learn how you can integrate it into your projects.
+
+## Frequently Asked Questions (FAQs)
+
+### Q1: What's the difference between simple and preflight CORS requests?
+
+A: Simple requests are those that meet certain criteria (using GET, POST, or HEAD methods with specific headers like Content-Type: text/plain) and don't trigger a preflight request. Preflight requests are automatically sent by the browser for more complex requests (PUT, DELETE, custom headers) to check if the server allows the actual request. The preflight uses the OPTIONS method to verify permissions before the real request is made.
+
+### Q2: Why does my API work in Postman but fail in the browser due to CORS?
+
+A: Postman and other API testing tools don't enforce CORS policies since they're not browsers. CORS is specifically a browser security feature. When your API works in Postman but fails in the browser, it means your server isn't configured to allow cross-origin requests from your web application's domain. You need to configure proper CORS headers on your server to allow browser access.
+
+### Q3: Is setting Access-Control-Allow-Origin to "*" safe?
+
+A: Setting `Access-Control-Allow-Origin: *` is generally not recommended for production applications as it allows any website to make requests to your API. This can expose your application to security risks. It's safer to explicitly specify allowed origins. Additionally, if your API requires credentials (cookies, authentication headers), you cannot use "*" and must specify exact origins.
+
+### Q4: How do I handle CORS errors in development vs production?
+
+A: In development, you can temporarily use permissive CORS settings or browser flags to disable CORS for testing. Many frameworks offer development proxies that handle CORS. For production, configure specific allowed origins, use environment variables to manage different domains (staging, production), and ensure your deployment process includes proper CORS configuration. Never disable CORS entirely in production.
+
+### Q5: Can CORS prevent all cross-site attacks?
+
+A: CORS primarily prevents unauthorized cross-origin requests from browsers, but it's not a complete security solution. It doesn't protect against all attacks like CSRF (which can use simple requests), XSS attacks, or server-side request forgery. CORS should be part of a comprehensive security strategy that includes CSRF tokens, input validation, XSS protection, and secure authentication mechanisms.
+
+### Q6: What should I do if my credentials aren't being sent with CORS requests?
+
+A: When using credentials (cookies, authorization headers) in cross-origin requests, you need three things: set `credentials: 'include'` in your fetch request or `withCredentials: true` in XMLHttpRequest, configure `Access-Control-Allow-Credentials: true` on the server, and specify an exact origin (not "*") in `Access-Control-Allow-Origin`. Without all three, credentials won't be included in cross-origin requests.
 
 If you found this article useful, share it with your network to help others understand the importance of CORS in modern web security.
 

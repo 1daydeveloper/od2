@@ -42,6 +42,168 @@ export async function getData(slug) {
   };
 }
 
+// Function to extract FAQs from markdown content
+function extractFAQsFromMarkdown(content) {
+  const faqs = [];
+  
+  // Look for FAQ section with different possible headings
+  // Updated regex to handle optional whitespace and line breaks
+  const faqSectionRegex = /### \*\*\(FAQs?\)\*\*\s*\n(.*?)(?=\n### |\n## |\n# |$)/is;
+  const faqSectionMatch = content.match(faqSectionRegex);
+  
+  if (!faqSectionMatch) {
+    // Fallback to other FAQ heading formats
+    const fallbackRegex = /### \*\*(?:Frequently Asked Questions|FAQs?).*?\*\*\s*\n(.*?)(?=\n### |\n## |\n# |$)/is;
+    const fallbackMatch = content.match(fallbackRegex);
+    
+    if (fallbackMatch) {
+      // This could be TMail style with **Q1:** format
+      const faqContent = fallbackMatch[1];
+      
+      // Check if it contains **Q1: style questions
+      if (faqContent.includes('**Q1:')) {
+        // Handle TMail style **Q1:** and A: format
+        const qaBlocks = faqContent.split(/\*\*Q\d+:/);
+        
+        for (let i = 1; i < qaBlocks.length; i++) {
+          const block = qaBlocks[i].trim();
+          const qaParts = block.split(/\s*\nA:/);
+          
+          if (qaParts.length >= 2) {
+            let question = qaParts[0].trim();
+            let answer = qaParts[1].trim();
+            
+            // Remove trailing ** from question if present
+            question = question.replace(/\*\*\s*$/, '').trim();
+            
+            answer = cleanAnswerText(answer);
+            
+            if (question && answer) {
+              faqs.push({
+                "@type": "Question",
+                "name": question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": answer
+                }
+              });
+            }
+          }
+        }
+      } else {
+        // Original fallback logic for ### Q: format
+        const qaBlocks = faqContent.split(/### Q\d*:/);
+        
+        for (let i = 1; i < qaBlocks.length; i++) {
+          const block = qaBlocks[i].trim();
+          const qaParts = block.split(/\nA\d*:/);
+          
+          if (qaParts.length >= 2) {
+            const question = qaParts[0].trim();
+            let answer = qaParts[1].trim();
+            answer = cleanAnswerText(answer);
+            
+            if (question && answer) {
+              faqs.push({
+                "@type": "Question",
+                "name": question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": answer
+                }
+              });
+            }
+          }
+        }
+      }
+    } else {
+      // Final fallback for ## Frequently Asked Questions format
+      const finalFallback = /## (?:Frequently Asked Questions|FAQs?).*?\n(.*?)(?=\n## |\n# |$)/is;
+      const finalMatch = content.match(finalFallback);
+      
+      if (!finalMatch) {
+        return null;
+      }
+      
+      const faqContent = finalMatch[1];
+      const qaBlocks = faqContent.split(/### Q\d*:/);
+      
+      for (let i = 1; i < qaBlocks.length; i++) {
+        const block = qaBlocks[i].trim();
+        const qaParts = block.split(/\nA\d*:/);
+        
+        if (qaParts.length >= 2) {
+          const question = qaParts[0].trim();
+          let answer = qaParts[1].trim();
+          answer = cleanAnswerText(answer);
+          
+          if (question && answer) {
+            faqs.push({
+              "@type": "Question",
+              "name": question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": answer
+              }
+            });
+          }
+        }
+      }
+    }
+  } else {
+    // Handle the **Q1:** and A: format (TMail style)
+    const faqContent = faqSectionMatch[1];
+    
+    // Split by **Q followed by number and colon
+    const qaBlocks = faqContent.split(/\*\*Q\d+:/);
+    
+    for (let i = 1; i < qaBlocks.length; i++) {
+      const block = qaBlocks[i].trim();
+      
+      // Split by A: to separate question and answer
+      const qaParts = block.split(/\s*\nA:/);
+      
+      if (qaParts.length >= 2) {
+        let question = qaParts[0].trim();
+        let answer = qaParts[1].trim();
+        
+        // Remove trailing ** from question if present
+        question = question.replace(/\*\*\s*$/, '').trim();
+        
+        answer = cleanAnswerText(answer);
+        
+        if (question && answer) {
+          faqs.push({
+            "@type": "Question",
+            "name": question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": answer
+            }
+          });
+        }
+      }
+    }
+  }
+  
+  return faqs.length > 0 ? faqs : null;
+}
+
+// Helper function to clean answer text
+function cleanAnswerText(answer) {
+  // Clean up the answer text - remove markdown links and formatting
+  answer = answer.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1'); // Remove markdown links
+  answer = answer.replace(/\*\*(.*?)\*\*/g, '$1'); // Remove bold formatting
+  answer = answer.replace(/\*(.*?)\*/g, '$1'); // Remove italic formatting
+  answer = answer.replace(/`([^`]+)`/g, '$1'); // Remove code formatting
+  answer = answer.replace(/\n- /g, ', '); // Convert bullet points to comma-separated
+  answer = answer.replace(/\n\n/g, ' '); // Replace double newlines with space
+  answer = answer.replace(/\n/g, ' '); // Replace single newlines with space
+  answer = answer.replace(/\s+/g, ' '); // Clean up multiple spaces
+  answer = answer.replace(/---.*$/g, ''); // Remove trailing --- and anything after
+  return answer.trim();
+}
+
 export function generateMetadata({ params }) {
   const { slug } = params;
   return getData(slug).then(({ frontMatter }) => {
@@ -69,5 +231,30 @@ export function generateMetadata({ params }) {
 
 // Layout Component
 export default async function Layout({ params, children }) {
-  return <div className="blog-content-wrapper">{children}</div>;
+  const { slug } = params;
+  const { content } = await getData(slug);
+  
+  // Extract FAQs from markdown content
+  const faqs = extractFAQsFromMarkdown(content);
+  
+  // Generate FAQ Schema if FAQs are found
+  const faqSchema = faqs ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs
+  } : null;
+
+  return (
+    <div className="blog-content-wrapper">
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema, null, 2)
+          }}
+        />
+      )}
+      {children}
+    </div>
+  );
 }

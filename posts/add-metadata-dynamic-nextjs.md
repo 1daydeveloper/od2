@@ -153,3 +153,25 @@ With dynamic metadata, you can:
 
 This markdown file explains how to generate dynamic metadata for blog posts using Next.js 14, with example content for the blog post and metadata configuration.
 
+## Frequently Asked Questions (FAQs)
+
+### Q1: What is the difference between static and dynamic metadata in Next.js 14?
+
+A: Static metadata is defined once and remains the same for all pages, typically in your layout.js file. Dynamic metadata changes based on the page content, such as blog posts where each post has unique title, description, and social media tags. Dynamic metadata is generated at build time or request time based on the specific data for each page.
+
+### Q2: Can I use dynamic metadata with both App Router and Pages Router in Next.js?
+
+A: Yes, but the implementation differs. In the App Router (Next.js 13+), you use the `generateMetadata` function or export metadata objects directly from page components. In the Pages Router, you would use `Head` components or `getStaticProps`/`getServerSideProps` to populate meta tags. The App Router approach is recommended for new projects.
+
+### Q3: How do I handle fallback metadata when dynamic data is missing?
+
+A: Always define default metadata that acts as a fallback. In your `generateMetadata` function, check if the required data exists and merge it with default values. This ensures your pages always have proper SEO tags even if specific post data is incomplete or unavailable.
+
+### Q4: Will dynamic metadata affect my site's performance?
+
+A: Dynamic metadata generation typically has minimal performance impact since it's processed during the build phase for static sites or at request time for server-rendered pages. The metadata generation happens on the server, so there's no additional client-side JavaScript execution. However, if you're fetching external data for metadata, consider caching strategies.
+
+### Q5: How can I test if my dynamic metadata is working correctly?
+
+A: You can test dynamic metadata in several ways: inspect the page source to verify meta tags are populated correctly, use browser developer tools to check the `<head>` section, test social media sharing to see if Open Graph data displays properly, or use SEO tools like Google's Rich Results Test to validate your structured data.
+

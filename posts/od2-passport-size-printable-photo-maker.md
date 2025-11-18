@@ -65,6 +65,18 @@ A: Absolutely. Download the printable 6x4 sheet and print it on photo paper at h
 **Q: Is my photo data safe?**
 A: Yes. OD2 does not store your images—everything is processed in your browser.
 
+### Q4: How many photos can I fit on one 6x4 printable sheet?
+
+A: The number varies by country due to different passport photo sizes: India (51x51mm) fits 8 photos per sheet, UK and Australia (35x45mm) fit 10 photos, and USA (2x2 inch) fits 6 photos per sheet. Each sheet includes cut lines to make trimming easy and precise for professional results.
+
+### Q5: What photo quality should I use for printing passport photos?
+
+A: For professional results, use 300 DPI when printing at photo studios or home printers. The 96 DPI option works for digital submissions or when file size is a concern. Always use high-resolution original photos (at least 1200x1200 pixels) for the best cropping results.
+
+### Q6: Can I use smartphone photos with the OD2 tool?
+
+A: Yes, smartphone photos work perfectly! Take the photo in good lighting against a plain white or light-colored wall. Ensure the camera is at eye level, your face fills about 70-80% of the frame, and you're facing directly toward the camera. Modern smartphones capture high-resolution images that work excellently with the tool.
+
 ## Helpful Reference Links
 - [UK Passport Photo Requirements](https://www.gov.uk/photos-for-passports)
 - [USA Passport Photo Requirements](https://travel.state.gov/content/travel/en/passports/how-apply/photos.html)

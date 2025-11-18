@@ -110,9 +110,33 @@ Where:
 
 Never let hype alone decide your IPO investments. This practical formula blends facts with market sentiment for smarter decisions about new listings on NSE & BSE.
 
+## Frequently Asked Questions (FAQs)
+
+### Q1: Is the 5-point IPO recommendation formula suitable for all types of IPOs?
+
+A: This formula works well for most mainboard IPOs on NSE & BSE, but you may need to adjust weightings for specific situations. For example, tech startups might require more emphasis on growth potential over current profitability, while infrastructure companies might need deeper debt analysis. The formula provides a solid foundation that you can customize based on the sector and company type.
+
+### Q2: How reliable are anchor investor participations as an indicator?
+
+A: Anchor investor participation is a strong positive signal, especially when it includes reputable mutual funds, insurance companies, or FIIs. However, it shouldn't be the only deciding factor. Some anchor investors may have different risk appetites or investment horizons than retail investors. Use it as one component of your overall analysis rather than a standalone decision-maker.
+
+### Q3: Should I always avoid IPOs with a score below 3?
+
+A: The formula provides a systematic approach, but markets can be unpredictable. A score below 3 suggests higher risk, but exceptional circumstances like undervaluation or strong listing prospects might still present opportunities. Consider it a red flag that requires deeper research rather than an absolute rule. Your risk tolerance and investment timeline also matter.
+
+### Q4: How do I evaluate IPO pricing - is it fair or aggressive?
+
+A: Compare the IPO valuation multiples (P/E, EV/Sales, P/B) with listed peers in the same sector. Look at the price-to-book ratio, revenue multiples, and growth rates. If the IPO is priced 20% or more above peer averages without clear superior fundamentals, it might be aggressively priced. Also consider the market conditions - bull markets often see higher valuations accepted by investors.
+
+### Q5: What should I do if multiple IPOs arrive simultaneously?
+
+A: Use the scoring system to rank them objectively. Apply for the highest-scoring IPO first, especially if your investment budget is limited. Consider sector diversification - avoid applying for multiple IPOs from the same sector. Also, check the lot sizes and your allotment probability based on retail category demand, as oversubscribed IPOs reduce your chances of getting shares.
+
+### Q6: How important is the timing of an IPO application?
+
+A: For NSE & BSE IPOs, timing within the application window doesn't affect allotment chances as it follows a proportionate basis for retail investors. However, market sentiment during the IPO period matters significantly. If major market corrections occur during the IPO window, it might affect listing performance. Monitor overall market conditions and adjust your expectations accordingly.
 
 **Disclaimer:** All investing involves risk. This blog is for educational purposes. Always do your own research before applying for any IPO.
-
 
 **Explore More:**  
 For the latest updates and comparisons, check out our other [Blogs](https://www.onedaydevelopers.com/blog).  
