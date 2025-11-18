@@ -92,7 +92,33 @@ Whether you’re a casual viewer, a content creator, or someone with specific ac
 
 Stay tuned for this [exciting update](https://www.videolan.org/press/index.html) and explore how AI continues to shape the future of [media technology](https://www.techradar.com/news/best-video-players-for-windows).
 
+## Frequently Asked Questions (FAQs)
+
+### Q1: When will VLC's AI-powered subtitle feature be available?
+
+A: While VLC has announced the development of AI-powered subtitles, no specific release date has been confirmed yet. The feature is currently in development, and VLC typically releases features through beta versions before public rollout. Stay updated through VLC's official website and release notes for announcements about availability timelines.
+
+### Q2: Will the AI subtitle feature work offline?
+
+A: Yes, one of VLC's key advantages is its commitment to privacy and offline functionality. The AI subtitle processing is designed to work locally on your device without requiring internet connectivity. This ensures privacy protection while maintaining the convenience of automatic subtitle generation, though the accuracy may depend on your device's processing capabilities.
+
+### Q3: How accurate will the AI-generated subtitles be?
+
+A: AI subtitle accuracy will depend on several factors including audio quality, speaker clarity, background noise, and language complexity. While modern AI speech-to-text technology has significantly improved, expect some errors with accents, technical terms, or poor audio quality. The feature will likely include manual correction options and continuous improvements through updates.
+
+### Q4: Can I customize the appearance of AI-generated subtitles?
+
+A: Yes, VLC's AI subtitles will support the same customization options as traditional subtitles, including font size, color, background, positioning, and timing adjustments. Users can modify these settings through VLC's subtitle preferences to ensure optimal readability and personal preference alignment.
+
+### Q5: Which languages will be supported for AI subtitle generation?
+
+A: VLC aims to support major international languages, but the exact list hasn't been finalized. Initial releases will likely focus on widely spoken languages like English, Spanish, French, German, and others. Language support will expand over time as AI models improve and more linguistic datasets become available.
+
+### Q6: Will this feature affect VLC's performance or resource usage?
+
+A: AI processing requires additional computational resources, which may impact performance on older or lower-spec devices. VLC is optimizing the feature to minimize resource consumption while maintaining quality. Users can expect options to adjust quality settings or disable the feature if performance becomes an issue on their specific hardware configuration.
+
 ---
 
-*What are your thoughts on VLC’s AI-powered subtitle feature? Share your insights in the comments or explore more tech innovations on [OD2](https://www.od2.in).*
+*What are your thoughts on VLC's AI-powered subtitle feature? Share your insights in the comments or explore more tech innovations on [OD2](https://www.od2.in).*
 

@@ -72,6 +72,36 @@ For a comparison of disposable email tools, you can visit [TechRadar’s Guide o
 
 If you’re tired of an overflowing inbox or concerned about your online privacy, **[TMail](https://www.od2.in/temp-mail)** by OD2 is the perfect solution. Visit [www.od2.in/temp-mail](https://www.od2.in/temp-mail) today and experience the ease of temporary email generation. Simplify your digital life with OD2’s cutting-edge innovation!
 
+
+### **Frequently Asked Questions (FAQs)**
+
+**Q1: How long does a TMail address remain active?**  
+A: Each email received in your TMail inbox is automatically deleted 12 hours after being received. You can generate a new temporary email address anytime you need one.
+
+**Q2: Is TMail completely free to use?**  
+A: Yes, TMail is a free service provided by OD2 to help users maintain their privacy online.
+
+**Q3: Can I use TMail for important account registrations?**  
+A: While TMail is excellent for temporary registrations and testing, we recommend using your primary email for critical accounts where you may need long-term access to verification emails or password resets.
+
+**Q4: How many temporary email addresses can I create?**  
+A: You can generate as many temporary email addresses as you need. There's no limit on the number of addresses you can create.
+
+**Q5: Is my data secure with TMail?**  
+A: Absolutely. OD2 prioritizes your privacy and security. All emails are stored temporarily and securely, with automatic deletion after 12 hours.
+
+**Q6: Can I receive attachments through TMail?**  
+A: Yes, TMail supports receiving emails with attachments, making it versatile for various use cases.
+
+**Q7: Do I need to create an account to use TMail?**  
+A: No account creation is required. Simply visit the TMail website and start generating temporary email addresses instantly.
+
+**Q8: What happens if I need to access an email after 12 hours?**  
+A: Once an email is deleted after 12 hours, it cannot be recovered. Make sure to save any important information before the expiration period.
+
+
+
+
 ---
 
 ### **Additional Resources**
@@ -79,3 +109,5 @@ If you’re tired of an overflowing inbox or concerned about your online privacy
 - Explore other privacy tools: [DuckDuckGo](https://duckduckgo.com/)  
 - Stay updated: [OD2 on Instagram](https://www.instagram.com/onedaydevelopers/)  
 - Get email privacy tips: [Proton Blog](https://proton.me/blog)  
+
+---

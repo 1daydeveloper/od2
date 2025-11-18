@@ -95,3 +95,29 @@ A robust billing system built for performance and scalability, perfect for manag
 ---
 
 ![OD2 Logo](/odd.png)
+
+## Frequently Asked Questions (FAQs)
+
+### Q1: How is it possible to complete development projects in just one day?
+
+A: OD2 achieves rapid development through a combination of experienced developers, pre-built components, standardized workflows, and efficient project management. We focus on MVP (Minimum Viable Product) approaches, leverage modern frameworks and tools, and have optimized our development process based on years of experience. Complex projects may extend beyond 24 hours but are typically completed in minimal timeframes.
+
+### Q2: What types of projects can OD2 handle in one day?
+
+A: We specialize in rapid development of web applications, mobile apps, desktop applications, API integrations, database solutions, and automation tools. Projects typically include landing pages, CRUD applications, API development, data migration, prototype applications, and integration solutions. We assess each project's scope during consultation to provide realistic timelines.
+
+### Q3: Do you provide ongoing support and maintenance after project completion?
+
+A: Yes, OD2 offers post-development support including bug fixes, minor updates, and maintenance services. We believe in building lasting relationships with our clients and provide various support packages based on your needs. Our team remains available for consultations and future enhancements to ensure your solution continues to meet your evolving requirements.
+
+### Q4: What is your development process and how do you ensure quality in such short timeframes?
+
+A: Our process involves rapid requirement gathering, agile development methodologies, continuous testing, and real-time client feedback. We use proven frameworks, automated testing, code reviews, and quality assurance protocols. Our experienced team and standardized practices ensure that speed doesn't compromise quality or functionality.
+
+### Q5: Can OD2 work with existing systems and integrate with third-party services?
+
+A: Absolutely! OD2 specializes in integration services and can connect your existing systems with new solutions. We have experience with various APIs, databases, and platforms. Whether you need to integrate payment gateways, external APIs, databases, or other services, our team can handle complex integration requirements efficiently.
+
+### Q6: What technologies and platforms does OD2 work with?
+
+A: OD2 works with modern technologies including React.js, Next.js, Flutter, React Native, Electron, various databases (MySQL, PostgreSQL, MongoDB), cloud platforms, and both frontend and backend frameworks. We choose technologies based on project requirements, scalability needs, and client preferences to deliver optimal solutions.
