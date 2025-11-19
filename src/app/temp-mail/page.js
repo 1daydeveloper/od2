@@ -408,11 +408,11 @@ export default function GetEmailByID() {
   const handleFeedback = (type) => async () => {
     if (!emailcontent._id) return;
     let description = "";
-    if (type === "bad") {
-      description = typeof window !== 'undefined' ? window.prompt("Please provide a description (optional):", "") : "";
-      // If user cancels prompt, don't send feedback
-      if (description === null) return;
-    }
+    // Show description prompt for both good and bad feedback
+    description = typeof window !== 'undefined' ? window.prompt("Please provide a description (optional):", "") : "";
+    // If user cancels prompt, don't send feedback
+    if (description === null) return;
+    
     setFeedbackLoading(true);
     try {
       const res = await fetch("/api/emails/feedback", {
