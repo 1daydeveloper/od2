@@ -445,7 +445,7 @@ export default function GetEmailByID() {
           Beta
         </span>
       </h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <div className="md:flex-col relative min-w-20 items-center space-x-2 self-center ">
           <input
             type="text"
@@ -453,6 +453,9 @@ export default function GetEmailByID() {
             value={id}
             onChange={handleInputChange}
             autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck="false"
             required
             className="w-full bg-transparent h-10 placeholder:text-slate-400  text-sm border border-slate-200 rounded-md pr-6 pl-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
             placeholder="Enter your email prefix/Username (we will add @tm.od2.in for you)"
