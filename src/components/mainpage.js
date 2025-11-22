@@ -306,7 +306,7 @@ const Mainpage = () => {
               campaigns that drive real results.
             </p>
             <Button asChild aria-label="Get Started Button" className="w-full sm:w-auto">
-              <a href="#contactus">Get Started</a>
+              <a href="/contact">Get Started</a>
             </Button>
           </div>
         </div>
@@ -526,7 +526,7 @@ const Mainpage = () => {
               development journey!
             </p>
             <Button asChild className="w-full sm:w-auto inline-block">
-              <a href="#contactus">Get Started</a>
+              <a href="/contact">Get Started</a>
             </Button>
           </div>
         </div>

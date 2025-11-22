@@ -78,39 +78,10 @@
   --color-html-bg: #111827;
 }
 
-html, body {
+html,
+body {
   font-family: 'Roboto', sans-serif;
   color: hsl(var(--foreground));
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: hsl(var(--foreground));
-}
-
-h1 {
-  @apply text-5xl font-bold;
-  color: hsl(var(--foreground));
-}
-
-h2 {
-  @apply text-4xl font-bold;
-}
-
-h3 {
-  @apply text-3xl font-bold;
-}
-
-h4 {
-  @apply text-2xl font-bold;
-}
-
-h5 {
-  @apply text-xl font-bold;
 }
 
 p {
@@ -129,19 +100,6 @@ iframe {
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-
-/* button {
-   background-color: hsl(var(--primary)); 
-  color: hsl(var(--primary-foreground));
-  border: 2px solid hsl(var(--border));
-  @apply px-8 py-3 font-semibold rounded-lg;
-} */
-
-
-button:hover {
-  background-color: hsl(var(--secondary));
   color: hsl(var(--secondary-foreground));
   @apply scale-95
 }
@@ -247,22 +205,6 @@ html {
     transform: rotate(0deg);
   }
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-h1 {
-  @apply text-4xl sm:text-3xl md:text-5xl lg:text-6xl font-bold;
-}
-
-a {
-  color: var(--color-link);
-  @apply font-semibold;
-}
-
-a:hover {
-  @apply cursor-pointer;
 }
 
 input[type='text'],
@@ -381,6 +323,7 @@ table tr:hover {
     --color-html-text: #111827;
     --color-html-bg: #ffffff;
   }
+
   .dark {
     --background: 20 14.3% 4.1%;
     --foreground: 60 9.1% 97.8%;
@@ -420,17 +363,6 @@ table tr:hover {
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply text-foreground;
-  }
-}
-
-/* React Flow Edge Highlighting Styles */
-.react-flow__edge.selected .react-flow__edge-path {
-  stroke: #3b82f6 !important;
   stroke-width: 3px !important;
   filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.5));
 }

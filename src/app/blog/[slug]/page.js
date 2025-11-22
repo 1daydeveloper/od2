@@ -48,11 +48,65 @@ export async function getData(slug) {
   };
 }
 
+// Generate metadata for the blog post
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+  const { frontMatter } = await getData(slug);
+
+  if (!frontMatter) {
+    return {
+      title: "Blog Post Not Found",
+    };
+  }
+
+  return {
+    title: frontMatter.title,
+    description: frontMatter.description,
+    keywords: frontMatter.keywords,
+    openGraph: {
+      title: frontMatter.title,
+      description: frontMatter.description,
+      type: "article",
+      publishedTime: frontMatter.date,
+      authors: [frontMatter.author],
+      tags: frontMatter.keywords?.split(",").map((k) => k.trim()),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: frontMatter.title,
+      description: frontMatter.description,
+    },
+  };
+}
+
 // Page Component
 export default async function Page({ params }) {
   const { slug } = params;
   const { frontMatter, content } = await getData(slug);
   const allPosts = await getAllPosts();
 
-  return <PostPageClient frontMatter={frontMatter} content={content} slug={slug} allPosts={allPosts} />;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: frontMatter.title,
+    description: frontMatter.description,
+    author: {
+      "@type": "Person",
+      name: frontMatter.author,
+      url: frontMatter.authorLink,
+    },
+    datePublished: frontMatter.date,
+    image: frontMatter.image || "https://www.od2.in/og-image.png", // Fallback image
+    url: `https://www.od2.in/blog/${slug}`,
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <PostPageClient frontMatter={frontMatter} content={content} slug={slug} allPosts={allPosts} />
+    </>
+  );
 }

@@ -34,7 +34,7 @@ export default function BlogLayout({ children, frontMatter, content }) {
           </div>
         </CardContent>
       </Card>
-      <Card className="mt-3 rounded-lg bg-gradient-to-r from-muted via-muted to-muted">
+      {/* <Card className="mt-3 rounded-lg bg-gradient-to-r from-muted via-muted to-muted">
         <CardContent className="px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row w-full gap-4 sm:gap-5 justify-center items-center p-4 sm:p-5">
             <div className="my-auto text-lg">
@@ -52,7 +52,7 @@ export default function BlogLayout({ children, frontMatter, content }) {
             </div>
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
       <section className="maincard mt-2">
         <Card className="mt-4 border-4 border-border shadow-xl p-4 sm:p-6 md:p-10 flex flex-col items-center justify-center text-center">
           <CardContent className="px-2 sm:px-4">
