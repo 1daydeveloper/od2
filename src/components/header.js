@@ -155,7 +155,7 @@ function NavigationDesktop() {
           ) : (
             <NavigationMenuItem key={item.id}>
               <Link href={item.url} legacyBehavior passHref>
-                <NavigationMenuLink 
+                <NavigationMenuLink
                   className={navigationMenuTriggerStyle()}
                   onClick={() => trackNavigationClick(item.label, item.url)}
                 >
@@ -230,16 +230,7 @@ function NavigationDesktop() {
 
 // Mobile sheet menu using menuItems
 function MobileMenu({ isOpen, setIsOpen }) {
-  // Flatten all menu items for mobile
-  const flatMenu = [
-    ...menuItems.main,
-    ...menuItems.products,
-    ...menuItems.tools.flatMap((item) =>
-      item.children && item.children.length > 0
-        ? [item, ...item.children]
-        : [item]
-    ),
-  ];
+  const pathname = usePathname();
 
   const handleMobileMenuToggle = () => {
     trackMobileMenuAction('open');
@@ -256,35 +247,78 @@ function MobileMenu({ isOpen, setIsOpen }) {
     setIsOpen(false);
   };
 
+  const MenuItem = ({ item, Icon }) => {
+    const isActive = pathname === item.url;
+    return (
+      <SheetClose asChild>
+        <Link
+          href={item.url}
+          className={cn(
+            "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
+            isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground"
+          )}
+          onClick={() => handleMobileMenuItemClick(item)}
+        >
+          {Icon && <Icon className="h-4 w-4" />}
+          {item.label}
+        </Link>
+      </SheetClose>
+    );
+  };
+
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button
-          variant="outline"
+          variant="ghost"
+          size="icon"
           className="md:hidden"
           aria-label="Open menu"
           onClick={handleMobileMenuToggle}
         >
-          <Menu />
+          <Menu className="h-5 w-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left">
-        <SheetHeader>
+      <SheetContent side="left" className="w-[300px] sm:w-[350px] pr-0">
+        <SheetHeader className="px-1 text-left">
           <SheetTitle>Menu</SheetTitle>
         </SheetHeader>
-        <nav className="flex flex-col gap-4 mt-4">
-          {flatMenu.map((item) => (
-            <SheetClose asChild key={item.id}>
-              <Link
-                href={item.url}
-                className="text-lg"
-                onClick={() => handleMobileMenuItemClick(item)}
-              >
-                {item.label}
-              </Link>
-            </SheetClose>
-          ))}
-        </nav>
+        <div className="flex flex-col gap-6 py-4 h-full overflow-y-auto pb-20 pl-1 pr-4">
+          {/* Main Menu */}
+          <div className="flex flex-col gap-1">
+            <h4 className="px-2 text-xs font-semibold text-muted-foreground mb-2">Navigation</h4>
+            {menuItems.main.map((item) => (
+              <MenuItem key={item.id} item={item} Icon={item.icon} />
+            ))}
+          </div>
+
+          <Separator />
+
+          {/* Products */}
+          <div className="flex flex-col gap-1">
+            <h4 className="px-2 text-xs font-semibold text-muted-foreground mb-2">Products</h4>
+            {menuItems.products.map((item) => (
+              <MenuItem key={item.id} item={item} Icon={item.icon} />
+            ))}
+          </div>
+
+          <Separator />
+
+          {/* Tools */}
+          <div className="flex flex-col gap-1">
+            <h4 className="px-2 text-xs font-semibold text-muted-foreground mb-2">Tools</h4>
+            {menuItems.tools.map((item) => (
+              <React.Fragment key={item.id}>
+                <MenuItem item={item} Icon={item.icon} />
+                {item.children?.map((child) => (
+                  <div key={child.id} className="pl-4">
+                    <MenuItem item={child} Icon={child.icon} />
+                  </div>
+                ))}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
       </SheetContent>
     </Sheet>
   );
@@ -321,22 +355,27 @@ const Header = () => {
         <nav className="px-4 sm:px-6 py-4">
           <div className="max-w-7xl mx-auto">
             <div className="flex justify-between items-center">
-              <div className="flex items-center">
-                <Link href="/" onClick={trackLogoClick}>
+              <div className="flex items-center gap-2">
+                <Link href="/" onClick={trackLogoClick} className="flex-shrink-0">
                   <Image
                     src="/odd.png"
                     alt="Next.js Logo"
-                    width={50}
-                    height={50}
-                    className="h-30 w-30 rounded-full"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 rounded-full"
                     priority
                   />
                 </Link>
-                <h2 className="ml-2 text-xl font-bold">
+                <div className="flex flex-col justify-center">
                   <Link className="text-current" href="/" onClick={trackLogoClick}>
-                    OD2 - {currentTitle.label}
+                    <h2 className="text-lg font-bold leading-none tracking-tight">
+                      OD2
+                      <span className="hidden sm:inline font-normal text-muted-foreground ml-2">
+                        - {currentTitle.label}
+                      </span>
+                    </h2>
                   </Link>
-                </h2>
+                </div>
               </div>
               {/* Desktop nav */}
               <div className="hidden md:flex items-center space-x-8">
@@ -344,7 +383,7 @@ const Header = () => {
                 <ThemeToggle />
               </div>
               {/* Mobile nav */}
-              <div className="flex md:hidden items-center space-x-2">
+              <div className="flex md:hidden items-center gap-1">
                 <ThemeToggle />
                 <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
               </div>
