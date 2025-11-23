@@ -40,7 +40,7 @@ export default function DatabaseHealthPage() {
             <h3 className="text-lg font-semibold text-card-foreground">Optimization Tips</h3>
           </div>
           <div className="text-sm text-muted-foreground space-y-2">
-            <p>• Monitor email processing performance in real-time</p>
+            <p>• Use the <code className="bg-muted px-2 py-1 rounded text-foreground text-xs">/api/save-email-optimized</code> endpoint for batch processing</p>
             <p>• Implement caching for frequently accessed data</p>
             <p>• Add database indexes for commonly queried fields</p>
             <p>• Consider upgrading to M2+ for higher connection limits</p>
