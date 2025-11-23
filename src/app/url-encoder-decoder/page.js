@@ -281,7 +281,7 @@ export default function URLEncoderDecoder() {
                                     <li><strong className="text-blue-600 dark:text-blue-400">Decoded</strong> - Human-readable format with actual characters</li>
                                 </ul>
                                 <p className="mt-3">
-                                    <strong>Pro tip:</strong> Click "Use as Input ↑" under any result to continue encoding/decoding that value!
+                                    <strong>Pro tip:</strong> Click &quot;Use as Input ↑&quot; under any result to continue encoding/decoding that value!
                                 </p>
                             </div>
                         </CardContent>
@@ -304,7 +304,7 @@ export default function URLEncoderDecoder() {
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <span className="text-primary font-bold">•</span>
-                                    <span>Click "Use as Input" to chain multiple encoding/decoding operations</span>
+                                    <span>Click &quot;Use as Input&quot; to chain multiple encoding/decoding operations</span>
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <span className="text-primary font-bold">•</span>
