@@ -1,21 +1,62 @@
 // app/api/emails/route.js
-import connectToDatabase from '../../../../lib/mongodb';
-import {Email} from '../../../../models/Email';
+import { withDatabase } from '../../../../lib/middleware/database.js';
+import { Email } from '../../../../models/Email.js';
+import emailPerformanceMonitor from '../../../../lib/email-performance-monitor.js';
 
-export const GET = async (req) => {
+const handleGet = async (req) => {
+  const startTime = Date.now();
+  let emailCount = 0;
+  
   try {
-    await connectToDatabase();
-    const emails = await Email.find().sort({ date: -1 }).limit(50).lean(); // Sort emails by date in descending order, limit results
+    const { searchParams } = new URL(req.url);
+    const limit = parseInt(searchParams.get('limit')) || 50;
+    const skip = parseInt(searchParams.get('skip')) || 0;
+    const since = searchParams.get('since'); // ISO timestamp for real-time updates
     
-    return new Response(JSON.stringify(emails), {
+    let query = {};
+    if (since) {
+      query.createdAt = { $gt: new Date(since) };
+    }
+    
+    // Use database utility for consistent connection handling
+    const emails = await req.db.getEmails(query, { 
+      limit, 
+      skip, 
+      sort: { createdAt: -1, date: -1 } // Sort by creation time first for real-time sync
+    });
+    
+    emailCount = emails.length;
+    
+    // Record performance metrics
+    emailPerformanceMonitor.recordFetch(startTime, emailCount, true);
+    
+    return new Response(JSON.stringify({
+      emails,
+      count: emails.length,
+      timestamp: new Date().toISOString(),
+      hasMore: emails.length === limit,
+      processingTime: Date.now() - startTime
+    }), {
       status: 200,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+        'X-Processing-Time': `${Date.now() - startTime}ms`
       }
     });
   } catch (error) {
     console.error('Error fetching emails:', error);
-    return new Response(JSON.stringify({ error: 'Failed to fetch emails' }), {
+    
+    // Record performance metrics for failed operation
+    emailPerformanceMonitor.recordFetch(startTime, emailCount, false, error);
+    
+    return new Response(JSON.stringify({ 
+      error: 'Failed to fetch emails',
+      message: error.message,
+      timestamp: new Date().toISOString()
+    }), {
       status: 500,
       headers: {
         'Content-Type': 'application/json'
@@ -23,3 +64,6 @@ export const GET = async (req) => {
     });
   }
 };
+
+// Export GET handler wrapped with database middleware
+export const GET = withDatabase(handleGet);

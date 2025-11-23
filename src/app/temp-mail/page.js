@@ -503,9 +503,7 @@ export default function GetEmailByID() {
           <Card className="relative items-center flex gap-3 justify-center rounded-md ">
             <h3 className="text-2xl">Inbox</h3>
             <Loader
-              style={{
-                animation: isRefreshing ? "spin 1s linear infinite" : "none",
-              }}
+              className={isRefreshing ? "animate-spin" : ""}
               hidden={!isRefreshing}
             />
           </Card>
@@ -516,7 +514,6 @@ export default function GetEmailByID() {
             {emails && emails.length !== 0 ? (
               emails
                 .slice()
-                .reverse()
                 .map((email) => (
                   <button
                     key={email._id}
@@ -553,11 +550,9 @@ export default function GetEmailByID() {
                 ))
             ) : isLoading ? (
               <div className="flex flex-col items-center p-3">
-                <Loader2Icon size={48} style={{
-                    animation: isRefreshing
-                      ? "spin 1s linear infinite"
-                      : "none", // Spin when refreshing
-                  }}
+                <Loader2Icon 
+                  size={48} 
+                  className={isRefreshing ? "animate-spin" : ""}
                 />
                 <div>
                   <p className="text-dark text-center">
