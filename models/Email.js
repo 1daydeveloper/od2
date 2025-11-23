@@ -29,42 +29,11 @@ const emailSchema = new mongoose.Schema({
   },
   messageId: String,
   date: { type: Date, default: Date.now }, // Email receive date
-}, { 
-  timestamps: true,
-  // Optimize for real-time queries
-  collation: { locale: 'en_US', strength: 2 }
-});
+}, { timestamps: true });
 
-// Optimized indexes for real-time email processing
-// TTL index to auto-delete emails after 12 hours (43200 seconds)
+// Add TTL index to auto-delete emails after 12 hours (43200 seconds)
+// This ensures emails are automatically removed from MongoDB after 12 hours from creation
 emailSchema.index({ "createdAt": 1 }, { expireAfterSeconds: 43200 });
-
-// Compound index for real-time sorting and filtering
-emailSchema.index({ "createdAt": -1, "date": -1 }, { background: true });
-
-// Index for email address lookups (real-time search)
-emailSchema.index({ "to.value.address": 1 }, { background: true });
-emailSchema.index({ "from.value.address": 1 }, { background: true });
-
-// Index for messageId for duplicate detection
-emailSchema.index({ "messageId": 1 }, { background: true, sparse: true });
-
-// Index for subject search
-emailSchema.index({ "subject": "text" }, { background: true });
-
-// Performance optimization: Pre-compile commonly used queries
-emailSchema.statics.findRecentEmails = function(limit = 50, since = null) {
-  let query = {};
-  if (since) {
-    query.createdAt = { $gt: new Date(since) };
-  }
-  
-  return this.find(query)
-    .sort({ createdAt: -1, date: -1 })
-    .limit(limit)
-    .lean()
-    .maxTimeMS(3000);
-};
 
 const emailFeedbackSchema = new mongoose.Schema({
   emailId: { type: mongoose.Schema.Types.ObjectId, ref: 'Email' },
@@ -79,17 +48,7 @@ const emailFeedbackSchema = new mongoose.Schema({
     required: true,
   },
   description: { type: String },
-  submittedAt: { type: Date, default: Date.now }
-}, { 
-  timestamps: true,
-  // Optimize for real-time queries
-  collation: { locale: 'en_US', strength: 2 }
-});
-
-// Indexes for email feedback real-time queries
-emailFeedbackSchema.index({ "emailId": 1, "feedback": 1 }, { background: true });
-emailFeedbackSchema.index({ "createdAt": -1 }, { background: true });
-emailFeedbackSchema.index({ "emailId": 1 }, { background: true });
+}, { timestamps: true });
 
 
 const emailHistorySchema = new mongoose.Schema({
@@ -102,16 +61,7 @@ const emailHistorySchema = new mongoose.Schema({
     },
   ],
   count: { type: Number, default: 0 },
-}, { 
-  timestamps: true,
-  // Optimize for real-time queries
-  collation: { locale: 'en_US', strength: 2 }
-});
-
-// Indexes for email history real-time queries
-emailHistorySchema.index({ "email": 1 }, { background: true, unique: true });
-emailHistorySchema.index({ "count": -1 }, { background: true });
-emailHistorySchema.index({ "updatedAt": -1 }, { background: true });
+}, { timestamps: true });
 
 // Middleware to handle history updates on email save
 emailSchema.pre('save', async function (next) {

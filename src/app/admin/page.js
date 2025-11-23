@@ -1,6 +1,7 @@
-'use client';
 import Link from 'next/link';
-import EmailMetrics from '../../components/EmailMetrics';
+
+// Force dynamic rendering to prevent build-time static generation issues
+export const dynamic = 'force-dynamic';
 
 export default function AdminDashboard() {
   return (
@@ -73,13 +74,6 @@ export default function AdminDashboard() {
               📡 Check Database Health API
             </a>
             <a 
-              href="/api/emails/metrics" 
-              target="_blank"
-              className="block text-sm text-primary hover:text-primary/80 transition-colors"
-            >
-              📊 View Email Metrics API
-            </a>
-            <a 
               href="/api/emails" 
               target="_blank"
               className="block text-sm text-primary hover:text-primary/80 transition-colors"
@@ -96,11 +90,6 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Email Performance Metrics */}
-      <div className="mt-8">
-        <EmailMetrics />
-      </div>
-
       {/* Recent Activity */}
       <div className="mt-8">
         <div className="rounded-xl border bg-card text-card-foreground shadow p-6">
@@ -108,19 +97,19 @@ export default function AdminDashboard() {
           <div className="space-y-3 text-sm">
             <div className="flex items-center space-x-3">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span className="text-muted-foreground">Real-time email processing with connection pooling optimized</span>
+              <span className="text-muted-foreground">MongoDB connection pooling optimized (Max 10 connections)</span>
             </div>
             <div className="flex items-center space-x-3">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span className="text-muted-foreground">Email performance monitoring and metrics tracking added</span>
+              <span className="text-muted-foreground">Admin panel secured with client-side authentication</span>
             </div>
             <div className="flex items-center space-x-3">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span className="text-muted-foreground">Database indexes optimized for real-time email queries</span>
+              <span className="text-muted-foreground">Database health monitoring dashboard added</span>
             </div>
             <div className="flex items-center space-x-3">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span className="text-muted-foreground">Smart caching and retry logic implemented</span>
+              <span className="text-muted-foreground">Batch email processing endpoint created</span>
             </div>
           </div>
         </div>
@@ -129,3 +118,7 @@ export default function AdminDashboard() {
   );
 }
 
+export const metadata = {
+  title: 'Admin Dashboard - OD2',
+  description: 'OD2 Administration Dashboard - Monitor and manage your application',
+};
