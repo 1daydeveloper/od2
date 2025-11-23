@@ -120,7 +120,6 @@ export default function AdminAuthWrapper({ children }) {
           </form>
 
           <div className="text-center text-sm text-muted-foreground">
-            <p>💡 Default password: <code className="bg-muted px-2 py-1 rounded text-foreground text-xs">od2admin123</code></p>
             <p>Session expires in 24 hours</p>
           </div>
         </div>
