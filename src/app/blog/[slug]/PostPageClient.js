@@ -5,6 +5,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { LinkIcon, Calendar, User, Share2, Clock } from "lucide-react";
 import Link from "next/link";
+import CodeCopyButton from "@/components/CodeCopyButton";
 
 const PostPageClient = ({ frontMatter, content, slug, allPosts }) => {
   // Track blog post page view
@@ -146,12 +147,13 @@ const PostPageClient = ({ frontMatter, content, slug, allPosts }) => {
               prose-headings:font-bold prose-headings:tracking-tight
               prose-a:text-primary prose-a:no-underline hover:prose-a:underline
               prose-img:rounded-xl prose-img:shadow-lg
-              prose-pre:bg-muted prose-pre:border prose-pre:border-border
+              prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-pre:text-foreground
+              prose-code:bg-muted prose-code:text-foreground prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-[''] prose-code:after:content-['']
               prose-blockquote:border-l-primary prose-blockquote:bg-muted/50 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg"
             dangerouslySetInnerHTML={{
               __html: content,
             }}
-          />
+          />          <CodeCopyButton />
         </CardContent>
       </Card>
 

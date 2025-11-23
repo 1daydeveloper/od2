@@ -71,7 +71,7 @@ const Mainpage = () => {
             </Link>
           </Button>
         </div>
-        
+
         {/* Tools Highlight Banner */}
         <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -546,7 +546,7 @@ const Mainpage = () => {
               <div className="flex flex-col items-center text-center">
                 <div className="bg-blue-100 p-3 rounded-full mb-4">
                   <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                   </svg>
                 </div>
                 <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-blue-600">Temp Mail</CardTitle>
@@ -573,9 +573,9 @@ const Mainpage = () => {
               <div className="flex flex-col items-center text-center">
                 <div className="bg-purple-100 p-3 rounded-full mb-4">
                   <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                    <circle cx="8.5" cy="8.5" r="1.5"/>
-                    <path d="M21 15l-5-5L5 21"/>
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="M21 15l-5-5L5 21" />
                   </svg>
                 </div>
                 <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-purple-600">Passport Photo Maker</CardTitle>
@@ -627,8 +627,8 @@ const Mainpage = () => {
               <div className="flex flex-col items-center text-center">
                 <div className="bg-red-100 p-3 rounded-full mb-4">
                   <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4"/>
-                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.745 3.745 0 0 1 3.296-1.043A3.745 3.745 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z"/>
+                    <path d="M9 12l2 2 4-4" />
+                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.745 3.745 0 0 1 3.296-1.043A3.745 3.745 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
                   </svg>
                 </div>
                 <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-red-600">reCAPTCHA Tools</CardTitle>
@@ -655,7 +655,7 @@ const Mainpage = () => {
               <div className="flex flex-col items-center text-center">
                 <div className="bg-indigo-100 p-3 rounded-full mb-4">
                   <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                    <path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-indigo-600">OD2 Billing System</CardTitle>
@@ -682,7 +682,7 @@ const Mainpage = () => {
               <div className="flex flex-col items-center text-center">
                 <div className="bg-amber-100 p-3 rounded-full mb-4">
                   <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                    <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                   </svg>
                 </div>
                 <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-amber-600">More Tools Coming</CardTitle>
@@ -712,12 +712,8 @@ const Mainpage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild className="w-full sm:w-auto">
-                <Link href="/tools" className="inline-flex items-center">
-                  Browse All Tools
-                  <MoveRight className="ml-2" />
-                </Link>
+                <a href="/contact">Suggest a Tool</a>
               </Button>
-             
             </div>
           </div>
         </div>
