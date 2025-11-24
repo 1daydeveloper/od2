@@ -23,20 +23,34 @@ const handlePost = async (req) => {
 
     const options = {
       skipImageLinks: false, // Ensures embedded images are parsed correctly
-      streamAttachments: true, // Stream attachments for better performance
+      streamAttachments: false, // Disable streaming for faster parsing
+      skipHtmlToText: false, // Keep HTML to text conversion
+      skipTextContent: false, // Keep text content
+      maxHtmlLengthToParse: 100000, // Limit HTML parsing for performance
+      skipTextLinks: true // Skip text link parsing for speed
     };
 
-    // Parse email with timeout for real-time performance
+    // Parse email with reduced timeout for real-time performance
     const parsePromise = simpleParser(emailData.raw, options);
     const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Email parsing timeout')), 5000)
+      setTimeout(() => reject(new Error('Email parsing timeout')), 3000) // Reduced from 5s to 3s
     );
     
     const parsedEmail = await Promise.race([parsePromise, timeoutPromise]);
     
-    // Add processing metadata
+    // Optimize email data for faster database saves
     const emailToSave = {
-      ...parsedEmail,
+      messageId: parsedEmail.messageId,
+      date: parsedEmail.date,
+      subject: parsedEmail.subject || '',
+      from: parsedEmail.from,
+      to: parsedEmail.to,
+      cc: parsedEmail.cc,
+      bcc: parsedEmail.bcc,
+      text: parsedEmail.text ? parsedEmail.text.substring(0, 50000) : '', // Limit text length
+      html: parsedEmail.html ? parsedEmail.html.substring(0, 100000) : '', // Limit HTML length
+      attachments: parsedEmail.attachments ? parsedEmail.attachments.slice(0, 10) : [], // Limit attachments
+      headers: parsedEmail.headers,
       receivedAt: new Date(),
       processingTime: Date.now() - startTime
     };
@@ -60,7 +74,7 @@ const handlePost = async (req) => {
         size: emailData.raw.length
       }
     }), { 
-      status: 201,
+      status: 200,
       headers: {
         'Content-Type': 'application/json',
         'X-Processing-Time': `${Date.now() - startTime}ms`
