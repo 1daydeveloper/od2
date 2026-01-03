@@ -63,18 +63,48 @@ export async function generateMetadata({ params }) {
     title: frontMatter.title,
     description: frontMatter.description,
     keywords: frontMatter.keywords,
+    authors: [{ name: frontMatter.author, url: frontMatter.authorLink }],
+    category: frontMatter.category,
+    canonical: `https://www.od2.in/blog/${slug}`,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     openGraph: {
       title: frontMatter.title,
       description: frontMatter.description,
+      url: `https://www.od2.in/blog/${slug}`,
+      siteName: 'OD2 Blog',
       type: "article",
       publishedTime: frontMatter.date,
       authors: [frontMatter.author],
+      section: frontMatter.category,
       tags: frontMatter.keywords?.split(",").map((k) => k.trim()),
+      images: [
+        {
+          url: frontMatter.image || `https://www.od2.in/api/og?title=${encodeURIComponent(frontMatter.title)}`,
+          width: 1200,
+          height: 630,
+          alt: frontMatter.title,
+        }
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: frontMatter.title,
       description: frontMatter.description,
+      creator: frontMatter.author,
+      images: [frontMatter.image || `https://www.od2.in/api/og?title=${encodeURIComponent(frontMatter.title)}`],
+    },
+    alternates: {
+      canonical: `https://www.od2.in/blog/${slug}`,
     },
   };
 }
@@ -95,8 +125,29 @@ export default async function Page({ params }) {
       name: frontMatter.author,
       url: frontMatter.authorLink,
     },
+    publisher: {
+      "@type": "Organization",
+      name: "OD2 - One Day Developers",
+      url: "https://www.od2.in",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.od2.in/odd.png"
+      }
+    },
     datePublished: frontMatter.date,
-    image: frontMatter.image || "https://www.od2.in/og-image.png", // Fallback image
+    dateModified: frontMatter.date,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.od2.in/blog/${slug}`
+    },
+    image: {
+      "@type": "ImageObject",
+      url: frontMatter.image || `https://www.od2.in/api/og?title=${encodeURIComponent(frontMatter.title)}`,
+      width: 1200,
+      height: 630
+    },
+    articleSection: frontMatter.category,
+    keywords: frontMatter.keywords,
     url: `https://www.od2.in/blog/${slug}`,
   };
 

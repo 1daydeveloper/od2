@@ -2,7 +2,7 @@
 title: "AI Tools Every Content Creator Should Try in 2025"
 date: "2025-11-14"
 author: "HARISH KUMAR R"
-authorLink: "www.linkedin.com/in/harish-bcomca"
+authorLink: "https://www.linkedin.com/in/harish-bcomca"
 category: "AI"
 description: "Discover the top AI tools that are transforming how creators make videos, graphics, podcasts, and blog content in 2025."
 keywords: "AI Tools, Content Creation, Video Editing, AI Writing, Podcast AI, Creative Automation, Canva Magic Studio, Descript, Jasper AI, Lumen5, ElevenLabs, PixVerse, ImagineArt, Leonardo AI, Ideogram, HeyGen, Adobe Firefly, AI Design, Social Media Tools, AI Creator Tips, Future of Media"
