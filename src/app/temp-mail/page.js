@@ -1043,7 +1043,7 @@ export default function GetEmailByID() {
         <strong>Note:</strong> The following email addresses are <span style={{ color: '#d4380d' }}>not allowed</span> as the local-part (before the <code>@</code>):<br />
         <span style={{ fontSize: '0.95em' }}>{RESERVED_EMAILS.join(', ')}</span><br />
         <span style={{ fontSize: '0.92em', color: '#ad6800' }}>
-          Attempts to use these will result in an error: <em>"Reserved email addresses are not allowed. Please use a different email address."</em>
+          Attempts to use these will result in an error: <em>&quot;Reserved email addresses are not allowed. Please use a different email address.&quot;</em>
         </span>
       </div>
               <Card className="border shadow-xl rounded-xl  text-center py-12">
