@@ -1,4 +1,5 @@
 import dbUtil from '../../../../lib/db.js'; // Updated to use singleton database utility
+import { validateEmailNotReserved } from '../../../../lib/email-validation.js';
 
 export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
@@ -6,6 +7,16 @@ export const GET = async (req) => {
 
   if (!id) {
     return new Response(JSON.stringify({ message: 'ID is required' }), { status: 400 });
+  }
+
+  // Validate that the email local-part is not reserved
+  const fullEmail = `${id}@tm.od2.in`;
+  const validation = validateEmailNotReserved(fullEmail);
+  if (!validation.valid) {
+    return new Response(JSON.stringify({
+      error: validation.error,
+      timestamp: new Date().toISOString()
+    }), { status: 400, headers: { 'Content-Type': 'application/json' } });
   }
 
   try {
