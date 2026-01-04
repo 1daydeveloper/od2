@@ -4,10 +4,9 @@ date: "2025-01-01"
 author: "One Day Developers(OD2)"
 authorLink: "https://www.linkedin.com/in/od2/"
 category: "Blog"
-description: "OD-2 First Blog to be published on the official website of the community and contributors"
-keywords: "OD-2,First,Blog,Mail,Tempmail,Passport Size"
+description: "Welcome to OD2's first official blog post. Discover our mission to deliver high-quality software development, web applications, and digital solutions within 24 hours."
+keywords: "One Day Developers, OD2, software development, web development, rapid development, 24 hour delivery, digital solutions, programming, coding, web applications, mobile apps, API development, full stack development, software engineering, tech blog, development company, fast delivery, quality software, OD2 blog, development team, innovation, technology solutions"
 urlpath: "odd-first-blog" 
-
 ---
 
 **Your Partner in Fast-Paced, High-Quality Development**

@@ -28,11 +28,10 @@ export default function EmailMetrics() {
 
   useEffect(() => {
     fetchMetrics();
-    
     // Auto-refresh every 30 seconds
     const interval = setInterval(fetchMetrics, 30000);
     return () => clearInterval(interval);
-  }, [timeRange]);
+  }, [timeRange, fetchMetrics]);
 
   const formatDuration = (ms) => {
     if (ms === 0) return 'N/A';

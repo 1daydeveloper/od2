@@ -8,7 +8,7 @@ export default function sitemap() {
   blogPosts.forEach(post => {
     links.push({
       url: `https://www.od2.in/blog/${post.id}`,
-      priority: 0.5,
+      priority: 0.8, // Increased priority for blog posts
       changeFrequency: "weekly",
       lastModified: new Date(post.date),
     });

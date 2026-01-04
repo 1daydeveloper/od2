@@ -207,23 +207,46 @@ function cleanAnswerText(answer) {
 export function generateMetadata({ params }) {
   const { slug } = params;
   return getData(slug).then(({ frontMatter }) => {
-    const { title, description, keywords } = frontMatter;
+    const { title, description, keywords, author, category, date } = frontMatter;
 
     return {
       ...defaultMetadata,
       title: title || defaultMetadata.title,
       description: description || defaultMetadata.description,
       keywords: keywords || defaultMetadata.keywords,
+      authors: [{ name: author, url: frontMatter.authorLink }],
+      category: category,
+      canonical: `https://www.od2.in/blog/${slug}`,
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
+      },
       openGraph: {
         ...defaultMetadata.openGraph,
         title: title || defaultMetadata.openGraph.title,
         description: description || defaultMetadata.openGraph.description,
         url: `https://www.od2.in/blog/${slug}`,
+        type: 'article',
+        publishedTime: date,
+        authors: [author],
+        section: category,
+        tags: keywords?.split(',').map(k => k.trim()),
       },
       twitter: {
         ...defaultMetadata.twitter,
         title: title || defaultMetadata.twitter.title,
         description: description || defaultMetadata.twitter.description,
+        creator: author,
+      },
+      alternates: {
+        canonical: `https://www.od2.in/blog/${slug}`,
       },
     };
   });
