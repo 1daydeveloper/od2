@@ -88,7 +88,7 @@ export default function Products() {
       <div className="mt-16 p-8 bg-muted rounded-2xl text-center">
         <TypographyH2 className="mb-4">Have an Idea?</TypographyH2>
         <TypographyP className="mb-6 text-muted-foreground">
-          We're always looking for new ways to help developers and users. If you have a suggestion for a tool or product, we'd love to hear it.
+          We&apos;re always looking for new ways to help developers and users. If you have a suggestion for a tool or product, we&apos;d love to hear it.
         </TypographyP>
         <Button asChild size="lg" variant="outline">
           <Link href="/contact">Suggest a Feature</Link>

@@ -318,7 +318,7 @@ export default function TestMailContentPage() {
                             <p>
                                 We are also launching an <strong>Email Sending Test API</strong> that will allow you to trigger real test emails to any address
                                 without setting up your own SMTP server or paying for expensive ESP trials. High deliverability and zero cost –
-                                that's the One Day Developers promise.
+                                that&apos;s the One Day Developers promise.
                             </p>
                         </CardContent>
                     </Card>
