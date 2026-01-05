@@ -1039,7 +1039,7 @@ export default function GetEmailByID() {
                   </div>
                 </div>
               </Card>
-               <div style={{ background: '#fffbe6', border: '1px solid #ffe58f', borderRadius: 6, padding: 12, marginBottom: 16 }}>
+               <div style={{ border: '1px solid #ffe58f', borderRadius: 6, padding: 12, marginBottom: 16 }}>
         <strong>Note:</strong> The following email addresses are <span style={{ color: '#d4380d' }}>not allowed</span> as the local-part (before the <code>@</code>):<br />
         <span style={{ fontSize: '0.95em' }}>{RESERVED_EMAILS.join(', ')}</span><br />
         <span style={{ fontSize: '0.92em', color: '#ad6800' }}>

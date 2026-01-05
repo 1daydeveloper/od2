@@ -1,7 +1,7 @@
 import { getSortedPostsData } from '@main/lib/posts';
 
 export default function sitemap() {
-  const blogPosts =  getSortedPostsData();
+  const blogPosts = getSortedPostsData();
   const links = [];
 
   // Adding blog posts dynamically to the sitemap
@@ -23,7 +23,7 @@ export default function sitemap() {
       changeFrequency: "weekly",
       priority: 1.0,
     },
-    
+
     // Main Pages
     {
       url: "https://www.od2.in/about",
@@ -80,6 +80,12 @@ export default function sitemap() {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: "https://www.od2.in/test-mail",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
 
     // API Workflow Designer
@@ -159,7 +165,7 @@ export default function sitemap() {
     },
     // Include the dynamic links for blog posts
     ...links, // Spread the dynamically added blog posts here
-    
+
     // Meta files
     {
       url: "https://www.od2.in/robots.txt",

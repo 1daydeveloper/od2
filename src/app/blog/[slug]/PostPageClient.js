@@ -25,6 +25,7 @@ const PostPageClient = ({ frontMatter, content, slug, allPosts }) => {
   }, [frontMatter, slug]);
 
   const convertToHashTags = (text) => {
+    if (!text || typeof text !== 'string') return null;
     return text.split(",").map((word, index) => {
       if (word) {
         return (

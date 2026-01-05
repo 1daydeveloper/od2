@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export default function EmailMetrics() {
   const [metrics, setMetrics] = useState(null);
@@ -7,12 +7,12 @@ export default function EmailMetrics() {
   const [error, setError] = useState(null);
   const [timeRange, setTimeRange] = useState(300000); // 5 minutes default
 
-  const fetchMetrics = async () => {
+  const fetchMetrics = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`/api/emails/metrics?timeRange=${timeRange}&format=summary`);
       const result = await response.json();
-      
+
       if (result.success) {
         setMetrics(result.data);
         setError(null);
@@ -24,7 +24,7 @@ export default function EmailMetrics() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [timeRange]);
 
   useEffect(() => {
     fetchMetrics();
@@ -79,7 +79,7 @@ export default function EmailMetrics() {
         <div className="text-red-600 dark:text-red-400 text-sm">
           Error loading metrics: {error}
         </div>
-        <button 
+        <button
           onClick={fetchMetrics}
           className="mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors text-sm"
         >
@@ -99,10 +99,10 @@ export default function EmailMetrics() {
           </div>
           <h3 className="ml-4 text-lg font-semibold text-card-foreground">Email Performance Metrics</h3>
         </div>
-        
+
         {/* Time Range Selector */}
         <div className="flex items-center space-x-2">
-          <select 
+          <select
             value={timeRange}
             onChange={(e) => setTimeRange(parseInt(e.target.value))}
             className="text-sm border border-border rounded-md px-3 py-1 bg-background text-foreground"
@@ -113,7 +113,7 @@ export default function EmailMetrics() {
               </option>
             ))}
           </select>
-          <button 
+          <button
             onClick={fetchMetrics}
             className="p-2 hover:bg-muted rounded-md transition-colors"
             title="Refresh metrics"
