@@ -33,7 +33,7 @@ export default function Products({ children }) {
               "contactPoint": {
                 "@type": "ContactPoint",
                 "email": "admin@od2.in",
-                "telephone": "+917010178914",
+                "telephone": "+91$$$$$$$$$$",
                 "contactType": "customer service"
               },
               "foundingDate": "2020",

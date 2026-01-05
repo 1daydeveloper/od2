@@ -22,6 +22,7 @@ import {
   CodeXml,
   Columns4,
   FolderCode,
+  Mail,
   Megaphone,
   MoveRight,
   Package,
@@ -29,132 +30,148 @@ import {
   Sliders,
   TabletSmartphone,
   TargetIcon,
+  Zap,
 } from "lucide-react";
+import { menuItems } from "@/lib/common";
+import { cn } from "@/lib/utils";
 
 const Mainpage = () => {
   const [openCollapseIndex, setOpenCollapseIndex] = useState(null);
 
+  // Find the new tool to highlight
+  const newTool = menuItems.tools.find(tool => tool.isNew);
+
   const collapseData = [
     {
       id: "whatweoffer",
-      title: "What We Offer?",
+      title: "Comprehensive Tech Solutions",
       content:
-        "We provide comprehensive software solutions including custom web applications, mobile app development, API integrations, database design, and technical consulting. Our expertise spans modern frameworks like Next.js, React, Node.js, and cloud technologies to deliver scalable, secure, and user-friendly solutions tailored to your business requirements.",
+        "We deliver a full spectrum of high-end software development services. From crafting bespoke Next.js web applications and feature-rich React Native mobile apps to architecting complex API ecosystems and scalable cloud infrastructures on AWS and Azure. Our team leverages the latest in AI, real-time data processing, and enterprise-grade security to ensure your digital products are not just functional, but market-leading. Whether it's a rapid MVP or a robust corporate system, we bring technical excellence to every line of code.",
     },
     {
       id: "ourmission",
-      title: "Our Mission",
+      title: "The 24-Hour Commitment",
       content:
-        "Our mission is to revolutionize software development by delivering high-quality, innovative solutions within 24 hours without compromising on quality. We focus on rapid prototyping, agile development methodologies, and cutting-edge technologies to ensure maximum customer satisfaction, timely delivery, and long-term client relationships through effective retention strategies.",
+        "At OD2, our mission is to redefine speed in software engineering. We are committed to delivering premium, production-level solutions within a 24-hour window for critical business needs. By employing advanced agile methodologies, automated CI/CD pipelines, and internal rapid-prototyping frameworks, we eliminate traditional bottlenecks. We don't just work fast; we work smart, ensuring that quality, security, and scalability are never sacrificed for speed. Our goal is to build long-term partnerships through immediate value delivery.",
     },
     {
-      id: "contactus",
-      title: "Contact Us",
-      content: "Reach us on  call us at +91 7010178914.",
+      id: "globalservices",
+      title: "Global Reach & Innovation",
+      content:
+        "Serving clients across the globe, One Day Developers bridges the gap between ambitious ideas and technical reality. Our innovation lab is constantly exploring emerging technologies like Quantum Computing, Blockchain, and Advanced AI to keep our clients ahead of the curve. We provide detailed technical consulting, security audits, and performance optimization globally, ensuring that no matter your location, you have access to world-class engineering talent. Reach us on call at +91 7010178914 for any global inquiries.",
     },
   ];
 
   return (
-    <div className="flex flex-col gap-3">
-      {/* Top Banner */}
-      <div className="flex flex-col text-center gap-3 p-4 sm:p-6 rounded-lg shadow">
-        <div className="hidden lg:block">
-          <Button asChild variant="secondary" className="mb-7 rounded-full px-1 pe-4">
-            <Link href="/api-wd" className="inline-flex items-center">
-              <span className="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 me-3">
-                New
-              </span>
-              <span className="text-sm font-medium">
-                Try our new API Workflow Designer
-              </span>
-              <MoveRight className="ml-3" />
-            </Link>
+    <div className="flex flex-col gap-8">
+      {/* Top Promotion Discovery Banner */}
+      <div className=" border rounded-xl bg-blue-600 text-white py-2 px-4 shadow-lg transform transition-transform duration-300 pointer-events-auto">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 overflow-hidden">
+            <span className="hidden sm:inline-block bg-white text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full">HOT</span>
+            <p className="text-xs sm:text-sm font-medium truncate">
+            Try our new <span className="font-bold underline decoration-blue-200">Test Mail Tool</span> – Preview & Test emails for free!
+            </p>
+          </div>
+          <Button asChild size="sm" variant="secondary" className="h-7 text-[10px] sm:text-xs">
+            <Link href="#tools">Explore All Tools</Link>
           </Button>
         </div>
+      </div>
 
-        {/* Tools Highlight Banner */}
-        <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div className="text-center sm:text-left">
-              <h3 className="text-lg font-bold text-blue-800 mb-1">
-                🛠️ Free Online Tools Available Now!
-              </h3>
-              <p className="text-sm text-blue-600">
-                Temp Mail, Passport Photos, API Designer, and more - All completely free!
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700">
-                <Link href="#tools" className="inline-flex items-center">
-                  Explore Tools
-                  <MoveRight className="ml-2" />
+      <div id="hero-banner"> {/* Offset for the fixed banner */}
+        <div className="flex flex-col text-center gap-6 p-8 sm:p-12 rounded-[2rem] bg-gradient-to-br from-background via-muted/20 to-background border shadow-2xl relative overflow-hidden">
+          {/* Decorative background elements */}
+          <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+
+          <div className="relative z-10 flex flex-col items-center gap-6">
+            <div className="hidden lg:flex gap-4">
+              <Button asChild variant="outline" className="rounded-full px-4 border-blue-500/30 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
+                <Link href={menuItems.tools.find(t => t.id === "temp-mail")?.url || "/temp-mail"} className="inline-flex items-center">
+                  <span className="text-[10px] bg-orange-600 rounded-full text-white px-2 py-0.5 me-3 animate-pulse">
+                   🔥 HOT
+                  </span>
+                  <span className="text-sm font-semibold text-orange-600 dark:text-orange-400">
+                    Temp Mail
+                  </span>
+                  <MoveRight className="ml-3 w-4 h-4 text-red-600" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="rounded-full px-4 border-blue-500/30 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
+                <Link href={newTool?.url || "/test-mail"} className="inline-flex items-center">
+                  <span className="text-[10px] bg-blue-600 rounded-full text-white px-2 py-0.5 me-3 animate-pulse">
+                NEW
+                  </span>
+                  <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                    {newTool?.label || "Test Mail Content Tool"} is live
+                  </span>
+                  <MoveRight className="ml-3 w-4 h-4 text-blue-600" />
                 </Link>
               </Button>
             </div>
+
+            <div className="max-w-4xl">
+              <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-foreground mb-6">
+                One Day <span className="text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">Developers</span>
+              </h1>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-muted-foreground/80 mb-8 italic">
+                We invest in the Time.
+              </h2>
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10">
+                At OD2, we turn complex ideas into high-performance digital realities within <span className="text-foreground font-semibold">24 hours</span>.
+                We invest our expertise and time to ensure your growth has a lasting impact.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <Button asChild size="lg" className="rounded-full px-8 py-6 text-lg shadow-xl bg-blue-600 hover:bg-blue-700 transition-all hover:scale-105">
+                <Link href="#development">Start Your Project</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full px-8 py-6 text-lg border-2 hover:bg-muted transition-all">
+                <Link href="#tools">Browse Free Tools</Link>
+              </Button>
+            </div>
+
+            <div className="flex gap-6 mt-8">
+              <Link href="https://www.instagram.com/onedaydevelopers/" className="hover:scale-110 transition-transform text-muted-foreground hover:text-fuchsia-600">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"></path></svg>
+                <span className="sr-only">Instagram</span>
+              </Link>
+              <Link href="https://www.youtube.com/channel/UCtgc_t09aTJUxYTu4CAaBAA" className="hover:scale-110 transition-transform text-muted-foreground hover:text-red-600">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505a3.017 3.017 0 0 0-2.122 2.136C0 8.055 0 12 0 12s0 3.945.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.945 24 12 24 12s0-3.945-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+                <span className="sr-only">YouTube</span>
+              </Link>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div>
-          <Card className="border p-6">
-            <CardTitle className="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl">
-              One Day Developers (OD2)
-            </CardTitle>
-          </Card>
-        </div>
-        <div>
-          <h2 className="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl">
-            We invest in the Time
-          </h2>
-        </div>
-        <div>
-          <p className="mb-8 text-lg font-normal lg:text-xl">
-            We invest time to deliver value, ensuring lasting impact and growth
-            with every effort we make.
-          </p>
-        </div>
-        <div className="inline-flex justify-center">
-          <Link
-            href="https://www.instagram.com/onedaydevelopers/"
-            aria-label="Share on Instagram"
-          >
-            <svg
-              className="w-[40px] h-[40px] text-fuchsia-700"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                fillRule="evenodd"
-                d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"
-                clipRule="evenodd"
-              />
-            </svg>
+      {/* Quick Access Highlights */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 -mt-6 relative z-20">
+        {menuItems.tools.filter(t => t.id === "temp-mail" || t.id === "test-mail").map(tool => (
+          <Link key={tool.id} href={tool.url} className="group">
+            <Card className={cn(
+              "p-6 text-white border-0 shadow-lg transition-all hover:-translate-y-1",
+              tool.id === "temp-mail" ? "bg-gradient-to-br from-blue-600 to-blue-800 group-hover:shadow-blue-500/20" : "bg-gradient-to-br from-purple-600 to-purple-800 group-hover:shadow-purple-500/20"
+            )}>
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-white/10 rounded-xl group-hover:scale-110 transition-transform">
+                  {tool.id === "temp-mail" ? <Mail className="w-6 h-6" /> : <CodeXml className="w-6 h-6" />}
+                </div>
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <h3 className="font-bold text-lg leading-none">{tool.label}</h3>
+                    {tool.isHot && <span className="text-[10px] bg-red-500 text-white font-black px-1.5 py-0.5 rounded flex items-center gap-1 animate-pulse"><Zap size={10} fill="white" /> HOT</span>}
+                    {tool.isNew && <span className="text-[10px] bg-yellow-500 text-white font-black px-1.5 py-0.5 rounded flex items-center gap-1 animate-pulse">NEW</span>}
+                  </div>
+                  <p className="text-sm opacity-80 italic line-clamp-1">{tool.description}</p>
+                </div>
+                <MoveRight className="ml-auto w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+              </div>
+            </Card>
           </Link>
-          <Link
-            href="https://www.youtube.com/channel/UCtgc_t09aTJUxYTu4CAaBAA"
-            aria-label="Share on Youtube"
-          >
-            <svg
-              className="w-[40px] h-[40px]"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fillRule="evenodd"
-                d="M21.7 8.037a4.26 4.26 0 0 0-.789-1.964 2.84 2.84 0 0 0-1.984-.839c-2.767-.2-6.926-.2-6.926-.2s-4.157 0-6.928.2a2.836 2.836 0 0 0-1.983.839 4.225 4.225 0 0 0-.79 1.965 30.146 30.146 0 0 0-.2 3.206v1.5a30.12 30.12 0 0 0 .2 3.206c.094.712.364 1.39.784 1.972.604.536 1.38.837 2.187.848 1.583.151 6.731.2 6.731.2s4.161 0 6.928-.2a2.844 2.844 0 0 0 1.985-.84 4.27 4.27 0 0 0 .787-1.965 30.12 30.12 0 0 0 .2-3.206v-1.516a30.672 30.672 0 0 0-.202-3.206Zm-11.692 6.554v-5.62l5.4 2.819-5.4 2.801Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </Link>
-        </div>
+        ))}
       </div>
       {/* Cards Section */}
       <div className="flex flex-col gap-4 md:flex-row md:gap-6 w-full justify-center items-stretch py-4">
@@ -538,172 +555,65 @@ const Mainpage = () => {
             <h2 className="text-2xl sm:text-3xl font-bold">Our Tools</h2>
             <p className="mt-2 sm:mt-4 text-base sm:text-lg">
               Discover our collection of powerful, free online tools designed to make your life easier.
-              From privacy protection to photo processing, we&apos;ve got you covered!
+              From privacy protection to developer utilities, we&apos;ve got you covered!
             </p>
+            {/* New Alert Text */}
+            <div className="mt-6 inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium border border-blue-200 dark:border-blue-800">
+              ✨ We just added <strong>{newTool?.label}</strong> to our toolkit! Give it a try below.
+            </div>
           </div>
+
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-blue-500 hover:border-l-blue-600">
-              <div className="flex flex-col items-center text-center">
-                <div className="bg-blue-100 p-3 rounded-full mb-4">
-                  <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-blue-600">Temp Mail</CardTitle>
-                <span className="px-3 py-1 text-xs font-bold bg-green-100 text-green-800 rounded-full mb-4">FREE & POPULAR</span>
-                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
-                  Generate temporary email addresses instantly! Perfect for protecting your privacy,
-                  avoiding spam, and testing software. Auto-deletes after 12 hours.
-                </p>
-                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
-                  <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded">No Signup</span>
-                  <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded">Instant Access</span>
-                  <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded">Auto-Delete</span>
-                </div>
-              </div>
-              <Button asChild className="w-full mt-4">
-                <Link href="/temp-mail" className="inline-flex items-center justify-center">
-                  Try Temp Mail
-                  <MoveRight className="ml-2" />
-                </Link>
-              </Button>
-            </Card>
-
-            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-purple-500 hover:border-l-purple-600">
-              <div className="flex flex-col items-center text-center">
-                <div className="bg-purple-100 p-3 rounded-full mb-4">
-                  <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <path d="M21 15l-5-5L5 21" />
-                  </svg>
-                </div>
-                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-purple-600">Passport Photo Maker</CardTitle>
-                <span className="px-3 py-1 text-xs font-bold bg-orange-100 text-orange-800 rounded-full mb-4">FREE TOOL</span>
-                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
-                  Create perfect passport-size photos for India, UK, USA, and Australia.
-                  Upload, crop, and generate printable 6x4 sheets with cut lines instantly.
-                </p>
-                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
-                  <span className="px-2 py-1 bg-purple-50 text-purple-700 rounded">Multi-Country</span>
-                  <span className="px-2 py-1 bg-purple-50 text-purple-700 rounded">Printable</span>
-                  <span className="px-2 py-1 bg-purple-50 text-purple-700 rounded">Instant</span>
-                </div>
-              </div>
-              <Button asChild className="w-full mt-4">
-                <Link href="/passport-photo-printing" className="inline-flex items-center justify-center">
-                  Create Photos
-                  <MoveRight className="ml-2" />
-                </Link>
-              </Button>
-            </Card>
-
-            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-green-500 hover:border-l-green-600">
-              <div className="flex flex-col items-center text-center">
-                <div className="bg-green-100 p-3 rounded-full mb-4">
-                  <CodeXml className="w-8 h-8 text-green-600" />
-                </div>
-                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-green-600">API Workflow Designer</CardTitle>
-                <span className="px-3 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded-full mb-4">NEW</span>
-                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
-                  Design and visualize API workflows with our intuitive drag-and-drop interface.
-                  Perfect for developers and API designers.
-                </p>
-                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
-                  <span className="px-2 py-1 bg-green-50 text-green-700 rounded">Drag & Drop</span>
-                  <span className="px-2 py-1 bg-green-50 text-green-700 rounded">Visual</span>
-                  <span className="px-2 py-1 bg-green-50 text-green-700 rounded">Developer</span>
-                </div>
-              </div>
-              <Button asChild className="w-full mt-4">
-                <Link href="/api-wd" className="inline-flex items-center justify-center">
-                  Try Designer
-                  <MoveRight className="ml-2" />
-                </Link>
-              </Button>
-            </Card>
-
-            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-red-500 hover:border-l-red-600">
-              <div className="flex flex-col items-center text-center">
-                <div className="bg-red-100 p-3 rounded-full mb-4">
-                  <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4" />
-                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.745 3.745 0 0 1 3.296-1.043A3.745 3.745 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-red-600">reCAPTCHA Tools</CardTitle>
-                <span className="px-3 py-1 text-xs font-bold bg-yellow-100 text-yellow-800 rounded-full mb-4">SECURITY</span>
-                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
-                  Test and implement Google reCAPTCHA v2 and v3 for your websites.
-                  Protect against spam and abuse with our testing tools.
-                </p>
-                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
-                  <span className="px-2 py-1 bg-red-50 text-red-700 rounded">v2 & v3</span>
-                  <span className="px-2 py-1 bg-red-50 text-red-700 rounded">Testing</span>
-                  <span className="px-2 py-1 bg-red-50 text-red-700 rounded">Security</span>
-                </div>
-              </div>
-              <Button asChild className="w-full mt-4">
-                <Link href="/captcha" className="inline-flex items-center justify-center">
-                  Test CAPTCHA
-                  <MoveRight className="ml-2" />
-                </Link>
-              </Button>
-            </Card>
-
-            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-indigo-500 hover:border-l-indigo-600">
-              <div className="flex flex-col items-center text-center">
-                <div className="bg-indigo-100 p-3 rounded-full mb-4">
-                  <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-indigo-600">OD2 Billing System</CardTitle>
-                <span className="px-3 py-1 text-xs font-bold bg-purple-100 text-purple-800 rounded-full mb-4">PREMIUM</span>
-                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
-                  Robust billing system built for performance and scalability.
-                  Perfect for managing your business workflow with advanced features.
-                </p>
-                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
-                  <span className="px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Customizable</span>
-                  <span className="px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Scalable</span>
-                  <span className="px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Advanced</span>
-                </div>
-              </div>
-              <Button asChild className="w-full mt-4">
-                <Link href="/products" className="inline-flex items-center justify-center">
-                  Learn More
-                  <MoveRight className="ml-2" />
-                </Link>
-              </Button>
-            </Card>
-
-            <Card className="flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 border-l-amber-500 hover:border-l-amber-600">
-              <div className="flex flex-col items-center text-center">
-                <div className="bg-amber-100 p-3 rounded-full mb-4">
-                  <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                  </svg>
-                </div>
-                <CardTitle className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-amber-600">More Tools Coming</CardTitle>
-                <span className="px-3 py-1 text-xs font-bold bg-gray-100 text-gray-800 rounded-full mb-4">COMING SOON</span>
-                <p className="text-center text-sm sm:text-base mb-4 flex-grow">
-                  We&apos;re constantly developing new tools to make your digital life easier.
-                  Stay tuned for more innovative solutions!
-                </p>
-                <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
-                  <span className="px-2 py-1 bg-amber-50 text-amber-700 rounded">Innovation</span>
-                  <span className="px-2 py-1 bg-amber-50 text-amber-700 rounded">Updates</span>
-                  <span className="px-2 py-1 bg-amber-50 text-amber-700 rounded">Free</span>
-                </div>
-              </div>
-              <Button asChild className="w-full mt-4" disabled>
-                <span className="inline-flex items-center justify-center cursor-not-allowed opacity-50">
-                  Coming Soon
-                  <MoveRight className="ml-2" />
-                </span>
-              </Button>
-            </Card>
+            {menuItems.tools.map((tool) => {
+              const Icon = tool.icon;
+              return (
+                <Card
+                  key={tool.id}
+                  className={cn(
+                    "flex flex-col justify-between h-full p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full border-l-4 hover:scale-[1.02]",
+                    tool.borderColor || "border-l-blue-500"
+                  )}
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className={cn("p-3 rounded-full mb-4 bg-muted/50 border border-border/50", tool.colorClass?.replace('text-', 'bg-').split(' ')[0])} style={{ backgroundColor: 'rgba(var(--primary), 0.05)' }}>
+                      <Icon className={cn("w-8 h-8", tool.colorClass || "text-blue-600")} />
+                    </div>
+                    <CardTitle className={cn("text-lg sm:text-xl font-semibold mb-2 sm:mb-3", tool.colorClass || "text-blue-600")}>
+                      {tool.label}
+                    </CardTitle>
+                    <span className={cn(
+                      "px-3 py-1 text-xs font-bold rounded-full mb-4",
+                      tool.isNew ? "bg-yellow-600 text-white animate-pulse" : "bg-muted text-muted-foreground"
+                    )}>
+                      {tool.badgeText || (tool.category?.toUpperCase())}
+                    </span>
+                    <p className="text-center text-sm sm:text-base mb-4 flex-grow text-muted-foreground">
+                      {tool.description}
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-2 mb-4 text-xs">
+                      {tool.features?.slice(0, 3).map((feature, idx) => (
+                        <span key={idx} className="px-2 py-1 bg-muted rounded text-muted-foreground whitespace-nowrap">
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <Button asChild className="w-full mt-4" disabled={tool.isComingSoon}>
+                    {tool.isComingSoon ? (
+                      <span className="inline-flex items-center justify-center cursor-not-allowed opacity-50">
+                        Coming Soon
+                        <MoveRight className="ml-2" />
+                      </span>
+                    ) : (
+                      <Link href={tool.url} className="inline-flex items-center justify-center">
+                        Try {tool.label}
+                        <MoveRight className="ml-2" />
+                      </Link>
+                    )}
+                  </Button>
+                </Card>
+              );
+            })}
           </div>
           <div className="mt-8 sm:mt-12 text-center">
             <p className="text-base sm:text-lg mb-3 sm:mb-4">
