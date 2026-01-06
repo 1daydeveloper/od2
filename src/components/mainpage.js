@@ -70,7 +70,7 @@ const Mainpage = () => {
           <div className="flex items-center gap-2 overflow-hidden">
             <span className="hidden sm:inline-block bg-white text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full">HOT</span>
             <p className="text-xs sm:text-sm font-medium truncate">
-            Try our new <span className="font-bold underline decoration-blue-200">Test Mail Tool</span> – Preview & Test emails for free!
+            Try our new <span className="font-bold underline decoration-blue-200"><Link href="/test-mail" className="font-bold hover:underline">Test Mail Tool</Link></span> – Preview & Test emails for free!
             </p>
           </div>
           <Button asChild size="sm" variant="secondary" className="h-7 text-[10px] sm:text-xs">
@@ -87,6 +87,17 @@ const Mainpage = () => {
 
           <div className="relative z-10 flex flex-col items-center gap-6">
             <div className="hidden lg:flex gap-4">
+                        <Button asChild variant="outline" className="rounded-full px-4 border-blue-500/30 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
+                <Link href={newTool?.url || "/test-mail"} className="inline-flex items-center">
+                  <span className="text-[10px] bg-blue-600 rounded-full text-white px-2 py-0.5 me-3 animate-pulse">
+                NEW
+                  </span>
+                  <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                    {newTool?.label || "Test Mail Content Tool"} is live
+                  </span>
+                  <MoveRight className="ml-3 w-4 h-4 text-blue-600" />
+                </Link>
+              </Button>
               <Button asChild variant="outline" className="rounded-full px-4 border-blue-500/30 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
                 <Link href={menuItems.tools.find(t => t.id === "temp-mail")?.url || "/temp-mail"} className="inline-flex items-center">
                   <span className="text-[10px] bg-orange-600 rounded-full text-white px-2 py-0.5 me-3 animate-pulse">
@@ -98,17 +109,7 @@ const Mainpage = () => {
                   <MoveRight className="ml-3 w-4 h-4 text-red-600" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="rounded-full px-4 border-blue-500/30 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                <Link href={newTool?.url || "/test-mail"} className="inline-flex items-center">
-                  <span className="text-[10px] bg-blue-600 rounded-full text-white px-2 py-0.5 me-3 animate-pulse">
-                NEW
-                  </span>
-                  <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
-                    {newTool?.label || "Test Mail Content Tool"} is live
-                  </span>
-                  <MoveRight className="ml-3 w-4 h-4 text-blue-600" />
-                </Link>
-              </Button>
+    
             </div>
 
             <div className="max-w-4xl">

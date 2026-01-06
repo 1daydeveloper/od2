@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { ThumbsUp, ThumbsDown, Mail, Trash2Icon, Clock1, Copy, Loader, Loader2Icon, PencilLineIcon, MailX, Trash2, Clock } from "lucide-react";
+import { ThumbsUp, ThumbsDown, Mail, Trash2Icon, Clock1, Copy, Loader, Loader2Icon, PencilLineIcon, MailX, Trash2, Clock, ExternalLink, Smartphone } from "lucide-react";
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 
 /**
@@ -462,14 +463,54 @@ export default function GetEmailByID() {
 
   return (
     <>
-     
+
       <div className="flex flex-col gap-4 min-h-screen ">
-        <h2 className="text-2xl font-bold mb-4">
+        <h2 className="text-2xl font-bold mb-1">
           Temp Mail
-          <span className="m-3 inline-block px-2 py-1 text-xl font-semibold !text-slate-950 bg-yellow-500 rounded-full">
-            Beta
-          </span>
         </h2>
+        <p className="text-muted-foreground text-sm mb-4 ">
+          Get a free, disposable email address instantly. Protect your privacy and keep your primary inbox spam-free.Emails are automatically deleted after 12 hours.
+        </p>
+
+        {/* Promotion Banner for Test Mail */}
+        <div className="mb-4 p-3 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/20 rounded-lg flex items-center justify-between gap-4 shadow-sm">
+          <div className="flex items-center gap-2">
+            <span className="bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">NEW</span>
+            <p className="text-xs sm:text-sm font-medium">
+              Need Test Mail templates? Try our new <Link href="/test-mail" className="text-blue-600 font-bold hover:underline">Test Mail Tool</Link>
+            </p>
+          </div>
+          <Link href="/test-mail">
+            <button className="text-[10px] sm:text-xs bg-white dark:bg-slate-900 border border-blue-500/30 px-3 py-1 rounded hover:bg-blue-50 transition-colors">
+              Explore Templates
+            </button>
+          </Link>
+        </div>
+
+        {/* Android Beta App Banner */}
+        <div className="mb-6 p-3 bg-gradient-to-r from-yellow-600/10 to-emerald-600/10 border border-yellow-500/20 rounded-lg flex items-center justify-between gap-4 shadow-sm">
+          <div className="flex items-center gap-3">
+            <div className="bg-yellow-600/20 p-2 rounded-full text-yellow-600">
+              <Smartphone size={20} />
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-2">
+                <p className="text-xs sm:text-sm font-semibold text-yellow-700 dark:text-yellow-400">
+                  OD2 Temp Mail Android App is here!
+                </p>
+                <span className="bg-yellow-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">BETA</span>
+              </div>
+              <p className="text-[10px] sm:text-xs opacity-80">
+                Join our community group to get exclusive Beta access on the Play Store.
+              </p>
+            </div>
+          </div>
+          <a href="https://groups.google.com/g/od2-testers" target="_blank" rel="noopener noreferrer">
+            <button className="text-[10px] sm:text-xs bg-white dark:bg-slate-900 border border-yellow-500/30 px-3 py-1 rounded hover:bg-yellow-50 transition-colors">
+              Join Group
+            </button>
+          </a>
+        </div>
         <form onSubmit={handleSubmit} autoComplete="off">
           <div className="md:flex-col relative min-w-20 items-center space-x-2 self-center ">
             <input
@@ -489,8 +530,8 @@ export default function GetEmailByID() {
             <Mail className="absolute left-1 top-2 " />
             <button
               className={`absolute right-1 top-1 py-1 px-2.5 border border-transparent text-center text-sm  shadow-sm hover:shadow  focus:shadow-none ${isSubmitEnabled
-                  ? ""
-                  : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                ? ""
+                : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 }`}
               disabled={!isSubmitEnabled}
               type="submit"
@@ -512,8 +553,8 @@ export default function GetEmailByID() {
             onClick={copyToClipboard}
             disabled={!isSubmitEnabled}
             className={`bg-yellow-500 flex gap-1 text-white px-3 py-1 rounded-md ${isSubmitEnabled
-                ? ""
-                : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              ? ""
+              : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               }`}
           >
             <Copy />
@@ -541,8 +582,8 @@ export default function GetEmailByID() {
                     <button
                       key={email._id}
                       className={`p-2 rounded-lg border transition-colors duration-200 text-left ${activeTab === email._id
-                          ? "bg-blue-50 border-blue-300 shadow-sm"
-                          : "bg-white border-gray-200 hover:bg-gray-50"
+                        ? "bg-blue-50 border-blue-300 shadow-sm"
+                        : "bg-white border-gray-200 hover:bg-gray-50"
                         }`}
                       onClick={() => getemailcontentdata(email._id)}
                     >
@@ -644,16 +685,16 @@ export default function GetEmailByID() {
                             onClick={handleFeedback('good')}
                             disabled={feedbackLoading}
                             className={`group relative flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 ${feedbackLoading
-                                ? "opacity-50 cursor-not-allowed bg-gray-50 text-gray-400"
-                                : "bg-green-50 text-green-700 hover:bg-green-100 border border-green-200 hover:shadow-sm"
+                              ? "opacity-50 cursor-not-allowed bg-gray-50 text-gray-400"
+                              : "bg-green-50 text-green-700 hover:bg-green-100 border border-green-200 hover:shadow-sm"
                               }`}
                             title="Helpful email"
                           >
                             <ThumbsUp
                               size={12}
                               className={`transition-colors duration-200 ${feedbackLoading
-                                  ? "text-gray-400"
-                                  : "text-green-600 group-hover:text-green-700"
+                                ? "text-gray-400"
+                                : "text-green-600 group-hover:text-green-700"
                                 }`}
                             />
                             <span>Good</span>
@@ -668,16 +709,16 @@ export default function GetEmailByID() {
                             onClick={handleFeedback('bad')}
                             disabled={feedbackLoading}
                             className={`group relative flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 ${feedbackLoading
-                                ? "opacity-50 cursor-not-allowed bg-gray-50 text-gray-400"
-                                : "bg-red-50 text-red-700 hover:bg-red-100 border border-red-200 hover:shadow-sm"
+                              ? "opacity-50 cursor-not-allowed bg-gray-50 text-gray-400"
+                              : "bg-red-50 text-red-700 hover:bg-red-100 border border-red-200 hover:shadow-sm"
                               }`}
                             title="Report issue"
                           >
                             <ThumbsDown
                               size={12}
                               className={`transition-colors duration-200 ${feedbackLoading
-                                  ? "text-gray-400"
-                                  : "text-red-600 group-hover:text-red-700"
+                                ? "text-gray-400"
+                                : "text-red-600 group-hover:text-red-700"
                                 }`}
                             />
                             <span>Issue</span>
@@ -1039,13 +1080,13 @@ export default function GetEmailByID() {
                   </div>
                 </div>
               </Card>
-               <div style={{ border: '1px solid #ffe58f', borderRadius: 6, padding: 12, marginBottom: 16 }}>
-        <strong>Note:</strong> The following email addresses are <span style={{ color: '#d4380d' }}>not allowed</span> as the local-part (before the <code>@</code>):<br />
-        <span style={{ fontSize: '0.95em' }}>{RESERVED_EMAILS.join(', ')}</span><br />
-        <span style={{ fontSize: '0.92em', color: '#ad6800' }}>
-          Attempts to use these will result in an error: <em>&quot;Reserved email addresses are not allowed. Please use a different email address.&quot;</em>
-        </span>
-      </div>
+              <div style={{ border: '1px solid #ffe58f', borderRadius: 6, padding: 12, marginBottom: 16 }}>
+                <strong>Note:</strong> The following email addresses are <span style={{ color: '#d4380d' }}>not allowed</span> as the local-part (before the <code>@</code>):<br />
+                <span style={{ fontSize: '0.95em' }}>{RESERVED_EMAILS.join(', ')}</span><br />
+                <span style={{ fontSize: '0.92em', color: '#ad6800' }}>
+                  Attempts to use these will result in an error: <em>&quot;Reserved email addresses are not allowed. Please use a different email address.&quot;</em>
+                </span>
+              </div>
               <Card className="border shadow-xl rounded-xl  text-center py-12">
                 <h1 className="text-4xl font-bold">Temporary Email Service</h1>
                 <p className="mt-4 text-lg">
