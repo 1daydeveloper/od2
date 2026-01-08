@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { ThumbsUp, ThumbsDown, Mail, Trash2Icon, Clock1, Copy, Loader, Loader2Icon, PencilLineIcon, MailX, Trash2, Clock, ExternalLink, Smartphone } from "lucide-react";
+import { ThumbsUp, ThumbsDown, Mail, Trash2Icon, Clock1, Copy, Loader, Loader2Icon, PencilLineIcon, MailX, Trash2, Clock, ExternalLink, Smartphone, ShieldCheck, Zap, RefreshCw, X, Info, History, ChevronDown, ChevronUp, Bell } from "lucide-react";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 
@@ -45,12 +45,51 @@ export default function GetEmailByID() {
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [intervalId, SetIntervalId] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
+  const [isSubmitEnabled, setIsSubmitEnabled] = useState(true); // Default to true if you want it active or keep as false
   const [feedbackLoading, setFeedbackLoading] = useState(false); // Feedback state
+  const [isHistoryVisible, setIsHistoryVisible] = useState(false);
+  const [showNotification, setShowNotification] = useState(true);
+  const [history, setHistory] = useState([]);
+
+  // Load history from localStorage on mount
+  useEffect(() => {
+    const savedHistory = localStorage.getItem("tm_history");
+    if (savedHistory) {
+      try {
+        setHistory(JSON.parse(savedHistory));
+      } catch (e) {
+        console.error("Failed to parse history", e);
+      }
+    }
+  }, []);
+
+  const addToHistory = (prefix) => {
+    if (!prefix) return;
+    setHistory(prev => {
+      const filtered = prev.filter(item => item !== prefix);
+      const updated = [prefix, ...filtered].slice(0, 10); // Keep last 10
+      localStorage.setItem("tm_history", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const removeFromHistory = (prefix) => {
+    setHistory(prev => {
+      const updated = prev.filter(item => item !== prefix);
+      localStorage.setItem("tm_history", JSON.stringify(updated));
+      return updated;
+    });
+  };
 
   // Cleanup interval and blob URLs on component unmount
   useEffect(() => {
+    // Auto-hide notification after 5 seconds
+    const notificationTimer = setTimeout(() => {
+      setShowNotification(false);
+    }, 5000);
+
     return () => {
+      clearTimeout(notificationTimer);
       if (intervalId) {
         clearInterval(intervalId);
       }
@@ -68,6 +107,17 @@ export default function GetEmailByID() {
     }
     setIsLoading(false); // Stop loading immediately
     setIsRefreshing(false);
+  };
+
+  const handleReset = () => {
+    stopRetry();
+    setEmails([]);
+    setEmailContent({});
+    setError("");
+    if (emailIframeSrc) {
+      URL.revokeObjectURL(emailIframeSrc);
+      setEmailIframeSrc("");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -122,6 +172,18 @@ export default function GetEmailByID() {
               setIsLoading(false); // Set loading to false when fetch is done
               setEmails(emailsArray);
               setIsRefreshing(false);
+              addToHistory(id); // Save to history on successful fetch
+
+              // Scroll to inbox list on mobile when results are found
+              const isMobile = typeof window !== 'undefined' ? window.innerWidth < 480 : false;
+              if (isMobile && emailsArray.length > 0) {
+                setTimeout(() => {
+                  const inboxList = document.querySelector('[data-inbox-list]');
+                  if (inboxList) {
+                    inboxList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }, 100);
+              }
             }
           })
           .catch((err) => {
@@ -162,7 +224,7 @@ export default function GetEmailByID() {
     }
 
     // Scroll to email content on mobile devices
-    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : false; // lg breakpoint
+    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 480 : false; // lg breakpoint
     if (isMobile) {
       setTimeout(() => {
         const emailContentSection = document.querySelector('[data-email-content]');
@@ -187,50 +249,14 @@ export default function GetEmailByID() {
     txt.innerHTML = html;
     const decodedContent = txt.value;
 
-    // If attachments are not present or empty, return original decoded content with minimal responsive wrapper
-    if (!attachments || attachments.length === 0) {
-      return `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <style>
-              body { 
-                margin: 0; 
-                padding: 8px;
-                max-width: 100%;
-                overflow-x: hidden;
-              }
-              * {
-                max-width: 100% !important;
-                box-sizing: border-box !important;
-              }
-              img {
-                max-width: 100% !important;
-                height: auto !important;
-              }
-              table {
-                width: 100% !important;
-                max-width: 100% !important;
-              }
-            </style>
-          </head>
-          <body>
-            ${decodedContent}
-          </body>
-        </html>
-      `;
-    }
-
     // Create a mapping of CID to data URL for attachments only
-    const cidMap = attachments.reduce((map, attachment) => {
+    const cidMap = attachments?.reduce((map, attachment) => {
       if (attachment.cid) {
         const dataUrl = `data:${attachment.contentType};base64,${attachment.content}`;
         map[attachment.cid] = dataUrl;
       }
       return map;
-    }, {});
+    }, {}) || {};
 
     // Replace <img> tags with updated src for attachments only
     const updatedContent = decodedContent.replace(
@@ -252,26 +278,44 @@ export default function GetEmailByID() {
           <style>
             body { 
               margin: 0; 
-              padding: 8px;
-              max-width: 100%;
+              padding: 12px;
+              max-width: 100vw;
               overflow-x: hidden;
+              box-sizing: border-box;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+              line-height: 1.6;
+              color: #334155;
             }
             * {
-              max-width: 100% !important;
               box-sizing: border-box !important;
+              max-width: 100% !important;
+              height: auto !important;
+              overflow-wrap: anywhere !important;
+              word-break: break-word !important;
             }
             img {
               max-width: 100% !important;
               height: auto !important;
+              display: block;
+              margin: 10px 0;
             }
             table {
               width: 100% !important;
               max-width: 100% !important;
+              table-layout: fixed !important;
+              border-collapse: collapse !important;
             }
+            /* Handle fixed width containers common in promotional emails */
+            [style*="width"], [width] {
+              width: auto !important;
+              max-width: 100% !important;
+              min-width: 0 !important;
+            }
+            .mb_text { font-size: inherit !important; }
           </style>
         </head>
         <body>
-          ${updatedContent}
+          ${updatedContent || decodedContent}
         </body>
       </html>
     `;
@@ -302,7 +346,8 @@ export default function GetEmailByID() {
       "feedback",
       "customerservice",
     ];
-    const inputText = e.target.value.toLowerCase(); // Convert to lowercase
+    const rawInput = e.target.value.toLowerCase();
+    const inputText = rawInput.replace(/\s+/g, ''); // Remove all whitespace
     setError(""); // Reset the error message
 
     let filteredText = inputText;
@@ -337,13 +382,66 @@ export default function GetEmailByID() {
 
     // Enable submit button and log event
     setIsSubmitEnabled(true);
+
+    // Reset state on input change to ensure container is cleared
+    handleReset();
   }
-  const copyToClipboard = () => {
+
+  /**
+   * Extracts OTP from email subject or content with context check
+   */
+  const extractOTP = (subject, text, html) => {
+    const otpRegex = /\b(\d{4,8})\b/g;
+    const keywords = ['code', 'otp', 'verify', 'verification', 'pin', 'secure', 'authenticator'];
+
+    const hasContext = (val, matchIndex) => {
+      if (!val) return false;
+      const start = Math.max(0, matchIndex - 50);
+      const end = Math.min(val.length, matchIndex + 50);
+      const context = val.substring(start, end).toLowerCase();
+      return keywords.some(keyword => context.includes(keyword));
+    };
+
+    // 1. Check Subject (Highest Priority)
+    if (subject) {
+      let match;
+      while ((match = otpRegex.exec(subject)) !== null) {
+        if (hasContext(subject, match.index)) return match[1];
+      }
+    }
+
+    // 2. Check Text Body
+    if (text) {
+      let match;
+      otpRegex.lastIndex = 0; // Reset regex
+      while ((match = otpRegex.exec(text)) !== null) {
+        if (hasContext(text, match.index)) return match[1];
+      }
+    }
+
+    // 3. Check HTML Body
+    if (html) {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const plainHtmlText = doc.body.textContent || "";
+      let match;
+      otpRegex.lastIndex = 0;
+      while ((match = otpRegex.exec(plainHtmlText)) !== null) {
+        if (hasContext(plainHtmlText, match.index)) return match[1];
+      }
+    }
+
+    return null;
+  };
+
+  const detectedOTP = extractOTP(emailcontent.subject, emailcontent.text, emailcontent.html);
+
+  const copyToClipboard = (text = null) => {
+    const textToCopy = text || (id + "@tm.od2.in");
     if (!navigator.clipboard) {
       toast.error("Clipboard not supported on this browser");
     } else {
-      navigator.clipboard.writeText(id + "@tm.od2.in");
-      toast.success("Email Copied!");
+      navigator.clipboard.writeText(textToCopy);
+      toast.success(text === null ? "Email Copied!" : "OTP Copied!");
     }
   };
   function timeAgo(isoDate) {
@@ -511,58 +609,189 @@ export default function GetEmailByID() {
             </button>
           </a>
         </div>
-        <form onSubmit={handleSubmit} autoComplete="off">
-          <div className="md:flex-col relative min-w-20 items-center space-x-2 self-center ">
-            <input
-              type="text"
-              id="username"
-              value={id}
-              onChange={handleInputChange}
-              autoComplete="off"
-              autoCorrect="off"
-              autoCapitalize="off"
-              spellCheck="false"
-              required
-              className="w-full bg-transparent h-10 placeholder:text-slate-400  text-sm border border-slate-200 rounded-md pr-6 pl-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-              placeholder="Enter your email prefix/Username (we will add @tm.od2.in for you)"
-            />
+        <div className="w-full max-w-4xl mx-auto">
+          {showNotification && (
+            <div className="mb-4 p-4 bg-green-600 text-white rounded-xl shadow-lg flex items-start gap-3 animate-in fade-in slide-in-from-top-4 duration-500 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent pointer-events-none"></div>
+              <div className="bg-white/20 p-2 rounded-lg">
+                <Bell size={20} />
+              </div>
+              <div className="flex-grow">
+                <p className="text-sm font-medium leading-relaxed">
+We’ve reviewed your feedback and improved the tool. Thanks for helping us make it better!                </p>
+              </div>
+              <button
+                onClick={() => setShowNotification(false)}
+                className="text-white/60 hover:text-white transition-colors"
+              >
+                <X size={18} />
+              </button>
+              {/* Progress bar for auto-hide */}
+              <div className="absolute bottom-0 left-0 h-1 bg-white/30"
+                style={{
+                  width: '100%',
+                  transformOrigin: 'left',
+                  animation: 'shrink 5s linear forwards'
+                }}></div>
+              <style dangerouslySetInnerHTML={{
+                __html: `
+                @keyframes shrink {
+                  from { width: 100%; }
+                  to { width: 0%; }
+                }
+              `}} />
+            </div>
+          )}
+          <form onSubmit={handleSubmit} autoComplete="off" className="relative">
+            <div className="relative group transition-all duration-300">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+              <div className="relative flex flex-col md:flex-row items-center gap-2 bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xl">
+                <div className="relative flex-grow w-full">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <Mail className="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    id="username"
+                    value={id}
+                    onChange={handleInputChange}
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck="false"
+                    required
+                    className="block w-full pl-11 pr-4 py-3 bg-transparent text-slate-900 dark:text-slate-100 text-sm md:text-base border-none focus:ring-0 focus:outline-none placeholder:text-slate-400"
+                    placeholder="Enter your email prefix / Username"
+                  />
+                </div>
 
-            <Mail className="absolute left-1 top-2 " />
+                <div className="flex items-center gap-2 w-full md:w-auto px-2 py-1 md:py-0 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium text-sm hidden md:inline">@tm.od2.in</span>
+
+                  <div className="flex items-center gap-1 w-full md:w-auto">
+                    <button
+                      disabled={!isSubmitEnabled || isRefreshing}
+                      type="submit"
+                      className={`flex items-center justify-center gap-2 flex-grow md:w-auto px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 ${isSubmitEnabled && !isRefreshing
+                        ? "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/20 active:scale-95"
+                        : "bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed"
+                        }`}
+                    >
+                      {isRefreshing ? (
+                        <RefreshCw className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Zap className="h-4 w-4" />
+                      )}
+                      <span>{isRefreshing ? "Checking Inbox..." : "Check Inbox"}</span>
+                    </button>
+
+                    {(isRefreshing || isLoading) && (
+                      <button
+                        onClick={handleReset}
+                        type="button"
+                        className="p-2.5 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400 hover:bg-red-100 transition-colors"
+                        title="Cancel search"
+                      >
+                        <X size={18} />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          {error && (
+            <div className="mt-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 rounded-lg flex items-start gap-2 animate-in fade-in slide-in-from-top-1">
+              <ShieldCheck className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+              <div className="text-red-700 dark:text-red-400 text-sm font-medium">
+                <span dangerouslySetInnerHTML={{ __html: error }} />
+              </div>
+            </div>
+          )}
+
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <div className="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+              <span className="text-xs text-slate-500 dark:text-slate-400">Current Email:</span>
+              <span className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                {id ? `${id}@tm.od2.in` : "None"}
+              </span>
+            </div>
             <button
-              className={`absolute right-1 top-1 py-1 px-2.5 border border-transparent text-center text-sm  shadow-sm hover:shadow  focus:shadow-none ${isSubmitEnabled
-                ? ""
-                : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              onClick={() => copyToClipboard()}
+              disabled={!id}
+              className={`flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 ${id
+                ? "bg-yellow-500 hover:bg-yellow-600 text-white shadow-md active:scale-95"
+                : "bg-slate-200 text-slate-400 cursor-not-allowed"
                 }`}
-              disabled={!isSubmitEnabled}
-              type="submit"
             >
-              Check Inbox
+              <Copy size={14} />
+              Copy Email
             </button>
           </div>
-        </form>
-        {error && (
-          <div className="text-red-500 ">
-            <span dangerouslySetInnerHTML={{ __html: error }} />
-          </div>
-        )}
-        <div className="p-3 rounded-md flex gap-2 items-center ">
-          <p>
-            Email:<span className="font-bold"> {id}@tm.od2.in</span>
-          </p>
-          <button
-            onClick={copyToClipboard}
-            disabled={!isSubmitEnabled}
-            className={`bg-yellow-500 flex gap-1 text-white px-3 py-1 rounded-md ${isSubmitEnabled
-              ? ""
-              : "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              }`}
-          >
-            <Copy />
-            Copy
-          </button>
+
+          {/* Collapsible Recently Used History Section - Now inside the card area */}
+          {history.length > 0 && (
+            <div className="mt-4 animate-in fade-in slide-in-from-top-2 duration-500">
+              <Card className="border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 shadow-sm relative">
+                <button
+                  onClick={() => setIsHistoryVisible(!isHistoryVisible)}
+                  className="w-full flex items-center justify-between px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors rounded-t-lg"
+                >
+                  <div className="flex items-center gap-2">
+                    <History size={16} className="text-slate-500" />
+                    <span className="text-xs font-bold text-slate-700 dark:text-slate-300">Recently Used Emails</span>
+                    <div className="group relative" onClick={(e) => e.stopPropagation()}>
+                      <Info size={12} className="text-slate-400 cursor-help hover:text-blue-500 transition-colors" />
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-slate-800 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-[100] shadow-xl leading-relaxed">
+                        History is stored in your browser`&apos;`s local storage only. We do not gather or store any of your activity on our servers.
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-slate-800"></div>
+                      </div>
+                    </div>
+                  </div>
+                  {isHistoryVisible ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                </button>
+
+                {isHistoryVisible && (
+                  <div className="px-4 pb-4 pt-1 animate-in slide-in-from-top-1 duration-300">
+                    <div className="flex flex-wrap gap-2">
+                      {history.map((prefix) => (
+                        <div
+                          key={prefix}
+                          className="group flex items-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full pl-3 pr-1 py-1 shadow-sm hover:border-blue-300 dark:hover:border-blue-900 transition-all duration-200 animate-in zoom-in-95"
+                        >
+                          <button
+                            onClick={() => {
+                              handleReset();
+                              setId(prefix);
+                              setIsSubmitEnabled(true);
+                              setTimeout(() => {
+                                const form = document.querySelector('form');
+                                if (form) form.requestSubmit();
+                              }, 0);
+                            }}
+                            className="text-[10px] font-semibold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 mr-1"
+                          >
+                            {prefix}
+                          </button>
+                          <button
+                            onClick={() => removeFromHistory(prefix)}
+                            className="p-0.5 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 text-slate-300 hover:text-red-500 transition-colors"
+                            title="Remove from history"
+                          >
+                            <X size={10} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </Card>
+            </div>
+          )}
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-2">
+        <div className="flex flex-col lg:flex-row gap-2" data-inbox-list>
           <Card className="flex flex-col space-y-2 lg:w-1/3 w-full  p-4 rounded-md">
             <Card className="relative items-center flex gap-3 justify-center rounded-md ">
               <h3 className="text-2xl">Inbox</h3>
@@ -651,7 +880,7 @@ export default function GetEmailByID() {
               <h3 className="text-base sm:text-lg font-semibold "> Email Content</h3>
             </div>
             {Object.keys(emailcontent).length !== 0 ? (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 {/* Compact header with subject */}
                 <Card >
                   <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
@@ -740,7 +969,27 @@ export default function GetEmailByID() {
                     </div>
                   </div>
                 </Card>
-
+                {/* OTP Container */}
+                {detectedOTP && (
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 animate-in fade-in slide-in-from-top-2 duration-500">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-blue-600 p-2 rounded-lg text-white">
+                        <ShieldCheck size={20} />
+                      </div>
+                      <div>
+                        <p className="text-[10px] uppercase font-bold text-blue-600 dark:text-blue-400 tracking-wider">Verification Code Detected</p>
+                        <h4 className="text-2xl font-black text-slate-900 dark:text-white tracking-widest">{detectedOTP}</h4>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => copyToClipboard(detectedOTP)}
+                      className="flex items-center gap-2 bg-white dark:bg-slate-800 px-4 py-2 rounded-lg border border-blue-200 dark:border-blue-700 text-blue-600 dark:text-blue-400 font-bold hover:bg-blue-50 dark:hover:bg-slate-700 transition shadow-sm active:scale-95"
+                    >
+                      <Copy size={16} />
+                      Copy Code
+                    </button>
+                  </div>
+                )}
                 {/* Content section with minimal spacing */}
                 <div className="border-t border-gray-200 pt-2">
                   <div className="w-full">
@@ -845,35 +1094,25 @@ export default function GetEmailByID() {
                         };
                       }}
                     />
-                    {/* Fallback for when iframe fails */}
-                    {!emailIframeSrc && (
+                    {/* Fallback for when iframe fails or HTML content is missing */}
+                    {(!emailIframeSrc || (!emailcontent.html && emailcontent.text)) && (
                       <div
-                        className="rounded-lg p-3 sm:p-4 lg:p-5 mb-4 border border-gray-200 bg-white"
+                        className="rounded-lg p-4 sm:p-5 border border-gray-200 bg-white"
                         style={{
-                          minHeight: (() => {
-                            if (typeof window === 'undefined') return '400px';
-                            const width = window.innerWidth;
-                            if (width < 480) return '250px';
-                            if (width < 640) return '300px';
-                            if (width < 768) return '350px';
-                            if (width < 1024) return '400px';
-                            return '450px';
-                          })(),
+                          minHeight: '200px',
                           wordBreak: 'break-word',
-                          overflowWrap: 'break-word',
+                          whiteSpace: 'pre-wrap',
                           lineHeight: '1.6',
-                          fontSize: (() => {
-                            if (typeof window === 'undefined') return '14px';
-                            const width = window.innerWidth;
-                            if (width < 480) return '12px';
-                            if (width < 640) return '13px';
-                            return '14px';
-                          })()
+                          fontSize: '14px',
+                          color: '#334155'
                         }}
-                        dangerouslySetInnerHTML={{
-                          __html: decodeHtml(emailcontent.html),
-                        }}
-                      />
+                      >
+                        {emailcontent.html ? (
+                          <div dangerouslySetInnerHTML={{ __html: decodeHtml(emailcontent.html) }} />
+                        ) : (
+                          <div className="font-mono text-sm">{emailcontent.text || "No content to display"}</div>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>
@@ -981,6 +1220,7 @@ export default function GetEmailByID() {
                     <li>Dash (-)</li>
                     <li>Plus sign (+)</li>
                     <li>Comma (,)</li>
+                    <li>Space ( )</li>
                     <li>Brackets (&lt;, &gt;)</li>
                     <li>More than one period (.) in a row</li>
                   </ul>
