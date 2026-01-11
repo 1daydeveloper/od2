@@ -1,98 +1,107 @@
 export const metadata = {
+  title: "Passport Size Printable Photo Maker (6x4)",
+  description: "Create official passport size photos for India, UK, USA, and Australia. Upload, crop, and generate printable 6x4 sheets with cut lines for free.",
+  keywords: [
+    "passport photo maker",
+    "passport size photo",
+    "printable passport photo",
+    "passport photo sheet",
+    "online passport photo generator",
+    "6x4 passport photo",
+    "passport photo India",
+    "passport photo UK",
+    "passport photo USA",
+    "OD2",
+  ],
+  alternates: {
+    canonical: "/passport-photo-printing",
+  },
+  openGraph: {
     title: "Passport Size Printable Photo Maker (6x4) | OD2",
-    description: "Create passport size photos for India, UK, USA, and Australia with our free online Passport Size Printable Photo Maker (6x4). Upload, crop, preview, and generate printable sheets with cut lines. Supports DPI selection, country-specific sizes, and instant download.",
-    openGraph: {
-      title: "Passport Size Printable Photo Maker (6x4) | OD2",
-      description: "Easily create and print passport size photos for multiple countries. Upload, crop, preview, and download a printable 6x4 sheet with cut lines. Supports India, UK, USA, Australia, DPI selection, and more.",
-    },
-    keywords: [
-      "passport photo maker",
-      "passport size photo",
-      "printable passport photo",
-      "passport photo sheet",
-      "passport photo online",
-      "passport photo crop",
-      "passport photo generator",
-      "passport photo download",
-      "passport photo 6x4",
-      "passport photo India",
-      "passport photo UK",
-      "passport photo USA",
-      "passport photo Australia",
-      "DPI passport photo",
-      "free passport photo tool",
-      "passport photo print",
-      "passport photo print online",
-      "passport photo print near me",
-      "passport photo print 4x6",
-      "passport photo print 6x4",
-      "passport photo print size",
-      "passport photo print service",
-      "passport photo print shop",
-      "passport photo print cost",
-      "passport photo print price",
-      "passport photo print app",
-      "passport photo print software",
-      "passport photo print online free",
-      "passport photo print online india",
-      "passport photo print online uk",
-      "passport photo print online canada",
-      "passport photo print online australia",
-      "passport photo print online singapore",
-      "passport photo print online malaysia",
-      "passport photo print online dubai",
-      "passport photo print online usa",
-      "passport photo print online europe",
-      "passport photo print online worldwide",
-      "passport photo print online delivery",
-      "passport photo print online service",
-      "passport photo print online review",
-      "passport photo print online comparison",
-      "passport photo print online best",
-      "passport photo print online top",
-      "passport photo print online quality",
-      "passport photo print online fast",
-      "passport photo print online cheap",
-      "passport photo print online affordable",
-      "passport photo print online reliable",
-      "passport photo print online accurate",
-      "passport photo print online easy",
-      "passport photo print online quick",
-      "passport photo print online simple",
-      "passport photo print online user-friendly",
-      "passport photo print online secure",
-      "passport photo print online private",
-      "passport photo print online confidential",
-      "passport photo print online safe",
-      "passport photo print online trusted",
-      "passport photo print online official",
-      "passport photo print online professional",
-      "passport photo print online business",
-      "passport photo print online company",
-      "passport photo print online website",
-      "passport photo print online platform",
-      "passport photo print online tool",
-      "passport photo print online application",
-      "passport photo print online software",
-      "passport photo print online program",
-      "passport photo print online system",
-      "passport photo print online service",
-      "passport photo print online solution",
-      "passport photo print online method",
-      "passport photo print online technique",
-      "passport photo print online process",
-      "passport photo print online step",
-      "passport photo print online guide",
-      "passport photo print online tutorial",
-      "passport photo print online demo",
-      "passport photo print online example",
-      "passport photo print online sample",
-      "Free Passport Size Printable",
-      "OD2 Passport Size Printable",
-      "OD2",
+    description: "Easily create and print passport size photos for multiple countries. Upload, crop, preview, and download a printable 6x4 sheet with cut lines.",
+    url: "/passport-photo-printing",
+    siteName: "OD2 Tools",
+    images: [
+      {
+        url: "/odd.png",
+        width: 1200,
+        height: 630,
+        alt: "OD2 Passport Photo Maker",
+      },
     ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Passport Size Printable Photo Maker | OD2",
+    description: "Create and print official passport size photos online. No software required.",
+    images: ["/odd.png"],
+  },
+};
+
+export default function PhotoLayout({ children }) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://www.od2.in/passport-photo-printing/#software",
+        "name": "OD2 Passport Photo Maker",
+        "description": "Create printable passport size photos for multiple countries with ease.",
+        "url": "https://www.od2.in/passport-photo-printing",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "One Day Developers (OD2)",
+          "url": "https://www.od2.in"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the correct passport photo size for India?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The standard passport photo size for India is 51x51 mm (600x600 px) with a white background."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many photos fit on a 6x4 sheet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our tool automatically generates a 6x4 printable sheet with cut lines, fitting the maximum number of photos allowed by your selected country's dimensions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is registration required to use the Passport Photo Maker?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, the OD2 Passport Photo Maker is 100% free to use and requires no registration or account creation."
+            }
+          }
+        ]
+      }
+    ]
   };
-  
-  export default function PhotoLayout({ children }) {
-    return <>{children}</>;
-  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      {children}
+    </>
+  );
+}

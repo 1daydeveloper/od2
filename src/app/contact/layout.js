@@ -1,18 +1,39 @@
 export const metadata = {
-  title: "Contact Us | OD2 - One Day Developers",
-  description: "Get in touch with OD2 (One Day Developers). Contact our team for web development, mobile apps, API development, and 24-hour project delivery services.",
-  keywords: "contact OD2, One Day Developers contact, web development contact, mobile app development contact, API development, 24 hour development, contact form, live chat support",
+  title: "Contact One Day Developers - Support and Project Inquiries",
+  description: "Get in touch with One Day Developers (OD2). Contact us for 24-hour project delivery, custom software, mobile apps, or technical support.",
+  keywords: [
+    "contact OD2",
+    "hire software developers",
+    "technical support",
+    "project inquiry",
+    "One Day Developers phone",
+    "OD2 email",
+  ],
+  alternates: {
+    canonical: "/contact",
+  },
   openGraph: {
-    title: "Contact Us | OD2 - One Day Developers",
-    description: "Get in touch with OD2 (One Day Developers). Contact our team for web development, mobile apps, API development, and 24-hour project delivery services.",
-    url: "https://www.od2.in/contact",
+    title: "Contact Us | One Day Developers | OD2",
+    description: "Connect with the OD2 team for rapid software development and innovative tech solutions. We're here to help you build fast.",
+    url: "/contact",
+    siteName: "One Day Developers",
+    images: [
+      {
+        url: "/odd.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact One Day Developers",
+      },
+    ],
+    locale: "en_US",
     type: "website",
   },
-  canonical: "https://www.od2.in/contact",
-  robots: {
-    index: true,
-    follow: true,
-  }
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact One Day Developers | OD2",
+    description: "Start your rapid development project today. Get in touch with OD2.",
+    images: ["/odd.png"],
+  },
 };
 
 export default function ContactLayout({ children }) {
