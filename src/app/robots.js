@@ -1,10 +1,16 @@
 export default function robots() {
-    return {
-      rules: {
+  return {
+    rules: [
+      {
         userAgent: '*',
         allow: '/',
-        disallow: '/private/',
+        disallow: [
+          '/private/',
+          '/admin/',
+          '/api/',
+        ],
       },
-      sitemap: 'https://www.od2.in/sitemap.xml',
-    }
+    ],
+    sitemap: 'https://www.od2.in/sitemap.xml',
   }
+}
