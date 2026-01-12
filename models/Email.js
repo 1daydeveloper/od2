@@ -29,7 +29,7 @@ const emailSchema = new mongoose.Schema({
   },
   messageId: String,
   date: { type: Date, default: Date.now }, // Email receive date
-}, { 
+}, {
   timestamps: true,
   // Optimize for real-time queries
   collation: { locale: 'en_US', strength: 2 }
@@ -53,12 +53,12 @@ emailSchema.index({ "messageId": 1 }, { background: true, sparse: true });
 emailSchema.index({ "subject": "text" }, { background: true });
 
 // Performance optimization: Pre-compile commonly used queries
-emailSchema.statics.findRecentEmails = function(limit = 50, since = null) {
+emailSchema.statics.findRecentEmails = function (limit = 50, since = null) {
   let query = {};
   if (since) {
     query.createdAt = { $gt: new Date(since) };
   }
-  
+
   return this.find(query)
     .sort({ createdAt: -1, date: -1 })
     .limit(limit)
@@ -80,7 +80,7 @@ const emailFeedbackSchema = new mongoose.Schema({
   },
   description: { type: String },
   submittedAt: { type: Date, default: Date.now }
-}, { 
+}, {
   timestamps: true,
   // Optimize for real-time queries
   collation: { locale: 'en_US', strength: 2 }
@@ -102,14 +102,13 @@ const emailHistorySchema = new mongoose.Schema({
     },
   ],
   count: { type: Number, default: 0 },
-}, { 
+}, {
   timestamps: true,
   // Optimize for real-time queries
   collation: { locale: 'en_US', strength: 2 }
 });
 
 // Indexes for email history real-time queries
-emailHistorySchema.index({ "email": 1 }, { background: true, unique: true });
 emailHistorySchema.index({ "count": -1 }, { background: true });
 emailHistorySchema.index({ "updatedAt": -1 }, { background: true });
 
