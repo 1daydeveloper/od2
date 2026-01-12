@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import { ThumbsUp, ThumbsDown, Mail, Trash2Icon, Clock1, Copy, Loader, Loader2Icon, PencilLineIcon, MailX, Trash2, Clock, ExternalLink, Smartphone, ShieldCheck, Zap, RefreshCw, X, Info, History, ChevronDown, ChevronUp, Bell } from "lucide-react";
 import Link from "next/link";
@@ -50,8 +50,19 @@ export default function GetEmailByID() {
   const [isHistoryVisible, setIsHistoryVisible] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
   const [history, setHistory] = useState([]);
+  const [lastActivity, setLastActivity] = useState(Date.now());
+  const [isTabVisible, setIsTabVisible] = useState(true);
+  const [notificationPermission, setNotificationPermission] = useState("default");
+  const [isFullLoading, setIsFullLoading] = useState(false);
+  const [emailCount, setEmailCount] = useState(0);
 
-  // Load history from localStorage on mount
+  // Refs for logic to avoid stale closures in intervals
+  const lastActivityRef = useRef(Date.now());
+  const isTabVisibleRef = useRef(true);
+  const isFirstFetchRef = useRef(true);
+  const emailCountRef = useRef(0);
+
+  // Load history and notification permission on mount
   useEffect(() => {
     const savedHistory = localStorage.getItem("tm_history");
     if (savedHistory) {
@@ -60,6 +71,10 @@ export default function GetEmailByID() {
       } catch (e) {
         console.error("Failed to parse history", e);
       }
+    }
+
+    if (typeof window !== "undefined" && "Notification" in window) {
+      setNotificationPermission(Notification.permission);
     }
   }, []);
 
@@ -81,14 +96,32 @@ export default function GetEmailByID() {
     });
   };
 
-  // Cleanup interval and blob URLs on component unmount
+  // Activity tracking and notifications
   useEffect(() => {
+    const handleActivity = () => {
+      const now = Date.now();
+      setLastActivity(now);
+      lastActivityRef.current = now;
+    };
+    const handleVisibility = () => {
+      const visible = !document.hidden;
+      setIsTabVisible(visible);
+      isTabVisibleRef.current = visible;
+    };
+
+    window.addEventListener("mousemove", handleActivity);
+    window.addEventListener("keydown", handleActivity);
+    window.addEventListener("visibilitychange", handleVisibility);
+
     // Auto-hide notification after 5 seconds
     const notificationTimer = setTimeout(() => {
       setShowNotification(false);
     }, 5000);
 
     return () => {
+      window.removeEventListener("mousemove", handleActivity);
+      window.removeEventListener("keydown", handleActivity);
+      window.removeEventListener("visibilitychange", handleVisibility);
       clearTimeout(notificationTimer);
       if (intervalId) {
         clearInterval(intervalId);
@@ -99,6 +132,25 @@ export default function GetEmailByID() {
       }
     };
   }, [intervalId, emailIframeSrc]);
+
+  const requestNotificationPermission = async () => {
+    if (typeof window !== "undefined" && "Notification" in window) {
+      const permission = await Notification.requestPermission();
+      setNotificationPermission(permission);
+      if (permission === "granted") {
+        toast.success("Notifications enabled!");
+      }
+    }
+  };
+
+  const showBrowserNotification = (newEmailCount) => {
+    if (notificationPermission === "granted" && !isTabVisibleRef.current) {
+      new Notification("New Email Received", {
+        body: `You have received ${newEmailCount} new email(s) on OD2 Temp Mail.`,
+        icon: "/icon.png"
+      });
+    }
+  };
 
   const stopRetry = () => {
     if (intervalId) {
@@ -144,6 +196,14 @@ export default function GetEmailByID() {
 
     }
     const retryFetch = () => {
+      const timeSinceLastActivity = Date.now() - lastActivityRef.current;
+      const isInactive = timeSinceLastActivity > 120000; // 2 minutes
+
+      // If tab is hidden or user is inactive for a long time, reduce frequency
+      if (!isTabVisibleRef.current && timeSinceLastActivity > 300000) { // 5 minutes hidden/inactive
+        return; // Skip this fetch
+      }
+
       setIsRefreshing(true);
       setError(""); // Reset the error message
       const attemptFetch = () => {
@@ -167,9 +227,22 @@ export default function GetEmailByID() {
             // If retry is stopped, exit immediately
             if (emailsArray.length === 0) {
               setIsLoading(true); // Set loading to true when fetching
-              // Retry after 10 seconds
+              emailCountRef.current = 0;
+              setEmailCount(0);
+              isFirstFetchRef.current = false;
+              // Retry after interval
             } else {
               setIsLoading(false); // Set loading to false when fetch is done
+
+              // Check for new emails for browser notification
+              // Notify if not the first fetch and count increased
+              if (!isFirstFetchRef.current && emailsArray.length > emailCountRef.current) {
+                showBrowserNotification(emailsArray.length - emailCountRef.current);
+              }
+
+              isFirstFetchRef.current = false;
+              emailCountRef.current = emailsArray.length;
+              setEmailCount(emailsArray.length);
               setEmails(emailsArray);
               setIsRefreshing(false);
               addToHistory(id); // Save to history on successful fetch
@@ -187,8 +260,6 @@ export default function GetEmailByID() {
             }
           })
           .catch((err) => {
-            // If retry is stopped, exit immediately
-            // console.error("Error fetching emails:", err);
             setError(err.message || "An error occurred while fetching emails");
             setIsLoading(false); // Stop loading if an error occurs
             setIsRefreshing(false); //
@@ -199,32 +270,58 @@ export default function GetEmailByID() {
     };
 
     // Call the function to start the retry fetch process
+    isFirstFetchRef.current = true;
     retryFetch();
-    SetIntervalId(setInterval(retryFetch, 10000));
+
+    // Dynamic interval based on status
+    const interval = setInterval(() => {
+      const timeSinceLastActivity = Date.now() - lastActivityRef.current;
+      const isInactive = timeSinceLastActivity > 120000; // 2 minutes
+
+      // If inactive, only poll every 60 seconds
+      if (isInactive) {
+        if (timeSinceLastActivity % 60000 < 15000) { // Check roughly once per minute
+          retryFetch();
+        }
+      } else {
+        retryFetch();
+      }
+    }, 15000); // Base interval 15s
+
+    SetIntervalId(interval);
   };
 
-  function getemailcontentdata(emailid) {
+  async function getemailcontentdata(emailid) {
     setActiveTab(emailid);
-
     const selectedEmail = emails.find((email) => email._id === emailid);
-    setEmailContent(selectedEmail);
 
-    // Create iframe content for email rendering
-    if (selectedEmail && selectedEmail.html) {
-      const decodedHtml = decodeHtml(selectedEmail.html, selectedEmail);
-      const blob = new Blob([decodedHtml], { type: 'text/html' });
-      const blobUrl = URL.createObjectURL(blob);
-
-      // Clean up previous blob URL
-      if (emailIframeSrc) {
-        URL.revokeObjectURL(emailIframeSrc);
+    // If the email is found but missing HTML (due to projection), fetch full content
+    if (selectedEmail && !selectedEmail.html) {
+      setIsFullLoading(true);
+      try {
+        const response = await fetch(`/api/get-email/?emailId=${emailid}`);
+        if (response.ok) {
+          const fullEmail = await response.json();
+          // Update the email in the list with full content
+          setEmails(prev => prev.map(e => e._id === emailid ? fullEmail : e));
+          setEmailContent(fullEmail);
+          renderEmailHtml(fullEmail);
+        } else {
+          toast.error("Failed to load email content");
+        }
+      } catch (err) {
+        console.error("Error fetching full email:", err);
+        toast.error("Error loading email content");
+      } finally {
+        setIsFullLoading(false);
       }
-
-      setEmailIframeSrc(blobUrl);
+    } else if (selectedEmail) {
+      setEmailContent(selectedEmail);
+      renderEmailHtml(selectedEmail);
     }
 
     // Scroll to email content on mobile devices
-    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 480 : false; // lg breakpoint
+    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 480 : false;
     if (isMobile) {
       setTimeout(() => {
         const emailContentSection = document.querySelector('[data-email-content]');
@@ -234,9 +331,22 @@ export default function GetEmailByID() {
             block: 'start'
           });
         }
-      }, 100); // Small delay to ensure content is rendered
+      }, 100);
     }
   }
+
+  const renderEmailHtml = (email) => {
+    if (email && email.html) {
+      const decodedHtml = decodeHtml(email.html, email);
+      const blob = new Blob([decodedHtml], { type: 'text/html' });
+      const blobUrl = URL.createObjectURL(blob);
+
+      if (emailIframeSrc) {
+        URL.revokeObjectURL(emailIframeSrc);
+      }
+      setEmailIframeSrc(blobUrl);
+    }
+  };
   const decodeHtml = (html, email = null) => {
     // Ensure we're running in browser environment
     if (typeof window === 'undefined') {
@@ -641,6 +751,37 @@ export default function GetEmailByID() {
               `}} />
           </div>
         )}
+
+        {/* Browser Notification Request */}
+        {notificationPermission === "default" && id && (
+          <div className="mb-4 p-4 bg-blue-600/10 border border-blue-500/20 rounded-xl flex items-center justify-between gap-4 animate-in fade-in slide-in-from-top-2">
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-600/20 p-2 rounded-lg text-blue-600">
+                <Bell size={20} />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-blue-900 dark:text-blue-100">Get notified of new emails!</p>
+                <p className="text-xs text-blue-700 dark:text-blue-300">Enable browser notifications to stay updated in real-time.</p>
+              </div>
+            </div>
+            <button
+              onClick={requestNotificationPermission}
+              className="px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+            >
+              Enable
+            </button>
+          </div>
+        )}
+
+        {/* Inactivity Indicator */}
+        {(Date.now() - lastActivity > 120000) && id && (
+          <div className="mb-4 p-2 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-lg flex items-center justify-center gap-2 animate-in fade-in">
+            <Clock size={14} className="text-amber-600" />
+            <span className="text-[10px] sm:text-xs font-medium text-amber-700 dark:text-amber-400">
+              Polling slowed down due to inactivity. Move your mouse or type to resume normal speed.
+            </span>
+          </div>
+        )}
         <form onSubmit={handleSubmit} autoComplete="off" className="relative">
           <div className="relative group transition-all duration-300">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
@@ -878,7 +1019,12 @@ export default function GetEmailByID() {
           <div className="flex items-center justify-center py-2 ">
             <h3 className="text-base sm:text-lg font-semibold "> Email Content</h3>
           </div>
-          {Object.keys(emailcontent).length !== 0 ? (
+          {isFullLoading ? (
+            <div className="flex flex-col items-center justify-center py-20 space-y-4">
+              <Loader2Icon className="w-10 h-10 text-blue-600 animate-spin" />
+              <p className="text-sm font-medium text-slate-500 animate-pulse">Fetching full email content...</p>
+            </div>
+          ) : Object.keys(emailcontent).length !== 0 ? (
             <div className="space-y-3">
               {/* Compact header with subject */}
               <Card >
