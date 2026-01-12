@@ -58,9 +58,11 @@ export default function GetEmailByID() {
 
   // Refs for logic to avoid stale closures in intervals
   const lastActivityRef = useRef(Date.now());
-  const isTabVisibleRef = useRef(true);
+  const isTabVisibleRef = useRef(typeof document !== 'undefined' ? !document.hidden : true);
   const isFirstFetchRef = useRef(true);
   const emailCountRef = useRef(0);
+  const notificationPermissionRef = useRef("default");
+  const swRegistrationRef = useRef(null);
 
   // Load history and notification permission on mount
   useEffect(() => {
@@ -74,7 +76,19 @@ export default function GetEmailByID() {
     }
 
     if (typeof window !== "undefined" && "Notification" in window) {
-      setNotificationPermission(Notification.permission);
+      const permission = Notification.permission;
+      setNotificationPermission(permission);
+      notificationPermissionRef.current = permission;
+
+      // Register a minimal service worker for more reliable notifications
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then(reg => {
+          swRegistrationRef.current = reg;
+          console.log('Service Worker registered for notifications');
+        }).catch(err => {
+          console.warn('Service Worker registration failed:', err);
+        });
+      }
     }
   }, []);
 
@@ -137,19 +151,57 @@ export default function GetEmailByID() {
     if (typeof window !== "undefined" && "Notification" in window) {
       const permission = await Notification.requestPermission();
       setNotificationPermission(permission);
+      notificationPermissionRef.current = permission;
       if (permission === "granted") {
         toast.success("Notifications enabled!");
+      } else if (permission === "denied") {
+        toast.error("Notifications blocked by browser.");
       }
     }
   };
 
   const showBrowserNotification = (newEmailCount) => {
-    if (notificationPermission === "granted" && !isTabVisibleRef.current) {
-      new Notification("New Email Received", {
+    if (notificationPermissionRef.current === "granted" && !isTabVisibleRef.current) {
+      const title = "New Email Received";
+      const options = {
         body: `You have received ${newEmailCount} new email(s) on OD2 Temp Mail.`,
-        icon: "/icon.png"
-      });
+        icon: "/odd.png",
+        badge: "/odd.png",
+        tag: "new-email",
+        renotify: true
+      };
+
+      try {
+        if (swRegistrationRef.current && 'showNotification' in swRegistrationRef.current) {
+          swRegistrationRef.current.showNotification(title, options);
+        } else {
+          new Notification(title, options);
+        }
+      } catch (e) {
+        console.error("Failed to show notification:", e);
+      }
     }
+  };
+
+  const testNotification = () => {
+    if (notificationPermissionRef.current !== "granted") {
+      requestNotificationPermission();
+      return;
+    }
+
+    const title = "Test Notification";
+    const options = {
+      body: "If you see this, push notifications are working correctly!",
+      icon: "/odd.png",
+      badge: "/odd.png"
+    };
+
+    if (swRegistrationRef.current && 'showNotification' in swRegistrationRef.current) {
+      swRegistrationRef.current.showNotification(title, options);
+    } else {
+      new Notification(title, options);
+    }
+    toast.info("Test notification sent!");
   };
 
   const stopRetry = () => {
@@ -773,6 +825,7 @@ export default function GetEmailByID() {
           </div>
         )}
 
+
         {/* Inactivity Indicator */}
         {(Date.now() - lastActivity > 120000) && id && (
           <div className="mb-4 p-2 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-lg flex items-center justify-center gap-2 animate-in fade-in">
@@ -868,6 +921,15 @@ export default function GetEmailByID() {
             <Copy size={14} />
             Copy Email
           </button>
+          {notificationPermission === "granted" && id && (
+            <button
+              onClick={testNotification}
+              className="p-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-all active:scale-95 shadow-sm border border-blue-200 dark:border-blue-800"
+              title="Test Push Notification"
+            >
+              <Bell size={14} />
+            </button>
+          )}
         </div>
 
         {/* Collapsible Recently Used History Section - Now inside the card area */}
