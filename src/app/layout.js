@@ -1,6 +1,6 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import BetaTestingBanner from "@/components/BetaTestingBanner";
+import AppAnnouncementBanner from "@/components/AppAnnouncementBanner";
 import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -187,7 +187,7 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <BetaTestingBanner />
+          <AppAnnouncementBanner variant="global" />
           <Header />
           <div className="px-2 py-3 sm:px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">{children}</div>
           <ToastContainer
