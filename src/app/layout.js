@@ -118,29 +118,20 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <>
-          {/* Google Analytics - Only load in production */}
-          {process.env.NODE_ENV === 'production' && (
-            <>
-              <Script
-                src="https://www.googletagmanager.com/gtag/js?id=G-1CC0XPGF77"
-                strategy="afterInteractive"
-              />
-              <Script id="google-analytics" strategy="afterInteractive">
-                {`
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  window.gtag = gtag;
-                  gtag('js', new Date());
-                  gtag('config', 'G-1CC0XPGF77', {
-                    debug_mode: ${process.env.NODE_ENV === 'development'},
-                    send_page_view: true
-                  });
-                `}
-              </Script>
-            </>
-          )}
+          {/* Analytics Setup */}
+          <Script id="gtag-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+            `}
+          </Script>
+
+          {/* Google Tag Manager - Primary Analytics */}
           <Script
             id="google-tag"
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -148,7 +139,7 @@ export default function RootLayout({ children }) {
                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-K3JKX9NM');`,
             }}
-          ></Script>
+          />
 
           <Script
             id="clarity-analytics"
