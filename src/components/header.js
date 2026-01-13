@@ -328,17 +328,8 @@ const Header = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
 
-  // Page view tracking
-  React.useEffect(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'page_view', {
-        event_category: 'Header',
-        event_label: `header_rendered_${pathname}`,
-        page_path: pathname,
-        custom_parameter_1: 'header_page_view'
-      });
-    }
-  }, [pathname]);
+  // No manual page_view tracking here anymore.
+  // GTM handles this automatically via 'gtm.js' and History Change triggers.
 
   // Find current title from menuItems.main
   const currentTitle =

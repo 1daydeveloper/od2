@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import { ThumbsUp, ThumbsDown, Mail, Trash2Icon, Clock1, Copy, Loader, Loader2Icon, PencilLineIcon, MailX, Trash2, Clock, ExternalLink, Smartphone, ShieldCheck, Zap, RefreshCw, X, Info, History, ChevronDown, ChevronUp, Bell } from "lucide-react";
 import Link from "next/link";
+import AppAnnouncementBanner from "@/components/AppAnnouncementBanner";
 import { Card } from "@/components/ui/card";
 
 /**
@@ -746,30 +747,7 @@ export default function GetEmailByID() {
         </Link>
       </div>
 
-      {/* Android Beta App Banner */}
-      <div className="mb-6 p-3 bg-gradient-to-r from-yellow-600/10 to-emerald-600/10 border border-yellow-500/20 rounded-lg flex items-center justify-between gap-4 shadow-sm">
-        <div className="flex items-center gap-3">
-          <div className="bg-yellow-600/20 p-2 rounded-full text-yellow-600">
-            <Smartphone size={20} />
-          </div>
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <p className="text-xs sm:text-sm font-semibold text-yellow-700 dark:text-yellow-400">
-                OD2 Temp Mail Android App is here!
-              </p>
-              <span className="bg-yellow-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">BETA</span>
-            </div>
-            <p className="text-[10px] sm:text-xs opacity-80">
-              Join our community group to get exclusive Beta access on the Play Store.
-            </p>
-          </div>
-        </div>
-        <a href="https://groups.google.com/g/od2-testers" target="_blank" rel="noopener noreferrer">
-          <button className="text-[10px] sm:text-xs bg-white dark:bg-slate-900 border border-yellow-500/30 px-3 py-1 rounded hover:bg-yellow-50 transition-colors">
-            Join Group
-          </button>
-        </a>
-      </div>
+      <AppAnnouncementBanner variant="in-page" />
       <div className="w-full max-w-4xl mx-auto">
         {showNotification && (
           <div className="mb-4 p-4 bg-green-600 text-white rounded-xl shadow-lg flex items-start gap-3 animate-in fade-in slide-in-from-top-4 duration-500 relative overflow-hidden group">
