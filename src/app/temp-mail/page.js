@@ -694,9 +694,14 @@ export default function GetEmailByID() {
     if (!emailcontent._id) return;
     let description = "";
     // Show description prompt for both good and bad feedback
-    description = typeof window !== 'undefined' ? window.prompt("Please provide a description (optional):", "") : "";
-    // If user cancels prompt, don't send feedback
+    description = typeof window !== 'undefined' ? window.prompt("Please provide a description (required):", "") : "";
+    
+    // If user cancels prompt or provides empty description, don't send feedback
     if (description === null) return;
+    if (!description.trim()) {
+      toast.error("Description is required for feedback");
+      return;
+    }
 
     setFeedbackLoading(true);
     try {
@@ -707,7 +712,7 @@ export default function GetEmailByID() {
           emailId: emailcontent._id,
           mail: emailcontent.to?.value?.[0]?.address, // send the recipient email address
           feedback: type === "good" ? "Good" : "Bad",
-          description: description || "",
+          description: description.trim(),
         }),
       });
       const data = await res.json();

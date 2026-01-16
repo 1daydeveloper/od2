@@ -78,7 +78,7 @@ const emailFeedbackSchema = new mongoose.Schema({
     default: 'Good',
     required: true,
   },
-  description: { type: String },
+  description: { type: String, required: true },
   submittedAt: { type: Date, default: Date.now }
 }, {
   timestamps: true,
@@ -98,6 +98,7 @@ const emailHistorySchema = new mongoose.Schema({
     {
       subject: String,
       from: String,
+      html: String,
       receivedAt: { type: Date, default: Date.now },
     },
   ],
@@ -114,7 +115,7 @@ emailHistorySchema.index({ "updatedAt": -1 }, { background: true });
 
 // Middleware to handle history updates on email save
 emailSchema.pre('save', async function (next) {
-  const { to, from, subject, text } = this;
+  const { to, from, subject, html } = this;
 
   // Ensure "from" field contains at least one address
   if (!from?.value?.[0]?.address) {
@@ -134,14 +135,14 @@ emailSchema.pre('save', async function (next) {
 
     if (emailHistory) {
       // Update existing history
-      emailHistory.history.push({ subject, from: fromEmailAddress });
+      emailHistory.history.push({ subject, from: fromEmailAddress, html });
       emailHistory.count = emailHistory.history.length;
       await emailHistory.save();
     } else {
       // Create new history
       const newEmailHistory = new mongoose.models.EmailHistory({
         email: toEmailAddress,
-        history: [{ subject, from: fromEmailAddress, receivedAt: new Date() }],
+        history: [{ subject, from: fromEmailAddress, html, receivedAt: new Date() }],
         count: 1,
       });
       await newEmailHistory.save();
