@@ -37,9 +37,9 @@ const handlePost = async (req) => {
       }
     }
 
-    if (!emailId || !feedback) {
+    if (!emailId || !feedback || !description) {
       return new Response(JSON.stringify({ 
-        error: "emailId and feedback are required",
+        error: "emailId, feedback, and description are required",
         message: "Missing required fields",
         timestamp: new Date().toISOString()
       }), { 
