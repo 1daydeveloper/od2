@@ -119,12 +119,17 @@ export default function RootLayout({ children }) {
         />
         <>
           {/* Analytics Setup */}
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-1CC0XPGF77"
+            strategy="afterInteractive"
+          />
           <Script id="gtag-init" strategy="afterInteractive">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               window.gtag = gtag;
               gtag('js', new Date());
+              gtag('config', 'G-1CC0XPGF77');
             `}
           </Script>
 
