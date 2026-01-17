@@ -89,7 +89,7 @@ p {
   color: hsl(var(--foreground));
 }
 
-image {
+img {
   @apply rounded-lg shadow-md w-full;
   display: block;
   max-width: 100%;

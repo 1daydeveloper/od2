@@ -1,4 +1,4 @@
-import { Home, Mail, Package, PersonStanding, Dock, Calculator, CheckCircle, Aperture, Camera, Phone, FileText, Link } from "lucide-react";
+import { Home, Mail, Package, PersonStanding, Dock, Calculator, CheckCircle, Aperture, Camera, Phone, FileText, Link, QrCode } from "lucide-react";
 
 const menuItems = {
   main: [
@@ -60,6 +60,24 @@ const menuItems = {
     },
   ],
   tools: [
+    {
+      id: "qr-generator",
+      label: "QR Generator",
+      url: "/qr-generator",
+      icon: QrCode,
+      priority: 1,
+      category: "Utility",
+      colorClass: "text-rose-600",
+      borderColor: "border-l-rose-500",
+      badgeText: "HOT",
+      isHot: true,
+      description: "Create custom QR codes with logos & gradients.",
+      features: [
+        "100% Free & Client-Side",
+        "Custom Colors & Shapes",
+        "No Sign-up Required",
+      ],
+    },
     {
       id: "temp-mail",
       label: "Temp Mail",
