@@ -626,53 +626,142 @@ async function createPrintableSheet(imageUrl, size) {
 			canvas.width = sheetWidth;
 			canvas.height = sheetHeight;
 			const ctx = canvas.getContext('2d');
+			
+			// Fill with white background
 			ctx.fillStyle = '#fff';
 			ctx.fillRect(0, 0, sheetWidth, sheetHeight);
-			// Grid and gap for selected country
-			const cols = Math.floor(sheetWidth / pw);
-			const rows = Math.floor(sheetHeight / ph);
-			const xMargin = (sheetWidth - cols * pw) / (cols + 1);
-			const yMargin = (sheetHeight - rows * ph) / (rows + 1);
-			// Draw photos
+			
+			// Use fixed gap for consistent spacing
+			const gap = 20; // Fixed gap between photos in pixels
+			
+			// Calculate how many photos fit with fixed gap
+			const cols = Math.floor((sheetWidth + gap) / (pw + gap));
+			const rows = Math.floor((sheetHeight + gap) / (ph + gap));
+			
+			// Calculate total grid size
+			const gridWidth = cols * pw + (cols - 1) * gap;
+			const gridHeight = rows * ph + (rows - 1) * gap;
+			
+			// Center the grid on the sheet
+			const startX = Math.round((sheetWidth - gridWidth) / 2);
+			const startY = Math.round((sheetHeight - gridHeight) / 2);
+			
+			// Draw photos with borders
 			for (let row = 0; row < rows; row++) {
 				for (let col = 0; col < cols; col++) {
-					const x = Math.round(xMargin + col * (pw + xMargin));
-					const y = Math.round(yMargin + row * (ph + yMargin));
+					const x = startX + col * (pw + gap);
+					const y = startY + row * (ph + gap);
+					
+					// Draw white background for photo
 					ctx.fillStyle = '#fff';
 					ctx.fillRect(x, y, pw, ph);
+					
+					// Draw the photo - EXACT SIZE
 					ctx.drawImage(img, x, y, pw, ph);
+					
+					// Draw thin border around each photo for perfect alignment
+					ctx.save();
+					ctx.strokeStyle = '#ddd';
+					ctx.lineWidth = 1;
+					ctx.setLineDash([]);
+					ctx.strokeRect(x, y, pw, ph);
+					ctx.restore();
 				}
 			}
-			// Draw cut lines at the center of the gaps
+			
+			// Enhanced cutting lines
 			ctx.save();
-			ctx.strokeStyle = '#888'; // light gray cut line
+			ctx.strokeStyle = '#333'; // Darker for better visibility
+			ctx.lineWidth = 1.5;
+			ctx.setLineDash([8, 4]); // Dashed pattern
+			
+			// Draw vertical cutting lines (between columns AND at edges)
+			for (let col = 0; col <= cols; col++) {
+				let lineX;
+				if (col === 0) {
+					// Left edge - before first column
+					lineX = startX - gap / 2;
+				} else if (col === cols) {
+					// Right edge - after last column
+					lineX = startX + gridWidth + gap / 2;
+				} else {
+					// Between columns - in the middle of gap
+					lineX = startX + col * (pw + gap) - gap / 2;
+				}
+				
+				ctx.beginPath();
+				ctx.moveTo(lineX, startY - gap / 2);
+				ctx.lineTo(lineX, startY + gridHeight + gap / 2);
+				ctx.stroke();
+			}
+			
+			// Draw horizontal cutting lines (between rows AND at edges)
+			for (let row = 0; row <= rows; row++) {
+				let lineY;
+				if (row === 0) {
+					// Top edge - before first row
+					lineY = startY - gap / 2;
+				} else if (row === rows) {
+					// Bottom edge - after last row
+					lineY = startY + gridHeight + gap / 2;
+				} else {
+					// Between rows - in the middle of gap
+					lineY = startY + row * (ph + gap) - gap / 2;
+				}
+				
+				ctx.beginPath();
+				ctx.moveTo(startX - gap / 2, lineY);
+				ctx.lineTo(startX + gridWidth + gap / 2, lineY);
+				ctx.stroke();
+			}
+			
+			// Add corner marks at intersections for precise cutting
+			ctx.setLineDash([]); // Solid for corner marks
 			ctx.lineWidth = 2;
-			ctx.setLineDash([10, 10]);
-			// Vertical lines (between columns)
-			for (let col = 1; col < cols; col++) {
-				const prevRight = xMargin + (col - 1) * (pw + xMargin) + pw;
-				const nextLeft = xMargin + col * (pw + xMargin);
-				const x = Math.round((prevRight + nextLeft) / 2);
-				ctx.beginPath();
-				ctx.moveTo(x, yMargin);
-				ctx.lineTo(x, sheetHeight - yMargin);
-				ctx.stroke();
+			ctx.strokeStyle = '#000'; // Black for corner marks
+			
+			const cornerSize = 8; // Size of corner marks
+			
+			// Draw corner marks at all grid intersections
+			for (let row = 0; row <= rows; row++) {
+				for (let col = 0; col <= cols; col++) {
+					let x, y;
+					
+					if (col === 0) {
+						x = startX - gap / 2;
+					} else if (col === cols) {
+						x = startX + gridWidth + gap / 2;
+					} else {
+						x = startX + col * (pw + gap) - gap / 2;
+					}
+					
+					if (row === 0) {
+						y = startY - gap / 2;
+					} else if (row === rows) {
+						y = startY + gridHeight + gap / 2;
+					} else {
+						y = startY + row * (ph + gap) - gap / 2;
+					}
+					
+					// Draw small cross marks at corners
+					ctx.beginPath();
+					ctx.moveTo(x - cornerSize, y);
+					ctx.lineTo(x + cornerSize, y);
+					ctx.stroke();
+					
+					ctx.beginPath();
+					ctx.moveTo(x, y - cornerSize);
+					ctx.lineTo(x, y + cornerSize);
+					ctx.stroke();
+				}
 			}
-			// Horizontal lines (between rows)
-			for (let row = 1; row < rows; row++) {
-				const prevBottom = yMargin + (row - 1) * (ph + yMargin) + ph;
-				const nextTop = yMargin + row * (ph + yMargin);
-				const y = Math.round((prevBottom + nextTop) / 2);
-				ctx.beginPath();
-				ctx.moveTo(xMargin, y);
-				ctx.lineTo(sheetWidth - xMargin, y);
-				ctx.stroke();
-			}
+			
 			ctx.restore();
+			
 			canvas.toBlob((blob) => {
 				const url = URL.createObjectURL(blob);
 				resolve(url);
-			}, 'image/jpeg');
+			}, 'image/png', 1.0); // Use PNG with max quality for better cutting lines
 		};
 	});
 }

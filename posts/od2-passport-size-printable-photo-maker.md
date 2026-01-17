@@ -7,6 +7,25 @@ category: "Tools"
 description: "Create perfect passport size photos for India, UK, USA, and Australia with OD2's free online tool. Professional quality results."
 keywords: "passport photo maker, OD2, printable passport photo, passport photo sheet, passport photo online, crop passport photo, passport photo generator, passport photo download, passport photo 6x4, India, UK, USA, Australia, DPI, free passport photo tool, online photo tool, print passport photo, digital passport photo, photo printing, photo cropping, photo sizing, official photo size, government photo requirements, photo studio, home printing, passport size photo editor, official document photos, visa photo maker, ID photo creator, photo background removal, professional passport photos"
 urlpath: "od2-passport-size-printable-photo-maker"
+faqs:
+  - question: "Can I use this tool for visa or other official documents?"
+    answer: "Yes! Just select the correct country and follow the official guidelines for background and face position."
+  - question: "Can I print the photos at home?"
+    answer: "Absolutely. Download the printable 6x4 sheet and print it on photo paper at home or at a local studio."
+  - question: "Is my photo data safe?"
+    answer: "Yes. OD2 does not store your images—everything is processed in your browser."
+  - question: "How many photos can I fit on one 6x4 printable sheet?"
+    answer: "The number varies by country: India (51x51mm) fits 8, UK/Australia (35x45mm) fit 10, and USA (2x2 inch) fits 6 photos per sheet."
+  - question: "What photo quality should I use for printing passport photos?"
+    answer: "For professional results, use 300 DPI. The 96 DPI option works for digital submissions."
+  - question: "Can I use smartphone photos with the OD2 tool?"
+    answer: "Yes! Modern smartphones photos work perfectly. Just ensure good lighting and a plain background."
+  - question: "Is the tool free to use?"
+    answer: "Yes, the OD2 Passport Size Printable Photo Maker is completely free."
+  - question: "What if my country isn't listed?"
+    answer: "Contact us through the tool, and we'll add your country's specifications."
+  - question: "Can I save my edited photo?"
+    answer: "Absolutely! You can download the final 6x4 sheet as a high-quality JPEG file."
 ---
 
 
@@ -54,28 +73,7 @@ Traditional photo studios can be expensive and time-consuming. With OD2’s tool
 - **Printable 6x4 sheet with cut lines**
 - **Secure and private**—your photos are never stored
 
-## Frequently Asked Questions
 
-**Q: Can I use this tool for visa or other official documents?**
-A: Yes! Just select the correct country and follow the official guidelines for background and face position.
-
-**Q: Can I print the photos at home?**
-A: Absolutely. Download the printable 6x4 sheet and print it on photo paper at home or at a local studio.
-
-**Q: Is my photo data safe?**
-A: Yes. OD2 does not store your images—everything is processed in your browser.
-
-### Q4: How many photos can I fit on one 6x4 printable sheet?
-
-A: The number varies by country due to different passport photo sizes: India (51x51mm) fits 8 photos per sheet, UK and Australia (35x45mm) fit 10 photos, and USA (2x2 inch) fits 6 photos per sheet. Each sheet includes cut lines to make trimming easy and precise for professional results.
-
-### Q5: What photo quality should I use for printing passport photos?
-
-A: For professional results, use 300 DPI when printing at photo studios or home printers. The 96 DPI option works for digital submissions or when file size is a concern. Always use high-resolution original photos (at least 1200x1200 pixels) for the best cropping results.
-
-### Q6: Can I use smartphone photos with the OD2 tool?
-
-A: Yes, smartphone photos work perfectly! Take the photo in good lighting against a plain white or light-colored wall. Ensure the camera is at eye level, your face fills about 70-80% of the frame, and you're facing directly toward the camera. Modern smartphones capture high-resolution images that work excellently with the tool.
 
 ## Helpful Reference Links
 - [UK Passport Photo Requirements](https://www.gov.uk/photos-for-passports)
@@ -170,27 +168,7 @@ A: Yes, smartphone photos work perfectly! Take the photo in good lighting agains
 **OD2 Online Tool**: Free (only printing costs apply)
 **Home Printing Cost**: ₹5-15 per sheet (6-8 photos), $0.50-2.00 per sheet
 
-## Frequently Asked Questions
 
-### Q1: Can I use smartphone photos with the OD2 tool?
-
-A: Yes! Smartphone photos work perfectly with our tool. Modern smartphones have sufficient resolution (8MP+) for passport photos. Just ensure good lighting and a plain background.
-
-### Q2: How many photos fit on a 6x4 inch print?
-
-A: Our 6x4 template typically fits 6-8 passport-sized photos, depending on the country's size requirements. This makes it very cost-effective for families or multiple applications.
-
-### Q3: Is the tool free to use?
-
-A: Yes, the OD2 Passport Size Printable Photo Maker is completely free. You only pay for printing at home or at a local print shop.
-
-### Q4: What if my country isn't listed?
-
-A: Contact us through the tool, and we'll add your country's specifications. We regularly update our database with new requirements.
-
-### Q5: Can I save my edited photo?
-
-A: Absolutely! The tool allows you to download the final 6x4 sheet as a high-quality JPEG file that you can print immediately or save for later.
 
 ## About OD2
 

@@ -37,58 +37,28 @@ export const metadata = {
   },
 };
 
+import FaqSection from "@/components/FaqSection";
+import faqData from "@/data/faqs.json";
+
 export default function TestMailLayout({ children }) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebApplication",
-        "name": "OD2 Email Test Tool",
-        "url": "https://www.od2.in/test-mail",
-        "description": "Production-ready email templates and testing tools for developers.",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "All",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "One Day Developers (OD2)",
-          "url": "https://www.od2.in"
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Can I send test emails directly with this tool?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Currently, you can use our production-ready templates for manual testing. Direct email sending via SMTP/API is coming soon as a free service."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Are these email templates mobile-responsive?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, all our templates are designed and tested to be fully responsive across modern email clients like Gmail, Outlook, and Apple Mail."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you provide templates for verification codes (OTP)?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, we provide specific templates for OTP, Transactional receipts, Newsletters, and Marketing emails."
-            }
-          }
-        ]
-      }
-    ]
+    "@type": "WebApplication",
+    "name": "OD2 Email Test Tool",
+    "url": "https://www.od2.in/test-mail",
+    "description": "Production-ready email templates and testing tools for developers.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "One Day Developers (OD2)",
+      "url": "https://www.od2.in"
+    }
   };
 
   return (
@@ -98,6 +68,9 @@ export default function TestMailLayout({ children }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       {children}
+      <div className="mt-12">
+        <FaqSection faqs={faqData["test-mail"]} description="Common questions about our email testing service." />
+      </div>
     </>
   );
 }

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { LinkIcon, Calendar, User, Share2, Clock } from "lucide-react";
 import Link from "next/link";
 import CodeCopyButton from "@/components/CodeCopyButton";
+import FaqSection from "@/components/FaqSection";
 
 const PostPageClient = ({ frontMatter, content, slug, allPosts }) => {
   // Track blog post page view
@@ -158,63 +159,76 @@ const PostPageClient = ({ frontMatter, content, slug, allPosts }) => {
         </CardContent>
       </Card>
 
+      {/* FAQ Section */}
+      {
+        frontMatter.faqs && frontMatter.faqs.length > 0 && (
+          <div className="mt-6">
+            <Card className="p-4 sm:p-5 lg:p-6 rounded-3xl">
+              <FaqSection faqs={frontMatter.faqs} title="Frequently Asked Questions" description="" />
+            </Card>
+          </div>
+        )
+      }
+
       {/* Related Blogs Section */}
-      {relatedBlogs.length > 0 && (
-        <Card className="p-4 sm:p-5 lg:p-6 rounded-3xl mt-6">
-          <CardHeader className="px-0 pb-4">
-            <h3 className="scroll-m-20 text-xl sm:text-2xl font-semibold tracking-tight">
-              Related Blogs
-            </h3>
-          </CardHeader>
-          <CardContent className="px-0 pt-0">
-            <div className="grid gap-4">
-              {relatedBlogs.map((blog, index) => (
-                <Link
-                  key={blog.id}
-                  href={`/blog/${blog.id}`}
-                  className="block group"
-                  onClick={() => {
-                    // Track related blog click
-                    if (typeof window !== 'undefined' && window.gtag) {
-                      window.gtag('event', 'related_blog_click', {
-                        event_category: 'blog',
-                        event_label: 'related_blog_clicked',
-                        clicked_blog: blog.id,
-                        source_blog: slug,
-                        position: index + 1
-                      });
-                    }
-                  }}
-                >
-                  <div className="p-4 border rounded-lg hover:shadow-md transition-shadow group-hover:border-primary/50">
-                    <h4 className="font-semibold text-base sm:text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                      {blog.title}
-                    </h4>
-                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
-                      {blog.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        <span>{blog.date}</span>
+      {
+        relatedBlogs.length > 0 && (
+          <Card className="p-4 sm:p-5 lg:p-6 rounded-3xl mt-6">
+            <CardHeader className="px-0 pb-4">
+              <h3 className="scroll-m-20 text-xl sm:text-2xl font-semibold tracking-tight">
+                Related Blogs
+              </h3>
+            </CardHeader>
+            <CardContent className="px-0 pt-0">
+              <div className="grid gap-4">
+                {relatedBlogs.map((blog, index) => (
+                  <Link
+                    key={blog.id}
+                    href={`/blog/${blog.id}`}
+                    className="block group"
+                    onClick={() => {
+                      // Track related blog click
+                      if (typeof window !== 'undefined' && window.gtag) {
+                        window.gtag('event', 'related_blog_click', {
+                          event_category: 'blog',
+                          event_label: 'related_blog_clicked',
+                          clicked_blog: blog.id,
+                          source_blog: slug,
+                          position: index + 1
+                        });
+                      }
+                    }}
+                  >
+                    <div className="p-4 border rounded-lg hover:shadow-md transition-shadow group-hover:border-primary/50">
+                      <h4 className="font-semibold text-base sm:text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                        {blog.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                        {blog.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          <span>{blog.date}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <User className="h-3 w-3" />
+                          <span>{blog.author}</span>
+                        </div>
+                        {blog.category && (
+                          <Badge variant="outline" className="text-xs px-1 py-0">
+                            {blog.category}
+                          </Badge>
+                        )}
                       </div>
-                      <div className="flex items-center gap-1">
-                        <User className="h-3 w-3" />
-                        <span>{blog.author}</span>
-                      </div>
-                      {blog.category && (
-                        <Badge variant="outline" className="text-xs px-1 py-0">
-                          {blog.category}
-                        </Badge>
-                      )}
                     </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
+                  </Link>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )
+      }
 
       {/* Social Share Section */}
       <Card className="p-4 sm:p-5 lg:p-6 rounded-3xl mt-6">
@@ -274,7 +288,7 @@ const PostPageClient = ({ frontMatter, content, slug, allPosts }) => {
           </div>
         </CardContent>
       </Card>
-    </div>
+    </div >
   );
 };
 

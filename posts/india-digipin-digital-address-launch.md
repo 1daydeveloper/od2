@@ -7,6 +7,17 @@ category: "Technology"
 description: "India launches DigiPIN — a digital address revolution by India Post, IIT-Hyderabad & ISRO that replaces PIN codes with precise 10-character geolocation codes."
 keywords: "DigiPIN, India Post, Digital Address, Geolocation, Smart Address, IIT Hyderabad, ISRO, Indian Innovation, PIN Code Replacement, GPS Addressing, Digital India, Location Accuracy, Tech for India, Rural Addressing, Emergency Services India, E-commerce Delivery, Offline Mapping, No Address Zones, Logistics Technology, Bharat Maps"
 urlpath: "india-digipin-digital-address-launch"
+faqs:
+  - question: "What is DigiPIN?"
+    answer: "DigiPIN is a revolutionary 10-character alphanumeric digital address system developed by India Post, IIT-Hyderabad, and ISRO to provide hyper-accurate geolocation for any spot in India."
+  - question: "Does DigiPIN replace the PIN code?"
+    answer: "DigiPIN is designed to provide far greater accuracy than traditional PIN codes (4x4 meter precision vs. large areas). While it complements the existing system initially, it aims to become the new standard for digital addressing."
+  - question: "How do I get my DigiPIN?"
+    answer: "You can generate your unique DigiPIN instantly by visiting the official portal at digipin.indiapost.gov.in and selecting your location on the map. No app download is required."
+  - question: "Does it work without the internet?"
+    answer: "Yes, once you have generated or written down your DigiPIN, it works as a static, permanent address code that can be shared via SMS or written on mail, making it accessible even in low-network areas."
+  - question: "Is DigiPIN free to use?"
+    answer: "Yes, generating and using DigiPIN is completely free for all citizens of India."
 ---
 
 India is entering a new era of digital innovation with the launch of **DigiPIN**, a revolutionary digital address system developed by **India Post**, in collaboration with **IIT-Hyderabad** and **ISRO**. This technology aims to replace the decades-old PIN code system with a hyper-accurate, GPS-based digital location code that works **anywhere in India** — from the heart of Delhi to the depths of rural forests.

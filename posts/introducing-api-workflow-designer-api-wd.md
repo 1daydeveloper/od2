@@ -7,6 +7,19 @@ category: "Tools"
 description: "Discover API Workflow Designer - A powerful visual workflow builder with OpenAPI integration for designing and implementing API workflows."
 keywords: "API Workflow Designer, OpenAPI integration, Visual Workflow Builder, API Integration, JSON workflow, ReactFlow, OD2, workflow automation, API design, workflow visualization, drag drop workflow, API documentation, workflow management, visual API designer, API workflow builder, workflow tools, API development, workflow creation, automated workflows, API orchestration"
 urlpath: "introducing-api-workflow-designer-api-wd"
+faqs:
+  - question: "What makes API Workflow Designer different from other workflow builders?"
+    answer: "API Workflow Designer uniquely combines visual workflow design with native OpenAPI integration. Unlike generic workflow tools, it's specifically designed for API-driven applications, allowing you to upload OpenAPI schemas and directly drag API endpoints into your workflows."
+  - question: "Do I need programming knowledge to use API Workflow Designer?"
+    answer: "No, API Workflow Designer is built with a user-friendly drag-and-drop interface that both technical and non-technical team members can use. While understanding APIs is helpful, the visual interface abstracts complex technical details."
+  - question: "Can I integrate API Workflow Designer with my existing development tools?"
+    answer: "Yes, API Workflow Designer is designed for seamless integration. It supports JSON export/import for workflows, works with standard OpenAPI specifications, and can be embedded in existing applications."
+  - question: "What file formats does API Workflow Designer support?"
+    answer: "API Workflow Designer supports OpenAPI specifications in both YAML and JSON formats (OpenAPI 3.0+), workflow export/import in JSON format, and various image formats for visual assets in nodes."
+  - question: "Is API Workflow Designer suitable for enterprise-level projects?"
+    answer: "Absolutely. API Workflow Designer is designed to scale from simple integrations to complex enterprise workflows. It supports large OpenAPI schemas, handles complex branching logic with success/failure paths, and provides collaborative features."
+  - question: "How does the OpenAPI integration work exactly?"
+    answer: "Simply upload your OpenAPI schema file (YAML or JSON), and API Workflow Designer automatically parses all available endpoints, methods, and documentation. You can then search, filter, and drag these endpoints directly onto the canvas."
 ---
 
 
@@ -293,33 +306,7 @@ Whether you're a solo developer planning your next project or part of a large en
 
 *The future of workflow design is visual, collaborative, and intelligent. The future is API Workflow Designer.*
 
-## Frequently Asked Questions (FAQs)
 
-### Q1: What makes API Workflow Designer different from other workflow builders?
-
-A: API Workflow Designer uniquely combines visual workflow design with native OpenAPI integration. Unlike generic workflow tools, it's specifically designed for API-driven applications, allowing you to upload OpenAPI schemas and directly drag API endpoints into your workflows. This tight integration with API specifications makes it ideal for microservice architectures and API-first development approaches.
-
-### Q2: Do I need programming knowledge to use API Workflow Designer?
-
-A: No, API Workflow Designer is built with a user-friendly drag-and-drop interface that both technical and non-technical team members can use. While understanding APIs is helpful, the visual interface abstracts complex technical details, making workflow creation accessible to business analysts, project managers, and anyone involved in process design.
-
-### Q3: Can I integrate API Workflow Designer with my existing development tools?
-
-A: Yes, API Workflow Designer is designed for seamless integration. It supports JSON export/import for workflows, works with standard OpenAPI specifications, and can be embedded in existing applications. The workflow designs can be shared with development teams to implement the actual API integration based on your visual blueprints.
-
-### Q4: What file formats does API Workflow Designer support?
-
-A: API Workflow Designer supports OpenAPI specifications in both YAML and JSON formats (OpenAPI 3.0+), workflow export/import in JSON format, and various image formats for visual assets in nodes. You can also save and share workflows as interactive web links or embed them in documentation and presentations.
-
-### Q5: Is API Workflow Designer suitable for enterprise-level projects?
-
-A: Absolutely. API Workflow Designer is designed to scale from simple integrations to complex enterprise workflows. It supports large OpenAPI schemas, handles complex branching logic with success/failure paths, and provides collaborative features for team-based development. Many enterprises use it for microservice architecture planning and API integration documentation.
-
-### Q6: How does the OpenAPI integration work exactly?
-
-A: Simply upload your OpenAPI schema file (YAML or JSON), and API Workflow Designer automatically parses all available endpoints, methods, and documentation. You can then search, filter, and drag these endpoints directly onto the canvas as workflow nodes. Each node retains the API's metadata, including HTTP methods, parameters, and documentation links, creating a seamless bridge between your API specifications and workflow design.
-
----
 
 **About One Day Developers (OD2)**
 

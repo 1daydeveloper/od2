@@ -43,59 +43,29 @@ export const metadata = {
   },
 };
 
+import FaqSection from "@/components/FaqSection";
+import faqData from "@/data/faqs.json";
+
 export default function ImageToBlobLayout({ children }) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebApplication",
-        "@id": "https://www.od2.in/convert-image-to-blob/#software",
-        "name": "OD2 Image to Blob Converter",
-        "description": "Easily convert your images to blob format for web development and other use cases.",
-        "url": "https://www.od2.in/convert-image-to-blob",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "All",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "One Day Developers (OD2)",
-          "url": "https://www.od2.in"
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Why should I convert an image to a Data URL (Blob)?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Converting images to Data URLs reduces HTTP requests, improves offline support, and allows for embedding images directly into CSS or email templates."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is my data secure when using this converter?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, all conversions happen locally in your browser. Your images are never uploaded to our servers, ensuring total privacy."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Which file formats are supported?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our converter supports all common image formats including JPG, PNG, GIF, and SVG."
-            }
-          }
-        ]
-      }
-    ]
+    "@type": "WebApplication",
+    "@id": "https://www.od2.in/convert-image-to-blob/#software",
+    "name": "OD2 Image to Blob Converter",
+    "description": "Easily convert your images to blob format for web development and other use cases.",
+    "url": "https://www.od2.in/convert-image-to-blob",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "One Day Developers (OD2)",
+      "url": "https://www.od2.in"
+    }
   };
 
   return (
@@ -105,6 +75,9 @@ export default function ImageToBlobLayout({ children }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       {children}
+      <div className="mt-12">
+        <FaqSection faqs={faqData["convert-image-to-blob"]} description="Common questions about image to blob conversion." />
+      </div>
     </>
   );
 }

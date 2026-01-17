@@ -194,7 +194,7 @@ export default function RootLayout({ children }) {
         >
           <AppAnnouncementBanner variant="global" />
           <Header />
-          <div className="px-2 py-3 sm:px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">{children}</div>
+          <div className="px-2 py-3 sm:px-4 md:px-8 lg:px-16 max-w-screen-xl mx-auto">{children}</div>
           <ToastContainer
             position="bottom-right"
             autoClose={5000}
