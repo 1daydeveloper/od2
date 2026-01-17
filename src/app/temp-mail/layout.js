@@ -70,59 +70,29 @@ export const metadata = {
   classification: "Communication Tool",
 };
 
+import FaqSection from "@/components/FaqSection";
+import faqData from "@/data/faqs.json";
+
 export default function TmailLayout({ children }) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebApplication",
-        "@id": "https://www.od2.in/temp-mail/#software",
-        "name": "OD2 Temp Mail",
-        "url": "https://www.od2.in/temp-mail",
-        "description": "Free, secure, and disposable temporary email address service. Protect your privacy and avoid spam with instant 12-hour self-destructing inbox.",
-        "applicationCategory": "Utility",
-        "operatingSystem": "All",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "One Day Developers (OD2)",
-          "url": "https://www.od2.in"
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is Temp Mail?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Temp mail is a disposable email service that provides a quick, temporary inbox to protect your privacy and avoid spam in your primary inbox."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is OD2 Temp Mail free?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, our temporary email service is 100% free to use with no registration required."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How long do emails last?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "All emails received are automatically deleted 12 hours after being received to ensure your privacy and security."
-            }
-          }
-        ]
-      }
-    ]
+    "@type": "WebApplication",
+    "@id": "https://www.od2.in/temp-mail/#software",
+    "name": "OD2 Temp Mail",
+    "url": "https://www.od2.in/temp-mail",
+    "description": "Free, secure, and disposable temporary email address service. Protect your privacy and avoid spam with instant 12-hour self-destructing inbox.",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "One Day Developers (OD2)",
+      "url": "https://www.od2.in"
+    }
   };
 
   return (
@@ -132,6 +102,9 @@ export default function TmailLayout({ children }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       {children}
+      <div className="mt-12">
+        <FaqSection faqs={faqData["temp-mail"]} description="Common questions about our temporary email service." />
+      </div>
     </>
   );
 }

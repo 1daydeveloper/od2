@@ -35,7 +35,7 @@ import {
 import { menuItems } from "@/lib/common";
 import { cn } from "@/lib/utils";
 
-const Mainpage = () => {
+const Mainpage = ({ latestPosts = [] }) => {
   const [openCollapseIndex, setOpenCollapseIndex] = useState(null);
 
   // Find the new tool to highlight
@@ -70,7 +70,7 @@ const Mainpage = () => {
           <div className="flex items-center gap-2 overflow-hidden">
             <span className="hidden sm:inline-block bg-white text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full">HOT</span>
             <p className="text-xs sm:text-sm font-medium truncate">
-            Try our new <span className="font-bold underline decoration-blue-200"><Link href="/test-mail" className="font-bold hover:underline">Test Mail Tool</Link></span> – Preview & Test emails for free!
+              Try our new <span className="font-bold underline decoration-blue-200"><Link href="/test-mail" className="font-bold hover:underline">Test Mail Tool</Link></span> – Preview & Test emails for free!
             </p>
           </div>
           <Button asChild size="sm" variant="secondary" className="h-7 text-[10px] sm:text-xs">
@@ -87,10 +87,10 @@ const Mainpage = () => {
 
           <div className="relative z-10 flex flex-col items-center gap-6">
             <div className="hidden lg:flex gap-4">
-                        <Button asChild variant="outline" className="rounded-full px-4 border-blue-500/30 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
+              <Button asChild variant="outline" className="rounded-full px-4 border-blue-500/30 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
                 <Link href={newTool?.url || "/test-mail"} className="inline-flex items-center">
                   <span className="text-[10px] bg-blue-600 rounded-full text-white px-2 py-0.5 me-3 animate-pulse">
-                NEW
+                    NEW
                   </span>
                   <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
                     {newTool?.label || "Test Mail Content Tool"} is live
@@ -101,7 +101,7 @@ const Mainpage = () => {
               <Button asChild variant="outline" className="rounded-full px-4 border-blue-500/30 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
                 <Link href={menuItems.tools.find(t => t.id === "temp-mail")?.url || "/temp-mail"} className="inline-flex items-center">
                   <span className="text-[10px] bg-orange-600 rounded-full text-white px-2 py-0.5 me-3 animate-pulse">
-                   🔥 HOT
+                    🔥 HOT
                   </span>
                   <span className="text-sm font-semibold text-orange-600 dark:text-orange-400">
                     Temp Mail
@@ -109,7 +109,7 @@ const Mainpage = () => {
                   <MoveRight className="ml-3 w-4 h-4 text-red-600" />
                 </Link>
               </Button>
-    
+
             </div>
 
             <div className="max-w-4xl">
@@ -629,6 +629,52 @@ const Mainpage = () => {
           </div>
         </div>
       </section>
+      {/* Blog Section */}
+      <section id="blog" className="py-10 sm:py-16 px-2 sm:px-6 maincard rounded-lg shadow">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold">Latest Insights</h2>
+            <p className="mt-2 sm:mt-4 text-base sm:text-lg">
+              Stay updated with our latest articles, tutorials, and tech news.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+            {latestPosts.map((post) => (
+              <Card key={post.id} className="flex flex-col h-full hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                <CardHeader>
+                  <div className="text-sm text-muted-foreground mb-2">
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <CardTitle className="line-clamp-2 hover:text-blue-600 transition-colors">
+                    <Link href={`/blog/${post.id}`}>{post.title}</Link>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow flex flex-col justify-between">
+                  <p className="text-muted-foreground text-sm line-clamp-3 mb-4">
+                    {post.excerpt || "Click to read full article..."}
+                  </p>
+                  <Button asChild variant="outline" size="sm" className="self-start">
+                    <Link href={`/blog/${post.id}`} className="group/link">
+                      Read Article
+                      <MoveRight className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="mt-8 sm:mt-12 text-center">
+            <Button asChild className="px-8">
+              <Link href="/blog">View All Posts</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Who We Are Section */}
       <div>
         <Card className="flex flex-col p-2 sm:p-4">

@@ -1,0 +1,94 @@
+{
+    "qr-generator": [
+        {
+            "question": "Is this QR Code Generator free?",
+            "answer": "Yes, our Advanced QR Code Generator is 100% free to use for both personal and commercial purposes. There are no hidden fees or subscription limits."
+        },
+        {
+            "question": "Do the QR codes expire?",
+            "answer": "No, the Static QR codes generated on our platform never expire. They will work forever as long as the information you encoded (like the URL) remains valid."
+        },
+        {
+            "question": "Can I customize the QR code with my logo?",
+            "answer": "Absolutely! You can upload your own logo, change the colors, add gradients, and customize the corner shapes to match your brand identity."
+        },
+        {
+            "question": "Is my data private?",
+            "answer": "Yes, we prioritize your privacy. The QR code generation happens client-side in your browser, meaning your data is not sent to or stored on our servers."
+        },
+        {
+            "question": "What formats can I download?",
+            "answer": "You can download your high-quality QR codes in PNG, JPEG, and SVG vector formats, suitable for both digital use and high-resolution printing."
+        }
+    ],
+    "temp-mail": [
+        {
+            "question": "What is Temp Mail?",
+            "answer": "Temp mail is a disposable email service that provides a quick, temporary inbox to protect your privacy and avoid spam in your primary inbox."
+        },
+        {
+            "question": "Is OD2 Temp Mail free?",
+            "answer": "Yes, our temporary email service is 100% free to use with no registration required."
+        },
+        {
+            "question": "How long do emails last?",
+            "answer": "All emails received are automatically deleted 12 hours after being received to ensure your privacy and security. You can also manually delete them instantly."
+        }
+    ],
+    "passport-photo-printing": [
+        {
+            "question": "What is the correct passport photo size for India?",
+            "answer": "The standard passport photo size for India is 51x51 mm (600x600 px) with a white background."
+        },
+        {
+            "question": "How many photos fit on a 6x4 sheet?",
+            "answer": "Our tool automatically generates a 6x4 printable sheet with cut lines, fitting the maximum number of photos allowed by your selected country's dimensions."
+        },
+        {
+            "question": "Is registration required to use the Passport Photo Maker?",
+            "answer": "No, the OD2 Passport Photo Maker is 100% free to use and requires no registration or account creation."
+        }
+    ],
+    "url-encoder-decoder": [
+        {
+            "question": "What characters are encoded in a URL?",
+            "answer": "Special characters like spaces, &, ?, and = are replaced with percent-encoded equivalents (e.g., %20 for a space) to ensure they are handled correctly by web servers."
+        },
+        {
+            "question": "Can I decode a URL multiple times?",
+            "answer": "Yes, you can use our 'Use as Input' feature to chain multiple encoding or decoding operations for complex URLs."
+        },
+        {
+            "question": "Is this URL tool free for commercial use?",
+            "answer": "Yes, all tools provided by One Day Developers (OD2) are 100% free for both personal and professional use."
+        }
+    ],
+    "convert-image-to-blob": [
+        {
+            "question": "Why should I convert an image to a Data URL (Blob)?",
+            "answer": "Converting images to Data URLs reduces HTTP requests, improves offline support, and allows for embedding images directly into CSS or email templates."
+        },
+        {
+            "question": "Is my data secure when using this converter?",
+            "answer": "Yes, all conversions happen locally in your browser. Your images are never uploaded to our servers, ensuring total privacy."
+        },
+        {
+            "question": "Which file formats are supported?",
+            "answer": "Our converter supports all common image formats including JPG, PNG, GIF, and SVG."
+        }
+    ],
+    "test-mail": [
+        {
+            "question": "Can I send test emails directly with this tool?",
+            "answer": "Currently, you can use our production-ready templates for manual testing. Direct email sending via SMTP/API is coming soon as a free service."
+        },
+        {
+            "question": "Are these email templates mobile-responsive?",
+            "answer": "Yes, all our templates are designed and tested to be fully responsive across modern email clients like Gmail, Outlook, and Apple Mail."
+        },
+        {
+            "question": "Do you provide templates for verification codes (OTP)?",
+            "answer": "Yes, we provide specific templates for OTP, Transactional receipts, Newsletters, and Marketing emails."
+        }
+    ]
+}

@@ -38,59 +38,29 @@ export const metadata = {
     },
 };
 
+import FaqSection from "@/components/FaqSection";
+import faqData from "@/data/faqs.json";
+
 export default function URLEncoderDecoderLayout({ children }) {
     const structuredData = {
         "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "WebApplication",
-                "@id": "https://www.od2.in/url-encoder-decoder/#software",
-                "name": "OD2 URL Encoder Decoder",
-                "description": "Free online URL encoder and decoder tool for web developers.",
-                "url": "https://www.od2.in/url-encoder-decoder",
-                "applicationCategory": "DeveloperApplication",
-                "operatingSystem": "All",
-                "offers": {
-                    "@type": "Offer",
-                    "price": "0",
-                    "priceCurrency": "USD"
-                },
-                "author": {
-                    "@type": "Organization",
-                    "name": "One Day Developers (OD2)",
-                    "url": "https://www.od2.in"
-                }
-            },
-            {
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "What characters are encoded in a URL?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Special characters like spaces, &, ?, and = are replaced with percent-encoded equivalents (e.g., %20 for a space) to ensure they are handled correctly by web servers."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Can I decode a URL multiple times?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes, you can use our 'Use as Input' feature to chain multiple encoding or decoding operations for complex URLs."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Is this URL tool free for commercial use?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes, all tools provided by One Day Developers (OD2) are 100% free for both personal and professional use."
-                        }
-                    }
-                ]
-            }
-        ]
+        "@type": "WebApplication",
+        "@id": "https://www.od2.in/url-encoder-decoder/#software",
+        "name": "OD2 URL Encoder Decoder",
+        "description": "Free online URL encoder and decoder tool for web developers.",
+        "url": "https://www.od2.in/url-encoder-decoder",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "One Day Developers (OD2)",
+            "url": "https://www.od2.in"
+        }
     };
 
     return (
@@ -100,6 +70,9 @@ export default function URLEncoderDecoderLayout({ children }) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
             />
             {children}
+            <div className="mt-12">
+                <FaqSection faqs={faqData["url-encoder-decoder"]} description="Common questions about URL encoding and decoding." />
+            </div>
         </>
     );
 }

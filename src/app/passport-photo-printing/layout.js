@@ -40,59 +40,29 @@ export const metadata = {
   },
 };
 
+import FaqSection from "@/components/FaqSection";
+import faqData from "@/data/faqs.json";
+
 export default function PhotoLayout({ children }) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebApplication",
-        "@id": "https://www.od2.in/passport-photo-printing/#software",
-        "name": "OD2 Passport Photo Maker",
-        "description": "Create printable passport size photos for multiple countries with ease.",
-        "url": "https://www.od2.in/passport-photo-printing",
-        "applicationCategory": "DesignApplication",
-        "operatingSystem": "All",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "One Day Developers (OD2)",
-          "url": "https://www.od2.in"
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is the correct passport photo size for India?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The standard passport photo size for India is 51x51 mm (600x600 px) with a white background."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How many photos fit on a 6x4 sheet?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our tool automatically generates a 6x4 printable sheet with cut lines, fitting the maximum number of photos allowed by your selected country's dimensions."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is registration required to use the Passport Photo Maker?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No, the OD2 Passport Photo Maker is 100% free to use and requires no registration or account creation."
-            }
-          }
-        ]
-      }
-    ]
+    "@type": "WebApplication",
+    "@id": "https://www.od2.in/passport-photo-printing/#software",
+    "name": "OD2 Passport Photo Maker",
+    "description": "Create printable passport size photos for multiple countries with ease.",
+    "url": "https://www.od2.in/passport-photo-printing",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "One Day Developers (OD2)",
+      "url": "https://www.od2.in"
+    }
   };
 
   return (
@@ -102,6 +72,9 @@ export default function PhotoLayout({ children }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       {children}
+      <div className="mt-12">
+        <FaqSection faqs={faqData["passport-photo-printing"]} description="Common questions about printing passport photos." />
+      </div>
     </>
   );
 }

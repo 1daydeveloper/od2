@@ -67,6 +67,9 @@ export const metadata = {
   category: "Utility",
 };
 
+import FaqSection from "@/components/FaqSection";
+import faqData from "@/data/faqs.json";
+
 export default function QRGeneratorLayout({ children }) {
   const structuredData = {
     "@context": "https://schema.org",
@@ -95,6 +98,9 @@ export default function QRGeneratorLayout({ children }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       {children}
+      <div className="mt-12">
+        <FaqSection faqs={faqData["qr-generator"]} description="Find answers to common questions about our free QR Code Generator." />
+      </div>
     </>
   );
 }
