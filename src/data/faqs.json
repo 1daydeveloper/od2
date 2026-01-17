@@ -90,5 +90,23 @@
             "question": "Do you provide templates for verification codes (OTP)?",
             "answer": "Yes, we provide specific templates for OTP, Transactional receipts, Newsletters, and Marketing emails."
         }
+    ],
+    "blog": [
+        {
+            "question": "How can I submit a guest post?",
+            "answer": "We welcome guest contributions! Please check our <a href='/blog/od2-blog-submission-guidelines'>Blog Submission Guidelines</a> to understand our requirements and submission process."
+        },
+        {
+            "question": "What topics do you cover?",
+            "answer": "We cover a wide range of technical topics including Web Development, AI & Machine Learning, Mobile App Development, Cloud Computing, and Software Engineering best practices."
+        },
+        {
+            "question": "How often is the blog updated?",
+            "answer": "We aim to publish new insightful articles and tutorials every week. Subscribe to our newsletter or follow us on social media to get notified about the latest posts."
+        },
+        {
+            "question": "Can I request a tutorial on a specific topic?",
+            "answer": "Absolutely! We love hearing from our community. Feel free to contact us or send a message on our social media channels with your topic suggestions."
+        }
     ]
 }

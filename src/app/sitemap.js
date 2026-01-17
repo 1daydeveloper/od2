@@ -82,6 +82,12 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
+      url: "https://www.od2.in/qr-generator",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: "https://www.od2.in/test-mail",
       lastModified: new Date(),
       changeFrequency: "weekly",

@@ -7,6 +7,17 @@ category: "Cloud"
 description: "Master Google Cloud with Skill Boost! Gain hands-on experience, earn certifications, and advance your cloud career with step-by-step learning"
 keywords: "Google Cloud, Skill Boost, Cloud Computing, Hands-On Labs, Cloud Architect, Data Engineer, Machine Learning, Cloud Certifications, Google Cloud Training, Google Cloud Labs, Google Cloud Quests, Cloud Skills, Google Cloud Free Credits, Cloud Learning, Google Cloud Badges, Career in Cloud Computing, Cloud Training, Cloud Skill Development, Google Certifications, Cloud Platform Skills"
 urlpath: "google-cloud-skill-boost-guide"
+faqs:
+  - question: "What is Google Cloud Skill Boost?"
+    answer: "Google Cloud Skill Boost is a training platform that provides hands-on labs, courses, and quests to help you learn Google Cloud technologies and prepare for certifications."
+  - question: "Is Google Cloud Skill Boost free?"
+    answer: "Some introductory labs and quests are free. For full access to the catalog, you can purchase a monthly or annual subscription, or buy credits for specific labs."
+  - question: "Do these courses help with Google Cloud Certifications?"
+    answer: "Yes, the learning paths are specifically designed to align with official Google Cloud Certifications like Associate Cloud Engineer and Professional Cloud Architect."
+  - question: "What happened to Qwiklabs?"
+    answer: "Google Cloud Skills Boost is the new home for Qwiklabs. Your existing Qwiklabs credits and history are now part of this unified learning platform."
+  - question: "Can I get free credits for labs?"
+    answer: "Google frequently runs campaigns and challenges (like the 'Cloud Hero' games or seasonal challenges) that offer free access or credits for completing specific tracks."
 ---
 
 

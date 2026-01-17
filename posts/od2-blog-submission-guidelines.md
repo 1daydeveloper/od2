@@ -7,6 +7,21 @@ category: "Blog"
 description: "Learn how to contribute to the OD2 One Day Developers blog. Follow our official submission guidelines for technical writing, formatting, and SEO best practices."
 keywords: "OD2, blog guidelines, technical writing, blog submission, content submission, developer community, contribution rules, markdown, SEO, blog standards, writing for developers, guest blogging, coding blogs"
 urlpath: "od2-blog-submission-guidelines"
+faqs:
+  - question: "How long does the review process take for submitted blogs?"
+    answer: "The typical review process takes 3-5 business days. Our editorial team reviews submissions for technical accuracy, content quality, and adherence to guidelines."
+  - question: "Can I submit multiple blog posts at once?"
+    answer: "Yes, you can submit multiple posts, but we recommend submitting them one at a time. If you're planning a series, mention this in your submission email."
+  - question: "What happens if my blog submission is rejected?"
+    answer: "If your submission doesn't meet our guidelines, we'll provide specific feedback. You're welcome to revise and resubmit your blog after addressing the feedback."
+  - question: "Do I retain copyright of my submitted blog content?"
+    answer: "Yes, you retain full copyright. By submitting to OD2, you grant us non-exclusive rights to publish and distribute your blog on our platform."
+  - question: "Can I update or edit my blog after it's published?"
+    answer: "Yes, minor updates and corrections can be made after publication. Contact our editorial team with specific changes."
+  - question: "Is there a specific audience I should write for?"
+    answer: "Write primarily for developers, ranging from beginners to intermediate level. Your content should be educational, practical, and actionable."
+  - question: "What types of topics are most welcomed at OD2?"
+    answer: "We prioritize content about modern web technologies, programming tutorials, developer tools, best practices, project showcases, and industry insights."
 ---
 
 
@@ -150,32 +165,4 @@ The following types of content will not be accepted:
 
 By submitting a blog post, you agree to follow these guidelines and to allow OD2 to feature your article on our website. We look forward to sharing your knowledge and experience with the OD2 community!
 
-## Frequently Asked Questions (FAQs)
 
-### Q1: How long does the review process take for submitted blogs?
-
-A: The typical review process takes 3-5 business days. Our editorial team reviews submissions for technical accuracy, content quality, and adherence to guidelines. During peak submission periods, reviews may take up to 7 days. You'll receive an email notification once your submission has been reviewed, whether approved, requires revisions, or is declined.
-
-### Q2: Can I submit multiple blog posts at once?
-
-A: Yes, you can submit multiple posts, but we recommend submitting them one at a time to ensure each receives proper attention during review. If you're planning a series, mention this in your submission email so our team can coordinate the publishing schedule. We typically publish one blog per author per week to maintain content diversity.
-
-### Q3: What happens if my blog submission is rejected?
-
-A: If your submission doesn't meet our guidelines, we'll provide specific feedback on areas that need improvement. Common rejection reasons include insufficient technical depth, poor formatting, or content that doesn't align with our audience. You're welcome to revise and resubmit your blog after addressing the feedback. We encourage learning from the feedback to improve future submissions.
-
-### Q4: Do I retain copyright of my submitted blog content?
-
-A: Yes, you retain full copyright of your original content. By submitting to OD2, you grant us non-exclusive rights to publish, distribute, and promote your blog on our platform and social media channels. You're free to republish your content elsewhere, though we appreciate attribution to OD2 if you do. We'll always credit you as the author and include your provided author link.
-
-### Q5: Can I update or edit my blog after it's published?
-
-A: Yes, minor updates and corrections can be made after publication. Contact our editorial team with specific changes needed, and we'll review them for implementation. Major revisions may require re-review. For time-sensitive updates (like security fixes or deprecated code), please mark them as urgent in your communication.
-
-### Q6: Is there a specific audience I should write for?
-
-A: Write primarily for developers, ranging from beginners to intermediate level. Your content should be educational, practical, and actionable. Avoid overly academic language or extremely basic tutorials that don't add value. Think of developers who want to learn new technologies, solve specific problems, or stay updated with industry trends. Include practical examples and real-world applications.
-
-### Q7: What types of topics are most welcomed at OD2?
-
-A: We prioritize content about modern web technologies, programming tutorials, developer tools, best practices, project showcases, and industry insights. Popular topics include JavaScript frameworks, cloud technologies, DevOps, mobile development, and emerging tech trends. Avoid topics that are purely promotional, outdated technologies without modern relevance, or content that lacks technical depth.

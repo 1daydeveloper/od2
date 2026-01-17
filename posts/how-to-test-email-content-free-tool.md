@@ -6,6 +6,17 @@ author: "One Day Developers(OD2)"
 category: "Developer Tools"
 image: "/blog/email-testing-guide.jpg"
 keywords: "Email Testing, Free Tools, Web Development, Next.js"
+faqs:
+  - question: "Is the Test Mail Service really free?"
+    answer: "Yes, the OD2 Test Mail Service is completely free for developers. We provide production-ready templates and instant previews without any cost."
+  - question: "Do I need an SMTP server to use this tool?"
+    answer: "No, our tool is designed to help you test and preview email content directly in the browser without needing to set up a complex SMTP infrastructure."
+  - question: "Can I test HTML email rendering?"
+    answer: "Absolutely. Our Instant Preview feature shows you exactly how your HTML email code will look, helping you identify rendering issues before sending."
+  - question: "What is the Temp Mail Tool for?"
+    answer: "The Temp Mail Tool provides a disposable email address so you can test user signup flows and receipt delivery without clogging your personal inbox."
+  - question: "Are the email templates mobile-responsive?"
+    answer: "Yes, our provided templates are designed to be responsive and compatible with major email clients, ensuring your emails look good on all devices."
 ---
 
 # How to Test Email Content for Free: A Developer's Guide

@@ -7,6 +7,17 @@ category: "Mobile"
 description: "Discover the Realme 14 Pro, featuring a stunning display, exceptional performance, and an advanced camera system. Is this the best smartphone of 2025?"
 keywords: "Realme 14 Pro, Realme flagship smartphone, Realme 14 Pro specs, Realme 14 Pro price, Realme 14 Pro features, Realme 14 Pro design, Realme 14 Pro review, Realme 14 Pro performance, smartphone innovation 2025, Realme UI 5.0, Realme fast charging, 200MP camera phone, Realme Pro series, AMOLED display, best smartphones 2025, affordable flagship smartphone, Realme mobile photography, Realme 14 Pro India, Realme 14 Pro launch"
 urlpath: "realme-14-pro-redefining-smartphone-innovation"
+faqs:
+  - question: "What is the price of Realme 14 Pro in India?"
+    answer: "The Realme 14 Pro is priced at ₹29,999 for the 8GB + 128GB variant and ₹37,999 for the 16GB + 512GB variant."
+  - question: "Does Realme 14 Pro have a 200MP camera?"
+    answer: "Yes, the Realme 14 Pro features a 200MP OIS main sensor as part of its quad-camera system."
+  - question: "How fast is the charging on Realme 14 Pro?"
+    answer: "It supports 150W UltraDart Charging, which can charge the 5,000mAh battery from 0 to 100% in just 15 minutes."
+  - question: "Which processor powers the Realme 14 Pro?"
+    answer: "It is powered by the MediaTek Dimensity 9200+ chipset."
+  - question: "What is the display refresh rate?"
+    answer: "The phone features a 6.7-inch AMOLED display with a 120Hz refresh rate."
 ---
 
 ### Introduction  

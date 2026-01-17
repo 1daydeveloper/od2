@@ -113,7 +113,7 @@ export default function BlogLayout({ children, frontMatter, content }) {
           </CardContent>
         </Card>
       </section>
-    </div>
+    </div >
   );
 }
 

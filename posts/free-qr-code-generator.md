@@ -7,6 +7,17 @@ category: "Tools & Utilities"
 description: "Create stunning custom QR codes with logos, gradients, and dots. OD2's advanced QR generator is 100% free, private, and supports 4K Ultra HD downloads."
 keywords: "Free QR Code Generator,Custom QR Code with Logo,High Quality QR Code,Privacy First QR Generator,No Sign Up QR Tool,4K QR Export,Vector QR Code, QR Code Generator"
 urlpath: "free-qr-code-generator"
+faqs:
+  - question: "Is this QR Code Generator truly free?"
+    answer: "Yes, our Advanced QR Code Generator is 100% free. There are no hidden fees, subscriptions, or limits on the number of QR codes you can generate."
+  - question: "Is my data private?"
+    answer: "Absolutely. Our tool runs 100% in your browser. Your data never leaves your device, ensuring maximum privacy for your Wi-Fi passwords, contact info, and links."
+  - question: "Can I download QR codes in high resolution?"
+    answer: "Yes, we support 4K Ultra HD export. You can download your QR codes as crisp PNG, JPG, or WebP files suitable for printing on posters, flyers, and business cards."
+  - question: "Can I add a logo to my QR code?"
+    answer: "Yes, you can upload your company logo or any image to center it within the QR code for a professional, branded look."
+  - question: "Do these QR codes expire?"
+    answer: "No, the QR codes generated are static and do not expire. They will work as long as the information linked (like your website URL) remains valid."
 ---
 
 ![Free Advanced QR Code Generator](/blog/qr-generator-hero.jpg)
